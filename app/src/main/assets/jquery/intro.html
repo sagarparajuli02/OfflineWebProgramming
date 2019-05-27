@@ -1,0 +1,158 @@
+<h2>What is jQuery?</h2>
+<p>jQuery is a fast and concise JavaScript Library created by John Resig in 2006 with a nice motto:&nbsp;<strong>Write less, do more</strong>. jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development. jQuery is a JavaScript toolkit designed to simplify various tasks by writing less code. Here is the list of important core features supported by jQuery &minus;</p>
+<ul class="list">
+<li>
+<p><strong>DOM manipulation</strong>&nbsp;&minus; The jQuery made it easy to select DOM elements, negotiate them and modifying their content by using cross-browser open source selector engine called&nbsp;<strong>Sizzle</strong>.</p>
+</li>
+<li>
+<p><strong>Event handling</strong>&nbsp;&minus; The jQuery offers an elegant way to capture a wide variety of events, such as a user clicking on a link, without the need to clutter the HTML code itself with event handlers.</p>
+</li>
+<li>
+<p><strong>AJAX Support</strong>&nbsp;&minus; The jQuery helps you a lot to develop a responsive and featurerich site using AJAX technology.</p>
+</li>
+<li>
+<p><strong>Animations</strong>&nbsp;&minus; The jQuery comes with plenty of built-in animation effects which you can use in your websites.</p>
+</li>
+<li>
+<p><strong>Lightweight</strong>&nbsp;&minus; The jQuery is very lightweight library - about 19KB in size (Minified and gzipped).</p>
+</li>
+<li>
+<p><strong>Cross Browser Support</strong>&nbsp;&minus; The jQuery has cross-browser support, and works well in IE 6.0+, FF 2.0+, Safari 3.0+, Chrome and Opera 9.0+</p>
+</li>
+<li>
+<p><strong>Latest Technology</strong>&nbsp;&minus; The jQuery supports CSS3 selectors and basic XPath syntax.</p>
+</li>
+</ul>
+<h2>How to use jQuery?</h2>
+<p>There are two ways to use jQuery.</p>
+<ul class="list">
+<li>
+<p><strong>Local Installation</strong>&nbsp;&minus; You can download jQuery library on your local machine and include it in your HTML code.</p>
+</li>
+<li>
+<p><strong>CDN Based Version</strong>&nbsp;&minus; You can include jQuery library into your HTML code directly from Content Delivery Network (CDN).</p>
+</li>
+</ul>
+<h2>Local Installation</h2>
+<ul class="list">
+<li>
+<p>Go to the&nbsp;<a href="https://jquery.com/download/" target="_blank" rel="nofollow">https://jquery.com/download/</a>&nbsp;to download the latest version available.</p>
+</li>
+<li>
+<p>Now put downloaded&nbsp;<strong>jquery-2.1.3.min.js</strong>&nbsp;file in a directory of your website, e.g. /jquery.</p>
+</li>
+</ul>
+<h3>Example</h3>
+<p>Now you can include&nbsp;<em>jquery</em>&nbsp;library in your HTML file as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/jquery-2.1.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello, World!"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h1&gt;</span><span class="pln">Hello</span><span class="tag">&lt;/h1&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/hello-world.htm" width="300" height="150"></iframe></p>
+<h2>CDN Based Version</h2>
+<p>You can include jQuery library into your HTML code directly from Content Delivery Network (CDN). Google and Microsoft provides content deliver for the latest version.</p>
+<blockquote>We are using Google CDN version of the library throughout this tutorial.</blockquote>
+<h3>Example</h3>
+<p>Now let us rewrite above example using jQuery library from Google CDN.</p>
+<p><a class="demo" href="http://tpcg.io/K7aHSK" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello, World!"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h1&gt;</span><span class="pln">Hello</span><span class="tag">&lt;/h1&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/hello-world.htm" width="300" height="150"></iframe></p>
+<h2>How to Call a jQuery Library Functions?</h2>
+<p>As almost everything, we do when using jQuery reads or manipulates the document object model (DOM), we need to make sure that we start adding events etc. as soon as the DOM is ready.</p>
+<p>If you want an event to work on your page, you should call it inside the $(document).ready() function. Everything inside it will load as soon as the DOM is loaded and before the page contents are loaded.</p>
+<p>To do this, we register a ready event for the document as follows &minus;</p>
+<pre class="result notranslate">$(document).ready(function() {
+   // do stuff when DOM is ready
+});
+</pre>
+<p>To call upon any jQuery library function, use HTML script tags as shown below &minus;</p>
+<p><a class="demo" href="http://tpcg.io/q70PLd" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">alert</span><span class="pun">(</span><span class="str">"Hello, world!"</span><span class="pun">);});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"mydiv"</span><span class="tag">&gt;</span><span class="pln">
+         Click on this to see a dialogue box.
+      </span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/hello-alert.htm" width="300" height="150"></iframe></p>
+<h2>How to Use Custom Scripts?</h2>
+<p>It is better to write our custom code in the custom JavaScript file :&nbsp;<strong>custom.js</strong>, as follows &minus;</p>
+<pre id="custom_js" class="prettyprint notranslate prettyprinted"><span class="com">/* Filename: custom.js */</span><span class="pln">
+$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+
+   $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="str">"Hello, world!"</span><span class="pun">);</span>
+   <span class="pun">});</span>
+<span class="pun">});</span></pre>
+<p>Now we can include&nbsp;<strong>custom.js</strong>&nbsp;file in our HTML file as follows &minus;</p>
+<p><a class="demo" href="http://tpcg.io/CTCqTW" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted" title="custom_js"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/custom.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"mydiv"</span><span class="tag">&gt;</span><span class="pln">
+         Click on this to see a dialogue box.
+      </span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/hello-alert.htm" width="300" height="150"></iframe></p>
+<h2>Using Multiple Libraries</h2>
+<p>You can use multiple libraries all together without conflicting each others. For example, you can use jQuery and MooTool javascript libraries together. You can check&nbsp;<a href="https://www.tutorialspoint.com/jquery/jquery-noconflict.htm">jQuery noConflict</a>&nbsp;Method for more detail.</p>
+<h2>What is Next ?</h2>
+<p>Do not worry too much if you did not understand above examples. You are going to grasp them very soon in subsequent chapters.</p>
+<p>Next chapter would try to cover few basic concepts which are coming from conventional JavaScript.</p>

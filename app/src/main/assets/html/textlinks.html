@@ -1,0 +1,181 @@
+<p>A webpage can contain various links that take you directly to other pages and even specific parts of a given page. These links are known as hyperlinks.</p>
+<p>Hyperlinks allow visitors to navigate between Web sites by clicking on words, phrases, and images. Thus you can create hyperlinks using text or images available on a webpage.</p>
+<p><strong>Note</strong>&nbsp;&minus; I recommend you to go through a short tutorial on&nbsp;<a href="https://www.tutorialspoint.com/html/understanding_url_tutorial.htm">Understanding URL</a></p>
+<h2>Linking Documents</h2>
+<p>A link is specified using HTML tag &lt;a&gt;. This tag is called&nbsp;<strong>anchor tag</strong>&nbsp;and anything between the opening &lt;a&gt; tag and the closing &lt;/a&gt; tag becomes part of the link and a user can click that part to reach to the linked document. Following is the simple syntax to use &lt;a&gt; tag.</p>
+<pre class="result notranslate">&lt;a href = "Document URL" ... attributes-list&gt;Link Text&lt;/a&gt; 
+</pre>
+<h3>Example</h3>
+<p>Let's try following example which links http://www.tutorialspoint.com at your page &minus;</p>
+<p><a class="demo" href="http://tpcg.io/XMwEnj" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hyperlink Example</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click following link</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_self"</span><span class="tag">&gt;</span><span class="pln">Tutorials Point</span><span class="tag">&lt;/a&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result, where you can click on the link generated to reach to the home page of Tutorials Point (in this example).</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/linking_documents.htm" width="600px" height="100px"></iframe></p>
+<h2>The target Attribute</h2>
+<p>We have used&nbsp;<strong>target</strong>&nbsp;attribute in our previous example. This attribute is used to specify the location where linked document is opened. Following are the possible options &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No</th>
+<th>Option &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>_blank</strong></p>
+<p>Opens the linked document in a new window or tab.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>_self</strong></p>
+<p>Opens the linked document in the same frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>_parent</strong></p>
+<p>Opens the linked document in the parent frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>_top</strong></p>
+<p>Opens the linked document in the full body of the window.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><strong>targetframe</strong></p>
+<p>Opens the linked document in a named&nbsp;<em>targetframe</em>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<p>Try following example to understand basic difference in few options given for target attribute.</p>
+<p><a class="demo" href="http://tpcg.io/Gt6jpS" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hyperlink Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click any of the following links</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span><span class="tag">&gt;</span><span class="pln">Opens in New</span><span class="tag">&lt;/a&gt;</span><span class="pln"> |
+      </span><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_self"</span><span class="tag">&gt;</span><span class="pln">Opens in Self</span><span class="tag">&lt;/a&gt;</span><span class="pln"> |
+      </span><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_parent"</span><span class="tag">&gt;</span><span class="pln">Opens in Parent</span><span class="tag">&lt;/a&gt;</span><span class="pln"> |
+      </span><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_top"</span><span class="tag">&gt;</span><span class="pln">Opens in Body</span><span class="tag">&lt;/a&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result, where you can click on different links to understand the difference between various options given for target attribute.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/usage_of_target.htm" width="600px" height="100px"></iframe></p>
+<h2>Use of Base Path</h2>
+<p>When you link HTML documents related to the same website, it is not required to give a complete URL for every link. You can get rid of it if you use&nbsp;<strong>&lt;base&gt;</strong>&nbsp;tag in your HTML document header. This tag is used to give a base path for all the links. So your browser will concatenate given relative path to this base path and will make a complete URL.</p>
+<h3>Example</h3>
+<p>Following example makes use of &lt;base&gt; tag to specify base URL and later we can use relative path to all the links instead of giving complete URL for every link.</p>
+<p><a class="demo" href="http://tpcg.io/fYgWRA" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hyperlink Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click following link</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span><span class="tag">&gt;</span><span class="pln">HTML Tutorial</span><span class="tag">&lt;/a&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result, where you can click on the link generated&nbsp;<strong>HTML Tutorial</strong>&nbsp;to reach to the HTML tutorial.</p>
+<p>Now given URL &lt;a href = "/html/index.htm" is being considered as &lt;ahref = "http://www.tutorialspoint.com/html/index.htm"</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/base_path.htm" width="600px" height="100px"></iframe></p>
+<h2>Linking to a Page Section</h2>
+<p>You can create a link to a particular section of a given webpage by using&nbsp;<strong>name</strong>&nbsp;attribute. This is a two-step process.</p>
+<blockquote>
+<p><strong>Note</strong>&nbsp;&minus; The&nbsp;<em>name</em>&nbsp;attribute deprecated in HTML5. Do not use this attribute. Use&nbsp;<em>id</em>&nbsp;and&nbsp;<em>title</em>&nbsp;attribute instead.</p>
+</blockquote>
+<p>First create a link to the place where you want to reach with-in a webpage and name it using &lt;a...&gt; tag as follows &minus;</p>
+<pre class="result notranslate">&lt;h1&gt;HTML Text Links &lt;a name = "top"&gt;&lt;/a&gt;&lt;/h1&gt;
+</pre>
+<p>Second step is to create a hyperlink to link the document and place where you want to reach &minus;</p>
+<pre class="result notranslate">&lt;a href = "/html/html_text_links.htm#top"&gt;Go to the Top&lt;/a&gt;
+</pre>
+<p>This will produce following link, where you can click on the link generated&nbsp;<strong>Go to the Top</strong>to reach to the top of the HTML Text Link tutorial.</p>
+<pre class="result notranslate"><a href="https://www.tutorialspoint.com/html/html_text_links.htm#top">Go to the Top</a> 
+</pre>
+<h2>Setting Link Colors</h2>
+<p>You can set colors of your links, active links and visited links using&nbsp;<strong>link</strong>,&nbsp;<strong>alink</strong>&nbsp;and&nbsp;<strong>vlink</strong>attributes of &lt;body&gt; tag.</p>
+<h3>Example</h3>
+<p>Save the following in test.htm and open it in any web browser to see how&nbsp;<strong>link</strong>,&nbsp;<strong>alink</strong>&nbsp;and&nbsp;<strong>vlink</strong>&nbsp;attributes work.</p>
+<p><a class="demo" href="http://tpcg.io/3eWU7z" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hyperlink Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body</span> <span class="atn">alink</span> <span class="pun">=</span> <span class="atv">"#54A250"</span> <span class="atn">link</span> <span class="pun">=</span> <span class="atv">"#040404"</span> <span class="atn">vlink</span> <span class="pun">=</span> <span class="atv">"#F40633"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click following link</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/index.htm"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span> <span class="tag">&gt;</span><span class="pln">HTML Tutorial</span><span class="tag">&lt;/a&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result. Just check color of the link before clicking on it, next check its color when you activate it and when the link has been visited.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/setting_link.htm" width="600px" height="100px"></iframe></p>
+<h2>Download Links</h2>
+<p>You can create text link to make your PDF, or DOC or ZIP files downloadable. This is very simple; you just need to give complete URL of the downloadable file as follows &minus;</p>
+<p><a class="demo" href="http://tpcg.io/pG57mM" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hyperlink Example</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/page.pdf"</span><span class="tag">&gt;</span><span class="pln">Download PDF File</span><span class="tag">&lt;/a&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following link and will be used to download a file.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/download_links.htm" width="600px" height="100px"></iframe></p>
+<h2>File Download Dialog Box</h2>
+<p>Sometimes it is desired that you want to give an option where a user will click a link and it will pop up a "File Download" box to the user instead of displaying actual content. This is very easy and can be achieved using an HTTP header in your HTTP response.</p>
+<p>For example, if you want make a&nbsp;<strong>Filename</strong>&nbsp;file downloadable from a given link then its syntax will be as follows.</p>
+<pre class="result notranslate">#!/usr/bin/perl
+
+# Additional HTTP Header
+print "Content-Type:application/octet-stream; name = \"FileName\"\r\n";
+print "Content-Disposition:attachment; filename = \"FileName\"\r\n\n";
+
+# Open the target file and list down its content as follows
+open( FILE, "&lt;FileName" );
+
+while(read(FILE, $buffer, 100)){
+   print("$buffer");
+}</pre>

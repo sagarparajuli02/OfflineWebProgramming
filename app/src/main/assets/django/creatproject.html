@@ -1,0 +1,77 @@
+<p>Now that we have installed Django, let's start using it. In Django, every web app you want to create is called a project; and a project is a sum of applications. An application is a set of code files relying on the MVT pattern. As example let's say we want to build a website, the website is our project and, the forum, news, contact engine are applications. This structure makes it easier to move an application between projects since every application is independent.</p>
+<h2>Create a Project</h2>
+<p>Whether you are on Windows or Linux, just get a terminal or a&nbsp;<strong>cmd</strong>&nbsp;prompt and navigate to the place you want your project to be created, then use this code &minus;</p>
+<pre class="result notranslate">$ django-admin startproject myproject
+</pre>
+<p>This will create a "myproject" folder with the following structure &minus;</p>
+<pre class="result notranslate">myproject/
+   manage.py
+   myproject/
+      __init__.py
+      settings.py
+      urls.py
+      wsgi.py
+</pre>
+<h2>The Project Structure</h2>
+<p>The &ldquo;myproject&rdquo; folder is just your project container, it actually contains two elements &minus;</p>
+<ul class="list">
+<li>
+<p><strong>manage.py</strong>&nbsp;&minus; This file is kind of your project local django-admin for interacting with your project via command line (start the development server, sync db...). To get a full list of command accessible via manage.py you can use the code &minus;</p>
+</li>
+</ul>
+<pre class="result notranslate">$ python manage.py help
+</pre>
+<ul class="list">
+<li>
+<p><strong>The &ldquo;myproject&rdquo; subfolder</strong>&nbsp;&minus; This folder is the actual python package of your project. It contains four files &minus;</p>
+<ul class="list">
+<li>
+<p><strong>__init__.py</strong>&nbsp;&minus; Just for python, treat this folder as package.</p>
+</li>
+<li>
+<p><strong>settings.py</strong>&nbsp;&minus; As the name indicates, your project settings.</p>
+</li>
+<li>
+<p><strong>urls.py</strong>&nbsp;&minus; All links of your project and the function to call. A kind of ToC of your project.</p>
+</li>
+<li>
+<p><strong>wsgi.py</strong>&nbsp;&minus; If you need to deploy your project over WSGI.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Setting Up Your Project</h2>
+<p>Your project is set up in the subfolder myproject/settings.py. Following are some important options you might need to set &minus;</p>
+<pre class="result notranslate">DEBUG = True
+</pre>
+<p>This option lets you set if your project is in debug mode or not. Debug mode lets you get more information about your project's error. Never set it to &lsquo;True&rsquo; for a live project. However, this has to be set to &lsquo;True&rsquo; if you want the Django light server to serve static files. Do it only in the development mode.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">DATABASES </span><span class="pun">=</span> <span class="pun">{</span>
+   <span class="str">'default'</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="str">'ENGINE'</span><span class="pun">:</span> <span class="str">'django.db.backends.sqlite3'</span><span class="pun">,</span>
+      <span class="str">'NAME'</span><span class="pun">:</span> <span class="str">'database.sql'</span><span class="pun">,</span>
+      <span class="str">'USER'</span><span class="pun">:</span> <span class="str">''</span><span class="pun">,</span>
+      <span class="str">'PASSWORD'</span><span class="pun">:</span> <span class="str">''</span><span class="pun">,</span>
+      <span class="str">'HOST'</span><span class="pun">:</span> <span class="str">''</span><span class="pun">,</span>
+      <span class="str">'PORT'</span><span class="pun">:</span> <span class="str">''</span><span class="pun">,</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p>Database is set in the &lsquo;Database&rsquo; dictionary. The example above is for SQLite engine. As stated earlier, Django also supports &minus;</p>
+<ul class="list">
+<li>MySQL (django.db.backends.mysql)</li>
+<li>PostGreSQL (django.db.backends.postgresql_psycopg2)</li>
+<li>Oracle (django.db.backends.oracle) and NoSQL DB</li>
+<li>MongoDB (django_mongodb_engine)</li>
+</ul>
+<p>Before setting any new engine, make sure you have the correct db driver installed.</p>
+<p>You can also set others options like: TIME_ZONE, LANGUAGE_CODE, TEMPLATE&hellip;</p>
+<p>Now that your project is created and configured make sure it's working &minus;</p>
+<pre class="result notranslate">$ python manage.py runserver
+</pre>
+<p>You will get something like the following on running the above code &minus;</p>
+<pre class="result notranslate">Validating models...
+
+0 errors found
+September 03, 2015 - 11:41:50
+Django version 1.6.11, using settings 'myproject.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</pre>

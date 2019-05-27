@@ -1,0 +1,141 @@
+<p>An array is a data structure that stores one or more similar type of values in a single value. For example if you want to store 100 numbers then instead of defining 100 variables its easy to define an array of 100 length.</p>
+<p>There are three different kind of arrays and each array value is accessed using an ID c which is called array index.</p>
+<ul class="list">
+<li>
+<p><strong>Numeric array</strong>&nbsp;&minus; An array with a numeric index. Values are stored and accessed in linear fashion.</p>
+</li>
+<li>
+<p><strong>Associative array</strong>&nbsp;&minus; An array with strings as index. This stores element values in association with key values rather than in a strict linear index order.</p>
+</li>
+<li>
+<p><strong>Multidimensional array</strong>&nbsp;&minus; An array containing one or more arrays and values are accessed using multiple indices</p>
+</li>
+</ul>
+<p><strong>NOTE</strong>&nbsp;&minus; Built-in array functions is given in function reference&nbsp;<a href="https://www.tutorialspoint.com/php/php_array_functions.htm">PHP Array Functions</a></p>
+<h2>Numeric Array</h2>
+<p>These arrays can store numbers, strings and any object but their index will be represented by numbers. By default array index starts from zero.</p>
+<h3>Example</h3>
+<p>Following is the example showing how to create and access numeric arrays.</p>
+<p>Here we have used&nbsp;<strong>array()</strong>&nbsp;function to create array. This function is explained in function reference.</p>
+<p><a class="demo" href="http://tpcg.io/X30tPl" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="pun">&lt;?</span><span class="pln">php
+         </span><span class="com">/* First method to create array. */</span><span class="pln">
+         $numbers </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span> <span class="lit">1</span><span class="pun">,</span> <span class="lit">2</span><span class="pun">,</span> <span class="lit">3</span><span class="pun">,</span> <span class="lit">4</span><span class="pun">,</span> <span class="lit">5</span><span class="pun">);</span>
+         
+         <span class="kwd">foreach</span><span class="pun">(</span><span class="pln"> $numbers </span><span class="kwd">as</span><span class="pln"> $value </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            echo </span><span class="str">"Value is $value &lt;br /&gt;"</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="com">/* Second method to create array. */</span><span class="pln">
+         $numbers</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"one"</span><span class="pun">;</span><span class="pln">
+         $numbers</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"two"</span><span class="pun">;</span><span class="pln">
+         $numbers</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"three"</span><span class="pun">;</span><span class="pln">
+         $numbers</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"four"</span><span class="pun">;</span><span class="pln">
+         $numbers</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"five"</span><span class="pun">;</span>
+         
+         <span class="kwd">foreach</span><span class="pun">(</span><span class="pln"> $numbers </span><span class="kwd">as</span><span class="pln"> $value </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            echo </span><span class="str">"Value is $value &lt;br /&gt;"</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="pun">?&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">Value is 1 
+Value is 2 
+Value is 3 
+Value is 4 
+Value is 5 
+Value is one 
+Value is two 
+Value is three 
+Value is four 
+Value is five 
+</pre>
+<h2>Associative Arrays</h2>
+<p>The associative arrays are very similar to numeric arrays in term of functionality but they are different in terms of their index. Associative array will have their index as string so that you can establish a strong association between key and values.</p>
+<p>To store the salaries of employees in an array, a numerically indexed array would not be the best choice. Instead, we could use the employees names as the keys in our associative array, and the value would be their respective salary.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; Don't keep associative array inside double quote while printing otherwise it would not return any value.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/7qCRbI" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="pun">&lt;?</span><span class="pln">php
+         </span><span class="com">/* First method to associate create array. */</span><span class="pln">
+         $salaries </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">"mohammad"</span> <span class="pun">=&gt;</span> <span class="lit">2000</span><span class="pun">,</span> <span class="str">"qadir"</span> <span class="pun">=&gt;</span> <span class="lit">1000</span><span class="pun">,</span> <span class="str">"zara"</span> <span class="pun">=&gt;</span> <span class="lit">500</span><span class="pun">);</span><span class="pln">
+         
+         echo </span><span class="str">"Salary of mohammad is "</span><span class="pun">.</span><span class="pln"> $salaries</span><span class="pun">[</span><span class="str">'mohammad'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+         echo </span><span class="str">"Salary of qadir is "</span><span class="pun">.</span><span class="pln">  $salaries</span><span class="pun">[</span><span class="str">'qadir'</span><span class="pun">].</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+         echo </span><span class="str">"Salary of zara is "</span><span class="pun">.</span><span class="pln">  $salaries</span><span class="pun">[</span><span class="str">'zara'</span><span class="pun">].</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span>
+         
+         <span class="com">/* Second method to create array. */</span><span class="pln">
+         $salaries</span><span class="pun">[</span><span class="str">'mohammad'</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"high"</span><span class="pun">;</span><span class="pln">
+         $salaries</span><span class="pun">[</span><span class="str">'qadir'</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"medium"</span><span class="pun">;</span><span class="pln">
+         $salaries</span><span class="pun">[</span><span class="str">'zara'</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">"low"</span><span class="pun">;</span><span class="pln">
+         
+         echo </span><span class="str">"Salary of mohammad is "</span><span class="pun">.</span><span class="pln"> $salaries</span><span class="pun">[</span><span class="str">'mohammad'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+         echo </span><span class="str">"Salary of qadir is "</span><span class="pun">.</span><span class="pln">  $salaries</span><span class="pun">[</span><span class="str">'qadir'</span><span class="pun">].</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+         echo </span><span class="str">"Salary of zara is "</span><span class="pun">.</span><span class="pln">  $salaries</span><span class="pun">[</span><span class="str">'zara'</span><span class="pun">].</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span>
+      <span class="pun">?&gt;</span>
+   
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">Salary of mohammad is 2000
+Salary of qadir is 1000
+Salary of zara is 500
+Salary of mohammad is high
+Salary of qadir is medium
+Salary of zara is low
+</pre>
+<h2>Multidimensional Arrays</h2>
+<p>A multi-dimensional array each element in the main array can also be an array. And each element in the sub-array can be an array, and so on. Values in the multi-dimensional array are accessed using multiple index.</p>
+<h3>Example</h3>
+<p>In this example we create a two dimensional array to store marks of three students in three subjects &minus;</p>
+<p>This example is an associative array, you can create numeric array in the same fashion.</p>
+<p><a class="demo" href="http://tpcg.io/7Itd7K" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="pun">&lt;?</span><span class="pln">php
+         $marks </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span> 
+            <span class="str">"mohammad"</span> <span class="pun">=&gt;</span><span class="pln"> array </span><span class="pun">(</span>
+               <span class="str">"physics"</span> <span class="pun">=&gt;</span> <span class="lit">35</span><span class="pun">,</span>
+               <span class="str">"maths"</span> <span class="pun">=&gt;</span> <span class="lit">30</span><span class="pun">,</span>	
+               <span class="str">"chemistry"</span> <span class="pun">=&gt;</span> <span class="lit">39</span>
+            <span class="pun">),</span>
+            
+            <span class="str">"qadir"</span> <span class="pun">=&gt;</span><span class="pln"> array </span><span class="pun">(</span>
+               <span class="str">"physics"</span> <span class="pun">=&gt;</span> <span class="lit">30</span><span class="pun">,</span>
+               <span class="str">"maths"</span> <span class="pun">=&gt;</span> <span class="lit">32</span><span class="pun">,</span>
+               <span class="str">"chemistry"</span> <span class="pun">=&gt;</span> <span class="lit">29</span>
+            <span class="pun">),</span>
+            
+            <span class="str">"zara"</span> <span class="pun">=&gt;</span><span class="pln"> array </span><span class="pun">(</span>
+               <span class="str">"physics"</span> <span class="pun">=&gt;</span> <span class="lit">31</span><span class="pun">,</span>
+               <span class="str">"maths"</span> <span class="pun">=&gt;</span> <span class="lit">22</span><span class="pun">,</span>
+               <span class="str">"chemistry"</span> <span class="pun">=&gt;</span> <span class="lit">39</span>
+            <span class="pun">)</span>
+         <span class="pun">);</span>
+         
+         <span class="com">/* Accessing multi-dimensional array values */</span><span class="pln">
+         echo </span><span class="str">"Marks for mohammad in physics : "</span> <span class="pun">;</span><span class="pln">
+         echo $marks</span><span class="pun">[</span><span class="str">'mohammad'</span><span class="pun">][</span><span class="str">'physics'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln"> 
+         
+         echo </span><span class="str">"Marks for qadir in maths : "</span><span class="pun">;</span><span class="pln">
+         echo $marks</span><span class="pun">[</span><span class="str">'qadir'</span><span class="pun">][</span><span class="str">'maths'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln"> 
+         
+         echo </span><span class="str">"Marks for zara in chemistry : "</span> <span class="pun">;</span><span class="pln">
+         echo $marks</span><span class="pun">[</span><span class="str">'zara'</span><span class="pun">][</span><span class="str">'chemistry'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span> 
+      <span class="pun">?&gt;</span>
+   
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">Marks for mohammad in physics : 35
+Marks for qadir in maths : 32
+Marks for zara in chemistry : 39</pre>

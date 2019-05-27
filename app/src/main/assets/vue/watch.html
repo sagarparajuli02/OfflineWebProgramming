@@ -1,0 +1,45 @@
+<p>In this chapter, we will learn about the Watch property. Using an example, we will see we can use the Watch property in VueJS.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"computed_props"</span><span class="tag">&gt;</span><span class="pln">
+         Kilometers : </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">v-model</span> <span class="pun">=</span> <span class="atv">"kilometers"</span><span class="tag">&gt;</span><span class="pln">
+         Meters : </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">v-model</span> <span class="pun">=</span> <span class="atv">"meters"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#computed_props'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               kilometers </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">,</span><span class="pln">
+               meters</span><span class="pun">:</span><span class="lit">0</span>
+            <span class="pun">},</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">},</span><span class="pln">
+            computed </span><span class="pun">:{</span>
+            <span class="pun">},</span><span class="pln">
+            watch </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               kilometers</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">val</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">kilometers </span><span class="pun">=</span><span class="pln"> val</span><span class="pun">;</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">meters </span><span class="pun">=</span><span class="pln"> val </span><span class="pun">*</span> <span class="lit">1000</span><span class="pun">;</span>
+               <span class="pun">},</span><span class="pln">
+               meters </span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">val</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">kilometers </span><span class="pun">=</span><span class="pln"> val</span><span class="pun">/</span> <span class="lit">1000</span><span class="pun">;</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">meters </span><span class="pun">=</span><span class="pln"> val</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above code, we have created two textboxes, one with&nbsp;<strong>kilometers</strong>&nbsp;and another with&nbsp;<strong>meters</strong>. In data property, the kilometers and meters are initialized to 0. There is a watch object created with two functions&nbsp;<strong>kilometers</strong>&nbsp;and&nbsp;<strong>meters</strong>. In both the functions, the conversion from kilometers to meters and from meters to kilometers is done.</p>
+<p>As we enter values inside any of the texboxes, whichever is changed, Watch takes care of updating both the textboxes. We do not have to specially assign any events and wait for it to change and do the extra work of validating. Watch takes care of updating the textboxes with the calculation done in the respective functions.</p>
+<p>Let&rsquo;s take a look at the output in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/textbox.jpg" alt="TextBox" /></p>
+<p>Let&rsquo;s enter some values in the kilometers textbox and see it changing in the meters textbox and vice-versa.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/textbox_changes.jpg" alt="TextBox Changes" /></p>
+<p>Let&rsquo;s now enter in meters textbox and see it changing in the kilometers textbox. This is the display seen in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/watch.jpg" alt="Watch" /></p>

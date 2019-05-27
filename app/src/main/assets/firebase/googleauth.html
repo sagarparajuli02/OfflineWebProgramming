@@ -1,0 +1,45 @@
+<p>n this chapter, we will show you how to set up Google authentication in Firebase.</p>
+<h2>Step 1 - Enable Google Authentication</h2>
+<p>Open Firebase dashboard and click&nbsp;<strong>Auth</strong>&nbsp;on the left side menu. To open the list of available methods, you need to click on&nbsp;<strong>SIGN_IN_METHODS</strong>&nbsp;in the tab menu.</p>
+<p>Now you can choose&nbsp;<strong>Google</strong>&nbsp;from the list, enable it and save it.</p>
+<h2>Step 2 - Create Buttons</h2>
+<p>Inside our&nbsp;<strong>index.html</strong>, we will add two buttons.</p>
+<h3>index.html</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">googleSignin</span><span class="pun">()</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Google Signin</span><span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">googleSignout</span><span class="pun">()</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Google Signout</span><span class="tag">&lt;/button&gt;</span></pre>
+<h2>Step 3 - Signin and Signout</h2>
+<p>In this step, we will create Signin and Signout functions. We will use&nbsp;<strong>signInWithPopup()</strong>and&nbsp;<strong>signOut()</strong>&nbsp;methods.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> provider </span><span class="pun">=</span> <span class="kwd">new</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="typ">GoogleAuthProvider</span><span class="pun">();</span>
+
+<span class="kwd">function</span><span class="pln"> googleSignin</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">()</span>
+   
+   <span class="pun">.</span><span class="pln">signInWithPopup</span><span class="pun">(</span><span class="pln">provider</span><span class="pun">).</span><span class="kwd">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">result</span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">var</span><span class="pln"> token </span><span class="pun">=</span><span class="pln"> result</span><span class="pun">.</span><span class="pln">credential</span><span class="pun">.</span><span class="pln">accessToken</span><span class="pun">;</span>
+      <span class="kwd">var</span><span class="pln"> user </span><span class="pun">=</span><span class="pln"> result</span><span class="pun">.</span><span class="pln">user</span><span class="pun">;</span><span class="pln">
+		
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">token</span><span class="pun">)</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">user</span><span class="pun">)</span>
+   <span class="pun">}).</span><span class="kwd">catch</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">var</span><span class="pln"> errorCode </span><span class="pun">=</span><span class="pln"> error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">;</span>
+      <span class="kwd">var</span><span class="pln"> errorMessage </span><span class="pun">=</span><span class="pln"> error</span><span class="pun">.</span><span class="pln">message</span><span class="pun">;</span><span class="pln">
+		
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">)</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">message</span><span class="pun">)</span>
+   <span class="pun">});</span>
+<span class="pun">}</span>
+
+<span class="kwd">function</span><span class="pln"> googleSignout</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">().</span><span class="pln">signOut</span><span class="pun">()</span>
+	
+   <span class="pun">.</span><span class="kwd">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Signout Succesfull'</span><span class="pun">)</span>
+   <span class="pun">},</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Signout Failed'</span><span class="pun">)</span>  
+   <span class="pun">});</span>
+<span class="pun">}</span></pre>
+<p>After we refresh the page, we can click on the&nbsp;<strong>Google Signin</strong>&nbsp;button to trigger the Google popup. If signing in is successful, the developer console will log in our user.</p>
+<p>We can also click on the&nbsp;<strong>Google Signout</strong>&nbsp;button to logout from the app. The console will confirm that the logout was successful.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_google_auth_log.jpg" alt="Firebase Google Auth Log" /></p>

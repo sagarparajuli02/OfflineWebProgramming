@@ -1,0 +1,55 @@
+<p>There may be a requirement where the existing data in a MySQL table needs to be modified. You can do so by using the SQL&nbsp;<strong>UPDATE</strong>&nbsp;command. This will modify any field value of any MySQL table.</p>
+<h3>Syntax</h3>
+<p>The following code block has a generic SQL syntax of the UPDATE command to modify the data in the MySQL table &minus;</p>
+<pre class="result notranslate">UPDATE table_name SET field1 = new-value1, field2 = new-value2
+[WHERE Clause]
+</pre>
+<ul class="list">
+<li>You can update one or more field altogether.</li>
+<li>You can specify any condition using the WHERE clause.</li>
+<li>You can update the values in a single table at a time.</li>
+</ul>
+<p>The WHERE clause is very useful when you want to update the selected rows in a table.</p>
+<h2>Updating Data from the Command Prompt</h2>
+<p>This will use the SQL UPDATE command with the WHERE clause to update the selected data in the MySQL table&nbsp;<strong>tutorials_tbl</strong>.</p>
+<h3>Example</h3>
+<p>The following example will update the&nbsp;<strong>tutorial_title</strong>&nbsp;field for a record having the tutorial_id as 3.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p password;</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> TUTORIALS</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> UPDATE tutorials_tbl 
+   </span><span class="pun">-&gt;</span><span class="pln"> SET tutorial_title </span><span class="pun">=</span> <span class="str">'Learning JAVA'</span> 
+   <span class="pun">-&gt;</span><span class="pln"> WHERE tutorial_id </span><span class="pun">=</span> <span class="lit">3</span><span class="pun">;</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.04</span><span class="pln"> sec</span><span class="pun">)</span>
+<span class="typ">Rows</span><span class="pln"> matched</span><span class="pun">:</span> <span class="lit">1</span>  <span class="typ">Changed</span><span class="pun">:</span> <span class="lit">1</span>  <span class="typ">Warnings</span><span class="pun">:</span> <span class="lit">0</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span></pre>
+<h2>Updating Data Using a PHP Script</h2>
+<p>You can use the SQL UPDATE command with or without the WHERE CLAUSE into the PHP function &ndash;&nbsp;<strong>mysql_query()</strong>. This function will execute the SQL command in a similar way it is executed at the mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>The following example to update the&nbsp;<strong>tutorial_title</strong>&nbsp;field for a record having tutorial_id as 3.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+
+   $sql </span><span class="pun">=</span> <span class="str">'UPDATE tutorials_tbl
+      SET tutorial_title="Learning JAVA"
+      WHERE tutorial_id=3'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not update data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   echo </span><span class="str">"Updated data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_</span></pre>

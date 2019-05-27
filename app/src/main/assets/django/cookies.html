@@ -1,0 +1,56 @@
+
+<p>Sometimes you might want to store some data on a per-site-visitor basis as per the requirements of your web application. Always keep in mind, that cookies are saved on the client side and depending on your client browser security level, setting cookies can at times work and at times might not.</p>
+<p>To illustrate cookies handling in Django, let's create a system using the login system we created before. The system will keep you logged in for X minute of time, and beyond that time, you will be out of the app.</p>
+<p>For this, you will need to set up two cookies, last_connection and username.</p>
+<p>At first, let's change our login view to store our username and last_connection cookies &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="kwd">template</span> <span class="kwd">import</span> <span class="typ">RequestContext</span>
+
+<span class="kwd">def</span><span class="pln"> login</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   username </span><span class="pun">=</span> <span class="str">"not logged in"</span>
+   
+   <span class="kwd">if</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">method </span><span class="pun">==</span> <span class="str">"POST"</span><span class="pun">:</span>
+      <span class="com">#Get the posted form</span>
+      <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">LoginForm</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">POST</span><span class="pun">)</span>
+   
+   <span class="kwd">if</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">is_valid</span><span class="pun">():</span><span class="pln">
+      username </span><span class="pun">=</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span>
+   <span class="kwd">else</span><span class="pun">:</span>
+      <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">LoginForm</span><span class="pun">()</span><span class="pln">
+   
+   response </span><span class="pun">=</span><span class="pln"> render_to_response</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'loggedin.html'</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"username"</span> <span class="pun">:</span><span class="pln"> username</span><span class="pun">},</span><span class="pln"> 
+      context_instance </span><span class="pun">=</span> <span class="typ">RequestContext</span><span class="pun">(</span><span class="pln">request</span><span class="pun">))</span><span class="pln">
+   
+   response</span><span class="pun">.</span><span class="pln">set_cookie</span><span class="pun">(</span><span class="str">'last_connection'</span><span class="pun">,</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">())</span><span class="pln">
+   response</span><span class="pun">.</span><span class="pln">set_cookie</span><span class="pun">(</span><span class="str">'username'</span><span class="pun">,</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">())</span>
+	
+   <span class="kwd">return</span><span class="pln"> response</span></pre>
+<p>As seen in the view above, setting cookie is done by the&nbsp;<strong>set_cookie</strong>&nbsp;method called on the response not the request, and also note that all cookies values are returned as string.</p>
+<p>Let&rsquo;s now create a formView for the login form, where we won&rsquo;t display the form if cookie is set and is not older than 10 second &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> formView</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="kwd">if</span> <span class="str">'username'</span> <span class="kwd">in</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">COOKIES </span><span class="kwd">and</span> <span class="str">'last_connection'</span> <span class="kwd">in</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">COOKIES</span><span class="pun">:</span><span class="pln">
+      username </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">COOKIES</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span><span class="pln">
+      
+      last_connection </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">COOKIES</span><span class="pun">[</span><span class="str">'last_connection'</span><span class="pun">]</span><span class="pln">
+      last_connection_time </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">strptime</span><span class="pun">(</span><span class="pln">last_connection</span><span class="pun">[:-</span><span class="lit">7</span><span class="pun">],</span> 
+         <span class="str">"%Y-%m-%d %H:%M:%S"</span><span class="pun">)</span>
+      
+      <span class="kwd">if</span> <span class="pun">(</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">()</span> <span class="pun">-</span><span class="pln"> last_connection_time</span><span class="pun">).</span><span class="pln">seconds </span><span class="pun">&lt;</span> <span class="lit">10</span><span class="pun">:</span>
+         <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'loggedin.html'</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"username"</span> <span class="pun">:</span><span class="pln"> username</span><span class="pun">})</span>
+      <span class="kwd">else</span><span class="pun">:</span>
+         <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'login.html'</span><span class="pun">,</span> <span class="pun">{})</span>
+			
+   <span class="kwd">else</span><span class="pun">:</span>
+      <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'login.html'</span><span class="pun">,</span> <span class="pun">{})</span></pre>
+<p>As you can see in the formView above accessing the cookie you set, is done via the COOKIES attribute (dict) of the request.</p>
+<p>Now let&rsquo;s change the url.py file to change the URL so it pairs with our new view &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span><span class="pln">
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^connection/'</span><span class="pun">,</span><span class="str">'formView'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'loginform'</span><span class="pun">),</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^login/'</span><span class="pun">,</span> <span class="str">'login'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'login'</span><span class="pun">))</span></pre>
+<p>When accessing /myapp/connection, you will get the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_cookies_handling.jpg" alt="Django Cookies Handling" /></p>
+<p>And you will get redirected to the following screen on submit &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/cookies_handling_redirected_page.jpg" alt="Cookies Handling Redirected Page" /></p>
+<p>Now, if you try to access /myapp/connection again in the 10 seconds range, you will get redirected to the second screen directly. And if you access /myapp/connection again out of this range you will get the login form (screen 1)</p>

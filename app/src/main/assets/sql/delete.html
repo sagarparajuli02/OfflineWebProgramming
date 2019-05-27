@@ -1,0 +1,60 @@
+<p>If you want to delete a record from any MySQL table, then you can use the SQL command&nbsp;<strong>DELETE FROM</strong>. You can use this command at the mysql&gt; prompt as well as in any script like PHP.</p>
+<h3>Syntax</h3>
+<p>The following code block has a generic SQL syntax of the DELETE command to delete data from a MySQL table.</p>
+<pre class="result notranslate">DELETE FROM table_name [WHERE Clause]
+</pre>
+<ul class="list">
+<li>
+<p>If the WHERE clause is not specified, then all the records will be deleted from the given MySQL table.</p>
+</li>
+<li>
+<p>You can specify any condition using the WHERE clause.</p>
+</li>
+<li>
+<p>You can delete records in a single table at a time.</p>
+</li>
+</ul>
+<p>The WHERE clause is very useful when you want to delete selected rows in a table.</p>
+<h2>Deleting Data from the Command Prompt</h2>
+<p>This will use the SQL DELETE command with the WHERE clause to delete selected data into the MySQL table &ndash;&nbsp;<strong>tutorials_tbl</strong>.</p>
+<h3>Example</h3>
+<p>The following example will delete a record from the tutorial_tbl whose tutorial_id is 3.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p password;</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> TUTORIALS</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> DELETE FROM tutorials_tbl WHERE tutorial_id</span><span class="pun">=</span><span class="lit">3</span><span class="pun">;</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.23</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span></pre>
+<h2>Deleting Data Using a PHP Script</h2>
+<p>You can use the SQL DELETE command with or without the WHERE CLAUSE into the PHP function &ndash;&nbsp;<strong>mysql_query()</strong>. This function will execute the SQL command in the same way as it is executed at the mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>Try the following example to delete a record from the tutorial_tbl whose tutorial_id is 3.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+
+   $sql </span><span class="pun">=</span> <span class="str">'DELETE FROM tutorials_tbl WHERE tutorial_id = 3'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not delete data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   echo </span><span class="str">"Deleted data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<hr />
+<div class="pre-btn"><a href="https://www.tutorialspoint.com/mysql/mysql-update-query.htm">&nbsp;Previous Page</a></div>
+<div class="print-btn center"><a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank">&nbsp;Print</a></div>
+<div class="nxt-btn"><a href="https://www.tutorialspoint.com/mysql/mysql-like-clause.htm">Next Page&nbsp;&nbsp;</a></div>

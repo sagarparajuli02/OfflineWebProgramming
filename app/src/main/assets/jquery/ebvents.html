@@ -1,0 +1,241 @@
+<p>We have the ability to create dynamic web pages by using events. Events are actions that can be detected by your Web Application.</p>
+<p>Following are the examples events &minus;</p>
+<ul class="list">
+<li>A mouse click</li>
+<li>A web page loading</li>
+<li>Taking mouse over an element</li>
+<li>Submitting an HTML form</li>
+<li>A keystroke on your keyboard, etc.</li>
+</ul>
+<p>When these events are triggered, you can then use a custom function to do pretty much whatever you want with the event. These custom functions call Event Handlers.</p>
+<h2>Binding Event Handlers</h2>
+<p>Using the jQuery Event Model, we can establish event handlers on DOM elements with the&nbsp;<strong>bind()</strong>&nbsp;method as follows &minus;</p>
+<p><a class="demo" href="http://tpcg.io/mviPhF" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">'div'</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">'click'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln"> event </span><span class="pun">){</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">'Hi there!'</span><span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">div</span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on any square below to see the result:</span><span class="tag">&lt;/p&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">ONE</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">TWO</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">THREE</span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This code will cause the division element to respond to the click event; when a user clicks inside this division thereafter, the alert will be shown.</p>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/binding-event-handlers.htm" width="300" height="150"></iframe></p>
+<p>The full syntax of the bind() command is as follows &minus;</p>
+<pre class="result notranslate"><em>selector</em>.bind( eventType[, eventData], handler)
+</pre>
+<p>Following is the description of the parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>eventType</strong>&nbsp;&minus; A string containing a JavaScript event type, such as click or submit. Refer to the next section for a complete list of event types.</p>
+</li>
+<li>
+<p><strong>eventData</strong>&nbsp;&minus; This is optional parameter is a map of data that will be passed to the event handler.</p>
+</li>
+<li>
+<p><strong>handler</strong>&nbsp;&minus; A function to execute each time the event is triggered.</p>
+</li>
+</ul>
+<h2>Removing Event Handlers</h2>
+<p>Typically, once an event handler is established, it remains in effect for the remainder of the life of the page. There may be a need when you would like to remove event handler.</p>
+<p>jQuery provides the&nbsp;<strong>unbind()</strong>&nbsp;command to remove an exiting event handler. The syntax of unbind() is as follows &minus;</p>
+<pre class="result notranslate"><em>selector</em>.unbind(eventType, handler)
+
+or 
+
+<em>selector</em>.unbind(eventType)
+</pre>
+<p>Following is the description of the parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>eventType</strong>&nbsp;&minus; A string containing a JavaScript event type, such as click or submit. Refer to the next section for a complete list of event types.</p>
+</li>
+<li>
+<p><strong>handler</strong>&nbsp;&minus; If provided, identifies the specific listener that's to be removed.</p>
+</li>
+</ul>
+<h2>Event Types</h2>
+<section class="toggle"><label>The following are cross platform and recommended event types which you can bind using JQuery &minus;</label></section>
+<h2>The Event Object</h2>
+<p>The callback function takes a single parameter; when the handler is called the JavaScript event object will be passed through it.</p>
+<p>The event object is often unnecessary and the parameter is omitted, as sufficient context is usually available when the handler is bound to know exactly what needs to be done when the handler is triggered, however there are certain attributes which you would need to be accessed.</p>
+<h2>The Event Attributes</h2>
+<section class="toggle"><label>The following event properties/attributes are available and safe to access in a platform independent manner &minus;</label></section>
+<p><a class="demo" href="http://tpcg.io/LthNJW" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">'div'</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">'click'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln"> event </span><span class="pun">){</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">'Event type is '</span> <span class="pun">+</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">type</span><span class="pun">);</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">'pageX : '</span> <span class="pun">+</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">pageX</span><span class="pun">);</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">'pageY : '</span> <span class="pun">+</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">pageY</span><span class="pun">);</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">'Target : '</span> <span class="pun">+</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">innerHTML</span><span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">div</span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on any square below to see the result:</span><span class="tag">&lt;/p&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">ONE</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">TWO</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">THREE</span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/event-attributes.htm" width="300" height="150"></iframe></p>
+<h2>The Event Methods</h2>
+<p>There is a list of methods which can be called on an Event Object &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-preventdefault.htm">preventDefault()</a>
+<p>Prevents the browser from executing the default action.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-isdefaultprevented.htm">isDefaultPrevented()</a>
+<p>Returns whether event.preventDefault() was ever called on this event object.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-stoppropagation.htm">stopPropagation()</a>
+<p>Stops the bubbling of an event to parent elements, preventing any parent handlers from being notified of the event.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-ispropagationstopped.htm">isPropagationStopped()</a>
+<p>Returns whether event.stopPropagation() was ever called on this event object.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-stopimmediatepropagation.htm">stopImmediatePropagation()</a>
+<p>Stops the rest of the handlers from being executed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-isimmediatepropagationstopped.htm">isImmediatePropagationStopped()</a>
+<p>Returns whether event.stopImmediatePropagation() was ever called on this event object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Event Manipulation Methods</h2>
+<p>Following table lists down important event-related methods &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-bind.htm">bind( type, [data], fn )</a>
+<p>Binds a handler to one or more events (like click) for each matched element. Can also bind custom events.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-off.htm">off( events [, selector ] [, handler(eventObject) ] )</a>
+<p>This does the opposite of live, it removes a bound live event.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-hover.htm">hover( over, out )</a>
+<p>Simulates hovering for example moving the mouse on, and off, an object.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-on.htm">on( events [, selector ] [, data ], handler )</a>
+<p>Binds a handler to an event (like click) for all current &minus; and future &minus; matched element. Can also bind custom events.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-one.htm">one( type, [data], fn )</a>
+<p>Binds a handler to one or more events to be executed once for each matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-ready.htm">ready( fn )</a>
+<p>Binds a function to be executed whenever the DOM is ready to be traversed and manipulated.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-trigger.htm">trigger( event, [data] )</a>
+<p>Trigger an event on every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-triggerhandler.htm">triggerHandler( event, [data] )</a>
+<p>Triggers all bound event handlers on an element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/events-unbind.htm">unbind( [type], [fn] )</a>
+<p>This does the opposite of bind, it removes bound events from each of the matched elements.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Event Helper Methods</h2>
+<p>jQuery also provides a set of event helper functions which can be used either to trigger an event to bind any event types mentioned above.</p>
+<h2>Trigger Methods</h2>
+<p>Following is an example which would triggers the blur event on all paragraphs &minus;</p>
+<pre class="result notranslate">$("p").blur();
+</pre>
+<h2>Binding Methods</h2>
+<p>Following is an example which would bind a&nbsp;<strong>click</strong>&nbsp;event on all the &lt;div&gt; &minus;</p>
+<pre class="result notranslate">$("div").click( function () { 
+   // do something here
+});
+</pre>
+<section class="toggle"><label>Here is a complete list of all the support methods provided by jQuery &minus;</label></section>

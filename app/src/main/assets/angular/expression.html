@@ -1,0 +1,49 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>Expressions are used to bind application data to HTML. Expressions are written inside double curly braces such as in {{ expression}}. Expressions behave similar to ngbind directives. AngularJS expressions are pure JavaScript expressions and output the data where they are used.</p>
+<h2>Using numbers</h2>
+<pre class="result notranslate">&lt;p&gt;Expense on Books : {{cost * quantity}} Rs&lt;/p&gt;
+</pre>
+<h2>Using Strings</h2>
+<pre class="result notranslate">&lt;p&gt;Hello {{student.firstname + " " + student.lastname}}!&lt;/p&gt;
+</pre>
+<h2>Using Object</h2>
+<pre class="result notranslate">&lt;p&gt;Roll No: {{student.rollno}}&lt;/p&gt;
+</pre>
+<h2>Using Array</h2>
+<pre class="result notranslate">&lt;p&gt;Marks(Math): {{marks[3]}}&lt;/p&gt;
+</pre>
+<h3>Example</h3>
+<p>The following example shows the use of all the above-mentioned expressions &minus;</p>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/9hoTis" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">AngularJS Expressions</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h1&gt;</span><span class="pln">Sample Application</span><span class="tag">&lt;/h1&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">""</span> <span class="atn">ng-init</span> <span class="pun">=</span> <span class="atv">"quantity = 1;cost = 30; 
+         student = {firstname:'Mahesh',lastname:'Parashar',rollno:101};
+         marks = [80,90,75,73,60]"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">Hello {{student.firstname + " " + student.lastname}}!</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">Expense on Books : {{cost * quantity}} Rs</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">Roll No: {{student.rollno}}</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">Marks(Math): {{marks[3]}}</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/expressions.htm" width="600px" height="250px"></iframe></p>

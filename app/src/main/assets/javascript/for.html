@@ -1,0 +1,56 @@
+<p>The '<strong>for</strong>' loop is the most compact form of looping. It includes the following three important parts &minus;</p>
+<ul class="list">
+<li>
+<p>The&nbsp;<strong>loop initialization</strong>&nbsp;where we initialize our counter to a starting value. The initialization statement is executed before the loop begins.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>test statement</strong>&nbsp;which will test if a given condition is true or not. If the condition is true, then the code given inside the loop will be executed, otherwise the control will come out of the loop.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>iteration statement</strong>&nbsp;where you can increase or decrease your counter.</p>
+</li>
+</ul>
+<p>You can put all the three parts in a single line separated by semicolons.</p>
+<h2>Flow Chart</h2>
+<p>The flow chart of a&nbsp;<strong>for</strong>&nbsp;loop in JavaScript would be as follows &minus;</p>
+<p><img src="https://www.tutorialspoint.com/javascript/images/for_loop.jpg" alt="For Loop" /></p>
+<h3>Syntax</h3>
+<p>The syntax of&nbsp;<strong>for</strong>&nbsp;loop is JavaScript is as follows &minus;</p>
+<pre class="result notranslate">for (initialization; test condition; iteration statement) {
+   Statement(s) to be executed if test condition is true
+}
+</pre>
+<h3>Example</h3>
+<p>Try the following example to learn how a&nbsp;<strong>for</strong>&nbsp;loop works in JavaScript.</p>
+<p><a class="demo" href="http://tpcg.io/YiJzji" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span>
+            <span class="kwd">var</span><span class="pln"> count</span><span class="pun">;</span><span class="pln">
+            document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Starting Loop"</span> <span class="pun">+</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">);</span>
+         
+            <span class="kwd">for</span><span class="pun">(</span><span class="pln">count </span><span class="pun">=</span> <span class="lit">0</span><span class="pun">;</span><span class="pln"> count </span><span class="pun">&lt;</span> <span class="lit">10</span><span class="pun">;</span><span class="pln"> count</span><span class="pun">++)</span> <span class="pun">{</span><span class="pln">
+               document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Current Count : "</span> <span class="pun">+</span><span class="pln"> count </span><span class="pun">);</span><span class="pln">
+               document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"&lt;br /&gt;"</span><span class="pun">);</span>
+            <span class="pun">}</span><span class="pln">         
+            document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Loop stopped!"</span><span class="pun">);</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>      
+      <span class="tag">&lt;p&gt;</span><span class="pln">Set the variable to different value and then try...</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<pre class="result notranslate">Starting Loop
+Current Count : 0
+Current Count : 1
+Current Count : 2
+Current Count : 3
+Current Count : 4
+Current Count : 5
+Current Count : 6
+Current Count : 7
+Current Count : 8
+Current Count : 9
+Loop stopped! 
+Set the variable to different value and then try...</pre>

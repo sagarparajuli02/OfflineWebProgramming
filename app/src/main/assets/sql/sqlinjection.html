@@ -1,0 +1,28 @@
+<p>If you take user input through a webpage and insert it into a MySQL database, there's a chance that you have left yourself wide open for a security issue known as&nbsp;<strong>SQL Injection</strong>. This chapter will teach you how to help prevent this from happening and help you secure your scripts and MySQL statements.</p>
+<p>The SQL Injection usually occurs when you ask a user for input, like their name and instead of a name they give you a MySQL statement that you will unknowingly run on your database.</p>
+<p>Never trust the data provided by a user, process this data only after validation; as a rule, this is done by pattern matching. In the following example, the username is restricted to alphanumerical characters plus underscore and to a length between 8 and 20 characters &ndash; modify these rules as needed.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">if</span> <span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">"/^\w{8,20}$/"</span><span class="pun">,</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">],</span><span class="pln"> $matches</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+   $result </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="str">"SELECT * FROM users WHERE username = $matches[0]"</span><span class="pun">);</span>
+<span class="pun">}</span> <span class="kwd">else</span>  <span class="pun">{</span><span class="pln">
+   echo </span><span class="str">"username not accepted"</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<p>To demonstrate this problem, consider the following excerpt.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">// supposed input</span><span class="pln">
+$name </span><span class="pun">=</span> <span class="str">"Qadir'; DELETE FROM users;"</span><span class="pun">;</span><span class="pln">
+mysql_query</span><span class="pun">(</span><span class="str">"SELECT * FROM users WHERE name = '{$name}'"</span><span class="pun">);</span></pre>
+<p>The function call is supposed to retrieve a record from the users table, where the name column matches the name specified by the user. Under normal circumstances, $name would only contain alphanumeric characters and perhaps spaces. But here, by appending an entirely new query to&nbsp;<strong>$name</strong>, the call to the database turns into a disaster. The injected DELETE query removes all the records from users.</p>
+<p>Fortunately, if you use MySQL, the&nbsp;<strong>mysql_query()</strong>&nbsp;function does not permit query stacking or executing multiple queries in a single function call. If you try to stack queries, the call fails.</p>
+<p>However, other PHP database extensions, such as&nbsp;<strong>SQLite</strong>&nbsp;and&nbsp;<strong>PostgreSQL</strong>, happily perform stacked queries, executing all the queries provided in one string and creating a serious security problem.</p>
+<h2>Preventing SQL Injection</h2>
+<p>You can handle all escape characters smartly in scripting languages like PERL and PHP. The MySQL extension for PHP provides the function&nbsp;<strong>mysql_real_escape_string()</strong>&nbsp;to escape input characters that are special to MySQL.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">if</span> <span class="pun">(</span><span class="pln">get_magic_quotes_gpc</span><span class="pun">())</span> <span class="pun">{</span><span class="pln">
+   $name </span><span class="pun">=</span><span class="pln"> stripslashes</span><span class="pun">(</span><span class="pln">$name</span><span class="pun">);</span>
+<span class="pun">}</span><span class="pln">
+
+$name </span><span class="pun">=</span><span class="pln"> mysql_real_escape_string</span><span class="pun">(</span><span class="pln">$name</span><span class="pun">);</span><span class="pln">
+mysql_query</span><span class="pun">(</span><span class="str">"SELECT * FROM users WHERE name = '{$name}'"</span><span class="pun">);</span></pre>
+<h2>The LIKE Quandary</h2>
+<p>To address the LIKE quandary, a custom escaping mechanism must convert user-supplied % and _ characters to literals. Use&nbsp;<strong>addcslashes()</strong>, a function that lets you specify a character range to escape.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$sub </span><span class="pun">=</span><span class="pln"> addcslashes</span><span class="pun">(</span><span class="pln">mysql_real_escape_string</span><span class="pun">(</span><span class="str">"%something_"</span><span class="pun">),</span> <span class="str">"%_"</span><span class="pun">);</span>
+<span class="com">// $sub == \%something\_</span><span class="pln">
+mysql_query</span><span class="pun">(</span><span class="str">"SELECT * FROM messages WHERE subject LIKE '{$sub}%'"</span><span class="pun">);</span></pre>

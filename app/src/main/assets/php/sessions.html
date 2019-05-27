@@ -1,0 +1,93 @@
+<p>An alternative way to make data accessible across the various pages of an entire website is to use a PHP Session.</p>
+<p>A session creates a file in a temporary directory on the server where registered session variables and their values are stored. This data will be available to all pages on the site during that visit.</p>
+<p>The location of the temporary file is determined by a setting in the&nbsp;<strong>php.ini</strong>&nbsp;file called&nbsp;<strong>session.save_path</strong>. Before using any session variable make sure you have setup this path.</p>
+<p>When a session is started following things happen &minus;</p>
+<ul class="list">
+<li>
+<p>PHP first creates a unique identifier for that particular session which is a random string of 32 hexadecimal numbers such as 3c7foj34c3jj973hjkop2fc937e3443.</p>
+</li>
+<li>
+<p>A cookie called&nbsp;<strong>PHPSESSID</strong>&nbsp;is automatically sent to the user's computer to store unique session identification string.</p>
+</li>
+<li>
+<p>A file is automatically created on the server in the designated temporary directory and bears the name of the unique identifier prefixed by sess_ ie sess_3c7foj34c3jj973hjkop2fc937e3443.</p>
+</li>
+</ul>
+<p>When a PHP script wants to retrieve the value from a session variable, PHP automatically gets the unique session identifier string from the PHPSESSID cookie and then looks in its temporary directory for the file bearing that name and a validation can be done by comparing both values.</p>
+<p>A session ends when the user loses the browser or after leaving the site, the server will terminate the session after a predetermined period of time, commonly 30 minutes duration.</p>
+<h2>Starting a PHP Session</h2>
+<p>A PHP session is easily started by making a call to the&nbsp;<strong>session_start()</strong>&nbsp;function.This function first checks if a session is already started and if none is started then it starts one. It is recommended to put the call to&nbsp;<strong>session_start()</strong>&nbsp;at the beginning of the page.</p>
+<p>Session variables are stored in associative array called&nbsp;<strong>$_SESSION[]</strong>. These variables can be accessed during lifetime of a session.</p>
+<p>The following example starts a session then register a variable called&nbsp;<strong>counter</strong>&nbsp;that is incremented each time the page is visited during the session.</p>
+<p>Make use of&nbsp;<strong>isset()</strong>&nbsp;function to check if session variable is already set or not.</p>
+<p>Put this code in a test.php file and load this file many times to see the result &minus;</p>
+<p><a class="demo" href="http://tpcg.io/2Q0jAv" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   session_start</span><span class="pun">();</span>
+   
+   <span class="kwd">if</span><span class="pun">(</span><span class="pln"> isset</span><span class="pun">(</span><span class="pln"> $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]</span> <span class="pun">)</span> <span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]</span> <span class="pun">+=</span> <span class="lit">1</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+      $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]</span> <span class="pun">=</span> <span class="lit">1</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln">
+	
+   $msg </span><span class="pun">=</span> <span class="str">"You have visited this page "</span><span class="pun">.</span><span class="pln">  $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">];</span><span class="pln">
+   $msg </span><span class="pun">.=</span> <span class="str">"in this session."</span><span class="pun">;</span>
+<span class="pun">?&gt;</span>
+
+<span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Setting up a PHP session</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php  echo </span><span class="pun">(</span><span class="pln"> $msg </span><span class="pun">);</span> <span class="pun">?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">You have visited this page 1in this session.
+</pre>
+<h2>Destroying a PHP Session</h2>
+<p>A PHP session can be destroyed by&nbsp;<strong>session_destroy()</strong>&nbsp;function. This function does not need any argument and a single call can destroy all the session variables. If you want to destroy a single session variable then you can use&nbsp;<strong>unset()</strong>&nbsp;function to unset a session variable.</p>
+<p>Here is the example to unset a single variable &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   unset</span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]);</span>
+<span class="pun">?&gt;</span></pre>
+<p>Here is the call which will destroy all the session variables &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   session_destroy</span><span class="pun">();</span>
+<span class="pun">?&gt;</span></pre>
+<h2>Turning on Auto Session</h2>
+<p>You don't need to call start_session() function to start a session when a user visits your site if you can set&nbsp;<strong>session.auto_start</strong>&nbsp;variable to 1 in&nbsp;<strong>php.ini</strong>&nbsp;file.</p>
+<h2>Sessions without cookies</h2>
+<p>There may be a case when a user does not allow to store cookies on their machine. So there is another method to send session ID to the browser.</p>
+<p>Alternatively, you can use the constant SID which is defined if the session started. If the client did not send an appropriate session cookie, it has the form session_name=session_id. Otherwise, it expands to an empty string. Thus, you can embed it unconditionally into URLs.</p>
+<p>The following example demonstrates how to register a variable, and how to link correctly to another page using SID.</p>
+<p><a class="demo" href="http://tpcg.io/gd5BOa" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   session_start</span><span class="pun">();</span>
+   
+   <span class="kwd">if</span> <span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]))</span> <span class="pun">{</span><span class="pln">
+      $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]</span> <span class="pun">=</span> <span class="lit">1</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+      $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">]++;</span>
+   <span class="pun">}</span><span class="pln">
+   
+   $msg </span><span class="pun">=</span> <span class="str">"You have visited this page "</span><span class="pun">.</span><span class="pln">  $_SESSION</span><span class="pun">[</span><span class="str">'counter'</span><span class="pun">];</span><span class="pln">
+   $msg </span><span class="pun">.=</span> <span class="str">"in this session."</span><span class="pun">;</span><span class="pln">
+   
+   echo </span><span class="pun">(</span><span class="pln"> $msg </span><span class="pun">);</span>
+<span class="pun">?&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="pln">
+   To continue  click following link </span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+   
+   &lt;a  href = "nextpage.php?</span><span class="pun">&lt;?</span><span class="pln">php echo htmlspecialchars</span><span class="pun">(</span><span class="pln">SID</span><span class="pun">);</span> <span class="pun">?&gt;</span><span class="pln">"&gt;
+</span><span class="tag">&lt;/p&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">You have visited this page 1in this session.
+To continue click following link 
+</pre>
+<p>The&nbsp;<strong>htmlspecialchars()</strong>&nbsp;may be used when printing the SID in order to prevent XSS related attacks.</p>

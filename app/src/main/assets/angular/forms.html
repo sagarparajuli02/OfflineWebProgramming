@@ -1,0 +1,148 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>ngularJS enriches form filling and validation. We can use ng-click event to handle the click button and use $dirty and $invalid flags to do the validation in a seamless way. Use novalidate with a form declaration to disable any browser-specific validation. The form controls make heavy use of AngularJS events. Let us have a look at the events first.</p>
+<h2>Events</h2>
+<p>AngularJS provides multiple events associated with the HTML controls. For example, ng-click directive is generally associated with a button. AngularJS supports the following events &minus;</p>
+<ul class="list">
+<li>ng-click</li>
+<li>ng-dbl-click</li>
+<li>ng-mousedown</li>
+<li>ng-mouseup</li>
+<li>ng-mouseenter</li>
+<li>ng-mouseleave</li>
+<li>ng-mousemove</li>
+<li>ng-mouseover</li>
+<li>ng-keydown</li>
+<li>ng-keyup</li>
+<li>ng-keypress</li>
+<li>ng-change</li>
+</ul>
+<h2>ng-click</h2>
+<p>Reset data of a form using on-click directive of a button.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"firstname"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"firstName"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"lastname"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"lastName"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+<span class="tag">&lt;button</span> <span class="atn">ng-click</span> <span class="pun">=</span> <span class="atv">"reset()"</span><span class="tag">&gt;</span><span class="pln">Reset</span><span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;script&gt;</span>
+   <span class="kwd">function</span><span class="pln"> studentController</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln"> 
+      $scope</span><span class="pun">.</span><span class="pln">reset </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+         $scope</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">=</span> <span class="str">"Mahesh"</span><span class="pun">;</span><span class="pln">
+         $scope</span><span class="pun">.</span><span class="pln">lastName </span><span class="pun">=</span> <span class="str">"Parashar"</span><span class="pun">;</span><span class="pln">
+         $scope</span><span class="pun">.</span><span class="pln">email </span><span class="pun">=</span> <span class="str">"MaheshParashar@tutorialspoint.com"</span><span class="pun">;</span>
+      <span class="pun">}</span><span class="pln">   
+      
+      $scope</span><span class="pun">.</span><span class="pln">reset</span><span class="pun">();</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+<h2>Validate Data</h2>
+<p>The following can be used to track error.</p>
+<ul class="list">
+<li>
+<p><strong>$dirty</strong>&nbsp;&minus; states that value has been changed.</p>
+</li>
+<li>
+<p><strong>$invalid</strong>&nbsp;&minus; states that value entered is invalid.</p>
+</li>
+<li>
+<p><strong>$error</strong>&nbsp;&minus; states the exact error.</p>
+</li>
+</ul>
+<h2>Example</h2>
+<p>The following example will showcase all the above-mentioned directives.</p>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/Sb0ijd" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Forms</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         table</span><span class="pun">,</span><span class="pln"> th </span><span class="pun">,</span><span class="pln"> td </span><span class="pun">{</span><span class="pln">
+            border</span><span class="pun">:</span> <span class="lit">1px</span><span class="pln"> solid grey</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">collapse</span><span class="pun">:</span><span class="pln"> collapse</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span> <span class="lit">5px</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">odd</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#f2f2f2;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">even</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#ffffff;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"mainApp"</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"studentController"</span><span class="tag">&gt;</span>
+         
+         <span class="tag">&lt;form</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"studentForm"</span> <span class="atn">novalidate</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;table</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td&gt;</span><span class="pln">Enter first name:</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"firstname"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"firstName"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="atv">"</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.firstname.$dirty &amp;&amp; studentForm.firstname.$invalid"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;span</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.firstname.$error.required"</span><span class="tag">&gt;</span><span class="pln">First Name is required.</span><span class="tag">&lt;/span&gt;</span>
+                     <span class="tag">&lt;/span&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+               
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td&gt;</span><span class="pln">Enter last name: </span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"lastname"</span>  <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"lastName"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="atv">"</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.lastname.$dirty &amp;&amp; studentForm.lastname.$invalid"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;span</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.lastname.$error.required"</span><span class="tag">&gt;</span><span class="pln">Last Name is required.</span><span class="tag">&lt;/span&gt;</span>
+                     <span class="tag">&lt;/span&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+               
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td&gt;</span><span class="pln">Email: </span><span class="tag">&lt;/td&gt;&lt;td&gt;&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"email"</span> <span class="atn">length</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="atv">"</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.email.$dirty &amp;&amp; studentForm.email.$invalid"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;span</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.email.$error.required"</span><span class="tag">&gt;</span><span class="pln">Email is required.</span><span class="tag">&lt;/span&gt;</span>
+                        <span class="tag">&lt;span</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"studentForm.email.$error.email"</span><span class="tag">&gt;</span><span class="pln">Invalid email address.</span><span class="tag">&lt;/span&gt;</span>
+                     <span class="tag">&lt;/span&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+               
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td&gt;</span>
+                     <span class="tag">&lt;button</span> <span class="atn">ng-click</span> <span class="pun">=</span> <span class="atv">"reset()"</span><span class="tag">&gt;</span><span class="pln">Reset</span><span class="tag">&lt;/button&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td&gt;</span>
+                     <span class="tag">&lt;button</span> <span class="atn">ng-disabled</span> <span class="pun">=</span> <span class="atv">"studentForm.firstname.$dirty &amp;&amp;
+                        studentForm.firstname.$invalid || studentForm.lastname.$dirty &amp;&amp;
+                        studentForm.lastname.$invalid || studentForm.email.$dirty &amp;&amp;
+                        studentForm.email.$invalid"</span> <span class="atn">ng-click</span><span class="pun">=</span><span class="atv">"submit()"</span><span class="tag">&gt;</span><span class="pln">Submit</span><span class="tag">&lt;/button&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+					
+            <span class="tag">&lt;/table&gt;</span>
+         <span class="tag">&lt;/form&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mainApp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"mainApp"</span><span class="pun">,</span> <span class="pun">[]);</span><span class="pln">
+         
+         mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">'studentController'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">reset </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $scope</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">=</span> <span class="str">"Mahesh"</span><span class="pun">;</span><span class="pln">
+               $scope</span><span class="pun">.</span><span class="pln">lastName </span><span class="pun">=</span> <span class="str">"Parashar"</span><span class="pun">;</span><span class="pln">
+               $scope</span><span class="pun">.</span><span class="pln">email </span><span class="pun">=</span> <span class="str">"MaheshParashar@tutorialspoint.com"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">
+            
+            $scope</span><span class="pun">.</span><span class="pln">reset</span><span class="pun">();</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/forms.htm" width="600px" height="220px"></iframe></p>

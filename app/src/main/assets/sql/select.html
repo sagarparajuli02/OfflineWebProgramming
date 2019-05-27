@@ -1,0 +1,186 @@
+<p>The SQL&nbsp;<strong>SELECT</strong>&nbsp;command is used to fetch data from the MySQL database. You can use this command at mysql&gt; prompt as well as in any script like PHP.</p>
+<h3>Syntax</h3>
+<p>Here is generic SQL syntax of SELECT command to fetch data from the MySQL table &minus;</p>
+<pre class="result notranslate">SELECT field1, field2,...fieldN 
+FROM table_name1, table_name2...
+[WHERE Clause]
+[OFFSET M ][LIMIT N]
+</pre>
+<ul class="list">
+<li>
+<p>You can use one or more tables separated by comma to include various conditions using a WHERE clause, but the WHERE clause is an optional part of the SELECT command.</p>
+</li>
+<li>
+<p>You can fetch one or more fields in a single SELECT command.</p>
+</li>
+<li>
+<p>You can specify star (*) in place of fields. In this case, SELECT will return all the fields.</p>
+</li>
+<li>
+<p>You can specify any condition using the WHERE clause.</p>
+</li>
+<li>
+<p>You can specify an offset using&nbsp;<strong>OFFSET</strong>&nbsp;from where SELECT will start returning records. By default, the offset starts at zero.</p>
+</li>
+<li>
+<p>You can limit the number of returns using the&nbsp;<strong>LIMIT</strong>&nbsp;attribute.</p>
+</li>
+</ul>
+<h2>Fetching Data from a Command Prompt</h2>
+<p>This will use SQL SELECT command to fetch data from the MySQL table&nbsp;<strong>tutorials_tbl</strong>.</p>
+<h3>Example</h3>
+<p>The following example will return all the records from the&nbsp;<strong>tutorials_tbl</strong>&nbsp;table &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p password;</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> TUTORIALS</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+mysql</span><span class="pun">&gt;</span><span class="pln"> SELECT </span><span class="pun">*</span> <span class="kwd">from</span><span class="pln"> tutorials_tbl 
+</span><span class="pun">+-------------+----------------+-----------------+-----------------+</span>
+<span class="pun">|</span><span class="pln"> tutorial_id </span><span class="pun">|</span><span class="pln"> tutorial_title </span><span class="pun">|</span><span class="pln"> tutorial_author </span><span class="pun">|</span><span class="pln"> submission_date </span><span class="pun">|</span>
+<span class="pun">+-------------+----------------+-----------------+-----------------+</span>
+<span class="pun">|</span>           <span class="lit">1</span> <span class="pun">|</span> <span class="typ">Learn</span><span class="pln"> PHP      </span><span class="pun">|</span> <span class="typ">John</span> <span class="typ">Poul</span>       <span class="pun">|</span> <span class="lit">2007</span><span class="pun">-</span><span class="lit">05</span><span class="pun">-</span><span class="lit">21</span>      <span class="pun">|</span>
+<span class="pun">|</span>           <span class="lit">2</span> <span class="pun">|</span> <span class="typ">Learn</span> <span class="typ">MySQL</span>    <span class="pun">|</span> <span class="typ">Abdul</span><span class="pln"> S         </span><span class="pun">|</span> <span class="lit">2007</span><span class="pun">-</span><span class="lit">05</span><span class="pun">-</span><span class="lit">21</span>      <span class="pun">|</span>
+<span class="pun">|</span>           <span class="lit">3</span> <span class="pun">|</span><span class="pln"> JAVA </span><span class="typ">Tutorial</span>  <span class="pun">|</span> <span class="typ">Sanjay</span>          <span class="pun">|</span> <span class="lit">2007</span><span class="pun">-</span><span class="lit">05</span><span class="pun">-</span><span class="lit">21</span>      <span class="pun">|</span>
+<span class="pun">+-------------+----------------+-----------------+-----------------+</span>
+<span class="lit">3</span><span class="pln"> rows </span><span class="kwd">in</span> <span class="kwd">set</span> <span class="pun">(</span><span class="lit">0.01</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span></pre>
+<h2>Fetching Data Using a PHP Script</h2>
+<p>You can use the same SQL SELECT command into a PHP function&nbsp;<strong>mysql_query()</strong>. This function is used to execute the SQL command and then later another PHP function&nbsp;<strong>mysql_fetch_array()</strong>&nbsp;can be used to fetch all the selected data. This function returns the row as an associative array, a numeric array, or both. This function returns FALSE if there are no more rows.</p>
+<p>The following program is a simple example which will show how to fetch / display records from the&nbsp;<strong>tutorials_tbl</strong>&nbsp;table.</p>
+<h3>Example</h3>
+<p>The following code block will display all the records from the tutorials_tbl table.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   $sql </span><span class="pun">=</span> <span class="str">'SELECT tutorial_id, tutorial_title, tutorial_author, submission_date FROM tutorials_tbl'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not get data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span>
+   
+   <span class="kwd">while</span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$retval</span><span class="pun">,</span><span class="pln"> MYSQL_ASSOC</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+      echo </span><span class="str">"Tutorial ID :{$row['tutorial_id']}  &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Title: {$row['tutorial_title']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Author: {$row['tutorial_author']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Submission Date : {$row['submission_date']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"--------------------------------&lt;br&gt;"</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln"> 
+   echo </span><span class="str">"Fetched data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<p>The content of the rows is assigned to the variable $row and the values in that row are then printed.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; Always remember to put curly brackets when you want to insert an array value directly into a string.</p>
+<p>In the above example, the constant&nbsp;<strong>MYSQL_ASSOC</strong>&nbsp;is used as the second argument to the PHP function&nbsp;<strong>mysql_fetch_array()</strong>, so that it returns the row as an associative array. With an associative array you can access the field by using their name instead of using the index.</p>
+<p>PHP provides another function called&nbsp;<strong>mysql_fetch_assoc()</strong>, which also returns the row as an associative array.</p>
+<h3>Example</h3>
+<p>The following example to display all the records from the tutorial_tbl table using mysql_fetch_assoc() function.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   
+   $sql </span><span class="pun">=</span> <span class="str">'SELECT tutorial_id, tutorial_title, tutorial_author, submission_date
+      FROM tutorials_tbl'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not get data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span>
+   
+   <span class="kwd">while</span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_assoc</span><span class="pun">(</span><span class="pln">$retval</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+      echo </span><span class="str">"Tutorial ID :{$row['tutorial_id']}  &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Title: {$row['tutorial_title']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Author: {$row['tutorial_author']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Submission Date : {$row['submission_date']} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"--------------------------------&lt;br&gt;"</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln"> 
+   echo </span><span class="str">"Fetched data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<p>You can also use the constant&nbsp;<strong>MYSQL_NUM</strong>&nbsp;as the second argument to the PHP function mysql_fetch_array(). This will cause the function to return an array with the numeric index.</p>
+<h3>Example</h3>
+<p>Try out the following example to display all the records from tutorials_tbl table using the MYSQL_NUM argument.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   
+   $sql </span><span class="pun">=</span> <span class="str">'SELECT tutorial_id, tutorial_title, tutorial_author, submission_date
+      FROM tutorials_tbl'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not get data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span>
+   
+   <span class="kwd">while</span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$retval</span><span class="pun">,</span><span class="pln"> MYSQL_NUM</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+      echo </span><span class="str">"Tutorial ID :{$row[0]}  &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Title: {$row[1]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Author: {$row[2]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Submission Date : {$row[3]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"--------------------------------&lt;br&gt;"</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln">
+   echo </span><span class="str">"Fetched data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<p>All the above three examples will produce the same result.</p>
+<h2>Releasing Memory</h2>
+<p>It is a good practice to release cursor memory at the end of each SELECT statement. This can be done by using the PHP function&nbsp;<strong>mysql_free_result()</strong>. The following program is the example to show how it should be used.</p>
+<h3>Example</h3>
+<p>Try out the following example &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+   $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+   $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+   $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   
+   $sql </span><span class="pun">=</span> <span class="str">'SELECT tutorial_id, tutorial_title, tutorial_author, submission_date
+      FROM tutorials_tbl'</span><span class="pun">;</span><span class="pln">
+
+   mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+   $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+   
+   <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not get data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span>
+   
+   <span class="kwd">while</span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$retval</span><span class="pun">,</span><span class="pln"> MYSQL_NUM</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+      echo </span><span class="str">"Tutorial ID :{$row[0]}  &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Title: {$row[1]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Author: {$row[2]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"Submission Date : {$row[3]} &lt;br&gt; "</span><span class="pun">.</span>
+         <span class="str">"--------------------------------&lt;br&gt;"</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln">
+   mysql_free_result</span><span class="pun">(</span><span class="pln">$retval</span><span class="pun">);</span><span class="pln">
+   echo </span><span class="str">"Fetched data successfully\n"</span><span class="pun">;</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<p>While fetching data, you can write as complex a code as you like, but the procedure will remain the same as mentioned above.</p>

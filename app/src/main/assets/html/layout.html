@@ -1,0 +1,141 @@
+<p>A webpage layout is very important to give better look to your website. It takes considerable time to design a website's layout with great look and feel.</p>
+<p>Now-a-days, all modern websites are using CSS and JavaScript based framework to come up with responsive and dynamic websites but you can create a good layout using simple HTML tables or division tags in combination with other formatting tags. This chapter will give you few examples on how to create a simple but working layout for your webpage using pure HTML and its attributes.</p>
+<h2>HTML Layout - Using Tables</h2>
+<p>The simplest and most popular way of creating layouts is using HTML &lt;table&gt; tag. These tables are arranged in columns and rows, so you can utilize these rows and columns in whatever way you like.</p>
+<h3>Example</h3>
+<p>For example, the following HTML layout example is achieved using a table with 3 rows and 2 columns but the header and footer column spans both columns using the colspan attribute &minus;</p>
+<p><a class="demo" href="http://tpcg.io/nsACRm" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Layout using Tables</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;table</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"100%"</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+         
+         <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td</span> <span class="atn">colspan</span> <span class="pun">=</span> <span class="atv">"2"</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#b5dcb3"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;h1&gt;</span><span class="pln">This is Web Page Main title</span><span class="tag">&lt;/h1&gt;</span>
+            <span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;tr</span> <span class="atn">valign</span> <span class="pun">=</span> <span class="atv">"top"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;td</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#aaa"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"50"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;b&gt;</span><span class="pln">Main Menu</span><span class="tag">&lt;/b&gt;&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               HTML</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PHP</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PERL...
+            </span><span class="tag">&lt;/td&gt;</span>
+            
+            <span class="tag">&lt;td</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#eee"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"200"</span><span class="tag">&gt;</span><span class="pln">
+               Technical and Managerial Tutorials
+            </span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td</span> <span class="atn">colspan</span> <span class="pun">=</span> <span class="atv">"2"</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#b5dcb3"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;center&gt;</span><span class="pln">
+                  Copyright &copy; 2007 Tutorialspoint.com
+               </span><span class="tag">&lt;/center&gt;</span>
+            <span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;/tr&gt;</span>
+         
+      <span class="tag">&lt;/table&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/html_layout_using_tables.htm" width="600px" height="350px"></iframe></p>
+<h2>Multiple Columns Layout - Using Tables</h2>
+<p>You can design your webpage to put your web content in multiple pages. You can keep your content in middle column and you can use left column to use menu and right column can be used to put advertisement or some other stuff. This layout will be very similar to what we have at our website tutorialspoint.com.</p>
+<h3>Example</h3>
+<p>Here is an example to create three column layout &minus;</p>
+<p><a class="demo" href="http://tpcg.io/2dTriq" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Three Column HTML Layout</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;table</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"100%"</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+         
+         <span class="tag">&lt;tr</span> <span class="atn">valign</span> <span class="pun">=</span> <span class="atv">"top"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;td</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#aaa"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"20%"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;b&gt;</span><span class="pln">Main Menu</span><span class="tag">&lt;/b&gt;&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               HTML</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PHP</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PERL...
+            </span><span class="tag">&lt;/td&gt;</span>
+				
+            <span class="tag">&lt;td</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#b5dcb3"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"200"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"60%"</span><span class="tag">&gt;</span><span class="pln">
+               Technical and Managerial Tutorials
+            </span><span class="tag">&lt;/td&gt;</span>
+				
+            <span class="tag">&lt;td</span> <span class="atn">bgcolor</span> <span class="pun">=</span> <span class="atv">"#aaa"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"20%"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;b&gt;</span><span class="pln">Right Menu</span><span class="tag">&lt;/b&gt;&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               HTML</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PHP</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+               PERL...
+            </span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;/tr&gt;</span>
+         
+      <span class="tag">&lt;table&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/multiple_columns_layout.htm" width="600px" height="250px"></iframe></p>
+<h2>HTML Layouts - Using DIV, SPAN</h2>
+<p>The &lt;div&gt; element is a block level element used for grouping HTML elements. While the &lt;div&gt; tag is a block-level element, the HTML &lt;span&gt; element is used for grouping elements at an inline level.</p>
+<p>Although we can achieve pretty nice layouts with HTML tables, but tables weren't really designed as a layout tool. Tables are more suited to presenting tabular data.</p>
+<p><strong>Note</strong>&nbsp;&minus; This example makes use of Cascading Style Sheet (CSS), so before understanding this example you need to have a better understanding on how CSS works.</p>
+<h3>Example</h3>
+<p>Here we will try to achieve same result using &lt;div&gt; tag along with CSS, whatever you have achieved using &lt;table&gt; tag in previous example.</p>
+<p><a class="demo" href="http://tpcg.io/H9drkJ" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Layouts using DIV, SPAN</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">%</span><span class="atv">"</span><span class="tag">&gt;</span>
+		
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">b5dcb3</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">%</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">This is Web Page Main title</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">aaa</span><span class="pun">;</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200px</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span> <span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div&gt;&lt;b&gt;</span><span class="pln">Main Menu</span><span class="tag">&lt;/b&gt;&lt;/div&gt;</span><span class="pln">
+            HTML</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+            PHP</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+            PERL...
+         </span><span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">eee</span><span class="pun">;</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200px</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">350px</span><span class="pun">;</span> <span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="atv">"</span> <span class="tag">&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="pln">Technical and Managerial Tutorials</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+		
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">aaa</span><span class="pun">;</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200px</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span> <span class="kwd">float</span><span class="pun">:</span><span class="pln">right</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div&gt;&lt;b&gt;</span><span class="pln">Right Menu</span><span class="tag">&lt;/b&gt;&lt;/div&gt;</span><span class="pln">
+            HTML</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+            PHP</span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+            PERL...
+         </span><span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">b5dcb3</span><span class="pun">;</span><span class="pln"> clear</span><span class="pun">:</span><span class="pln">both</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span><span class="pln">
+               Copyright &copy; 2007 Tutorialspoint.com
+            </span><span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/html_using_div_span.htm" width="600px" height="350px"></iframe></p>
+<p>You can create better layout using DIV, SPAN along with CSS. For more information on CSS, please refer to CSS Tutorial.</p>

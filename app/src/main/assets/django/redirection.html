@@ -1,0 +1,55 @@
+<p>Page redirection is needed for many reasons in web application. You might want to redirect a user to another page when a specific action occurs, or basically in case of error. For example, when a user logs in to your website, he is often redirected either to the main home page or to his personal dashboard. In Django, redirection is accomplished using the 'redirect' method.</p>
+<p>The 'redirect' method takes as argument: The URL you want to be redirected to as string A view's name.</p>
+<p>The myapp/views looks like the following so far &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   today </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">().</span><span class="pln">date</span><span class="pun">()</span><span class="pln">
+   daysOfWeek </span><span class="pun">=</span> <span class="pun">[</span><span class="str">'Mon'</span><span class="pun">,</span> <span class="str">'Tue'</span><span class="pun">,</span> <span class="str">'Wed'</span><span class="pun">,</span> <span class="str">'Thu'</span><span class="pun">,</span> <span class="str">'Fri'</span><span class="pun">,</span> <span class="str">'Sat'</span><span class="pun">,</span> <span class="str">'Sun'</span><span class="pun">]</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">"hello.html"</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"today"</span> <span class="pun">:</span><span class="pln"> today</span><span class="pun">,</span> <span class="str">"days_of_week"</span> <span class="pun">:</span><span class="pln"> daysOfWeek</span><span class="pun">})</span>
+	
+<span class="kwd">def</span><span class="pln"> viewArticle</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> articleId</span><span class="pun">):</span>
+   <span class="str">""" A view that display an article based on his ID"""</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying article Number : %s"</span> <span class="pun">%</span><span class="pln">articleId
+   </span><span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span>
+	
+<span class="kwd">def</span><span class="pln"> viewArticles</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">):</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying articles of : %s/%s"</span><span class="pun">%(</span><span class="pln">year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">)</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>Let's change the hello view to redirect to djangoproject.com and our viewArticle to redirect to our internal '/myapp/articles'. To do so the myapp/view.py will change to &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">shortcuts </span><span class="kwd">import</span><span class="pln"> render</span><span class="pun">,</span><span class="pln"> redirect
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">http </span><span class="kwd">import</span> <span class="typ">HttpResponse</span>
+<span class="kwd">import</span><span class="pln"> datetime
+
+</span><span class="com"># Create your views here.</span>
+<span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   today </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">().</span><span class="pln">date</span><span class="pun">()</span><span class="pln">
+   daysOfWeek </span><span class="pun">=</span> <span class="pun">[</span><span class="str">'Mon'</span><span class="pun">,</span> <span class="str">'Tue'</span><span class="pun">,</span> <span class="str">'Wed'</span><span class="pun">,</span> <span class="str">'Thu'</span><span class="pun">,</span> <span class="str">'Fri'</span><span class="pun">,</span> <span class="str">'Sat'</span><span class="pun">,</span> <span class="str">'Sun'</span><span class="pun">]</span>
+   <span class="kwd">return</span><span class="pln"> redirect</span><span class="pun">(</span><span class="str">"https://www.djangoproject.com"</span><span class="pun">)</span>
+	
+<span class="kwd">def</span><span class="pln"> viewArticle</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> articleId</span><span class="pun">):</span>
+   <span class="str">""" A view that display an article based on his ID"""</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying article Number : %s"</span> <span class="pun">%</span><span class="pln">articleId
+   </span><span class="kwd">return</span><span class="pln"> redirect</span><span class="pun">(</span><span class="pln">viewArticles</span><span class="pun">,</span><span class="pln"> year </span><span class="pun">=</span> <span class="str">"2045"</span><span class="pun">,</span><span class="pln"> month </span><span class="pun">=</span> <span class="str">"02"</span><span class="pun">)</span>
+	
+<span class="kwd">def</span><span class="pln"> viewArticles</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">):</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying articles of : %s/%s"</span><span class="pun">%(</span><span class="pln">year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">)</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>In the above example, first we imported redirect from django.shortcuts and for redirection to the Django official website we just pass the full URL to the 'redirect' method as string, and for the second example (the viewArticle view) the 'redirect' method takes the view name and his parameters as arguments.</p>
+<p>Accessing /myapp/hello, will give you the following screen &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_page_redirection_example1.jpg" alt="Django page Redirection Example1" /></p>
+<p>And accessing /myapp/article/42, will give you the following screen &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_page_redirection_example2.jpg" alt="Django page Redirection Example2" /></p>
+<p>It is also possible to specify whether the 'redirect' is temporary or permanent by adding permanent = True parameter. The user will see no difference, but these are details that search engines take into account when ranking of your website.</p>
+<p>Also remember that 'name' parameter we defined in our url.py while mapping the URLs &minus;</p>
+<pre class="result notranslate">url(r'^articles/(?P\d{2})/(?P\d{4})/', 'viewArticles', name = 'articles'),
+</pre>
+<p>That name (here article) can be used as argument for the 'redirect' method, then our viewArticle redirection can be changed from &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> viewArticle</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> articleId</span><span class="pun">):</span>
+   <span class="str">""" A view that display an article based on his ID"""</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying article Number : %s"</span> <span class="pun">%</span><span class="pln">articleId
+   </span><span class="kwd">return</span><span class="pln"> redirect</span><span class="pun">(</span><span class="pln">viewArticles</span><span class="pun">,</span><span class="pln"> year </span><span class="pun">=</span> <span class="str">"2045"</span><span class="pun">,</span><span class="pln"> month </span><span class="pun">=</span> <span class="str">"02"</span><span class="pun">)</span></pre>
+<p><strong>To</strong>&nbsp;&minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> viewArticle</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> articleId</span><span class="pun">):</span>
+   <span class="str">""" A view that display an article based on his ID"""</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying article Number : %s"</span> <span class="pun">%</span><span class="pln">articleId
+   </span><span class="kwd">return</span><span class="pln"> redirect</span><span class="pun">(</span><span class="pln">articles</span><span class="pun">,</span><span class="pln"> year </span><span class="pun">=</span> <span class="str">"2045"</span><span class="pun">,</span><span class="pln"> month </span><span class="pun">=</span> <span class="str">"02"</span><span class="pun">)</span></pre>
+<p><strong>Note</strong>&nbsp;&minus; There is also a function to generate URLs; it is used in the same way as redirect; the 'reverse' method (django.core.urlresolvers.reverse). This function does not return a HttpResponseRedirect object, but simply a string containing the URL to the view compiled with any passed argument.</p>

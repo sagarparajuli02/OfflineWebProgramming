@@ -1,0 +1,72 @@
+<h2>Drop a Database using mysqladmin</h2>
+<p>You would need special privileges to create or to delete a MySQL database. So, assuming you have access to the root user, you can create any database using the mysql&nbsp;<strong>mysqladmin</strong>&nbsp;binary.</p>
+<p>Be careful while deleting any database because you will lose your all the data available in your database.</p>
+<p>Here is an example to delete a database(TUTORIALS) created in the previous chapter &minus;</p>
+<pre class="result notranslate">[root@host]# mysqladmin -u root -p drop TUTORIALS
+Enter password:******
+</pre>
+<p>This will give you a warning and it will confirm if you really want to delete this database or not.</p>
+<pre class="result notranslate">Dropping the database is potentially a very bad thing to do.
+Any data stored in the database will be destroyed.
+
+Do you really want to drop the 'TUTORIALS' database [y/N] y
+Database "TUTORIALS" dropped
+</pre>
+<h2>Drop Database using PHP Script</h2>
+<p>PHP uses&nbsp;<strong>mysql_query</strong>&nbsp;function to create or delete a MySQL database. This function takes two parameters and returns TRUE on success or FALSE on failure.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">bool mysql_query( sql, connection );
+</pre>
+<p>&nbsp;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No</th>
+<th>Parameter &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>sql</strong></p>
+<p>Required &minus; SQL query to create or delete a MySQL database</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>connection</strong></p>
+<p>Optional &minus; if not specified, then the last opened connection by mysql_connect will be used.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<p>Try the following example to delete a database &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Deleting MySQL Database</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php
+         $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+         $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+         $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+         $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">'Connected successfully&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+         $sql </span><span class="pun">=</span> <span class="str">'DROP DATABASE TUTORIALS'</span><span class="pun">;</span><span class="pln">
+         $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not delete database: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">"Database TUTORIALS deleted successfully\n"</span><span class="pun">;</span><span class="pln">
+         mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+      <span class="pun">?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>WARNING</strong>&nbsp;&minus; While deleting a database using the PHP script, it does not prompt you for any confirmation. So be careful while deleting a MySQL database.</p>

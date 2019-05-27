@@ -1,0 +1,69 @@
+<p>Django development environment consists of installing and setting up Python, Django, and a Database System. Since Django deals with web application, it's worth mentioning that you would need a web server setup as well.</p>
+<h2>Step 1 &ndash; Installing Python</h2>
+<p>Django is written in 100% pure Python code, so you'll need to install Python on your system. Latest Django version requires Python 2.6.5 or higher</p>
+<p>If you're on one of the latest Linux or Mac OS X distribution, you probably already have Python installed. You can verify it by typing&nbsp;<em>python</em>&nbsp;command at a command prompt. If you see something like this, then Python is installed.</p>
+<pre class="result notranslate">$ python
+Python 2.7.5 (default, Jun 17 2014, 18:11:42)
+[GCC 4.8.2 20140120 (Red Hat 4.8.2-16)] on linux2
+</pre>
+<p>Otherwise, you can download and install the latest version of Python from the link&nbsp;<a href="https://www.python.org/downloads/" target="_blank" rel="nofollow">http://www.python.org/download</a>.</p>
+<h2>Step 2 - Installing Django</h2>
+<p>Installing Django is very easy, but the steps required for its installation depends on your operating system. Since Python is a platform-independent language, Django has one package that works everywhere regardless of your operating system.</p>
+<p>You can download the latest version of Django from the link&nbsp;<a href="https://www.djangoproject.com/download/" target="_blank" rel="nofollow">http://www.djangoproject.com/download</a>.</p>
+<h3>UNIX/Linux and Mac OS X Installation</h3>
+<p>You have two ways of installing Django if you are running Linux or Mac OS system &minus;</p>
+<ul class="list">
+<li>
+<p>You can use the package manager of your OS, or use easy_install or pip if installed.</p>
+</li>
+<li>
+<p>Install it manually using the official archive you downloaded before.</p>
+</li>
+</ul>
+<p>We will cover the second option as the first one depends on your OS distribution. If you have decided to follow the first option, just be careful about the version of Django you are installing.</p>
+<p>Let's say you got your archive from the link above, it should be something like Django-x.xx.tar.gz:</p>
+<p>Extract and install.</p>
+<pre class="result notranslate">$ tar xzvf Django-x.xx.tar.gz
+$ cd Django-x.xx
+$ sudo python setup.py install
+</pre>
+<p>You can test your installation by running this command &minus;</p>
+<pre class="result notranslate">$ django-admin.py --version
+</pre>
+<p>If you see the current version of Django printed on the screen, then everything is set.</p>
+<p><strong>Note</strong>&nbsp;&minus; For some version of Django it will be django-admin the ".py" is removed.</p>
+<h3>Windows Installation</h3>
+<p>We assume you have your Django archive and python installed on your computer.</p>
+<p>First, PATH verification.</p>
+<p>On some version of windows (windows 7) you might need to make sure the Path system variable has the path the following&nbsp;<code>C:\Python34\;C:\Python34\Lib\site-packages\django\bin\</code>&nbsp;in it, of course depending on your Python version.</p>
+<p>Then, extract and install Django.</p>
+<pre class="result notranslate">c:\&gt;cd c:\Django-x.xx
+</pre>
+<p>Next, install Django by running the following command for which you will need administrative privileges in windows shell "cmd" &minus;</p>
+<pre class="result notranslate">c:\Django-x.xx&gt;python setup.py install
+</pre>
+<p>To test your installation, open a command prompt and type the following command &minus;</p>
+<pre class="result notranslate">c:\&gt;python -c "import django; print(django.get_version())"
+</pre>
+<p>If you see the current version of Django printed on screen, then everything is set.</p>
+<p>OR</p>
+<p>Launch a "cmd" prompt and type python then &minus;</p>
+<pre class="result notranslate">c:\&gt; python
+&gt;&gt;&gt; import django
+&gt;&gt;&gt; django.VERSION
+</pre>
+<h2>Step 3 &ndash; Database Setup</h2>
+<p>Django supports several major database engines and you can set up any of them based on your comfort.</p>
+<ul class="list">
+<li><a href="http://www.mysql.com/" target="_blank" rel="nofollow">MySQL (http://www.mysql.com/)</a></li>
+<li><a href="http://www.postgresql.org/" target="_blank" rel="nofollow">PostgreSQL (http://www.postgresql.org/)</a></li>
+<li><a href="http://www.sqlite.org/" target="_blank" rel="nofollow">SQLite 3 (http://www.sqlite.org/)</a></li>
+<li><a href="http://www.oracle.com/index.html" target="_blank" rel="nofollow">Oracle (http://www.oracle.com/)</a></li>
+<li><a href="https://django-mongodb-engine.readthedocs.org/en/latest/" target="_blank" rel="nofollow">MongoDb (https://django-mongodb-engine.readthedocs.org)</a></li>
+<li><a href="https://cloud.google.com/appengine/articles/django-nonrel" target="_blank" rel="nofollow">GoogleAppEngine Datastore (https://cloud.google.com/appengine/articles/django-nonrel)</a></li>
+</ul>
+<p>You can refer to respective documentation to installing and configuring a database of your choice.</p>
+<p><strong>Note</strong>&nbsp;&minus; Number 5 and 6 are NoSQL databases.</p>
+<h2>Step 4 &ndash; Web Server</h2>
+<p>Django comes with a lightweight web server for developing and testing applications. This server is pre-configured to work with Django, and more importantly, it restarts whenever you modify the code.</p>
+<p>However, Django does support Apache and other popular web servers such as Lighttpd. We will discuss both the approaches in coming chapters while working with different examples.</p>

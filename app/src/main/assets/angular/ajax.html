@@ -1,0 +1,100 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>AngularJS provides $http control which works as a service to read data from the server. The server makes a database call to get the desired records. AngularJS needs data in JSON format. Once the data is ready, $http can be used to get the data from server in the following manner &minus;</p>
+<pre class="result notranslate">function studentController($scope,$https:) {
+   var url = "data.txt";
+
+   $https:.get(url).success( function(response) {
+      $scope.students = response; 
+   });
+}
+</pre>
+<p>Here, the file data.txt contains student records. $http service makes an ajax call and sets response to its property students. students model can be used to draw tables in HTML.</p>
+<h2>Examples</h2>
+<h3>data.txt</h3>
+<pre class="result notranslate">[
+   {
+      "Name" : "Mahesh Parashar",
+      "RollNo" : 101,
+      "Percentage" : "80%"
+   },
+   {
+      "Name" : "Dinkar Kad",
+      "RollNo" : 201,
+      "Percentage" : "70%"
+   },
+   {
+      "Name" : "Robert",
+      "RollNo" : 191,
+      "Percentage" : "75%"
+   },
+   {
+      "Name" : "Julian Joe",
+      "RollNo" : 111,
+      "Percentage" : "77%"
+   }
+]
+</pre>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/A6AD1n" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Includes</span><span class="tag">&lt;/title&gt;</span>
+      
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         table</span><span class="pun">,</span><span class="pln"> th </span><span class="pun">,</span><span class="pln"> td </span><span class="pun">{</span><span class="pln">
+            border</span><span class="pun">:</span> <span class="lit">1px</span><span class="pln"> solid grey</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">collapse</span><span class="pun">:</span><span class="pln"> collapse</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span> <span class="lit">5px</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">odd</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#f2f2f2;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">even</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#ffffff;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">""</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"studentController"</span><span class="tag">&gt;</span>
+      
+         <span class="tag">&lt;table&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;th&gt;</span><span class="pln">Name</span><span class="tag">&lt;/th&gt;</span>
+               <span class="tag">&lt;th&gt;</span><span class="pln">Roll No</span><span class="tag">&lt;/th&gt;</span>
+               <span class="tag">&lt;th&gt;</span><span class="pln">Percentage</span><span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         
+            <span class="tag">&lt;tr</span> <span class="atn">ng-repeat</span> <span class="pun">=</span> <span class="atv">"student in students"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">{{ student.Name }}</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">{{ student.RollNo }}</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">{{ student.Percentage }}</span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">function</span><span class="pln"> studentController</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">,</span><span class="pln">$http</span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span> <span class="str">"/data.txt"</span><span class="pun">;</span><span class="pln">
+
+            $http</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">url</span><span class="pun">).</span><span class="pln">then</span><span class="pun">(</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">response</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+               $scope</span><span class="pun">.</span><span class="pln">students </span><span class="pun">=</span><span class="pln"> response</span><span class="pun">.</span><span class="pln">data</span><span class="pun">;</span>
+            <span class="pun">});</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>To execute this example, you need to deploy&nbsp;<em>testAngularJS.htm</em>&nbsp;and&nbsp;<em>data.txt</em>&nbsp;file to a web server. Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;using the URL of your server in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/ajax.htm" width="600px" height="220px"></iframe></p>

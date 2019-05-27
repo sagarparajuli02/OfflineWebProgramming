@@ -1,0 +1,17 @@
+<p>This chapter will show you how to detach callbacks in Firebase.</p>
+<h2>Detach Callback for Event Type</h2>
+<p>Let us say we want to detach a callback for a function with&nbsp;<strong>value</strong>&nbsp;event type.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranlsate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span>
+
+<span class="kwd">ref</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">());</span>
+<span class="pun">},</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Error: "</span> <span class="pun">+</span><span class="pln"> error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We need to use&nbsp;<strong>off()</strong>&nbsp;method. This will remove all callbacks with&nbsp;<strong>value</strong>&nbsp;event type.</p>
+<pre class="result notranslate">playersRef.off("value");
+</pre>
+<h2>Detach All Callbacks</h2>
+<p>When we want to detach all callbacks, we can use &minus;</p>
+<pre class="result notranslate">playersRef.off();</pre>

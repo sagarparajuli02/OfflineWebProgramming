@@ -1,0 +1,155 @@
+<p>MultiView and View controls allow you to divide the content of a page into different groups, displaying only one group at a time. Each View control manages one group of content and all the View controls are held together in a MultiView control.</p>
+<p>The MultiView control is responsible for displaying one View control at a time. The View displayed is called the active view.</p>
+<p>The syntax of MultiView control is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:MultView</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"MultiView1"</span> <span class="atn">runat</span><span class="pun">=</span> <span class="atv">"server"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/asp:MultiView&gt;</span></pre>
+<p>The syntax of View control is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:View</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"View1"</span> <span class="atn">runat</span><span class="pun">=</span> <span class="atv">"server"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/asp:View&gt;</span></pre>
+<p>However, the View control cannot exist on its own. It would render error if you try to use it stand-alone. It is always used with a Multiview control as:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:MultView</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"MultiView1"</span> <span class="atn">runat</span><span class="pun">=</span> <span class="atv">"server"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;asp:View</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"View1"</span> <span class="atn">runat</span><span class="pun">=</span> <span class="atv">"server"</span><span class="tag">&gt;</span> <span class="tag">&lt;/asp:View&gt;</span>
+<span class="tag">&lt;/asp:MultiView&gt;</span></pre>
+<h2>Properties of View and MultiView Controls</h2>
+<p>Both View and MultiView controls are derived from Control class and inherit all its properties, methods, and events. The most important property of the View control is Visible property of type Boolean, which sets the visibility of a view.</p>
+<p>The MultiView control has the following important properties:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Views</td>
+<td>Collection of View controls within the MultiView.</td>
+</tr>
+<tr>
+<td>ActiveViewIndex</td>
+<td>A zero based index that denotes the active view. If no view is active, then the index is -1.</td>
+</tr>
+</tbody>
+</table>
+<p>The CommandName attribute of the button control associated with the navigation of the MultiView control are associated with some related field of the MultiView control.</p>
+<p>For example, if a button control with CommandName value as NextView is associated with the navigation of the multiview, it automatically navigates to the next view when the button is clicked.</p>
+<p>The following table shows the default command names of the above properties:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>NextViewCommandName</td>
+<td>NextView</td>
+</tr>
+<tr>
+<td>PreviousViewCommandName</td>
+<td>PrevView</td>
+</tr>
+<tr>
+<td>SwitchViewByIDCommandName</td>
+<td>SwitchViewByID</td>
+</tr>
+<tr>
+<td>SwitchViewByIndexCommandName</td>
+<td>SwitchViewByIndex</td>
+</tr>
+</tbody>
+</table>
+<p>The important methods of the multiview control are:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Methods</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>SetActiveview</td>
+<td>Sets the active view</td>
+</tr>
+<tr>
+<td>GetActiveview</td>
+<td>Retrieves the active view</td>
+</tr>
+</tbody>
+</table>
+<p>Every time a view is changed, the page is posted back to the server and a number of events are raised. Some important events are:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Events</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>ActiveViewChanged</td>
+<td>Raised when a view is changed</td>
+</tr>
+<tr>
+<td>Activate</td>
+<td>Raised by the active view</td>
+</tr>
+<tr>
+<td>Deactivate</td>
+<td>Raised by the inactive view</td>
+</tr>
+</tbody>
+</table>
+<p>Apart from the above mentioned properties, methods and events, multiview control inherits the members of the control and object class.</p>
+<h2>Example</h2>
+<p>The example page has three views. Each view has two button for navigating through the views.</p>
+<p>The content file code is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;%@</span> <span class="typ">Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span> <span class="typ">AutoEventWireup</span><span class="pun">=</span><span class="str">"true"</span> <span class="typ">CodeBehind</span><span class="pun">=</span><span class="str">"Default.aspx.cs"</span> <span class="typ">Inherits</span><span class="pun">=</span><span class="str">"multiviewdemo._Default"</span><span class="pln"> %&gt;
+
+</span><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         Untitled Page
+      </span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;h2&gt;</span><span class="pln">MultiView and View Controls</span><span class="tag">&lt;/h2&gt;</span>
+            
+            <span class="tag">&lt;asp:DropDownList</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"DropDownList1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">onselectedindexchanged</span><span class="pun">=</span><span class="atv">"</span><span class="typ">DropDownList1_SelectedIndexChanged</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;/asp:DropDownList&gt;</span>
+            
+            <span class="tag">&lt;hr</span> <span class="tag">/&gt;</span>
+            
+            <span class="tag">&lt;asp:MultiView</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"MultiView1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">ActiveViewIndex</span><span class="pun">=</span><span class="atv">"2"</span>  <span class="atn">onactiveviewchanged</span><span class="pun">=</span><span class="atv">"</span><span class="typ">MultiView1_ActiveViewChanged</span><span class="atv">"</span> <span class="tag">&gt;</span>
+               <span class="tag">&lt;asp:View</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"View1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;h3&gt;</span><span class="pln">This is view 1</span><span class="tag">&lt;/h3&gt;</span>
+                  <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Button</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"NextView"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnnext1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span> <span class="pun">=</span> <span class="atv">"Go To Next"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Button</span> <span class="atn">CommandArgument</span><span class="pun">=</span><span class="atv">"View3"</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"SwitchViewByID"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnlast"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span>  <span class="pun">=</span><span class="atv">"Go To Last"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;/asp:View&gt;</span> 
+					
+               <span class="tag">&lt;asp:View</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"View2"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;h3&gt;</span><span class="pln">This is view 2</span><span class="tag">&lt;/h3&gt;</span>
+                  <span class="tag">&lt;asp:Button</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"NextView"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnnext2"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span> <span class="pun">=</span> <span class="atv">"Go To Next"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Button</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"PrevView"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnprevious2"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span> <span class="pun">=</span> <span class="atv">"Go To Previous View"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;/asp:View&gt;</span> 
+
+               <span class="tag">&lt;asp:View</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"View3"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;h3&gt;</span><span class="pln"> This is view 3</span><span class="tag">&lt;/h3&gt;</span>
+                  <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Calendar</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Calender1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;&lt;/asp:Calendar&gt;</span>
+                  <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Button</span>  <span class="atn">CommandArgument</span><span class="pun">=</span><span class="atv">"0"</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"SwitchViewByIndex"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnfirst"</span>   <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span> <span class="pun">=</span> <span class="atv">"Go To Next"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:Button</span> <span class="atn">CommandName</span><span class="pun">=</span><span class="atv">"PrevView"</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnprevious"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span> <span class="pun">=</span> <span class="atv">"Go To Previous View"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;/asp:View&gt;</span> 
+               
+            <span class="tag">&lt;/asp:MultiView&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+         
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Observe the following:</p>
+<p>The MultiView.ActiveViewIndex determines which view will be shown. This is the only view rendered on the page. The default value for the ActiveViewIndex is -1, when no view is shown. Since the ActiveViewIndex is defined as 2 in the example, it shows the third view, when executed.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/multiview.jpg" alt="MultiView" /></p>

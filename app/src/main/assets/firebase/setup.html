@@ -1,0 +1,40 @@
+<p>In this chapter, we will show you how to add Firebase to the existing application. We will need&nbsp;<strong>NodeJS</strong>. Check the link from the following table, if you do not have it already.</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No.</th>
+<th>Software &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p><strong>NodeJS and NPM</strong></p>
+<p>NodeJS is the platform needed for Firebase development. Checkout our&nbsp;<a href="https://www.tutorialspoint.com/nodejs/nodejs_environment_setup.htm" target="_blank">NodeJS Environment Setup</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Step 1 - Create Firebase Account</h2>
+<p>You can create a Firebase account&nbsp;<a href="https://www.firebase.com/" target="_blank" rel="nofollow">here</a>.</p>
+<h2>Step 2 - Create Firebase App</h2>
+<p>You can create new app from the dashboard page. The following image shows the app we created. We can click the&nbsp;<strong>Manage App</strong>&nbsp;button to enter the app.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-environment-setup.jpg" alt="Firebase Environment Setup" /></p>
+<h2>Step 3a - Create basic HTML/js App</h2>
+<p>You just need to create a folder where your app will be placed. Inside that folder, we will need&nbsp;<strong>index.html</strong>&nbsp;and&nbsp;<strong>index.js</strong>&nbsp;files. We will add Firebase to the header of our app.</p>
+<h3>index.html</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdn.firebase.com/js/client/2.4.2/firebase.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"index.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Step 3b - Use NPM or Bower</h2>
+<p>If you want to use your existing app, you can use Firebase NPM or Bowers packages. Run one of the following command from your apps root folder.</p>
+<pre class="result notranslate">npm install firebase --save
+</pre>
+<p>&nbsp;</p>
+<pre class="result notranslate">bower install firebase</pre>

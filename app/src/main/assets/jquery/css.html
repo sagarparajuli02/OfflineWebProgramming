@@ -1,0 +1,234 @@
+<p>The jQuery library supports nearly all of the selectors included in Cascading Style Sheet (CSS) specifications 1 through 3, as outlined on the World Wide Web Consortium's site.</p>
+<p>Using JQuery library developers can enhance their websites without worrying about browsers and their versions as long as the browsers have JavaScript enabled.</p>
+<p>Most of the JQuery CSS Methods do not modify the content of the jQuery object and they are used to apply CSS properties on DOM elements.</p>
+<h2>Apply CSS Properties</h2>
+<p>This is very simple to apply any CSS property using JQuery method&nbsp;<strong>css( PropertyName, PropertyValue )</strong>.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><strong>selector</strong>.css( PropertyName, PropertyValue );
+</pre>
+<p>Here you can pass&nbsp;<em>PropertyName</em>&nbsp;as a javascript string and based on its value,&nbsp;<em>PropertyValue</em>&nbsp;could be string or integer.</p>
+<h3>Example</h3>
+<p>Following is an example which adds font color to the second list item.</p>
+<p><a class="demo" href="http://tpcg.io/EnTnzO" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"li"</span><span class="pun">).</span><span class="pln">eq</span><span class="pun">(</span><span class="lit">2</span><span class="pun">).</span><span class="pln">css</span><span class="pun">(</span><span class="str">"color"</span><span class="pun">,</span> <span class="str">"red"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 1</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 2</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 3</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 4</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 5</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 6</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/apply-css-properties.htm" width="300" height="150"></iframe></p>
+<h2>Apply Multiple CSS Properties</h2>
+<p>You can apply multiple CSS properties using a single JQuery method&nbsp;<strong>CSS( {key1:val1, key2:val2....)</strong>. You can apply as many properties as you like in a single call.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><strong>selector</strong>.css( {key1:val1, key2:val2....keyN:valN})
+</pre>
+<p>Here you can pass key as property and val as its value as described above.</p>
+<h3>Example</h3>
+<p>Following is an example which adds font color as well as background color to the second list item.</p>
+<p><a class="demo" href="http://tpcg.io/OpezJD" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"li"</span><span class="pun">).</span><span class="pln">eq</span><span class="pun">(</span><span class="lit">2</span><span class="pun">).</span><span class="pln">css</span><span class="pun">({</span><span class="str">"color"</span><span class="pun">:</span><span class="str">"red"</span><span class="pun">,</span> <span class="str">"background-color"</span><span class="pun">:</span><span class="str">"green"</span><span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 1</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 2</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 3</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 4</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 5</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 6</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/apply-css-multiple-properties.htm" width="300" height="150"></iframe></p>
+<h2>Setting Element Width &amp; Height</h2>
+<p>The&nbsp;<strong>width( val )</strong>&nbsp;and&nbsp;<strong>height( val )</strong>&nbsp;method can be used to set the width and height respectively of any element.</p>
+<h3>Example</h3>
+<p>Following is a simple example which sets the width of first division element where as rest of the elements have width set by style sheet</p>
+<p><a class="demo" href="http://tpcg.io/zhko8T" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div:first"</span><span class="pun">).</span><span class="pln">width</span><span class="pun">(</span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div:first"</span><span class="pun">).</span><span class="pln">css</span><span class="pun">(</span><span class="str">"background-color"</span><span class="pun">,</span> <span class="str">"blue"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         div </span><span class="pun">{</span><span class="pln"> 
+            width</span><span class="pun">:</span><span class="lit">70px</span><span class="pun">;</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">50px</span><span class="pun">;</span> <span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="pln"> 
+            margin</span><span class="pun">:</span><span class="lit">5px</span><span class="pun">;</span><span class="pln"> background</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="pln"> cursor</span><span class="pun">:</span><span class="pln">pointer</span><span class="pun">;</span> 
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">d</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">d</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">d</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">d</span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/setting-element-height-width.htm" width="300" height="150"></iframe></p>
+<h2>JQuery CSS Methods</h2>
+<p>Following table lists down all the methods which you can use to play with CSS properties &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-name.htm">css( name )</a>
+<p>Return a style property on the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-name-value.htm">css( name, value )</a>
+<p>Set a single style property to a value on all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-properties.htm">css( properties )</a>
+<p>Set a key/value object as style properties to all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-height-val.htm">height( val )</a>
+<p>Set the CSS height of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-height.htm">height( )</a>
+<p>Get the current computed, pixel, height of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-innerheight.htm">innerHeight( )</a>
+<p>Gets the inner height (excludes the border and includes the padding) for the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-innerwidth.htm">innerWidth( )</a>
+<p>Gets the inner width (excludes the border and includes the padding) for the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-offset.htm">offset( )</a>
+<p>Get the current offset of the first matched element, in pixels, relative to the document.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-offsetparent.htm">offsetParent( )</a>
+<p>Returns a jQuery collection with the positioned parent of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-outerheight.htm">outerHeight( [margin] )</a>
+<p>Gets the outer height (includes the border and padding by default) for the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-outerwidth.htm">outerWidth( [margin] )</a>
+<p>Get the outer width (includes the border and padding by default) for the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-position.htm">position( )</a>
+<p>Gets the top and left position of an element relative to its offset parent.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-scrollleft-val.htm">scrollLeft( val )</a>
+<p>When a value is passed in, the scroll left offset is set to that value on all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-scrollleft.htm">scrollLeft( )</a>
+<p>Gets the scroll left offset of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-scrolltop-val.htm">scrollTop( val )</a>
+<p>When a value is passed in, the scroll top offset is set to that value on all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-scrolltop.htm">scrollTop( )</a>
+<p>Gets the scroll top offset of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-width-val.htm">width( val )</a>
+<p>Set the CSS width of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="https://www.tutorialspoint.com/jquery/css-width.htm">width( )</a>
+<p>Get the current computed, pixel, width of the first matched element.</p>
+</td>
+</tr>
+</tbody>
+</table>

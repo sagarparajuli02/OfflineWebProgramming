@@ -1,0 +1,214 @@
+<p>Jquery provides serveral utilities in the formate of $(name space). These methods are helpful to complete the programming tasks.a few of the utility methods are as show below.</p>
+<h2>$.trim()</h2>
+<p>$.trim() is used to Removes leading and trailing whitespace</p>
+<pre class="result notranslate">$.trim( "    lots of extra whitespace    " );
+</pre>
+<h2>$.each()</h2>
+<p>$.each() is used to Iterates over arrays and objects</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$</span><span class="pun">.</span><span class="pln">each</span><span class="pun">([</span> <span class="str">"foo"</span><span class="pun">,</span> <span class="str">"bar"</span><span class="pun">,</span> <span class="str">"baz"</span> <span class="pun">],</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln"> idx</span><span class="pun">,</span><span class="pln"> val </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span> <span class="str">"element "</span> <span class="pun">+</span><span class="pln"> idx </span><span class="pun">+</span> <span class="str">" is "</span> <span class="pun">+</span><span class="pln"> val </span><span class="pun">);</span>
+<span class="pun">});</span><span class="pln">
+ 
+$</span><span class="pun">.</span><span class="pln">each</span><span class="pun">({</span><span class="pln"> foo</span><span class="pun">:</span> <span class="str">"bar"</span><span class="pun">,</span><span class="pln"> baz</span><span class="pun">:</span> <span class="str">"bim"</span> <span class="pun">},</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln"> k</span><span class="pun">,</span><span class="pln"> v </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln"> k </span><span class="pun">+</span> <span class="str">" : "</span> <span class="pun">+</span><span class="pln"> v </span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>.each() can be called on a selection to iterate over the elements contained in the selection. .each(), not $.each(), should be used for iterating over elements in a selection.</p>
+<h2>$.inArray()</h2>
+<p>$.inArray() is used to Returns a value's index in an array, or -1 if the value is not in the array.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> myArray </span><span class="pun">=</span> <span class="pun">[</span> <span class="lit">1</span><span class="pun">,</span> <span class="lit">2</span><span class="pun">,</span> <span class="lit">3</span><span class="pun">,</span> <span class="lit">5</span> <span class="pun">];</span>
+ 
+<span class="kwd">if</span> <span class="pun">(</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">inArray</span><span class="pun">(</span> <span class="lit">4</span><span class="pun">,</span><span class="pln"> myArray </span><span class="pun">)</span> <span class="pun">!==</span> <span class="pun">-</span><span class="lit">1</span> <span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span> <span class="str">"found it!"</span> <span class="pun">);</span>
+<span class="pun">}</span></pre>
+<h2>$.extend()</h2>
+<p>$.extend() is used to Changes the properties of the first object using the properties of subsequent objects.</p>
+<pre class="result notranslate">var firstObject = { foo: "bar", a: "b" };
+var secondObject = { foo: "baz" };
+ 
+var newObject = $.extend( firstObject, secondObject );
+ 
+console.log( firstObject.foo ); 
+console.log( newObject.foo );
+</pre>
+<h2>$.proxy()</h2>
+<p>$.proxy() is used to Returns a function that will always run in the provided scope &mdash; that is, sets the meaning of this inside the passed function to the second argument</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> myFunction </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span> <span class="kwd">this</span> <span class="pun">);</span>
+<span class="pun">};</span>
+
+<span class="kwd">var</span><span class="pln"> myObject </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+   foo</span><span class="pun">:</span> <span class="str">"bar"</span>
+<span class="pun">};</span><span class="pln">
+ 
+myFunction</span><span class="pun">();</span> <span class="com">// window</span>
+ 
+<span class="kwd">var</span><span class="pln"> myProxyFunction </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">proxy</span><span class="pun">(</span><span class="pln"> myFunction</span><span class="pun">,</span><span class="pln"> myObject </span><span class="pun">);</span><span class="pln">
+ 
+myProxyFunction</span><span class="pun">();</span></pre>
+<h2>$.browser</h2>
+<p>$.browser is used to give the information about browsers</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">jQuery</span><span class="pun">.</span><span class="pln">each</span><span class="pun">(</span><span class="pln"> jQuery</span><span class="pun">.</span><span class="pln">browser</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> val </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   $</span><span class="pun">(</span> <span class="str">"&lt;div&gt;"</span> <span class="pun">+</span><span class="pln"> i </span><span class="pun">+</span> <span class="str">" : &lt;span&gt;"</span> <span class="pun">+</span><span class="pln"> val </span><span class="pun">+</span> <span class="str">"&lt;/span&gt;"</span> <span class="pun">)</span>
+   <span class="pun">.</span><span class="pln">appendTo</span><span class="pun">(</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">body </span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<h2>$.contains()</h2>
+<p>$.contains() is used to returns true if the DOM element provided by the second argument is a descendant of the DOM element provided by the first argument, whether it is a direct child or nested more deeply.</p>
+<pre class="result notranslate">$.contains( document.documentElement, document.body );
+$.contains( document.body, document.documentElement );
+</pre>
+<h2>$.data()</h2>
+<p>$.data() is used to give the information about data</p>
+<p><a class="demo" href="http://tpcg.io/CDQqsU" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">jQuery.data demo</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.10.2.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">
+         The values stored were </span><span class="tag">&lt;span&gt;&lt;/span&gt;</span><span class="pln">
+            and </span><span class="tag">&lt;span&gt;&lt;/span&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+ 
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">var</span><span class="pln"> div </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span> <span class="str">"div"</span> <span class="pun">)[</span> <span class="lit">0</span> <span class="pun">];</span><span class="pln">
+			
+         jQuery</span><span class="pun">.</span><span class="pln">data</span><span class="pun">(</span><span class="pln"> div</span><span class="pun">,</span> <span class="str">"test"</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+            first</span><span class="pun">:</span> <span class="lit">25</span><span class="pun">,</span><span class="pln">
+            last</span><span class="pun">:</span> <span class="str">"tutorials"</span>
+         <span class="pun">});</span><span class="pln">
+			
+         $</span><span class="pun">(</span> <span class="str">"span:first"</span> <span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="pln"> jQuery</span><span class="pun">.</span><span class="pln">data</span><span class="pun">(</span><span class="pln"> div</span><span class="pun">,</span> <span class="str">"test"</span> <span class="pun">).</span><span class="pln">first </span><span class="pun">);</span><span class="pln">
+         $</span><span class="pun">(</span> <span class="str">"span:last"</span> <span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="pln"> jQuery</span><span class="pun">.</span><span class="pln">data</span><span class="pun">(</span><span class="pln"> div</span><span class="pun">,</span> <span class="str">"test"</span> <span class="pun">).</span><span class="pln">last </span><span class="pun">);</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>An output would be as follows</p>
+<pre class="result notranslate">The values stored were 25 and tutorials
+</pre>
+<h2>$.fn.extend()</h2>
+<p>$.fn.extend() is used to extends the jQuery prototype</p>
+<p><a class="demo" href="http://tpcg.io/dmTyXJ" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.10.2.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;label&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"checkbox"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"android"</span><span class="tag">&gt;</span><span class="pln"> 
+         Android</span><span class="tag">&lt;/label&gt;</span>
+      <span class="tag">&lt;label&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"checkbox"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"ios"</span><span class="tag">&gt;</span><span class="pln"> IOS</span><span class="tag">&lt;/label&gt;</span>
+ 
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         jQuery</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">({</span><span class="pln">
+			
+            check</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">checked </span><span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
+               <span class="pun">});</span>
+            <span class="pun">},</span><span class="pln">
+            uncheck</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">checked </span><span class="pun">=</span> <span class="kwd">false</span><span class="pun">;</span>
+               <span class="pun">});</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+ 
+         <span class="com">// Use the newly created .check() method</span><span class="pln">
+         $</span><span class="pun">(</span> <span class="str">"input[type = 'checkbox']"</span> <span class="pun">).</span><span class="pln">check</span><span class="pun">();</span>
+			
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It provides the output as shown below &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/fn.utilities.htm" width="300" height="150"></iframe></p>
+<h2>$.isWindow()</h2>
+<p>$.isWindow() is used to recognise the window</p>
+<p><a class="demo" href="http://tpcg.io/SkvZVN" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">jQuery.isWindow demo</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.10.2.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+      Is 'window' a window? </span><span class="tag">&lt;b&gt;&lt;/b&gt;</span>
+ 
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         $</span><span class="pun">(</span> <span class="str">"b"</span> <span class="pun">).</span><span class="pln">append</span><span class="pun">(</span> <span class="str">""</span> <span class="pun">+</span><span class="pln"> $</span><span class="pun">.</span><span class="pln">isWindow</span><span class="pun">(</span><span class="pln"> window </span><span class="pun">)</span> <span class="pun">);</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It provides the output as shown below &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/iswindow.htm" width="300" height="150"></iframe></p>
+<h2>$.now()</h2>
+<p>It returns a number which is representing the current time</p>
+<pre class="result notranslate">(new Date).getTime()
+</pre>
+<h2>$.isXMLDoc()</h2>
+<p>$.isXMLDoc() checks whether a file is an xml or not</p>
+<pre class="result notranslate">jQuery.isXMLDoc( document )
+jQuery.isXMLDoc( document.body )
+</pre>
+<h2>$.globalEval()</h2>
+<p>$.globalEval() is used to execute the javascript globally</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> test</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   jQuery</span><span class="pun">.</span><span class="pln">globalEval</span><span class="pun">(</span> <span class="str">"var newVar = true;"</span> <span class="pun">)</span>
+<span class="pun">}</span><span class="pln">
+test</span><span class="pun">();</span></pre>
+<h2>$.dequeue()</h2>
+<p>$.dequeue() is used to execute the next function in the queue</p>
+<p><a class="demo" href="http://tpcg.io/BnDYll" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">jQuery.dequeue demo</span><span class="tag">&lt;/title&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         div </span><span class="pun">{</span><span class="pln">
+            margin</span><span class="pun">:</span> <span class="lit">3px</span><span class="pun">;</span><span class="pln">
+            width</span><span class="pun">:</span> <span class="lit">50px</span><span class="pun">;</span><span class="pln">
+            position</span><span class="pun">:</span><span class="pln"> absolute</span><span class="pun">;</span><span class="pln">
+            height</span><span class="pun">:</span> <span class="lit">50px</span><span class="pun">;</span><span class="pln">
+            left</span><span class="pun">:</span> <span class="lit">10px</span><span class="pun">;</span><span class="pln">
+            top</span><span class="pun">:</span> <span class="lit">30px</span><span class="pun">;</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> green</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span> <span class="lit">50px</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         div</span><span class="pun">.</span><span class="pln">red </span><span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.10.2.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;button&gt;</span><span class="pln">Start</span><span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;div&gt;&lt;/div&gt;</span>
+ 
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         $</span><span class="pun">(</span> <span class="str">"button"</span> <span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span> <span class="str">"div"</span> <span class="pun">)</span>
+            <span class="pun">.</span><span class="pln">animate</span><span class="pun">({</span><span class="pln"> left</span><span class="pun">:</span> <span class="str">'+ = 400px'</span> <span class="pun">},</span> <span class="lit">2000</span> <span class="pun">)</span>
+            <span class="pun">.</span><span class="pln">animate</span><span class="pun">({</span><span class="pln"> top</span><span class="pun">:</span> <span class="str">'0px'</span> <span class="pun">},</span> <span class="lit">600</span> <span class="pun">)</span>
+				
+            <span class="pun">.</span><span class="pln">queue</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span> <span class="kwd">this</span> <span class="pun">).</span><span class="pln">toggleClass</span><span class="pun">(</span> <span class="str">"red"</span> <span class="pun">);</span><span class="pln">
+               $</span><span class="pun">.</span><span class="pln">dequeue</span><span class="pun">(</span> <span class="kwd">this</span> <span class="pun">);</span>
+            <span class="pun">})</span>
+				
+            <span class="pun">.</span><span class="pln">animate</span><span class="pun">({</span><span class="pln"> left</span><span class="pun">:</span><span class="str">'10px'</span><span class="pun">,</span><span class="pln"> top</span><span class="pun">:</span><span class="str">'30px'</span> <span class="pun">},</span> <span class="lit">700</span> <span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It provides the output as shown below &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/dequeue.htm" width="300" height="150"></iframe></p>

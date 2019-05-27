@@ -1,0 +1,41 @@
+<p>A project is a sum of many applications. Every application has an objective and can be reused into another project, like the contact form on a website can be an application, and can be reused for others. See it as a module of your project.</p>
+<h2>Create an Application</h2>
+<p>We assume you are in your project folder. In our main &ldquo;myproject&rdquo; folder, the same folder then manage.py &minus;</p>
+<pre class="result notranslate">$ python manage.py startapp myapp
+</pre>
+<p>You just created myapp application and like project, Django create a &ldquo;myapp&rdquo; folder with the application structure &minus;</p>
+<pre class="result notranslate">myapp/
+   __init__.py
+   admin.py
+   models.py
+   tests.py
+   views.py
+</pre>
+<ul class="list">
+<li>
+<p><strong>__init__.py</strong>&nbsp;&minus; Just to make sure python handles this folder as a package.</p>
+</li>
+<li>
+<p><strong>admin.py</strong>&nbsp;&minus; This file helps you make the app modifiable in the admin interface.</p>
+</li>
+<li>
+<p><strong>models.py</strong>&nbsp;&minus; This is where all the application models are stored.</p>
+</li>
+<li>
+<p><strong>tests.py</strong>&nbsp;&minus; This is where your unit tests are.</p>
+</li>
+<li>
+<p><strong>views.py</strong>&nbsp;&minus; This is where your application views are.</p>
+</li>
+</ul>
+<h2>Get the Project to Know About Your Application</h2>
+<p>At this stage we have our "myapp" application, now we need to register it with our Django project "myproject". To do so, update INSTALLED_APPS tuple in the settings.py file of your project (add your app name) &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">INSTALLED_APPS </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.contrib.admin'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.auth'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.contenttypes'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.sessions'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.messages'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.staticfiles'</span><span class="pun">,</span>
+   <span class="str">'myapp'</span><span class="pun">,</span>
+<span class="pun">)</span></pre>

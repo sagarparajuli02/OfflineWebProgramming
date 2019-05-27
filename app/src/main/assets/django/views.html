@@ -1,0 +1,25 @@
+<p>A view function, or &ldquo;view&rdquo; for short, is simply a Python function that takes a web request and returns a web response. This response can be the HTML contents of a Web page, or a redirect, or a 404 error, or an XML document, or an image, etc. Example: You use view to create web pages, note that you need to associate a view to a URL to see it as a web page.</p>
+<p>In Django, views have to be created in the app views.py file.</p>
+<h2>Simple View</h2>
+<p>We will create a simple view in myapp to say "welcome to my app!"</p>
+<p>See the following view &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">http </span><span class="kwd">import</span> <span class="typ">HttpResponse</span>
+
+<span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"""&lt;h1&gt;welcome to my app !&lt;/h1&gt;"""</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>In this view, we use HttpResponse to render the HTML (as you have probably noticed we have the HTML hard coded in the view). To see this view as a page we just need to map it to a URL (this will be discussed in an upcoming chapter).</p>
+<p>We used HttpResponse to render the HTML in the view before. This is not the best way to render pages. Django supports the MVT pattern so to make the precedent view, Django - MVT like, we will need &minus;</p>
+<p>A template: myapp/templates/hello.html</p>
+<p>And now our view will look like &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">shortcuts </span><span class="kwd">import</span><span class="pln"> render
+
+</span><span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">"myapp/template/hello.html"</span><span class="pun">,</span> <span class="pun">{})</span></pre>
+<p>Views can also accept parameters &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">http </span><span class="kwd">import</span> <span class="typ">HttpResponse</span>
+
+<span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> number</span><span class="pun">):</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"&lt;h1&gt;welcome to my app number %s!&lt;/h1&gt;"</span><span class="pun">%</span><span class="pln"> number
+   </span><span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>When linked to a URL, the page will display the number passed as a parameter. Note that the parameters will be passed via the URL (discussed in the next chapter).</p>

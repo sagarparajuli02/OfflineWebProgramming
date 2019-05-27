@@ -1,0 +1,14 @@
+<p>Transactional data is used when you need to return some data from the database then make some calculation with it and store it back.</p>
+<p>Let us say we have one player inside our player list.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-write-transactional-data-start.jpg" alt="Firebase Write Transactional Data Start" /></p>
+<p>We want to retrieve property, add one year of age and return it back to Firebase.</p>
+<p>The&nbsp;<strong>amandaRef</strong>&nbsp;is retrieving the age from the collection and then we can use the transaction method. We will get the current age, add one year and update the collection.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span> <span class="kwd">ref</span> <span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://tutorialsfirebase.firebaseio.com'</span><span class="pun">);</span>
+
+<span class="kwd">var</span><span class="pln"> amandaAgeRef </span><span class="pun">=</span> <span class="kwd">ref</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">"players"</span><span class="pun">).</span><span class="pln">child</span><span class="pun">(</span><span class="str">"-KGb1Ls-gEErWbAMMnZC"</span><span class="pun">).</span><span class="pln">child</span><span class="pun">(</span><span class="str">'age'</span><span class="pun">);</span><span class="pln">
+
+amandaAgeRef</span><span class="pun">.</span><span class="pln">transaction</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">currentAge</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">return</span><span class="pln"> currentAge </span><span class="pun">+</span> <span class="lit">1</span><span class="pun">;</span>
+<span class="pun">});</span></pre>
+<p>If we run this code, we can see that the age value is updated to&nbsp;<strong>21</strong>.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-write-transactional-data-update.jpg" alt="Firebase Write Transactional Data Update" /></p>

@@ -1,0 +1,172 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>Filters are used to modify the data. They can be clubbed in expression or directives using pipe (|) character. The following list shows the commonly used filters.</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No.</th>
+<th>Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>uppercase</strong></p>
+<p>converts a text to upper case text.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>lowercase</strong></p>
+<p>converts a text to lower case text.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>currency</strong></p>
+<p>formats text in a currency format.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>filter</strong></p>
+<p>filter the array to a subset of it based on provided criteria.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><strong>orderby</strong></p>
+<p>orders the array based on provided criteria.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Uppercase Filter</h2>
+<p>Add uppercase filter to an expression using pipe character. Here we've added uppercase filter to print student name in all capital letters.</p>
+<pre class="result notranslate">Enter first name:&lt;input type = "text" ng-model = "student.firstName"&gt;
+Enter last name: &lt;input type = "text" ng-model = "student.lastName"&gt;
+Name in Upper Case: {{student.fullName() | uppercase}}
+</pre>
+<h2>Lowercase Filter</h2>
+<p>Add lowercase filter to an expression using pipe character. Here we've added lowercase filter to print student name in all lowercase letters.</p>
+<pre class="result notranslate">Enter first name:&lt;input type = "text" ng-model = "student.firstName"&gt;
+Enter last name: &lt;input type = "text" ng-model = "student.lastName"&gt;
+Name in Lower Case: {{student.fullName() | lowercase}}
+</pre>
+<h2>Currency Filter</h2>
+<p>Add currency filter to an expression returning number using pipe character. Here we've added currency filter to print fees using currency format.</p>
+<pre class="result notranslate">Enter fees: &lt;input type = "text" ng-model = "student.fees"&gt;
+fees: {{student.fees | currency}}
+</pre>
+<h2>Filter</h2>
+<p>To display only required subjects, we use subjectName as filter.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Enter</span><span class="pln"> subject</span><span class="pun">:</span> <span class="pun">&lt;</span><span class="pln">input type </span><span class="pun">=</span> <span class="str">"text"</span><span class="pln"> ng</span><span class="pun">-</span><span class="pln">model </span><span class="pun">=</span> <span class="str">"subjectName"</span><span class="pun">&gt;</span>
+<span class="typ">Subject</span><span class="pun">:</span>
+<span class="str">&lt;ul&gt;</span>
+   <span class="pun">&lt;</span><span class="pln">li ng</span><span class="pun">-</span><span class="pln">repeat </span><span class="pun">=</span> <span class="str">"subject in student.subjects | filter: subjectName"</span><span class="pun">&gt;</span>
+      <span class="pun">{{</span><span class="pln"> subject</span><span class="pun">.</span><span class="pln">name </span><span class="pun">+</span> <span class="str">', marks:'</span> <span class="pun">+</span><span class="pln"> subject</span><span class="pun">.</span><span class="pln">marks </span><span class="pun">}}</span>
+   <span class="pun">&lt;/</span><span class="pln">li</span><span class="pun">&gt;</span>
+<span class="pun">&lt;/</span><span class="pln">ul</span><span class="pun">&gt;</span></pre>
+<h2>OrderBy Filter</h2>
+<p>To order subjects by marks, we use orderBy marks.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Subject</span><span class="pun">:</span>
+<span class="str">&lt;ul&gt;</span>
+   <span class="pun">&lt;</span><span class="pln">li ng</span><span class="pun">-</span><span class="pln">repeat </span><span class="pun">=</span> <span class="str">"subject in student.subjects | orderBy:'marks'"</span><span class="pun">&gt;</span>
+      <span class="pun">{{</span><span class="pln"> subject</span><span class="pun">.</span><span class="pln">name </span><span class="pun">+</span> <span class="str">', marks:'</span> <span class="pun">+</span><span class="pln"> subject</span><span class="pun">.</span><span class="pln">marks </span><span class="pun">}}</span>
+   <span class="pun">&lt;/</span><span class="pln">li</span><span class="pun">&gt;</span>
+<span class="pun">&lt;/</span><span class="pln">ul</span><span class="pun">&gt;</span></pre>
+<h2>Example</h2>
+<p>The following example shows use of all the above mentioned filters.</p>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/uIRcn5" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Filters</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"mainApp"</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"studentController"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;table</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter first name:</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"student.firstName"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter last name: </span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"student.lastName"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter fees: </span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"student.fees"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter subject: </span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"subjectName"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+         <span class="tag">&lt;br/&gt;</span>
+         
+         <span class="tag">&lt;table</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Name in Upper Case: </span><span class="tag">&lt;/td&gt;&lt;td&gt;</span><span class="pln">{{student.fullName() | uppercase}}</span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Name in Lower Case: </span><span class="tag">&lt;/td&gt;&lt;td&gt;</span><span class="pln">{{student.fullName() | lowercase}}</span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">fees: </span><span class="tag">&lt;/td&gt;&lt;td&gt;</span><span class="pln">{{student.fees | currency}}
+               </span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Subject:</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;ul&gt;</span>
+                     <span class="tag">&lt;li</span> <span class="atn">ng-repeat</span> <span class="pun">=</span> <span class="atv">"subject in student.subjects | filter: subjectName |orderBy:'marks'"</span><span class="tag">&gt;</span><span class="pln">
+                        {{ subject.name + ', marks:' + subject.marks }}
+                     </span><span class="tag">&lt;/li&gt;</span>
+                  <span class="tag">&lt;/ul&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mainApp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"mainApp"</span><span class="pun">,</span> <span class="pun">[]);</span><span class="pln">
+         
+         mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">'studentController'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">student </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+               firstName</span><span class="pun">:</span> <span class="str">"Mahesh"</span><span class="pun">,</span><span class="pln">
+               lastName</span><span class="pun">:</span> <span class="str">"Parashar"</span><span class="pun">,</span><span class="pln">
+               fees</span><span class="pun">:</span><span class="lit">500</span><span class="pun">,</span><span class="pln">
+               
+               subjects</span><span class="pun">:[</span>
+                  <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Physics'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">70</span><span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Chemistry'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">80</span><span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Math'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">65</span><span class="pun">}</span>
+               <span class="pun">],</span><span class="pln">
+               fullName</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">var</span><span class="pln"> studentObject</span><span class="pun">;</span><span class="pln">
+                  studentObject </span><span class="pun">=</span><span class="pln"> $scope</span><span class="pun">.</span><span class="pln">student</span><span class="pun">;</span>
+                  <span class="kwd">return</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">+</span> <span class="str">" "</span> <span class="pun">+</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">lastName</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">};</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser. See the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/filter.htm" width="600px" height="330px"></iframe></p>

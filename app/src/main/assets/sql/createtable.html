@@ -1,0 +1,85 @@
+<p>To begin with, the table creation command requires the following details &minus;</p>
+<ul class="list">
+<li>Name of the table</li>
+<li>Name of the fields</li>
+<li>Definitions for each field</li>
+</ul>
+<h3>Syntax</h3>
+<p>Here is a generic SQL syntax to create a MySQL table &minus;</p>
+<pre class="result notranslate">CREATE TABLE table_name (column_name column_type);
+</pre>
+<p>Now, we will create the following table in the&nbsp;<strong>TUTORIALS</strong>&nbsp;database.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">create table tutorials_tbl</span><span class="pun">(</span><span class="pln">
+   tutorial_id INT NOT NULL AUTO_INCREMENT</span><span class="pun">,</span><span class="pln">
+   tutorial_title VARCHAR</span><span class="pun">(</span><span class="lit">100</span><span class="pun">)</span><span class="pln"> NOT NULL</span><span class="pun">,</span><span class="pln">
+   tutorial_author VARCHAR</span><span class="pun">(</span><span class="lit">40</span><span class="pun">)</span><span class="pln"> NOT NULL</span><span class="pun">,</span><span class="pln">
+   submission_date DATE</span><span class="pun">,</span><span class="pln">
+   PRIMARY KEY </span><span class="pun">(</span><span class="pln"> tutorial_id </span><span class="pun">)</span>
+<span class="pun">);</span></pre>
+<p>Here, a few items need explanation &minus;</p>
+<ul class="list">
+<li>
+<p>Field Attribute&nbsp;<strong>NOT NULL</strong>&nbsp;is being used because we do not want this field to be NULL. So, if a user will try to create a record with a NULL value, then MySQL will raise an error.</p>
+</li>
+<li>
+<p>Field Attribute&nbsp;<strong>AUTO_INCREMENT</strong>&nbsp;tells MySQL to go ahead and add the next available number to the id field.</p>
+</li>
+<li>
+<p>Keyword&nbsp;<strong>PRIMARY KEY</strong>&nbsp;is used to define a column as a primary key. You can use multiple columns separated by a comma to define a primary key.</p>
+</li>
+</ul>
+<h2>Creating Tables from Command Prompt</h2>
+<p>It is easy to create a MySQL table from the mysql&gt; prompt. You will use the SQL command&nbsp;<strong>CREATE TABLE</strong>&nbsp;to create a table.</p>
+<h3>Example</h3>
+<p>Here is an example, which will create&nbsp;<strong>tutorials_tbl</strong>&nbsp;&minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> TUTORIALS</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+mysql</span><span class="pun">&gt;</span><span class="pln"> CREATE TABLE tutorials_tbl</span><span class="pun">(</span>
+   <span class="pun">-&gt;</span><span class="pln"> tutorial_id INT NOT NULL AUTO_INCREMENT</span><span class="pun">,</span>
+   <span class="pun">-&gt;</span><span class="pln"> tutorial_title VARCHAR</span><span class="pun">(</span><span class="lit">100</span><span class="pun">)</span><span class="pln"> NOT NULL</span><span class="pun">,</span>
+   <span class="pun">-&gt;</span><span class="pln"> tutorial_author VARCHAR</span><span class="pun">(</span><span class="lit">40</span><span class="pun">)</span><span class="pln"> NOT NULL</span><span class="pun">,</span>
+   <span class="pun">-&gt;</span><span class="pln"> submission_date DATE</span><span class="pun">,</span>
+   <span class="pun">-&gt;</span><span class="pln"> PRIMARY KEY </span><span class="pun">(</span><span class="pln"> tutorial_id </span><span class="pun">)</span>
+   <span class="pun">-&gt;</span> <span class="pun">);</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">0</span><span class="pln"> rows affected </span><span class="pun">(</span><span class="lit">0.16</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+mysql</span><span class="pun">&gt;</span></pre>
+<p><strong>NOTE</strong>&nbsp;&minus; MySQL does not terminate a command until you give a semicolon (;) at the end of SQL command.</p>
+<h2>Creating Tables Using PHP Script</h2>
+<p>To create new table in any existing database you would need to use PHP function&nbsp;<strong>mysql_query()</strong>. You will pass its second argument with a proper SQL command to create a table.</p>
+<h3>Example</h3>
+<p>The following program is an example to create a table using PHP script &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Creating MySQL Tables</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php
+         $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+         $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+         $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+         $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">'Connected successfully&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+         $sql </span><span class="pun">=</span> <span class="str">"CREATE TABLE tutorials_tbl( "</span><span class="pun">.</span>
+            <span class="str">"tutorial_id INT NOT NULL AUTO_INCREMENT, "</span><span class="pun">.</span>
+            <span class="str">"tutorial_title VARCHAR(100) NOT NULL, "</span><span class="pun">.</span>
+            <span class="str">"tutorial_author VARCHAR(40) NOT NULL, "</span><span class="pun">.</span>
+            <span class="str">"submission_date DATE, "</span><span class="pun">.</span>
+            <span class="str">"PRIMARY KEY ( tutorial_id )); "</span><span class="pun">;</span><span class="pln">
+         mysql_select_db</span><span class="pun">(</span> <span class="str">'TUTORIALS'</span> <span class="pun">);</span><span class="pln">
+         $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not create table: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">"Table created successfully\n"</span><span class="pun">;</span><span class="pln">
+         mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+      <span class="pun">?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>

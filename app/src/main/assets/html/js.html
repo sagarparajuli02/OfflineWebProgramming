@@ -1,0 +1,117 @@
+<p>A&nbsp;<strong>script</strong>&nbsp;is a small piece of program that can add interactivity to your website. For example, a script could generate a pop-up alert box message, or provide a dropdown menu. This script could be written using JavaScript or VBScript.</p>
+<p>You can write various small functions, called event handlers using any of the scripting language and then you can trigger those functions using HTML attributes.</p>
+<p>Now-a-days, only&nbsp;<strong>JavaScript</strong>&nbsp;and associated frameworks are being used by most of the web developers, VBScript is not even supported by various major browsers.</p>
+<p>You can keep JavaScript code in a separate file and then include it wherever it's needed, or you can define functionality inside HTML document itself. Let's see both the cases one by one with suitable examples.</p>
+<h2>External JavaScript</h2>
+<p>If you are going to define a functionality which will be used in various HTML documents then it's better to keep that functionality in a separate JavaScript file and then include that file in your HTML documents. A JavaScript file will have extension as&nbsp;<strong>.js</strong>&nbsp;and it will be included in HTML files using &lt;script&gt; tag.</p>
+<h3>Example</h3>
+<p>Consider we define a small function using JavaScript in&nbsp;<strong>script.js</strong>&nbsp;which has following code &minus;</p>
+<pre class="result notranslate">function Hello() {
+   alert("Hello, World");
+}
+</pre>
+<p>Now let's make use of the above external JavaScript file in our following HTML document &minus;</p>
+<p><a class="demo" href="http://tpcg.io/qz4BzE" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Javascript External Script</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/script.js"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">/&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="typ">Hello</span><span class="pun">();</span><span class="atv">"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"ok"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result, where you can try to click on the given button &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/use_of_external_javascript.htm" width="600px" height="100px"></iframe></p>
+<h2>Internal Script</h2>
+<p>You can write your script code directly into your HTML document. Usually we keep script code in header of the document using &lt;script&gt; tag, otherwise there is no restriction and you can put your source code anywhere in the document but inside &lt;script&gt; tag.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/2VWeMm" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">JavaScript Internal Script</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/"</span> <span class="tag">/&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/JavaScript"</span><span class="tag">&gt;</span>
+         <span class="kwd">function</span> <span class="typ">Hello</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">"Hello, World"</span><span class="pun">);</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="typ">Hello</span><span class="pun">();</span><span class="atv">"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"ok"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result, where you can try to click on the given button &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/internal_script.htm" width="600px" height="100px"></iframe></p>
+<h2>Event Handlers</h2>
+<p>Event handlers are nothing but simply defined functions which can be called against any mouse or keyboard event. You can define your business logic inside your event handler which can vary from a single to 1000s of line code.</p>
+<p>Following example explains how to write an event handler. Let's write one simple function&nbsp;<em>EventHandler()</em>&nbsp;in the header of the document. We will call this function when any user brings mouse over a paragraph.</p>
+<p><a class="demo" href="http://tpcg.io/95wwlh" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Event Handlers Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/"</span> <span class="tag">/&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/JavaScript"</span><span class="tag">&gt;</span>
+         <span class="kwd">function</span> <span class="typ">EventHandler</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">"I'm event handler!!"</span><span class="pun">);</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">onmouseover</span> <span class="pun">=</span> <span class="atv">"</span><span class="typ">EventHandler</span><span class="pun">();</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Bring your mouse here to see an alert</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Now This will produce the following result. Bring your mouse over this line and see the result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/event_handler_in_html.htm" width="600px" height="100px"></iframe></p>
+<h2>Hide Scripts from Older Browsers</h2>
+<p>Although most (if not all) browsers these days support JavaScript, but still some older browsers don't. If a browser doesn't support JavaScript, instead of running your script, it would display the code to the user. To prevent this, you can simply place HTML comments around the script as shown below.</p>
+<pre class="prettyprint notranslate prettyprinted"><strong><span class="typ">JavaScript</span> <span class="typ">Example</span><span class="pun">:</span></strong>
+<span class="pun">&lt;</span><span class="pln">script type </span><span class="pun">=</span> <span class="str">"text/JavaScript"</span><span class="pun">&gt;</span>
+   <span class="pun">&lt;!--</span><span class="pln">
+      document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello JavaScript!"</span><span class="pun">);</span>
+   <span class="com">//--&gt;</span>
+<span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span>
+
+<strong><span class="typ">VBScript</span> <span class="typ">Example</span><span class="pun">:</span></strong>
+<span class="pun">&lt;</span><span class="pln">script type </span><span class="pun">=</span> <span class="str">"text/vbscript"</span><span class="pun">&gt;</span>
+   <span class="pun">&lt;!--</span><span class="pln">
+      document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello VBScript!"</span><span class="pun">)</span>
+   <span class="str">'--&gt;
+&lt;/script&gt;</span></pre>
+<h2>The &lt;noscript&gt; Element</h2>
+<p>You can also provide alternative info to the users whose browsers don't support scripts and for those users who have disabled script option their browsers. You can do this using the&nbsp;<strong>&lt;noscript&gt;</strong>&nbsp;tag.</p>
+<pre class="prettyprint notranslate prettyprinted"><strong><span class="typ">JavaScript</span> <span class="typ">Example</span><span class="pun">:</span></strong>
+<span class="pun">&lt;</span><span class="pln">script type </span><span class="pun">=</span> <span class="str">"text/JavaScript"</span><span class="pun">&gt;</span>
+   <span class="pun">&lt;!--</span><span class="pln">
+      document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello JavaScript!"</span><span class="pun">);</span>
+   <span class="com">//--&gt;</span>
+<span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span>
+
+<span class="str">&lt;noscript&gt;</span><span class="typ">Your</span><span class="pln"> browser does </span><span class="kwd">not</span><span class="pln"> support </span><span class="typ">JavaScript</span><span class="pun">!&lt;/</span><span class="pln">noscript</span><span class="pun">&gt;</span>
+
+<strong><span class="typ">VBScript</span> <span class="typ">Example</span><span class="pun">:</span></strong>
+<span class="pun">&lt;</span><span class="pln">script type </span><span class="pun">=</span> <span class="str">"text/vbscript"</span><span class="pun">&gt;</span>
+   <span class="pun">&lt;!--</span><span class="pln">
+      document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"Hello VBScript!"</span><span class="pun">)</span>
+   <span class="str">'--&gt;
+&lt;/script&gt;
+
+&lt;noscript&gt;Your browser does not support VBScript!&lt;/noscript&gt;</span></pre>
+<h2>Default Scripting Language</h2>
+<p>There may be a situation when you will include multiple script files and ultimately using multiple &lt;script&gt; tags. You can specify a default scripting language for all your&nbsp;<em>script</em>&nbsp;tags. This saves you from specifying the language every time you use a script tag within the page. Below is the example &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;meta</span> <span class="atn">http-equiv</span> <span class="pun">=</span> <span class="atv">"Content-Script-Type"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"text/JavaScript"</span> <span class="tag">/&gt;</span></pre>
+<p>Note that you can still override the default by specifying a language within the script tag</p>

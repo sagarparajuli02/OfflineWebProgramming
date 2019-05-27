@@ -1,0 +1,105 @@
+<p>Images are very important to beautify as well as to depict many complex concepts in simple way on your web page. This tutorial will take you through simple steps to use images in your web pages.</p>
+<h2>Insert Image</h2>
+<p>You can insert any image in your web page by using&nbsp;<strong>&lt;img&gt;</strong>&nbsp;tag. Following is the simple syntax to use this tag.</p>
+<pre class="result notranslate">&lt;img src = "Image URL" ... attributes-list/&gt;
+</pre>
+<p>The &lt;img&gt; tag is an empty tag, which means that, it can contain only list of attributes and it has no closing tag.</p>
+<h3>Example</h3>
+<p>To try following example, let's keep our HTML file test.htm and image file test.png in the same directory &minus;</p>
+<p><a class="demo" href="http://tpcg.io/9KkHGq" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Using Image in Webpage</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Simple Image Insert</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/images/test.png"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Test Image"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/insert_image.htm" width="600px" height="200px"></iframe></p>
+<p>You can use PNG, JPEG or GIF image file based on your comfort but make sure you specify correct image file name in&nbsp;<strong>src</strong>&nbsp;attribute. Image name is always case sensitive.</p>
+<p>The&nbsp;<strong>alt</strong>&nbsp;attribute is a mandatory attribute which specifies an alternate text for an image, if the image cannot be displayed.</p>
+<h2>Set Image Location</h2>
+<p>Usually we keep all the images in a separate directory. So let's keep HTML file test.htm in our home directory and create a subdirectory&nbsp;<strong>images</strong>&nbsp;inside the home directory where we will keep our image test.png.</p>
+<h3>Example</h3>
+<p>Assuming our image location is "image/test.png", try the following example &minus;</p>
+<p><a class="demo" href="http://tpcg.io/bQc7oN" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Using Image in Webpage</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Simple Image Insert</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/images/test.png"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Test Image"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/set_image_location.htm" width="600px" height="200px"></iframe></p>
+<h2>Set Image Width/Height</h2>
+<p>You can set image width and height based on your requirement using&nbsp;<strong>width</strong>&nbsp;and&nbsp;<strong>height</strong>attributes. You can specify width and height of the image in terms of either pixels or percentage of its actual size.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/esEKg5" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Set Image Width and Height</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Setting image width and height</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/images/test.png"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Test Image"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"150"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"100"</span><span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/set_image_width.htm" width="600px" height="200px"></iframe></p>
+<h2>Set Image Border</h2>
+<p>By default, image will have a border around it, you can specify border thickness in terms of pixels using border attribute. A thickness of 0 means, no border around the picture.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/Jh9j17" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Set Image Border</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Setting image Border</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/images/test.png"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Test Image"</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"3"</span><span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/set_image_border.htm" width="600px" height="200px"></iframe></p>
+<h2>Set Image Alignment</h2>
+<p>By default, image will align at the left side of the page, but you can use&nbsp;<strong>align</strong>&nbsp;attribute to set it in the center or right.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/X2SPGi" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Set Image Alignment</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Setting image Alignment</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/html/images/test.png"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Test Image"</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"3"</span> <span class="atn">align</span> <span class="pun">=</span> <span class="atv">"right"</span><span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/set_image_alignment.htm" width="600px" height="200px"></iframe></p>
+<h2>Free Web Graphics</h2>
+<p>For Free Web Graphics including patterns you can look into&nbsp;<a href="https://www.tutorialspoint.com/free_web_graphics.htm">Free Web Graphics</a></p>

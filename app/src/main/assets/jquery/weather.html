@@ -1,0 +1,149 @@
+<p>Weather.js is a jQuery plugin to find the information about weather details.</p>
+<p>A Simple of Weather.js example as shown below &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"UTF-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"viewport"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"width = device-width, 
+         initial-scale = 1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+         <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+         <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">'https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700'</span>
+         <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">'stylesheet'</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'text/css'</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"weather.css"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"weather-background"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"default-weather"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;canvas</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"rain-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+      <span class="tag">&lt;canvas</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"cloud-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+      <span class="tag">&lt;canvas</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"weather-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+      <span class="tag">&lt;canvas</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"time-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+      <span class="tag">&lt;canvas</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"lightning-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"page-wrap"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;header</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"search-bar"</span><span class="tag">&gt;</span>
+			
+            <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"search-text"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;span</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"search-location-text"</span><span class="tag">&gt;</span><span class="pln">
+                  What's the weather like in 
+                  
+                  </span><span class="tag">&lt;input</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"search-location-input"</span> 
+                     <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"search-location-input"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span>
+                     <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"City"</span><span class="tag">&gt;</span><span class="pln"> ?
+               </span><span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;/p&gt;</span>
+					
+            <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"search-location-button-group"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"search-location-button"</span> 
+                  <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"fa fa-search search-location-button search-button"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;/button&gt;</span>
+						
+               <span class="com">&lt;!--  --&gt;</span>
+               <span class="tag">&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"geo-button"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"geo-button fa
+                  fa-location-arrow search-button"</span><span class="tag">&gt;&lt;/button&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+				
+         <span class="tag">&lt;/header&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"geo-error-message"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"geo-error-message hide"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'close-error'</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">'fa fa-times 
+               close-error'</span><span class="tag">&gt;&lt;/button&gt;</span><span class="pln">Uh oh! It looks like we can't 
+               find your location. Please type your city into the search 
+               box above!
+         </span><span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"front-page-description"</span> 
+			   <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"front-page-description middle"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Blank Canvas Weather</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"attribution-links hide"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"attribution-links"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'close-attribution'</span> 
+               <span class="atn">class</span> <span class="pun">=</span> <span class="atv">'fa fa-times close-attribution'</span><span class="tag">&gt;&lt;/button&gt;</span>
+					
+            <span class="tag">&lt;h3&gt;</span><span class="pln">Icons from </span><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/"</span><span class="tag">&gt;</span><span class="pln">
+               Noun Project</span><span class="tag">&lt;/a&gt;&lt;/h3&gt;</span>
+					
+            <span class="tag">&lt;ul&gt;</span>
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/cloud/6852/"</span><span class="tag">&gt;</span><span class="pln">
+                  Cloud</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Pieter J. Smits</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/snow/64/"</span><span class="tag">&gt;</span><span class="pln">
+                  Snow</span><span class="tag">&lt;/a&gt;</span><span class="pln"> from National Park Service Collection</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/drop/11449/"</span><span class="tag">&gt;</span><span class="pln">
+                  Drop</span><span class="tag">&lt;/a&gt;</span><span class="pln"> Alex Fuller</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/smoke/27750/"</span><span class="tag">&gt;</span><span class="pln">
+                  Smoke</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Gerardo Mart&iacute;n Mart&iacute;nez</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/moon/13554/"</span><span class="tag">&gt;</span><span class="pln">
+                  Moon</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Jory Raphael</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/warning/18974/"</span><span class="tag">&gt;</span><span class="pln">
+                  Warning</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Icomatic</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/sun/13545/"</span><span class="tag">&gt;</span><span class="pln">
+                  Sun</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Jory Raphael</span><span class="tag">&lt;/li&gt;</span>
+						
+               <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"icon-attribution"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://thenounproject.com/term/windsock/135621/"</span><span class="tag">&gt;</span><span class="pln">
+                  Windsock</span><span class="tag">&lt;/a&gt;</span><span class="pln"> by Golden Roof</span><span class="tag">&lt;/li&gt;</span>
+						
+            <span class="tag">&lt;/ul&gt;</span>		
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"weather"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather middle hide"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"location"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"location"</span><span class="tag">&gt;&lt;/div&gt;</span>
+               
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-container"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"temperature-info"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"temperature-info"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"temperature"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"temperature"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-description"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"weather-description"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+                  <span class="tag">&lt;/div&gt;</span>
+						
+                  <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-box"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;ul</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-info"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"weather-info"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-item humidity"</span><span class="tag">&gt;</span><span class="pln">Humidity:
+                           </span><span class="tag">&lt;span</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"humidity"</span><span class="tag">&gt;&lt;/span&gt;</span><span class="pln">%</span><span class="tag">&lt;/li&gt;</span><span class="com">&lt;!----&gt;</span>
+                        <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"weather-item wind"</span><span class="tag">&gt;</span><span class="pln">Wind: </span><span class="tag">&lt;span</span> 
+                           <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"wind-direction"</span><span class="tag">&gt;&lt;/span&gt;</span> <span class="tag">&lt;span</span> 
+                           <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"wind"</span><span class="tag">&gt;&lt;/span&gt;</span> <span class="tag">&lt;span</span> 
+                           <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"speed-unit"</span><span class="tag">&gt;&lt;/span&gt;&lt;/li&gt;</span>
+                     <span class="tag">&lt;/ul&gt;</span>
+                  <span class="tag">&lt;/div&gt;</span>
+						
+                  <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"temp-change"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"celsius"</span> 
+                        <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"temp-change-button celsius"</span><span class="tag">&gt;</span><span class="pln">&deg;C
+                        </span><span class="tag">&lt;/button&gt;&lt;button</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"fahrenheit"</span> 
+                        <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"temp-change-button fahrenheit"</span><span class="tag">&gt;</span><span class="pln">
+                        &deg;F</span><span class="tag">&lt;/button&gt;</span>
+                  <span class="tag">&lt;/div&gt;</span>
+						
+               <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/div&gt;</span> 
+				
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;script</span> 
+            <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;/script&gt;</span>
+         <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"weather.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>	
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><a href="https://www.tutorialspoint.com/jquery/src/weather/index.htm">Click here</a></p>

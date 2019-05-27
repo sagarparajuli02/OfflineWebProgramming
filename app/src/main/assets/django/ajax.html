@@ -1,0 +1,125 @@
+<p>Ajax essentially is a combination of technologies that are integrated together to reduce the number of page loads. We generally use Ajax to ease end-user experience. Using Ajax in Django can be done by directly using an Ajax library like JQuery or others. Let's say you want to use JQuery, then you need to download and serve the library on your server through Apache or others. Then use it in your template, just like you might do while developing any Ajax-based application.</p>
+<p>Another way of using Ajax in Django is to use the Django Ajax framework. The most commonly used is django-dajax which is a powerful tool to easily and super-quickly develop asynchronous presentation logic in web applications, using Python and almost no JavaScript source code. It supports four of the most popular Ajax frameworks: Prototype, jQuery, Dojo and MooTools.</p>
+<h2>Using Django-dajax</h2>
+<p>First thing to do is to install django-dajax. This can be done using easy_install or pip &minus;</p>
+<pre class="result notranslate">$ pip install django_dajax
+$ easy_install django_dajax
+</pre>
+<p>This will automatically install django-dajaxice, required by django-dajax. We then need to configure both dajax and dajaxice.</p>
+<p>Add dajax and dajaxice in your project settings.py in INSTALLED_APPS option &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">INSTALLED_APPS </span><span class="pun">+=</span> <span class="pun">(</span>
+   <span class="str">'dajaxice'</span><span class="pun">,</span>
+   <span class="str">'dajax'</span>
+<span class="pun">)</span></pre>
+<p>Make sure in the same settings.py file, you have the following &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">TEMPLATE_LOADERS </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.template.loaders.filesystem.Loader'</span><span class="pun">,</span>
+   <span class="str">'django.template.loaders.app_directories.Loader'</span><span class="pun">,</span>
+   <span class="str">'django.template.loaders.eggs.Loader'</span><span class="pun">,</span>
+<span class="pun">)</span><span class="pln">
+
+TEMPLATE_CONTEXT_PROCESSORS </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.contrib.auth.context_processors.auth'</span><span class="pun">,</span>
+   <span class="str">'django.core.context_processors.debug'</span><span class="pun">,</span>
+   <span class="str">'django.core.context_processors.i18n'</span><span class="pun">,</span>
+   <span class="str">'django.core.context_processors.media'</span><span class="pun">,</span>
+   <span class="str">'django.core.context_processors.static'</span><span class="pun">,</span>
+   <span class="str">'django.core.context_processors.request'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.messages.context_processors.messages'</span>
+<span class="pun">)</span><span class="pln">
+
+STATICFILES_FINDERS </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.contrib.staticfiles.finders.FileSystemFinder'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.staticfiles.finders.AppDirectoriesFinder'</span><span class="pun">,</span>
+   <span class="str">'dajaxice.finders.DajaxiceFinder'</span><span class="pun">,</span>
+<span class="pun">)</span><span class="pln">
+
+DAJAXICE_MEDIA_PREFIX </span><span class="pun">=</span> <span class="str">'dajaxice'</span></pre>
+<p>Now go to the myapp/url.py file and make sure you have the following to set dajax URLs and to load dajax statics js files &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> dajaxice</span><span class="pun">.</span><span class="pln">core </span><span class="kwd">import</span><span class="pln"> dajaxice_autodiscover</span><span class="pun">,</span><span class="pln"> dajaxice_config
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib</span><span class="pun">.</span><span class="pln">staticfiles</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> staticfiles_urlpatterns
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf </span><span class="kwd">import</span><span class="pln"> settings
+
+</span><span class="typ">Then</span><span class="pln"> dajax urls</span><span class="pun">:</span><span class="pln">
+
+urlpatterns </span><span class="pun">+=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">''</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^%s/'</span> <span class="pun">%</span><span class="pln"> settings</span><span class="pun">.</span><span class="pln">DAJAXICE_MEDIA_PREFIX</span><span class="pun">,</span><span class="pln"> include</span><span class="pun">(</span><span class="str">'dajaxice.urls'</span><span class="pun">)),)</span><span class="pln">
+	
+urlpatterns </span><span class="pun">+=</span><span class="pln"> staticfiles_urlpatterns</span><span class="pun">()</span></pre>
+<p>Let us create a simple form based on our Dreamreal model to store it, using Ajax (means no refresh).</p>
+<p>At first, we need our Dreamreal form in myapp/form.py.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">class</span> <span class="typ">DreamrealForm</span><span class="pun">(</span><span class="pln">forms</span><span class="pun">.</span><span class="typ">Form</span><span class="pun">):</span><span class="pln">
+   website </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span><span class="pln">
+   phonenumber </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   email </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span></pre>
+<p>Then we need an ajax.py file in our application: myapp/ajax.py. That's where is our logic, that's where we put the function that will be saving our form then return the popup &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> dajaxice</span><span class="pun">.</span><span class="pln">utils </span><span class="kwd">import</span><span class="pln"> deserialize_form
+</span><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">form </span><span class="kwd">import</span> <span class="typ">DreamrealForm</span>
+<span class="kwd">from</span><span class="pln"> dajax</span><span class="pun">.</span><span class="pln">core </span><span class="kwd">import</span> <span class="typ">Dajax</span>
+<span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Dreamreal</span>
+
+<span class="lit">@dajaxice_register</span>
+<span class="kwd">def</span><span class="pln"> send_form</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> form</span><span class="pun">):</span><span class="pln">
+   dajax </span><span class="pun">=</span> <span class="typ">Dajax</span><span class="pun">()</span><span class="pln">
+   form </span><span class="pun">=</span> <span class="typ">DreamrealForm</span><span class="pun">(</span><span class="pln">deserialize_form</span><span class="pun">(</span><span class="pln">form</span><span class="pun">))</span>
+   
+   <span class="kwd">if</span><span class="pln"> form</span><span class="pun">.</span><span class="pln">is_valid</span><span class="pun">():</span><span class="pln">
+      dajax</span><span class="pun">.</span><span class="pln">remove_css_class</span><span class="pun">(</span><span class="str">'#my_form input'</span><span class="pun">,</span> <span class="str">'error'</span><span class="pun">)</span><span class="pln">
+      dr </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">()</span><span class="pln">
+      dr</span><span class="pun">.</span><span class="pln">website </span><span class="pun">=</span><span class="pln"> form</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'website'</span><span class="pun">)</span><span class="pln">
+      dr</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> form</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'name'</span><span class="pun">)</span><span class="pln">
+      dr</span><span class="pun">.</span><span class="pln">phonenumber </span><span class="pun">=</span><span class="pln"> form</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'phonenumber'</span><span class="pun">)</span><span class="pln">
+      dr</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span><span class="pln">
+      
+      dajax</span><span class="pun">.</span><span class="pln">alert</span><span class="pun">(</span><span class="str">"Dreamreal Entry %s was successfully saved."</span> <span class="pun">%</span><span class="pln"> 
+         form</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'name'</span><span class="pun">))</span>
+   <span class="kwd">else</span><span class="pun">:</span><span class="pln">
+      dajax</span><span class="pun">.</span><span class="pln">remove_css_class</span><span class="pun">(</span><span class="str">'#my_form input'</span><span class="pun">,</span> <span class="str">'error'</span><span class="pun">)</span>
+      <span class="kwd">for</span><span class="pln"> error </span><span class="kwd">in</span><span class="pln"> form</span><span class="pun">.</span><span class="pln">errors</span><span class="pun">:</span><span class="pln">
+         dajax</span><span class="pun">.</span><span class="pln">add_css_class</span><span class="pun">(</span><span class="str">'#id_%s'</span> <span class="pun">%</span><span class="pln"> error</span><span class="pun">,</span> <span class="str">'error'</span><span class="pun">)</span>
+			
+   <span class="kwd">return</span><span class="pln"> dajax</span><span class="pun">.</span><span class="pln">json</span><span class="pun">()</span></pre>
+<p>Now let's create the dreamreal.html template, which has our form &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="tag">&lt;form</span> <span class="atn">action</span> <span class="pun">=</span> <span class="atv">""</span> <span class="atn">method</span> <span class="pun">=</span> <span class="atv">"post"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"my_form"</span> <span class="atn">accept-charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;</span><span class="pln">
+         {{ form.as_p }}
+         </span><span class="tag">&lt;p&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Send"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">send_form</span><span class="pun">();</span><span class="atv">"</span><span class="tag">&gt;&lt;/p&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Add the view that goes with the template in myapp/views.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> dreamreal</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   form </span><span class="pun">=</span> <span class="typ">DreamrealForm</span><span class="pun">()</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'dreamreal.html'</span><span class="pun">,</span><span class="pln"> locals</span><span class="pun">())</span></pre>
+<p>Add the corresponding URL in myapp/urls.py &minus;</p>
+<pre class="result notranslate">url(r'^dreamreal/', 'dreamreal', name = 'dreamreal'),
+</pre>
+<p>Now let's add the necessary in our template to make the Ajax work &minus;</p>
+<p>At the top of the file add &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span><span class="pln"> load </span><span class="kwd">static</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> load dajaxice_templatetags </span><span class="pun">%}</span></pre>
+<p>And in the &lt;head&gt; section of our dreamreal.html template add &minus;</p>
+<p>We are using the JQuery library for this example, so add &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"{% static '/static/jquery-1.11.3.min.js' %}"</span> 
+   <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"{% static '/static/dajax/jquery.dajax.core.js' %}"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+<p>The Ajax function that will be called on click &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script&gt;</span>
+
+   <span class="kwd">function</span><span class="pln"> send_form</span><span class="pun">(){</span>
+      <span class="typ">Dajaxice</span><span class="pun">.</span><span class="pln">myapp</span><span class="pun">.</span><span class="pln">send_form</span><span class="pun">(</span><span class="typ">Dajax</span><span class="pun">.</span><span class="pln">process</span><span class="pun">,{</span><span class="str">'form'</span><span class="pun">:</span><span class="pln">$</span><span class="pun">(</span><span class="str">'#my_form'</span><span class="pun">).</span><span class="pln">serialize</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)});</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+<p>Note that you need the &ldquo;jquery-1.11.3.min.js&rdquo; in your static files directory, and also the jquery.dajax.core.js. To make sure all dajax static files are served under your static directory, run &minus;</p>
+<pre class="result notranslate">$python manage.py collectstatic
+</pre>
+<p><strong>Note</strong>&nbsp;&minus; Sometimes the jquery.dajax.core.js can be missing, if that happens, just download the source and take that file and put it under your static folder.</p>
+<p>You will get to see the following screen, upon accessing /myapp/dreamreal/ &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/using_django_dajax.jpg" alt="Using Django-dajax" /></p>
+<p>On submit, you will get the following screen &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/using_django_dajax_response.jpg" alt="Using Django-dajax Response" /></p>

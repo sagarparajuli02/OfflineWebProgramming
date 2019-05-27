@@ -1,0 +1,15 @@
+<p>In this chapter, we will show you how to read Firebase data. The following image shows the data we want to read.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_read_data_db.jpg" alt="Firebase Read Data DB" /></p>
+<p>We can use the&nbsp;<strong>on()</strong>&nbsp;method to retrieve data. This method is taking the event type as&nbsp;<strong>"value"</strong>&nbsp;and then retrieves the&nbsp;<strong>snapshot</strong>&nbsp;of the data. When we add&nbsp;<strong>val()</strong>&nbsp;method to the snapshot, we will get the JavaScript representation of the data.</p>
+<h2>Example</h2>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span> <span class="kwd">ref</span> <span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">();</span>
+
+<span class="kwd">ref</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">val</span><span class="pun">());</span>
+<span class="pun">},</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Error: "</span> <span class="pun">+</span><span class="pln"> error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>If we run the following code, our console will show the data.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_read_data_log.jpg" alt="Firebase Read Data Log" /></p>
+<p>In our next chapter, we will explain other event types that you can use for reading data.</p>

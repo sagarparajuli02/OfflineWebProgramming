@@ -1,0 +1,217 @@
+<p>To start with VueJS, we need to create the instance of Vue, which is called the&nbsp;<strong>root Vue Instance</strong>.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">var app = new Vue({
+   // options
+})
+</pre>
+<p>Let us look at an example to understand what needs to be part of the Vue constructor.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">{{mydetails()}}</span><span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue_instance.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>vue_instance.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln">  vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#vue_det'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      firstname </span><span class="pun">:</span> <span class="str">"Ria"</span><span class="pun">,</span><span class="pln">
+      lastname  </span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">,</span><span class="pln">
+      address    </span><span class="pun">:</span> <span class="str">"Mumbai"</span>
+   <span class="pun">},</span><span class="pln">
+   methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      mydetails </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+         <span class="kwd">return</span> <span class="str">"I am "</span><span class="pun">+</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">firstname </span><span class="pun">+</span><span class="str">" "</span><span class="pun">+</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">lastname</span><span class="pun">;</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>For Vue, there is a parameter called&nbsp;<strong>el</strong>. It takes the id of the DOM element. In the above example, we have the id&nbsp;<strong>#vue_det</strong>. It is the id of the div element, which is present in .html.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;&lt;/div&gt;</span></pre>
+<p>Now, whatever we are going to do will affect the div element and nothing outside it.</p>
+<p>Next, we have defined the data object. It has value firstname, lastname, and address.</p>
+<p>The same is assigned inside the div. For example,</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+   <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+<p>The Firstname : {{firstname}} value will be replaced inside the interpolation, i.e. {{}} with the value assigned in the data object, i.e. Ria. The same goes for last name.</p>
+<p>Next, we have methods where we have defined a function mydetails and a returning value. It is assigned inside the div as</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;h1&gt;</span><span class="pln">{{mydetails()}}</span><span class="tag">&lt;/h1&gt;</span></pre>
+<p>Hence, inside {{} } the function mydetails is called. The value returned in the Vue instance will be printed inside {{}}. Check the output for reference.</p>
+<h2>Output</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vue_instance.jpg" alt="Vue Instance" /></p>
+<p>Now, we need to pass options to the Vue constructor which is mainly data, template, element to mount on, methods, callbacks, etc.</p>
+<p>Let us take a look at the options to be passed to the Vue.</p>
+<p><strong>#data</strong>&nbsp;&minus; This type of data can be an object or a function. Vue converts its properties to getters/setters to make it reactive.</p>
+<p>Let&rsquo;s take a look at how the data is passed in the options.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Introduction</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> _obj </span><span class="pun">=</span> <span class="pun">{</span><span class="pln"> fname</span><span class="pun">:</span> <span class="str">"Raj"</span><span class="pun">,</span><span class="pln"> lname</span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">}</span>
+         
+         <span class="com">// direct instance creation</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            data</span><span class="pun">:</span><span class="pln"> _obj
+         </span><span class="pun">});</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">fname</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">.</span><span class="pln">fname</span><span class="pun">);</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/filter.jpg" alt="Filter" /></p>
+<p><strong>console.log(vm.fname);</strong>&nbsp;// prints Raj</p>
+<p><strong>console.log(vm.$data);</strong>&nbsp;prints the full object as shown above</p>
+<p><strong>console.log(vm.$data.fname);</strong>&nbsp;// prints Raj</p>
+<p>If there is a component, the data object has to be referred from a function as shown in the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Introduction</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> _obj </span><span class="pun">=</span> <span class="pun">{</span><span class="pln"> fname</span><span class="pun">:</span> <span class="str">"Raj"</span><span class="pun">,</span><span class="pln"> lname</span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">};</span>
+         
+         <span class="com">// direct instance creation</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            data</span><span class="pun">:</span><span class="pln"> _obj
+         </span><span class="pun">});</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">fname</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">.</span><span class="pln">fname</span><span class="pun">);</span>
+         
+         <span class="com">// must use function when in Vue.extend()</span>
+         <span class="kwd">var</span> <span class="typ">Component</span> <span class="pun">=</span> <span class="typ">Vue</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">({</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">return</span><span class="pln"> _obj
+            </span><span class="pun">}</span>
+         <span class="pun">});</span>
+         <span class="kwd">var</span><span class="pln"> myComponentInstance </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Component</span><span class="pun">();</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">myComponentInstance</span><span class="pun">.</span><span class="pln">lname</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">myComponentInstance</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">);</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In case of a component, the data is a function, which is used with Vue.extend as shown above. The data is a function. For example,</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">data</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">return</span><span class="pln"> _obj
+</span><span class="pun">}</span></pre>
+<p>To refer to the data from the component, we need to create an instance of it. For example,</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> myComponentInstance </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Component</span><span class="pun">();</span></pre>
+<p>To fetch the details from the data, we need to do the same as we did with the parent component above. For example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">myComponentInstance</span><span class="pun">.</span><span class="pln">lname</span><span class="pun">);</span><span class="pln">
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">myComponentInstance</span><span class="pun">.</span><span class="pln">$data</span><span class="pun">);</span></pre>
+<p>Following are the details displayed in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/console.jpg" alt="Console" /></p>
+<p><strong>Props</strong>&nbsp;&minus; Type for props is an array of string or object. It takes an array-based or object-based syntax. They are said to be attributes used to accept data from the parent component.</p>
+<h2>Example 1</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="pln">component</span><span class="pun">(</span><span class="str">'props-demo-simple'</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+   props</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'size'</span><span class="pun">,</span> <span class="str">'myMessage'</span><span class="pun">]</span>
+<span class="pun">})</span></pre>
+<h2>Example 2</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="pln">component</span><span class="pun">(</span><span class="str">'props-demo-advanced'</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+   props</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="com">// just type check</span><span class="pln">
+      height</span><span class="pun">:</span> <span class="typ">Number</span><span class="pun">,</span>
+      
+      <span class="com">// type check plus other validations</span><span class="pln">
+      age</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+         type</span><span class="pun">:</span> <span class="typ">Number</span><span class="pun">,</span>
+         <span class="kwd">default</span><span class="pun">:</span> <span class="lit">0</span><span class="pun">,</span><span class="pln">
+         required</span><span class="pun">:</span> <span class="kwd">true</span><span class="pun">,</span><span class="pln">
+         validator</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">value</span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">return</span><span class="pln"> value </span><span class="pun">&gt;=</span> <span class="lit">0</span>
+         <span class="pun">}</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p><strong>propsData</strong>&nbsp;&minus; This is used for unit testing.</p>
+<p><strong>Type</strong>&nbsp;&minus; array of string. For example, { [key: string]: any }. It needs to be passed during the creation of Vue instance.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span> <span class="typ">Comp</span> <span class="pun">=</span> <span class="typ">Vue</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">({</span><span class="pln">
+   props</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'msg'</span><span class="pun">],</span>
+   <span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;div&gt;{{ msg }}&lt;/div&gt;'</span>
+<span class="pun">})</span>
+<span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Comp</span><span class="pun">({</span><span class="pln">
+   propsData</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      msg</span><span class="pun">:</span> <span class="str">'hello'</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p><strong>Computed</strong>&nbsp;&minus; Type: { [key: string]: Function | { get: Function, set: Function } }</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Introduction</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln"> a</span><span class="pun">:</span> <span class="lit">2</span> <span class="pun">},</span><span class="pln">
+            computed</span><span class="pun">:</span> <span class="pun">{</span>
+            
+               <span class="com">// get only, just need a function</span><span class="pln">
+               aSum</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">a </span><span class="pun">+</span> <span class="lit">2</span><span class="pun">;</span>
+               <span class="pun">},</span>
+               
+               <span class="com">// both get and set</span><span class="pln">
+               aSquare</span><span class="pun">:</span> <span class="pun">{</span>
+                  <span class="kwd">get</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+                     <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">a</span><span class="pun">*</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">a</span><span class="pun">;</span>
+                  <span class="pun">},</span>
+                  <span class="kwd">set</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">v</span><span class="pun">)</span> <span class="pun">{</span>
+                     <span class="kwd">this</span><span class="pun">.</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> v</span><span class="pun">*</span><span class="lit">2</span><span class="pun">;</span>
+                  <span class="pun">}</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">})</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">aSquare</span><span class="pun">);</span>  <span class="com">// -&gt; 4</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">aSquare </span><span class="pun">=</span> <span class="lit">3</span><span class="pun">;</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">a</span><span class="pun">);</span>       <span class="com">// -&gt; 6</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">aSum</span><span class="pun">);</span> <span class="com">// -&gt; 8</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Computed has two functions&nbsp;<strong>aSum</strong>&nbsp;and&nbsp;<strong>aSquare</strong>.</p>
+<p>Function aSum just returns&nbsp;<strong>this.a+2</strong>. Function aSquare again two functions&nbsp;<strong>get</strong>&nbsp;and&nbsp;<strong>set</strong>.</p>
+<p>Variable vm is an instance of Vue and it calls aSquare and aSum. Also vm.aSquare = 3 calls the set function from aSquare and vm.aSquare calls the get function. We can check the output in the browser which looks like the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/instance_of_vue.jpg" alt="Instance of Vue" /></p>
+<p><strong>Methods</strong>&nbsp;&minus; Methods are to be included with the Vue instance as shown in the following code. We can access the function using the Vue object.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Introduction</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln"> a</span><span class="pun">:</span> <span class="lit">5</span> <span class="pun">},</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               asquare</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">a </span><span class="pun">*=</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">a</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">})</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">asquare</span><span class="pun">();</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">.</span><span class="pln">a</span><span class="pun">);</span> <span class="com">// 25</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Methods are part of the Vue constructor. Let us make a call to the method using the Vue object&nbsp;<strong>vm.asquare ()</strong>, the value of the property&nbsp;<strong>a</strong>&nbsp;is updated in the&nbsp;<strong>asquare</strong>&nbsp;function. The value of a is changed from 1 to 25, and the same is seen reflected in the following browser console.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/asquare_function.jpg" alt="asquare function" /></p>

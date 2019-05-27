@@ -1,0 +1,104 @@
+<h2>Obtaining and Using MySQL Metadata</h2>
+<p>There are three types of information, which you would like to have from MySQL.</p>
+<ul class="list">
+<li>
+<p><strong>Information about the result of queries</strong>&nbsp;&minus; This includes the number of records affected by any SELECT, UPDATE or DELETE statement.</p>
+</li>
+<li>
+<p><strong>Information about the tables and databases</strong>&nbsp;&minus; This includes information pertaining to the structure of the tables and the databases.</p>
+</li>
+<li>
+<p><strong>Information about the MySQL server</strong>&nbsp;&minus; This includes the status of the database server, version number, etc.</p>
+</li>
+</ul>
+<p>It is very easy to get all this information at the MySQL prompt, but while using PERL or PHP APIs, we need to call various APIs explicitly to obtain all this information.</p>
+<h2>Obtaining the Number of Rows Affected by a Query</h2>
+<p>Let is now see how to obtain this information.</p>
+<h3>PERL Example</h3>
+<p>In DBI scripts, the affected row count is returned by the&nbsp;<strong>do( )</strong>&nbsp;or by the&nbsp;<strong>execute( )</strong>command, depending on how you execute the query.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com"># Method 1</span>
+<span class="com"># execute $query using do( )</span>
+<span class="kwd">my</span><span class="pln"> $count </span><span class="pun">=</span><span class="pln"> $dbh</span><span class="pun">-&gt;</span><span class="kwd">do</span> <span class="pun">(</span><span class="pln">$query</span><span class="pun">);</span>
+<span class="com"># report 0 rows if an error occurred</span><span class="pln">
+printf </span><span class="str">"%d rows were affected\n"</span><span class="pun">,</span> <span class="pun">(</span><span class="kwd">defined</span> <span class="pun">(</span><span class="pln">$count</span><span class="pun">)</span> <span class="pun">?</span><span class="pln"> $count </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">);</span>
+
+<span class="com"># Method 2</span>
+<span class="com"># execute query using prepare( ) plus execute( )</span>
+<span class="kwd">my</span><span class="pln"> $sth </span><span class="pun">=</span><span class="pln"> $dbh</span><span class="pun">-&gt;</span><span class="pln">prepare </span><span class="pun">(</span><span class="pln">$query</span><span class="pun">);</span>
+<span class="kwd">my</span><span class="pln"> $count </span><span class="pun">=</span><span class="pln"> $sth</span><span class="pun">-&gt;</span><span class="pln">execute </span><span class="pun">(</span> <span class="pun">);</span><span class="pln">
+printf </span><span class="str">"%d rows were affected\n"</span><span class="pun">,</span> <span class="pun">(</span><span class="kwd">defined</span> <span class="pun">(</span><span class="pln">$count</span><span class="pun">)</span> <span class="pun">?</span><span class="pln"> $count </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">);</span></pre>
+<h3>PHP Example</h3>
+<p>In PHP, invoke the&nbsp;<strong>mysql_affected_rows( )</strong>&nbsp;function to find out how many rows a query changed.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$result_id </span><span class="pun">=</span><span class="pln"> mysql_query </span><span class="pun">(</span><span class="pln">$query</span><span class="pun">,</span><span class="pln"> $conn_id</span><span class="pun">);</span>
+<span class="com"># report 0 rows if the query failed</span><span class="pln">
+$count </span><span class="pun">=</span> <span class="pun">(</span><span class="pln">$result_id </span><span class="pun">?</span><span class="pln"> mysql_affected_rows </span><span class="pun">(</span><span class="pln">$conn_id</span><span class="pun">)</span> <span class="pun">:</span> <span class="lit">0</span><span class="pun">);</span>
+<span class="kwd">print</span> <span class="pun">(</span><span class="str">"$count rows were affected\n"</span><span class="pun">);</span></pre>
+<h2>Listing Tables and Databases</h2>
+<p>It is very easy to list down all the databases and the tables available with a database server. Your result may be&nbsp;<strong>null</strong>&nbsp;if you don't have the sufficient privileges.</p>
+<p>Apart from the method which is shown in the following code block, you can use&nbsp;<strong>SHOW TABLES</strong>&nbsp;or&nbsp;<strong>SHOW DATABASES</strong>&nbsp;queries to get the list of tables or databases either in PHP or in PERL.</p>
+<h3>PERL Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="com"># Get all the tables available in current database.</span>
+<span class="kwd">my</span> <span class="lit">@tables</span> <span class="pun">=</span><span class="pln"> $dbh</span><span class="pun">-&gt;</span><span class="pln">tables </span><span class="pun">(</span> <span class="pun">);</span>
+
+<span class="kwd">foreach</span><span class="pln"> $table </span><span class="pun">(</span><span class="lit">@tables</span> <span class="pun">){</span>
+   <span class="kwd">print</span> <span class="str">"Table Name $table\n"</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<h3>PHP Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   $con </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="str">"localhost"</span><span class="pun">,</span> <span class="str">"userid"</span><span class="pun">,</span> <span class="str">"password"</span><span class="pun">);</span>
+   
+   <span class="kwd">if</span> <span class="pun">(!</span><span class="pln">$con</span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+   <span class="pun">}</span><span class="pln">
+   $db_list </span><span class="pun">=</span><span class="pln"> mysql_list_dbs</span><span class="pun">(</span><span class="pln">$con</span><span class="pun">);</span>
+
+   <span class="kwd">while</span> <span class="pun">(</span><span class="pln">$db </span><span class="pun">=</span><span class="pln"> mysql_fetch_object</span><span class="pun">(</span><span class="pln">$db_list</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+      echo $db</span><span class="pun">-&gt;</span><span class="typ">Database</span> <span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span>
+   <span class="pun">}</span><span class="pln">
+   mysql_close</span><span class="pun">(</span><span class="pln">$con</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<h2>Getting Server Metadata</h2>
+<p>There are a few important commands in MySQL which can be executed either at the MySQL prompt or by using any script like PHP to get various important information about the database server.</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No.</th>
+<th>Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>SELECT VERSION( )</strong></p>
+<p>Server version string</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>SELECT DATABASE( )</strong></p>
+<p>Current database name (empty if none)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>SELECT USER( )</strong></p>
+<p>Current username</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>SHOW STATUS</strong></p>
+<p>Server status indicators</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><strong>SHOW VARIABLES</strong></p>
+<p>Server configuration variables</p>
+</td>
+</tr>
+</tbody>
+</table>

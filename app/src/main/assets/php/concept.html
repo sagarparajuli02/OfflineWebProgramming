@@ -1,0 +1,201 @@
+<p>This session demonstrates how PHP can provide dynamic content according to browser type, randomly generated numbers or User Input. It also demonstrated how the client browser can be redirected.</p>
+<h2>Identifying Browser &amp; Platform</h2>
+<p>PHP creates some useful&nbsp;<strong>environment variables</strong>&nbsp;that can be seen in the phpinfo.php page that was used to setup the PHP environment.</p>
+<p>One of the environment variables set by PHP is&nbsp;<strong>HTTP_USER_AGENT</strong>&nbsp;which identifies the user's browser and operating system.</p>
+<p>PHP provides a function getenv() to access the value of all the environment variables. The information contained in the HTTP_USER_AGENT environment variable can be used to create dynamic content appropriate to the browser.</p>
+<p>Following example demonstrates how you can identify a client browser and operating system.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; The function preg_match()is discussed in&nbsp;<a href="https://www.tutorialspoint.com/php/php_regular_expression.htm">PHP Regular expression</a>&nbsp;session.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="pun">&lt;?</span><span class="pln">php
+         </span><span class="kwd">function</span><span class="pln"> getBrowser</span><span class="pun">()</span> <span class="pun">{</span><span class="pln"> 
+            $u_agent </span><span class="pun">=</span><span class="pln"> $_SERVER</span><span class="pun">[</span><span class="str">'HTTP_USER_AGENT'</span><span class="pun">];</span><span class="pln"> 
+            $bname </span><span class="pun">=</span> <span class="str">'Unknown'</span><span class="pun">;</span><span class="pln">
+            $platform </span><span class="pun">=</span> <span class="str">'Unknown'</span><span class="pun">;</span><span class="pln">
+            $version </span><span class="pun">=</span> <span class="str">""</span><span class="pun">;</span>
+            
+            <span class="com">//First get the platform?</span>
+            <span class="kwd">if</span> <span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/linux/i'</span><span class="pun">,</span><span class="pln"> $u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $platform </span><span class="pun">=</span> <span class="str">'linux'</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">elseif </span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/macintosh|mac os x/i'</span><span class="pun">,</span><span class="pln"> $u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $platform </span><span class="pun">=</span> <span class="str">'mac'</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">elseif </span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/windows|win32/i'</span><span class="pun">,</span><span class="pln"> $u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $platform </span><span class="pun">=</span> <span class="str">'windows'</span><span class="pun">;</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// Next get the name of the useragent yes seperately and for good reason</span>
+            <span class="kwd">if</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/MSIE/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">)</span> <span class="pun">&amp;&amp;</span> <span class="pun">!</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Opera/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Internet Explorer'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"MSIE"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln"> elseif</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Firefox/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Mozilla Firefox'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"Firefox"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln"> elseif</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Chrome/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Google Chrome'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"Chrome"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">elseif</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Safari/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Apple Safari'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"Safari"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">elseif</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Opera/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Opera'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"Opera"</span><span class="pun">;</span>
+            <span class="pun">}</span><span class="pln">elseif</span><span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">'/Netscape/i'</span><span class="pun">,</span><span class="pln">$u_agent</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+               $bname </span><span class="pun">=</span> <span class="str">'Netscape'</span><span class="pun">;</span><span class="pln">
+               $ub </span><span class="pun">=</span> <span class="str">"Netscape"</span><span class="pun">;</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// finally get the correct version number</span><span class="pln">
+            $known </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">'Version'</span><span class="pun">,</span><span class="pln"> $ub</span><span class="pun">,</span> <span class="str">'other'</span><span class="pun">);</span><span class="pln">
+            $pattern </span><span class="pun">=</span> <span class="str">'#(?&lt;browser&gt;'</span> <span class="pun">.</span><span class="pln"> join</span><span class="pun">(</span><span class="str">'|'</span><span class="pun">,</span><span class="pln"> $known</span><span class="pun">)</span> <span class="pun">.</span> <span class="str">')[/ ]+(?&lt;version&gt;[0-9.|a-zA-Z.]*)#'</span><span class="pun">;</span>
+            
+            <span class="kwd">if</span> <span class="pun">(!</span><span class="pln">preg_match_all</span><span class="pun">(</span><span class="pln">$pattern</span><span class="pun">,</span><span class="pln"> $u_agent</span><span class="pun">,</span><span class="pln"> $matches</span><span class="pun">))</span> <span class="pun">{</span>
+               <span class="com">// we have no matching number just continue</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// see how many we have</span><span class="pln">
+            $i </span><span class="pun">=</span><span class="pln"> count</span><span class="pun">(</span><span class="pln">$matches</span><span class="pun">[</span><span class="str">'browser'</span><span class="pun">]);</span>
+            
+            <span class="kwd">if</span> <span class="pun">(</span><span class="pln">$i </span><span class="pun">!=</span> <span class="lit">1</span><span class="pun">)</span> <span class="pun">{</span>
+               <span class="com">//we will have two since we are not using 'other' argument yet</span>
+               
+               <span class="com">//see if version is before or after the name</span>
+               <span class="kwd">if</span> <span class="pun">(</span><span class="pln">strripos</span><span class="pun">(</span><span class="pln">$u_agent</span><span class="pun">,</span><span class="str">"Version"</span><span class="pun">)</span> <span class="pun">&lt;</span><span class="pln"> strripos</span><span class="pun">(</span><span class="pln">$u_agent</span><span class="pun">,</span><span class="pln">$ub</span><span class="pun">)){</span><span class="pln">
+                  $version</span><span class="pun">=</span><span class="pln"> $matches</span><span class="pun">[</span><span class="str">'version'</span><span class="pun">][</span><span class="lit">0</span><span class="pun">];</span>
+               <span class="pun">}</span><span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+                  $version</span><span class="pun">=</span><span class="pln"> $matches</span><span class="pun">[</span><span class="str">'version'</span><span class="pun">][</span><span class="lit">1</span><span class="pun">];</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span><span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+               $version</span><span class="pun">=</span><span class="pln"> $matches</span><span class="pun">[</span><span class="str">'version'</span><span class="pun">][</span><span class="lit">0</span><span class="pun">];</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// check if we have a number</span>
+            <span class="kwd">if</span> <span class="pun">(</span><span class="pln">$version </span><span class="pun">==</span> <span class="kwd">null</span> <span class="pun">||</span><span class="pln"> $version </span><span class="pun">==</span> <span class="str">""</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">$version </span><span class="pun">=</span> <span class="str">"?"</span><span class="pun">;}</span>
+            <span class="kwd">return</span><span class="pln"> array</span><span class="pun">(</span>
+               <span class="str">'userAgent'</span> <span class="pun">=&gt;</span><span class="pln"> $u_agent</span><span class="pun">,</span>
+               <span class="str">'name'</span>      <span class="pun">=&gt;</span><span class="pln"> $bname</span><span class="pun">,</span>
+               <span class="str">'version'</span>   <span class="pun">=&gt;</span><span class="pln"> $version</span><span class="pun">,</span>
+               <span class="str">'platform'</span>  <span class="pun">=&gt;</span><span class="pln"> $platform</span><span class="pun">,</span>
+               <span class="str">'pattern'</span>   <span class="pun">=&gt;</span><span class="pln"> $pattern
+            </span><span class="pun">);</span>
+         <span class="pun">}</span>
+         
+         <span class="com">// now try it</span><span class="pln">
+         $ua </span><span class="pun">=</span><span class="pln"> getBrowser</span><span class="pun">();</span><span class="pln">
+         $yourbrowser </span><span class="pun">=</span> <span class="str">"Your browser: "</span> <span class="pun">.</span><span class="pln"> $ua</span><span class="pun">[</span><span class="str">'name'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">" "</span> <span class="pun">.</span><span class="pln"> $ua</span><span class="pun">[</span><span class="str">'version'</span><span class="pun">]</span> <span class="pun">.</span>
+            <span class="str">" on "</span> <span class="pun">.</span><span class="pln">$ua</span><span class="pun">[</span><span class="str">'platform'</span><span class="pun">]</span> <span class="pun">.</span> <span class="str">" reports: &lt;br &gt;"</span> <span class="pun">.</span><span class="pln"> $ua</span><span class="pun">[</span><span class="str">'userAgent'</span><span class="pun">];</span><span class="pln">
+         
+         print_r</span><span class="pun">(</span><span class="pln">$yourbrowser</span><span class="pun">);</span>
+      <span class="pun">?&gt;</span>
+   
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This is producing following result on my machine. This result may be different for your computer depending on what you are using.</p>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">Your browser: Google Chrome 54.0.2840.99 on windows reports: 
+Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) 
+   Chrome/54.0.2840.99 Safari/537.36
+</pre>
+<h2>Display Images Randomly</h2>
+<p>The PHP&nbsp;<strong>rand()</strong>&nbsp;function is used to generate a random number.i This function can generate numbers with-in a given range. The random number generator should be seeded to prevent a regular pattern of numbers being generated. This is achieved using the&nbsp;<strong>srand()</strong>&nbsp;function that specifies the seed number as its argument.</p>
+<p>Following example demonstrates how you can display different image each time out of four images &minus;</p>
+<p><a class="demo" href="http://tpcg.io/KVANB4" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="pun">&lt;?</span><span class="pln">php
+         srand</span><span class="pun">(</span><span class="pln"> microtime</span><span class="pun">()</span> <span class="pun">*</span> <span class="lit">1000000</span> <span class="pun">);</span><span class="pln">
+         $num </span><span class="pun">=</span><span class="pln"> rand</span><span class="pun">(</span> <span class="lit">1</span><span class="pun">,</span> <span class="lit">4</span> <span class="pun">);</span>
+         
+         <span class="kwd">switch</span><span class="pun">(</span><span class="pln"> $num </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">case</span> <span class="lit">1</span><span class="pun">:</span><span class="pln"> $image_file </span><span class="pun">=</span> <span class="str">"/php/images/logo.png"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="lit">2</span><span class="pun">:</span><span class="pln"> $image_file </span><span class="pun">=</span> <span class="str">"/php/images/php.jpg"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="lit">3</span><span class="pun">:</span><span class="pln"> $image_file </span><span class="pun">=</span> <span class="str">"/php/images/logo.png"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="lit">4</span><span class="pun">:</span><span class="pln"> $image_file </span><span class="pun">=</span> <span class="str">"/php/images/php.jpg"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">"Random Image : &lt;img src=$image_file /&gt;"</span><span class="pun">;</span>
+      <span class="pun">?&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<p><img src="https://www.tutorialspoint.com/php/images/display_image_randomly.jpg" alt="Display Image Randomly" /></p>
+<h2>Using HTML Forms</h2>
+<p>The most important thing to notice when dealing with HTML forms and PHP is that any form element in an HTML page will automatically be available to your PHP scripts.</p>
+<p>Try out following example by putting the source code in test.php script.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   </span><span class="kwd">if</span><span class="pun">(</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">"name"</span><span class="pun">]</span> <span class="pun">||</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">"age"</span><span class="pun">]</span> <span class="pun">)</span> <span class="pun">{</span>
+      <span class="kwd">if</span> <span class="pun">(</span><span class="pln">preg_match</span><span class="pun">(</span><span class="str">"/[^A-Za-z'-]/"</span><span class="pun">,</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'name'</span><span class="pun">]</span> <span class="pun">))</span> <span class="pun">{</span>
+         <span class="kwd">die</span> <span class="pun">(</span><span class="str">"invalid name and name should be alpha"</span><span class="pun">);</span>
+      <span class="pun">}</span><span class="pln">
+      
+      echo </span><span class="str">"Welcome "</span><span class="pun">.</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'name'</span><span class="pun">].</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+      echo </span><span class="str">"You are "</span><span class="pun">.</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'age'</span><span class="pun">].</span> <span class="str">" years old."</span><span class="pun">;</span>
+      
+      <span class="kwd">exit</span><span class="pun">();</span>
+   <span class="pun">}</span>
+<span class="pun">?&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+   
+      &lt;form action = "</span><span class="pun">&lt;?</span><span class="pln">php </span><strong><span class="pln">$_PHP_SELF</span></strong> <span class="pun">?&gt;</span><span class="pln">" method = "POST"&gt;
+         Name: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"name"</span> <span class="tag">/&gt;</span><span class="pln">
+         Age: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"age"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<p><img src="https://www.tutorialspoint.com/php/images/forms.jpg" alt="Forms" /></p>
+<ul class="list">
+<li>
+<p>The PHP default variable&nbsp;<strong>$_PHP_SELF</strong>&nbsp;is used for the PHP script name and when you click "submit" button then same PHP script will be called and will produce following result &minus;</p>
+</li>
+<li>
+<p>The method = "POST" is used to post user data to the server script. There are two methods of posting data to the server script which are discussed in&nbsp;<a href="https://www.tutorialspoint.com/php/php_get_post.htm">PHP GET &amp; POST</a>&nbsp;chapter.</p>
+</li>
+</ul>
+<h2>Browser Redirection</h2>
+<p>The PHP&nbsp;<strong>header()</strong>&nbsp;function supplies raw HTTP headers to the browser and can be used to redirect it to another location. The redirection script should be at the very top of the page to prevent any other part of the page from loading.</p>
+<p>The target is specified by the&nbsp;<strong>Location:</strong>&nbsp;header as the argument to the&nbsp;<strong>header()</strong>&nbsp;function. After calling this function the&nbsp;<strong>exit()</strong>&nbsp;function can be used to halt parsing of rest of the code.</p>
+<p>Following example demonstrates how you can redirect a browser request to another web page. Try out this example by putting the source code in test.php script.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   </span><span class="kwd">if</span><span class="pun">(</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">"location"</span><span class="pun">]</span> <span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      $location </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">"location"</span><span class="pun">];</span><span class="pln">
+      header</span><span class="pun">(</span> <span class="str">"Location:$location"</span> <span class="pun">);</span>
+      
+      <span class="kwd">exit</span><span class="pun">();</span>
+   <span class="pun">}</span>
+<span class="pun">?&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="tag">&lt;p&gt;</span><span class="pln">Choose a site to visit :</span><span class="tag">&lt;/p&gt;</span><span class="pln">
+      
+      &lt;form action = "</span><span class="pun">&lt;?</span><span class="pln">php </span><strong><span class="pln">$_SERVER</span><span class="pun">[</span><span class="str">'PHP_SELF'</span><span class="pun">]</span></strong> <span class="pun">?&gt;</span><span class="pln">" method ="POST"&gt;
+         </span><span class="tag">&lt;select</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"location"</span><span class="tag">&gt;</span><span class="pln">.
+         
+            </span><span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"http://www.tutorialspoint.com"</span><span class="tag">&gt;</span><span class="pln">
+               Tutorialspoint.com
+            </span><span class="tag">&lt;/option&gt;</span>
+         
+            <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"http://www.google.com"</span><span class="tag">&gt;</span><span class="pln">
+               Google Search Page
+            </span><span class="tag">&lt;/option&gt;</span>
+         
+         <span class="tag">&lt;/select&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<p><img src="https://www.tutorialspoint.com/php/images/browser_redirection.jpg" alt="Browser Redirection" /></p>

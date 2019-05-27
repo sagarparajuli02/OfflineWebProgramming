@@ -1,0 +1,106 @@
+<p>Mixins are basically to be used with components. They share reusable code among components. When a component uses mixin, all options of mixin become a part of the component options.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+         <span class="kwd">var</span><span class="pln"> myMixin </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+            created</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">this</span><span class="pun">.</span><span class="pln">startmixin</span><span class="pun">()</span>
+            <span class="pun">},</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               startmixin</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Welcome  to mixin example"</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">};</span>
+         <span class="kwd">var</span> <span class="typ">Component</span> <span class="pun">=</span> <span class="typ">Vue</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">({</span><span class="pln">
+            mixins</span><span class="pun">:</span> <span class="pun">[</span><span class="pln">myMixin</span><span class="pun">]</span>
+         <span class="pun">})</span>
+         <span class="kwd">var</span><span class="pln"> component </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Component</span><span class="pun">();</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/mixins.jpg" alt="Mixins" /></p>
+<p>When a mixin and a component contain overlapping options, they are merged as shown in the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mixin </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+            created</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'mixin called'</span><span class="pun">)</span>
+            <span class="pun">}</span>
+         <span class="pun">}</span>
+         <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            mixins</span><span class="pun">:</span> <span class="pun">[</span><span class="pln">mixin</span><span class="pun">],</span><span class="pln">
+            created</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'component called'</span><span class="pun">)</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Now the mixin and the vue instance has the same method created. This is the output we see in the console. As seen, the option of the vue and the mixin will be merged.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/mixin_overlapping.jpg" alt="Mixin Overlapping" /></p>
+<p>If we happen to have the same function name in methods, then the main vue instance will take priority.</p>
+<h2>Example</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/.jpg" alt="" /></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mixin </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               hellworld</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'In HelloWorld'</span><span class="pun">);</span>
+               <span class="pun">},</span><span class="pln">
+               samemethod</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Mixin:Same Method'</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">};</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            mixins</span><span class="pun">:</span> <span class="pun">[</span><span class="pln">mixin</span><span class="pun">],</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               start</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'start method'</span><span class="pun">);</span>
+               <span class="pun">},</span><span class="pln">
+               samemethod</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'Main: same method'</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">hellworld</span><span class="pun">();</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">start</span><span class="pun">();</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">samemethod</span><span class="pun">();</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>We will see mixin has a method property in which helloworld and samemethod functions are defined. Similarly, vue instance has a methods property in which again two methods are defined start and samemethod.</p>
+<p>Each of the following methods are called.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">vm</span><span class="pun">.</span><span class="pln">hellworld</span><span class="pun">();</span> <span class="com">// In HelloWorld</span><span class="pln">
+vm</span><span class="pun">.</span><span class="pln">start</span><span class="pun">();</span> <span class="com">// start method</span><span class="pln">
+vm</span><span class="pun">.</span><span class="pln">samemethod</span><span class="pun">();</span> <span class="com">// Main: same method</span></pre>
+<p>As seen above, we have called helloworld, start, and samemethod function. samemethod is also present in mixin, however, priority will be given to the main instance, as seen in the following console.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/mixin_as_method.jpg" alt="Mixin as Method" /></p>

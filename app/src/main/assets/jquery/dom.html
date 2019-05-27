@@ -1,0 +1,326 @@
+<p>JQuery provides methods to manipulate DOM in efficient way. You do not need to write big code to modify the value of any element's attribute or to extract HTML code from a paragraph or division.</p>
+<p>JQuery provides methods such as .attr(), .html(), and .val() which act as getters, retrieving information from DOM elements for later use.</p>
+<h2>Content Manipulation</h2>
+<p>The&nbsp;<strong>html( )</strong>&nbsp;method gets the html contents (innerHTML) of the first matched element.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><em>selector</em>.html( )
+</pre>
+<h3>Example</h3>
+<p>Following is an example which makes use of .html() and .text(val) methods. Here .html() retrieves HTML content from the object and then .text( val ) method sets value of the object using passed parameter &minus;</p>
+<p><a class="demo" href="http://tpcg.io/E4Iztt" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">var</span><span class="pln"> content </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">html</span><span class="pun">();</span><span class="pln">
+               $</span><span class="pun">(</span><span class="str">"#result"</span><span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="pln"> content </span><span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="com">#division{ margin:10px;padding:12px; border:2px solid #666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on the square below:</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;span</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"result"</span><span class="tag">&gt;</span> <span class="tag">&lt;/span&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"division"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">
+         This is Blue Square!!
+      </span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/content-manipulation.htm" width="300" height="150"></iframe></p>
+<h2>DOM Element Replacement</h2>
+<p>You can replace a complete DOM element with the specified HTML or DOM elements. The&nbsp;<strong>replaceWith( content )</strong>&nbsp;method serves this purpose very well.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><em>selector</em>.replaceWith( content )
+</pre>
+<p>Here content is what you want to have instead of original element. This could be HTML or simple text.</p>
+<h3>Example</h3>
+<p>Following is an example which would replace division element with "&lt;h1&gt;JQuery is Great &lt;/h1&gt;" &minus;</p>
+<p><a class="demo" href="http://tpcg.io/Cz8IQx" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">replaceWith</span><span class="pun">(</span><span class="str">"&lt;h1&gt;JQuery is Great&lt;/h1&gt;"</span><span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="com">#division{ margin:10px;padding:12px; border:2px solid #666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on the square below:</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;span</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"result"</span><span class="tag">&gt;</span> <span class="tag">&lt;/span&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"division"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">
+         This is Blue Square!!
+      </span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/dom-element-replacement.htm" width="300" height="150"></iframe></p>
+<h2>Removing DOM Elements</h2>
+<p>There may be a situation when you would like to remove one or more DOM elements from the document. JQuery provides two methods to handle the situation.</p>
+<p>The&nbsp;<strong>empty( )</strong>&nbsp;method remove all child nodes from the set of matched elements where as the method&nbsp;<strong>remove( expr )</strong>&nbsp;method removes all matched elements from the DOM.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><em>selector</em>.remove( [ expr ])
+
+or 
+
+<em>selector</em>.empty( )
+</pre>
+<p>You can pass optional parameter&nbsp;<em>expr</em>&nbsp;to filter the set of elements to be removed.</p>
+<h3>Example</h3>
+<p>Following is an example where elements are being removed as soon as they are clicked &minus;</p>
+<p><a class="demo" href="http://tpcg.io/qPcrSW" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">remove</span><span class="pun">(</span> <span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">div</span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on any square below:</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;span</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"result"</span><span class="tag">&gt;</span> <span class="tag">&lt;/span&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/removing-dom-elements.htm" width="300" height="150"></iframe></p>
+<h2>Inserting DOM Elements</h2>
+<p>There may be a situation when you would like to insert new one or more DOM elements in your existing document. JQuery provides various methods to insert elements at various locations.</p>
+<p>The&nbsp;<strong>after( content )</strong>&nbsp;method insert content after each of the matched elements where as the method&nbsp;<strong>before( content )</strong>&nbsp;method inserts content before each of the matched elements.</p>
+<p>Here is the syntax for the method &minus;</p>
+<pre class="result notranslate"><em>selector</em>.after( content )
+
+or
+
+<em>selector</em>.before( content )
+</pre>
+<p>Here content is what you want to insert. This could be HTML or simple text.</p>
+<h3>Example</h3>
+<p>Following is an example where &lt;div&gt; elements are being inserted just before the clicked element &minus;</p>
+<p><a class="demo" href="http://tpcg.io/8xBSnA" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">before</span><span class="pun">(</span><span class="str">'&lt;div class="div"&gt;&lt;/div&gt;'</span> <span class="pun">);</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">div</span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; width:60px;}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click on any square below:</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;span</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"result"</span><span class="tag">&gt;</span> <span class="tag">&lt;/span&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">blue</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"div"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/inserting-dom-elements.htm" width="300" height="150"></iframe></p>
+<h2>DOM Manipulation Methods</h2>
+<p>Following table lists down all the methods which you can use to manipulate DOM elements &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-after.htm">after( content )</a>
+<p>Insert content after each of the matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-append.htm">append( content )</a>
+<p>Append content to the inside of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-appendto.htm">appendTo( selector )</a>
+<p>Append all of the matched elements to another, specified, set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-before.htm">before( content )</a>
+<p>Insert content before each of the matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-clone-bool.htm">clone( bool )</a>
+<p>Clone matched DOM Elements, and all their event handlers, and select the clones.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-clone.htm">clone( )</a>
+<p>Clone matched DOM Elements and select the clones.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-empty.htm">empty( )</a>
+<p>Remove all child nodes from the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-html-val.htm">html( val )</a>
+<p>Set the html contents of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-html.htm">html( )</a>
+<p>Get the html contents (innerHTML) of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-insertafter.htm">insertAfter( selector )</a>
+<p>Insert all of the matched elements after another, specified, set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-insertbefore.htm">insertBefore( selector )</a>
+<p>Insert all of the matched elements before another, specified, set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-prepend.htm">prepend( content )</a>
+<p>Prepend content to the inside of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-prependto.htm">prependTo( selector )</a>
+<p>Prepend all of the matched elements to another, specified, set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-remove-expr.htm">remove( expr )</a>
+<p>Removes all matched elements from the DOM.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-replaceall.htm">replaceAll( selector )</a>
+<p>Replaces the elements matched by the specified selector with the matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-replacewith.htm">replaceWith( content )</a>
+<p>Replaces all matched elements with the specified HTML or DOM elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-text-val.htm">text( val )</a>
+<p>Set the text contents of all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-text.htm">text( )</a>
+<p>Get the combined text contents of all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrap-elem.htm">wrap( elem )</a>
+<p>Wrap each matched element with the specified element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrap-html.htm">wrap( html )</a>
+<p>Wrap each matched element with the specified HTML content.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrapall-elem.htm">wrapAll( elem )</a>
+<p>Wrap all the elements in the matched set into a single wrapper element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">22</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrapall-html.htm">wrapAll( html )</a>
+<p>Wrap all the elements in the matched set into a single wrapper element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">23</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrapinner-elem.htm">wrapInner( elem )</a>
+<p>Wrap the inner child contents of each matched element (including text nodes) with a DOM element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">24</td>
+<td><a href="https://www.tutorialspoint.com/jquery/dom-wrapinner-html.htm">wrapInner( html )</a>
+<p>Wrap the inner child contents of each matched element (including text nodes) with an HTML structure.</p>
+</td>
+</tr>
+</tbody>
+</table>

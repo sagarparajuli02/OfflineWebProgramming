@@ -1,0 +1,104 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+<p>The following directives are used to bind application data to the attributes of HTML DOM elements &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>ng-disabled</strong></p>
+<p>disables a given control.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>ng-show</strong></p>
+<p>shows a given control.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>ng-hide</strong></p>
+<p>hides a given control.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>ng-click</strong></p>
+<p>represents a AngularJS click event.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>ng-disabled Directive</h2>
+<p>Add ng-disabled attribute to an HTML button and pass it a model. Bind the model to a checkbox and see the variation.</p>
+<pre class="result notranslate">&lt;input type = "checkbox" ng-model = "enableDisableButton"&gt;Disable Button
+&lt;button ng-disabled = "enableDisableButton"&gt;Click Me!&lt;/button&gt;
+</pre>
+<h2>ng-show Directive</h2>
+<p>Add ng-show attribute to an HTML button and pass it a model. Bind the model to a checkbox and see the variation.</p>
+<pre class="result notranslate">&lt;input type = "checkbox" ng-model = "showHide1"&gt;Show Button
+&lt;button ng-show = "showHide1"&gt;Click Me!&lt;/button&gt;
+</pre>
+<h2>ng-hide Directive</h2>
+<p>Add ng-hide attribute to an HTML button and pass it a model. Bind the model to a checkbox and see the variation.</p>
+<pre class="result notranslate">&lt;input type = "checkbox" ng-model = "showHide2"&gt;Hide Button
+&lt;button ng-hide = "showHide2"&gt;Click Me!&lt;/button&gt;
+</pre>
+<h2>ng-click Directive</h2>
+<p>Add ng-click attribute to an HTML button and update a model. Bind the model to HTML and see the variation.</p>
+<pre class="result notranslate">&lt;p&gt;Total click: {{ clickCounter }}&lt;/p&gt;
+&lt;button ng-click = "clickCounter = clickCounter + 1"&gt;Click Me!&lt;/button&gt;
+</pre>
+<h2>Example</h2>
+<p>The following example shows use of all the above mentioned directives.</p>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/hMA5f5" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">AngularJS HTML DOM</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">""</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;table</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"checkbox"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"enableDisableButton"</span><span class="tag">&gt;</span><span class="pln">Disable Button</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;button</span> <span class="atn">ng-disabled</span> <span class="pun">=</span> <span class="atv">"enableDisableButton"</span><span class="tag">&gt;</span><span class="pln">Click Me!</span><span class="tag">&lt;/button&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"checkbox"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"showHide1"</span><span class="tag">&gt;</span><span class="pln">Show Button</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;button</span> <span class="atn">ng-show</span> <span class="pun">=</span> <span class="atv">"showHide1"</span><span class="tag">&gt;</span><span class="pln">Click Me!</span><span class="tag">&lt;/button&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"checkbox"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"showHide2"</span><span class="tag">&gt;</span><span class="pln">Hide Button</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;button</span> <span class="atn">ng-hide</span> <span class="pun">=</span> <span class="atv">"showHide2"</span><span class="tag">&gt;</span><span class="pln">Click Me!</span><span class="tag">&lt;/button&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;p&gt;</span><span class="pln">Total click: {{ clickCounter }}</span><span class="tag">&lt;/p&gt;&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;button</span> <span class="atn">ng-click</span> <span class="pun">=</span> <span class="atv">"clickCounter = clickCounter + 1"</span><span class="tag">&gt;</span><span class="pln">Click Me!</span><span class="tag">&lt;/button&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/dom.htm" width="600px" height="250px"></iframe></p>

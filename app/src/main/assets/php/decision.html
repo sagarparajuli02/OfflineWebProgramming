@@ -1,0 +1,143 @@
+<p>The if, elseif ...else and switch statements are used to take decision based on the different condition.</p>
+<p>You can use conditional statements in your code to make your decisions. PHP supports following three decision making statements &minus;</p>
+<p><img src="https://www.tutorialspoint.com/php/images/decision_making.jpg" alt="Decision making statements in PHP" /></p>
+<ul class="list">
+<li>
+<p><strong>if...else statement</strong>&nbsp;&minus; use this statement if you want to execute a set of code when a condition is true and another if the condition is not true</p>
+</li>
+<li>
+<p><strong>elseif statement</strong>&nbsp;&minus; is used with the if...else statement to execute a set of code if&nbsp;<strong>one</strong>&nbsp;of the several condition is true</p>
+</li>
+<li>
+<p><strong>switch statement</strong>&nbsp;&minus; is used if you want to select one of many blocks of code to be executed, use the Switch statement. The switch statement is used to avoid long blocks of if..elseif..else code.</p>
+</li>
+</ul>
+<h2>The If...Else Statement</h2>
+<p>If you want to execute some code if a condition is true and another code if a condition is false, use the if....else statement.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">if (<em>condition</em>)
+   <em>code to be executed if condition is true;</em>
+else
+   <em>code to be executed if condition is false;</em>
+</pre>
+<h3>Example</h3>
+<p>The following example will output "Have a nice weekend!" if the current day is Friday, Otherwise, it will output "Have a nice day!":</p>
+<p><a class="demo" href="http://tpcg.io/NKqFAU" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="pun">&lt;?</span><span class="pln">php
+         $d </span><span class="pun">=</span><span class="pln"> date</span><span class="pun">(</span><span class="str">"D"</span><span class="pun">);</span>
+         
+         <span class="kwd">if</span> <span class="pun">(</span><span class="pln">$d </span><span class="pun">==</span> <span class="str">"Fri"</span><span class="pun">)</span><span class="pln">
+            echo </span><span class="str">"Have a nice weekend!"</span><span class="pun">;</span> 
+         
+         <span class="kwd">else</span><span class="pln">
+            echo </span><span class="str">"Have a nice day!"</span><span class="pun">;</span> 
+      <span class="pun">?&gt;</span>
+   
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">Have a nice weekend!
+</pre>
+<h2>The ElseIf Statement</h2>
+<p>If you want to execute some code if one of the several conditions are true use the elseif statement</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">if (<em>condition</em>)
+   <em>code to be executed if condition is true;</em>
+elseif (<em>condition</em>)
+   <em>code to be executed if condition is true;</em>
+else
+   <em>code to be executed if condition is false;</em>
+</pre>
+<h3>Example</h3>
+<p>The following example will output "Have a nice weekend!" if the current day is Friday, and "Have a nice Sunday!" if the current day is Sunday. Otherwise, it will output "Have a nice day!" &minus;</p>
+<p><a class="demo" href="http://tpcg.io/YoZkua" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="pun">&lt;?</span><span class="pln">php
+         $d </span><span class="pun">=</span><span class="pln"> date</span><span class="pun">(</span><span class="str">"D"</span><span class="pun">);</span>
+         
+         <span class="kwd">if</span> <span class="pun">(</span><span class="pln">$d </span><span class="pun">==</span> <span class="str">"Fri"</span><span class="pun">)</span><span class="pln">
+            echo </span><span class="str">"Have a nice weekend!"</span><span class="pun">;</span><span class="pln">
+         
+         elseif </span><span class="pun">(</span><span class="pln">$d </span><span class="pun">==</span> <span class="str">"Sun"</span><span class="pun">)</span><span class="pln">
+            echo </span><span class="str">"Have a nice Sunday!"</span><span class="pun">;</span> 
+         
+         <span class="kwd">else</span><span class="pln">
+            echo </span><span class="str">"Have a nice day!"</span><span class="pun">;</span> 
+      <span class="pun">?&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">Have a nice Weekend!
+</pre>
+<h2>The Switch Statement</h2>
+<p>If you want to select one of many blocks of code to be executed, use the Switch statement.</p>
+<p>The switch statement is used to avoid long blocks of if..elseif..else code.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">switch (<em>expression</em>){
+   case <em>label1:</em>
+      <em>code to be executed if expression = label1;</em>
+      break;  
+   
+   case <em>label2:</em>
+      <em>code to be executed if expression = label2;</em>
+      break;
+      default:
+   
+   <em>code to be executed
+   if expression is different 
+   from both label1 and label2;</em>
+}
+</pre>
+<h3>Example</h3>
+<p>The&nbsp;<em>switch</em>&nbsp;statement works in an unusual way. First it evaluates given expression then seeks a lable to match the resulting value. If a matching value is found then the code associated with the matching label will be executed or if none of the lable matches then statement will execute any specified default code.</p>
+<p><a class="demo" href="http://tpcg.io/MpShPB" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="pun">&lt;?</span><span class="pln">php
+         $d </span><span class="pun">=</span><span class="pln"> date</span><span class="pun">(</span><span class="str">"D"</span><span class="pun">);</span>
+         
+         <span class="kwd">switch</span> <span class="pun">(</span><span class="pln">$d</span><span class="pun">){</span>
+            <span class="kwd">case</span> <span class="str">"Mon"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Monday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Tue"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Tuesday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Wed"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Wednesday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Thu"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Thursday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Fri"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Friday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Sat"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Saturday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">case</span> <span class="str">"Sun"</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Today is Sunday"</span><span class="pun">;</span>
+               <span class="kwd">break</span><span class="pun">;</span>
+            
+            <span class="kwd">default</span><span class="pun">:</span><span class="pln">
+               echo </span><span class="str">"Wonder which day is this ?"</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="pun">?&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<pre class="result notranslate">Today is Monday</pre>

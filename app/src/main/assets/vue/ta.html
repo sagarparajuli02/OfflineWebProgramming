@@ -1,0 +1,419 @@
+<p>In this chapter, we will discuss the transition and animation features available in VueJS.</p>
+<h2>Transition</h2>
+<p>VueJS provides various ways to apply transition to the HTML elements when they are added/updated in the DOM. VueJS has a built-in transition component that needs to be wrapped around the element, which needs transition.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">&lt;transition name = "nameoftransition"&gt;
+   &lt;div&gt;&lt;/div&gt;
+&lt;/transition&gt;
+</pre>
+<p>Let us consider an example to understand the working of transition.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+            transition</span><span class="pun">:</span><span class="pln"> opacity </span><span class="lit">2s</span>
+         <span class="pun">}</span>
+         <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">to </span><span class="com">/* .fade-leave-active below version 2.1.8 */</span> <span class="pun">{</span><span class="pln">
+            opacity</span><span class="pun">:</span> <span class="lit">0</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"show = !show"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;transition</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"fade"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Animation Example</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln">
+               styleobj </span><span class="pun">:{</span><span class="pln">
+                  fontSize</span><span class="pun">:</span><span class="str">'30px'</span><span class="pun">,</span><span class="pln">
+                  color</span><span class="pun">:</span><span class="str">'red'</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>There is button called clickme created using which we can change the value of the variable show to true to false and vice versa. There is a&nbsp;<strong>p tag</strong>&nbsp;which shows the text element only if the variable is true. We have wrapped the p tag with the transition element as shown in the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;transition</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"fade"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;p</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Animation Example</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/transition&gt;</span></pre>
+<p>The name of the transition is&nbsp;<strong>fade</strong>. VueJS provides some standard classes for transition and the classes are prefixed with the name of the transition.</p>
+<p>Following are some standard classes for transition &minus;</p>
+<ul class="list">
+<li>
+<p><strong>v-enter</strong>&nbsp;&minus; This class is called initially before the element is updated/added. Its the starting state.</p>
+</li>
+<li>
+<p><strong>v-enter-active</strong>&nbsp;&minus; This class is used to define the delay, duration, and easing curve for entering in the transition phase. This is the active state for entire and the class is available during the entire entering phase.</p>
+</li>
+<li>
+<p><strong>v-leave</strong>&nbsp;&minus; Added when the leaving transition is triggered, removed.</p>
+</li>
+<li>
+<p><strong>v-leave-active</strong>&nbsp;&minus; Applied during the leaving phase. It is removed when the transition is done. This class is used to apply the delay, duration, and easing curve during the leaving phase.</p>
+</li>
+</ul>
+<p>Each of the above classes will be prefixed with the name of the transition. We have given the name of the transition as fade, hence the name of the classes becomes&nbsp;<strong>.fade_enter, .fade_enter_active, .fade_leave, .fade_leave_active</strong>.</p>
+<p>They are defined in the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;style&gt;</span>
+   <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+      transition</span><span class="pun">:</span><span class="pln"> opacity </span><span class="lit">2s</span>
+   <span class="pun">}</span>
+   <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">fade</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">to </span><span class="com">/* .fade-leave-active below version 2.1.8 */</span> <span class="pun">{</span><span class="pln">
+      opacity</span><span class="pun">:</span> <span class="lit">0</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/style&gt;</span></pre>
+<p>The .fade_enter_active and .fade_leave_active are defined together and it applies a transition at the start and at the leaving stage. The opacity property is changed to 0 in 2 seconds.</p>
+<p>The duration is defined in the .fade_enter_active and .fade_leave_active. The final stage is defined in the .fade_enter, .fade_leave_to.</p>
+<p>The display in the browser is as follows.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vue_transition.jpg" alt="Vue Transition" /></p>
+<p>On the click of the button, the text will fade away in two seconds.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/fade.jpg" alt="Fade" /></p>
+<p>After two seconds, the text will disappear completely.</p>
+<p>Let us consider another example, where there is an image and it is shifted on the x-axis when the button is clicked.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+            transition</span><span class="pun">:</span><span class="pln"> all </span><span class="lit">2s</span><span class="pln"> ease</span><span class="pun">-</span><span class="kwd">in</span><span class="pun">-</span><span class="kwd">out</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">to </span><span class="com">/* .fade-leave-active below version 2.1.8 */</span> <span class="pun">{</span><span class="pln">
+            transform </span><span class="pun">:</span><span class="pln">  translateX</span><span class="pun">(</span><span class="lit">100px</span><span class="pun">);</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"show = !show"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;transition</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"shiftx"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"images/img.jpg"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln">height</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span><span class="kwd">true</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>The name of the transition is&nbsp;<strong>shiftx</strong>. A transform property is used to shift the image on the x-axis by 100px using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;style&gt;</span>
+   <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+      transition</span><span class="pun">:</span><span class="pln"> all </span><span class="lit">2s</span><span class="pln"> ease</span><span class="pun">-</span><span class="kwd">in</span><span class="pun">-</span><span class="kwd">out</span><span class="pun">;</span>
+   <span class="pun">}</span>
+   <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">,</span> <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">to </span><span class="com">/* .fade-leave-active below version 2.1.8 */</span> <span class="pun">{</span><span class="pln">
+      transform </span><span class="pun">:</span><span class="pln">  translateX</span><span class="pun">(</span><span class="lit">100px</span><span class="pun">);</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/style&gt;</span></pre>
+<p>Following is the output.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/shiftx.jpg" alt="Shiftx" /></p>
+<p>On the click of the button, the image will shift 100px towards the right as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/image_right.jpg" alt="Image Right" /></p>
+<h2>Animation</h2>
+<p>Animations are applied the same way as transition is done. Animation also has classes that needs to be declared for the effect to take place.</p>
+<p>Let us consider an example to see how animation works.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+            animation</span><span class="pun">:</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="lit">2s</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+            animation</span><span class="pun">:</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="lit">2s</span><span class="pln"> reverse</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         <span class="lit">@keyframes</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="pun">{</span>
+            <span class="lit">0</span><span class="pun">%</span>   <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">0deg</span><span class="pun">);}</span>
+            <span class="lit">25</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">90deg</span><span class="pun">);}</span>
+            <span class="lit">50</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">120deg</span><span class="pun">);}</span>
+            <span class="lit">75</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">180deg</span><span class="pun">);}</span>
+            <span class="lit">100</span><span class="pun">%</span> <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">360deg</span><span class="pun">);}</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"show = !show"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;transition</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"shiftx"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"images/img.jpg"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln">height</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span><span class="kwd">true</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>To apply animation, there are classes same as transition. In the above code, we have an image enclosed in p tag as shown in the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;transition</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"shiftx"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;p</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"images/img.jpg"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln">height</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="atv">"</span> <span class="tag">/&gt;&lt;/p&gt;</span>
+<span class="tag">&lt;/transition&gt;</span></pre>
+<p>The name of the transition is&nbsp;<strong>shiftx</strong>. The class applied is as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;style&gt;</span>
+   <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">enter</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+      animation</span><span class="pun">:</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="lit">2s</span><span class="pun">;</span>
+   <span class="pun">}</span>
+   <span class="pun">.</span><span class="pln">shiftx</span><span class="pun">-</span><span class="pln">leave</span><span class="pun">-</span><span class="pln">active </span><span class="pun">{</span><span class="pln">
+      animation</span><span class="pun">:</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="lit">2s</span><span class="pln"> reverse</span><span class="pun">;</span>
+   <span class="pun">}</span>
+   <span class="lit">@keyframes</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="pun">{</span>
+      <span class="lit">0</span><span class="pun">%</span>   <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">0deg</span><span class="pun">);}</span>
+      <span class="lit">25</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">90deg</span><span class="pun">);}</span>
+      <span class="lit">50</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">120deg</span><span class="pun">);}</span>
+      <span class="lit">75</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">180deg</span><span class="pun">);}</span>
+      <span class="lit">100</span><span class="pun">%</span> <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">360deg</span><span class="pun">);}</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/style&gt;</span></pre>
+<p>The class is prefixed with the transition name, i.e. shiftx-enter-active and .shiftx-leave-active. The animation is defined with the keyframes from 0% to 100%. There is a transform defined at each of the keyframes is as shown in the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="lit">@keyframes</span><span class="pln"> shift</span><span class="pun">-</span><span class="kwd">in</span> <span class="pun">{</span>
+   <span class="lit">0</span><span class="pun">%</span>   <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">0deg</span><span class="pun">);}</span>
+   <span class="lit">25</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">90deg</span><span class="pun">);}</span>
+   <span class="lit">50</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">120deg</span><span class="pun">);}</span>
+   <span class="lit">75</span><span class="pun">%</span>  <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">180deg</span><span class="pun">);}</span>
+   <span class="lit">100</span><span class="pun">%</span> <span class="pun">{</span><span class="pln">transform</span><span class="pun">:</span><span class="pln">rotateX</span><span class="pun">(</span><span class="lit">360deg</span><span class="pun">);}</span>
+<span class="pun">}</span></pre>
+<p>Following is the output.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/animation.jpg" alt="Animation" /></p>
+<p>On clicking the button, it rotates from 0 to 360 degree and disappears.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/change_degree.jpg" alt="Change Degree" /></p>
+<h2>Custom Transition Classes</h2>
+<p>VueJS provides a list of custom classes, which can be added as attributes to the transition element.</p>
+<ul class="list">
+<li>enter-class</li>
+<li>enter-active-class</li>
+<li>leave-class</li>
+<li>leave-active-class</li>
+</ul>
+<p>Custom classes basically come into play when we want to use an external CSS library such as animate.css.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://cdn.jsdelivr.net/npm/animate.css@3.5.1"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"animate"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln">center</span><span class="atv">"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"show = !show"</span><span class="tag">&gt;&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Animate</span><span class="tag">&lt;/span&gt;&lt;/button&gt;</span>
+         <span class="tag">&lt;transition</span>
+            <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"custom-classes-transition"</span>
+            <span class="atn">enter-active-class</span> <span class="pun">=</span> <span class="atv">"animated swing"</span>
+            <span class="atn">leave-active-class</span> <span class="pun">=</span> <span class="atv">"animated bounceIn"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Example</span><span class="tag">&lt;/span&gt;&lt;/p&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span>  <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#animate'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">true</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/custom_classes_transision.jpg" alt="" /></p>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/animated_swing.jpg" alt="Animated Swing" /></p>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/animated_bouncein.jpg" alt="Animated BounceIn" /></p>
+<p>There are two animations applied in the above code. One enter-active-class = &ldquo;animated swing&rdquo; and another leave-active-class = &rdquo;animated bounceIn&rdquo;. We are making the use of custom animation classes for the animation to be applied from the third party library.</p>
+<h2>Explicit Transition Duration</h2>
+<p>We can apply transition and animation on the element using VueJS. Vue waits for the transionend and animationend event to detect if the animation or transition is done.</p>
+<p>Sometimes the transition can cause delay. In such cases, we can apply the duration explicitly as follows.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;transition</span><span class="pln"> :</span><span class="atn">duration</span> <span class="pun">=</span> <span class="atv">"1000"</span><span class="tag">&gt;&lt;/transition&gt;</span>
+<span class="tag">&lt;transition</span><span class="pln"> :</span><span class="atn">duration</span> <span class="pun">=</span> <span class="atv">"{ enter: 500, leave: 800 }"</span><span class="tag">&gt;</span><span class="pln">...</span><span class="tag">&lt;/transition&gt;</span></pre>
+<p>We can use the duration property with a : on the transition element as shown above. In case there is a need to specify the duration separately for entering and leaving, it can be done as shown in the above piece of code.</p>
+<h2>JavaScript Hooks</h2>
+<p>The transition classes can be called as methods using JavaScript events. Let us consider an example for better understanding.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"example-4"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"show = !show"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Toggle</span><span class="tag">&lt;/span&gt;</span>
+         <span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;transition</span>  <span class="atn">v-on:before-enter</span> <span class="pun">=</span> <span class="atv">"beforeEnter"</span>
+            <span class="atn">v-on:enter</span> <span class="pun">=</span> <span class="atv">"enter"</span>
+            <span class="atn">v-on:leave</span> <span class="pun">=</span> <span class="atv">"leave"</span>
+            <span class="atn">v-bind:css</span> <span class="pun">=</span> <span class="atv">"false"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Animation Example with velocity</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#example-4'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">false</span>
+            <span class="pun">},</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               beforeEnter</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  el</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">opacity </span><span class="pun">=</span> <span class="lit">0</span>
+               <span class="pun">},</span><span class="pln">
+               enter</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">,</span><span class="pln"> done</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> opacity</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln"> fontSize</span><span class="pun">:</span> <span class="str">'25px'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> duration</span><span class="pun">:</span> <span class="lit">1000</span> <span class="pun">})</span>
+                  <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> fontSize</span><span class="pun">:</span> <span class="str">'10px'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> complete</span><span class="pun">:</span><span class="pln"> done </span><span class="pun">})</span>
+               <span class="pun">},</span><span class="pln">
+               leave</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">,</span><span class="pln"> done</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> translateX</span><span class="pun">:</span> <span class="str">'15px'</span><span class="pun">,</span><span class="pln"> rotateZ</span><span class="pun">:</span> <span class="str">'50deg'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> duration</span><span class="pun">:</span> <span class="lit">1500</span> <span class="pun">})</span>
+                  <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> rotateZ</span><span class="pun">:</span> <span class="str">'100deg'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> loop</span><span class="pun">:</span> <span class="lit">2</span> <span class="pun">})</span>
+                  <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+                     rotateZ</span><span class="pun">:</span> <span class="str">'45deg'</span><span class="pun">,</span><span class="pln">
+                     translateY</span><span class="pun">:</span> <span class="str">'30px'</span><span class="pun">,</span><span class="pln">
+                     translateX</span><span class="pun">:</span> <span class="str">'30px'</span><span class="pun">,</span><span class="pln">
+                     opacity</span><span class="pun">:</span> <span class="lit">0</span>
+                  <span class="pun">},</span> <span class="pun">{</span><span class="pln"> complete</span><span class="pun">:</span><span class="pln"> done </span><span class="pun">})</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/javascript_hooks.jpg" alt="JavaScript Hooks" /></p>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/jshooks.jpg" alt="JsHooks" /></p>
+<p>In the above example, we are performing animation using js methods on the transition element.</p>
+<p>The methods on transition are applied as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;transition</span>  <span class="atn">v-on:before-enter</span> <span class="pun">=</span> <span class="atv">"beforeEnter"</span>
+   <span class="atn">v-on:enter</span> <span class="pun">=</span> <span class="atv">"enter"</span>
+   <span class="atn">v-on:leave</span> <span class="pun">=</span> <span class="atv">"leave"</span>
+   <span class="atn">v-bind:css</span> <span class="pun">=</span> <span class="atv">"false"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;p</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Animation Example with velocity</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/transition&gt;</span></pre>
+<p>There is a prefix added&nbsp;<strong>v-on</strong>&nbsp;and the name of the event to which the method is called. The methods are defined in the Vue instance as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+   beforeEnter</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      el</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">opacity </span><span class="pun">=</span> <span class="lit">0</span>
+   <span class="pun">},</span><span class="pln">
+   enter</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="kwd">done</span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> opacity</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln"> fontSize</span><span class="pun">:</span> <span class="str">'25px'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> duration</span><span class="pun">:</span> <span class="lit">1000</span> <span class="pun">})</span>
+      <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> fontSize</span><span class="pun">:</span> <span class="str">'10px'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> complete</span><span class="pun">:</span> <span class="kwd">done</span> <span class="pun">})</span>
+   <span class="pun">},</span><span class="pln">
+   leave</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="kwd">done</span><span class="pun">)</span> <span class="pun">{</span>
+      <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> translateX</span><span class="pun">:</span> <span class="str">'15px'</span><span class="pun">,</span><span class="pln"> rotateZ</span><span class="pun">:</span> <span class="str">'50deg'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> duration</span><span class="pun">:</span> <span class="lit">1500</span> <span class="pun">})</span>
+      <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln"> rotateZ</span><span class="pun">:</span> <span class="str">'100deg'</span> <span class="pun">},</span> <span class="pun">{</span><span class="pln"> loop</span><span class="pun">:</span> <span class="lit">2</span> <span class="pun">})</span>
+      <span class="typ">Velocity</span><span class="pun">(</span><span class="pln">el</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+         rotateZ</span><span class="pun">:</span> <span class="str">'45deg'</span><span class="pun">,</span><span class="pln">
+         translateY</span><span class="pun">:</span> <span class="str">'30px'</span><span class="pun">,</span><span class="pln">
+         translateX</span><span class="pun">:</span> <span class="str">'30px'</span><span class="pun">,</span><span class="pln">
+         opacity</span><span class="pun">:</span> <span class="lit">0</span>
+      <span class="pun">},</span> <span class="pun">{</span><span class="pln"> complete</span><span class="pun">:</span> <span class="kwd">done</span> <span class="pun">})</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p>The required transition is applied in each of these methods. There is an opacity animation applied on the click of the button and also when the animation is done. Third party library is used for animation.</p>
+<p>There is a property added on transition v-bind:css = "false", which is done so that Vue understands it is a JavaScript transition.</p>
+<h2>Transition at the Initial Render</h2>
+<p>In order to add animation at the start, we need to add &lsquo;appear&rsquo; property to the transition element.</p>
+<p>Let&rsquo;s look at an example to understand it better.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://cdn.jsdelivr.net/npm/animate.css@3.5.1"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"animate"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln">center</span><span class="atv">"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;transition</span>
+            <span class="atn">appear</span>
+            <span class="atn">appear-class</span> <span class="pun">=</span> <span class="atv">"custom-appear-class"</span>
+            <span class="atn">appear-active-class</span> <span class="pun">=</span> <span class="atv">"animated bounceIn"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">BounceIn - Animation Example</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+         <span class="tag">&lt;transition</span>
+            <span class="atn">appear</span>
+            <span class="atn">appear-class</span> <span class="pun">=</span> <span class="atv">"custom-appear-class"</span>
+            <span class="atn">appear-active-class</span> <span class="pun">=</span> <span class="atv">"animated swing"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Swing - Animation Example</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+         <span class="tag">&lt;transition</span>
+            <span class="atn">appear</span>
+            <span class="atn">appear-class</span> <span class="pun">=</span> <span class="atv">"custom-appear-class"</span>
+            <span class="atn">appear-active-class</span> <span class="pun">=</span> <span class="atv">"animated rubberBand"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">RubberBand - Animation Example</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span>  <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#animate'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">true</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above example, we have used three different animations from animate.css library. We have added appear to the transition element.</p>
+<p>On execution of the above code, following will be the output in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/different_animation.jpg" alt="Different Animation" /></p>
+<h2>Animation on Components</h2>
+<p>We can wrap the transition for the components using the following code. We have used dynamic component here.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://cdn.jsdelivr.net/npm/animate.css@3.5.1"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln">center</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;transition</span>  <span class="atn">appear</span>
+            <span class="atn">appear-class</span> <span class="pun">=</span> <span class="atv">"custom-appear-class"</span>
+            <span class="atn">appear-active-class</span> <span class="pun">=</span> <span class="atv">"animated wobble"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;component</span> <span class="atn">v-bind:is</span> <span class="pun">=</span> <span class="atv">"view"</span><span class="tag">&gt;&lt;/component&gt;</span>
+         <span class="tag">&lt;/transition&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               view</span><span class="pun">:</span> <span class="str">'component1'</span>
+            <span class="pun">},</span><span class="pln">
+            components</span><span class="pun">:</span> <span class="pun">{</span>
+               <span class="str">'component1'</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  template</span><span class="pun">:</span> <span class="str">'&lt;</span><span class="pln">div</span><span class="pun">&gt;&lt;</span><span class="pln">span style </span><span class="pun">=</span> <span class="str">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">
+                  size</span><span class="pun">:</span><span class="lit">25</span><span class="pun">;</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="str">"&gt;</span><span class="typ">Animation</span><span class="pln"> on </span><span class="typ">Components</span><span class="pun">&lt;</span><span class="str">/span&gt;&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span><span class="str">'</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/animation_on_component.jpg" alt="Animation on Component" /></p>

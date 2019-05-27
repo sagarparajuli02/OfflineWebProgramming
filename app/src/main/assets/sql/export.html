@@ -1,0 +1,88 @@
+<p>The simplest way of exporting a table data into a text file is by using the&nbsp;<strong>SELECT...INTO OUTFILE</strong>&nbsp;statement that exports a query result directly into a file on the server host.</p>
+<h2>Exporting Data with the SELECT ... INTO OUTFILE Statement</h2>
+<p>The syntax for this statement combines a regular&nbsp;<strong>SELECT</strong>&nbsp;command with&nbsp;<strong>INTO OUTFILE filename</strong>&nbsp;at the end. The default output format is the same as it is for the LOAD DATA command. So, the following statement exports the&nbsp;<strong>tutorials_tbl</strong>&nbsp;table into&nbsp;<strong>/tmp/tutorials.txt</strong>&nbsp;as a tab-delimited, linefeed-terminated file.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> SELECT </span><span class="pun">*</span><span class="pln"> FROM tutorials_tbl 
+   </span><span class="pun">-&gt;</span><span class="pln"> INTO OUTFILE </span><span class="str">'/tmp/tutorials.txt'</span><span class="pun">;</span></pre>
+<p>You can change the output format using various options to indicate how to quote and delimit columns and records. To export the tutorial_tbl table in a CSV format with CRLF-terminated lines, use the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> SELECT </span><span class="pun">*</span><span class="pln"> FROM passwd INTO OUTFILE </span><span class="str">'/tmp/tutorials.txt'</span>
+   <span class="pun">-&gt;</span><span class="pln"> FIELDS TERMINATED BY </span><span class="str">','</span><span class="pln"> ENCLOSED BY </span><span class="str">'"'</span>
+   <span class="pun">-&gt;</span><span class="pln"> LINES TERMINATED BY </span><span class="str">'\r\n'</span><span class="pun">;</span></pre>
+<p>The&nbsp;<strong>SELECT ... INTO OUTFILE</strong>&nbsp;has the following properties &minus;</p>
+<ul class="list">
+<li>
+<p>The output file is created directly by the MySQL server, so the filename should indicate where you want the file to be written on the server host. There is no LOCAL version of the statement analogous to the&nbsp;<strong>LOCAL</strong>&nbsp;version of&nbsp;<strong>LOAD DATA</strong>.</p>
+</li>
+<li>
+<p>You must have the&nbsp;<strong>MySQL FILE</strong>&nbsp;privilege to execute the&nbsp;<strong>SELECT ... INTO</strong>statement.</p>
+</li>
+<li>
+<p>The output file must not already exist. This prevents MySQL from clobbering files that may be important.</p>
+</li>
+<li>
+<p>You should have a login account on the server host or some way to retrieve the file from that host. Otherwise, the&nbsp;<strong>SELECT ... INTO OUTFILE</strong>&nbsp;command will most likely be of no value to you.</p>
+</li>
+<li>
+<p>Under UNIX, the file is created&nbsp;<strong>world readable</strong>&nbsp;and is owned by the MySQL server. This means that although you will be able to read the file, you may not be able to delete it.</p>
+</li>
+</ul>
+<h2>Exporting Tables as Raw Data</h2>
+<p>The&nbsp;<strong>mysqldump</strong>&nbsp;program is used to copy or back up tables and databases. It can write the table output either as a&nbsp;<strong>Raw Datafile</strong>&nbsp;or as a set of&nbsp;<strong>INSERT</strong>&nbsp;statements that recreate the records in the table.</p>
+<p>To dump a table as a datafile, you must specify a&nbsp;<strong>--tab</strong>&nbsp;option that indicates the directory, where you want the MySQL server to write the file.</p>
+<p>For example, to dump the&nbsp;<strong>tutorials_tbl</strong>&nbsp;table from the&nbsp;<strong>TUTORIALS</strong>&nbsp;database to a file in the&nbsp;<strong>/tmp</strong>&nbsp;directory, use a command as shown below.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">create</span><span class="pun">-</span><span class="pln">info \
+   </span><span class="pun">--</span><span class="pln">tab</span><span class="pun">=/</span><span class="pln">tmp tutorials tutorials_tbl
+password </span><span class="pun">******</span></pre>
+<h2>Exporting Table Contents or Definitions in SQL Format</h2>
+<p>To export a table in SQL format to a file, use the command shown below.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p TUTORIALS tutorials_tbl </span><span class="pun">&gt;</span> <span class="kwd">dump</span><span class="pun">.</span><span class="pln">txt
+password </span><span class="pun">******</span></pre>
+<p>This will a create file having content as shown below.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">--</span> <span class="typ">MySQL</span> <span class="kwd">dump</span> <span class="lit">8.23</span>
+<span class="pun">--</span>
+<span class="pun">--</span> <span class="typ">Host</span><span class="pun">:</span><span class="pln"> localhost    </span><span class="typ">Database</span><span class="pun">:</span><span class="pln"> TUTORIALS
+</span><span class="pun">---------------------------------------------------------</span>
+<span class="pun">--</span> <span class="typ">Server</span><span class="pln"> version       </span><span class="lit">3.23</span><span class="pun">.</span><span class="lit">58</span>
+
+<span class="pun">--</span>
+<span class="pun">--</span> <span class="typ">Table</span><span class="pln"> structure </span><span class="kwd">for</span><span class="pln"> table </span><span class="str">`tutorials_tbl`</span>
+<span class="pun">--</span><span class="pln">
+
+CREATE TABLE tutorials_tbl </span><span class="pun">(</span><span class="pln">
+   tutorial_id </span><span class="kwd">int</span><span class="pun">(</span><span class="lit">11</span><span class="pun">)</span><span class="pln"> NOT NULL auto_increment</span><span class="pun">,</span><span class="pln">
+   tutorial_title varchar</span><span class="pun">(</span><span class="lit">100</span><span class="pun">)</span><span class="pln"> NOT NULL </span><span class="kwd">default</span> <span class="str">''</span><span class="pun">,</span><span class="pln">
+   tutorial_author varchar</span><span class="pun">(</span><span class="lit">40</span><span class="pun">)</span><span class="pln"> NOT NULL </span><span class="kwd">default</span> <span class="str">''</span><span class="pun">,</span><span class="pln">
+   submission_date date </span><span class="kwd">default</span><span class="pln"> NULL</span><span class="pun">,</span><span class="pln">
+   PRIMARY KEY  </span><span class="pun">(</span><span class="pln">tutorial_id</span><span class="pun">),</span><span class="pln">
+   UNIQUE KEY AUTHOR_INDEX </span><span class="pun">(</span><span class="pln">tutorial_author</span><span class="pun">)</span>
+<span class="pun">)</span><span class="pln"> TYPE </span><span class="pun">=</span> <span class="typ">MyISAM</span><span class="pun">;</span>
+
+<span class="pun">--</span>
+<span class="pun">--</span> <span class="typ">Dumping</span><span class="pln"> data </span><span class="kwd">for</span><span class="pln"> table </span><span class="str">`tutorials_tbl`</span>
+<span class="pun">--</span><span class="pln">
+
+INSERT INTO tutorials_tbl 
+   VALUES </span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="str">'Learn PHP'</span><span class="pun">,</span><span class="str">'John Poul'</span><span class="pun">,</span><span class="str">'2007-05-24'</span><span class="pun">);</span><span class="pln">
+INSERT INTO tutorials_tbl 
+   VALUES </span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="str">'Learn MySQL'</span><span class="pun">,</span><span class="str">'Abdul S'</span><span class="pun">,</span><span class="str">'2007-05-24'</span><span class="pun">);</span><span class="pln">
+INSERT INTO tutorials_tbl 
+   VALUES </span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="str">'JAVA Tutorial'</span><span class="pun">,</span><span class="str">'Sanjay'</span><span class="pun">,</span><span class="str">'2007-05-06'</span><span class="pun">);</span></pre>
+<p>To dump multiple tables, name them all followed by the database name argument. To dump an entire database, don't name any tables after the database as shown in the following code block.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p TUTORIALS </span><span class="pun">&gt;</span><span class="pln"> database_dump</span><span class="pun">.</span><span class="pln">txt
+password </span><span class="pun">******</span></pre>
+<p>To back up all the databases available on your host, use the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p </span><span class="pun">--</span><span class="pln">all</span><span class="pun">-</span><span class="pln">databases </span><span class="pun">&gt;</span><span class="pln"> database_dump</span><span class="pun">.</span><span class="pln">txt
+password </span><span class="pun">******</span></pre>
+<p>The --all-databases option is available in the MySQL 3.23.12 version. This method can be used to implement a database backup strategy.</p>
+<h2>Copying Tables or Databases to Another Host</h2>
+<p>If you want to copy tables or databases from one MySQL server to another, then use the&nbsp;<strong>mysqldump</strong>&nbsp;with database name and table name.</p>
+<p>Run the following command at the source host. This will dump the complete database into&nbsp;<strong>dump.txt</strong>&nbsp;file.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p database_name table_name </span><span class="pun">&gt;</span> <span class="kwd">dump</span><span class="pun">.</span><span class="pln">txt
+password </span><span class="pun">*****</span></pre>
+<p>You can copy complete database without using a particular table name as explained above.</p>
+<p>Now, ftp dump.txt file on another host and use the following command. Before running this command, make sure you have created database_name on destination server.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysql </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p database_name </span><span class="pun">&lt;</span> <span class="kwd">dump</span><span class="pun">.</span><span class="pln">txt
+password </span><span class="pun">*****</span></pre>
+<p>Another way to accomplish this without using an intermediary file is to send the output of the mysqldump directly over the network to the remote MySQL server. If you can connect to both the servers from the host where the source database resides, use the following command (Make sure you have access on both the servers).</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$ mysqldump </span><span class="pun">-</span><span class="pln">u root </span><span class="pun">-</span><span class="pln">p database_name \
+   </span><span class="pun">|</span><span class="pln"> mysql </span><span class="pun">-</span><span class="pln">h other</span><span class="pun">-</span><span class="pln">host</span><span class="pun">.</span><span class="pln">com database_name</span></pre>
+<p>In mysqldump, half of the command connects to the local server and writes the dump output to the pipe. The remaining half of the command connects to the remote MySQL server on the other-host.com. It reads the pipe for input and sends each statement to the other-host.com server.</p>

@@ -1,0 +1,297 @@
+<p>jQuery is a framework built using JavaScript capabilities. So, you can use all the functions and other capabilities available in JavaScript. This chapter would explain most basic concepts but frequently used in jQuery.</p>
+<h2>String</h2>
+<p>A string in JavaScript is an immutable object that contains none, one or many characters. Following are the valid examples of a JavaScript String &minus;</p>
+<pre class="result notranslate">"This is JavaScript String"
+'This is JavaScript String'
+'This is "really" a JavaScript String'
+"This is 'really' a JavaScript String"
+</pre>
+<h2>Numbers</h2>
+<p>Numbers in JavaScript are double-precision 64-bit format IEEE 754 values. They are immutable, just as strings. Following are the valid examples of a JavaScript Numbers &minus;</p>
+<pre class="result notranslate">5350
+120.27
+0.26
+</pre>
+<h2>Boolean</h2>
+<p>A boolean in JavaScript can be either&nbsp;<strong>true</strong>&nbsp;or&nbsp;<strong>false</strong>. If a number is zero, it defaults to false. If an empty string defaults to false.</p>
+<p>Following are the valid examples of a JavaScript Boolean &minus;</p>
+<pre class="result notranslate">true      // true
+false     // false
+0         // false
+1         // true
+""        // false
+"hello"   // true
+</pre>
+<h2>Objects</h2>
+<p>JavaScript supports Object concept very well. You can create an object using the object literal as follows &minus;</p>
+<pre class="result notranslate">var emp = {
+   name: "Zara",
+   age: 10
+};
+</pre>
+<p>You can write and read properties of an object using the dot notation as follows &minus;</p>
+<pre class="result notranslate">// Getting object properties
+emp.name  // ==&gt; Zara
+emp.age   // ==&gt; 10
+
+// Setting object properties
+emp.name = "Daisy"  // &lt;== Daisy
+emp.age  =  20      // &lt;== 20
+</pre>
+<h2>Arrays</h2>
+<p>You can define arrays using the array literal as follows &minus;</p>
+<pre class="result notranslate">var x = [];
+var y = [1, 2, 3, 4, 5];
+</pre>
+<p>An array has a&nbsp;<strong>length</strong>&nbsp;property that is useful for iteration &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> x </span><span class="pun">=</span> <span class="pun">[</span><span class="lit">1</span><span class="pun">,</span> <span class="lit">2</span><span class="pun">,</span> <span class="lit">3</span><span class="pun">,</span> <span class="lit">4</span><span class="pun">,</span> <span class="lit">5</span><span class="pun">];</span>
+
+<span class="kwd">for</span> <span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span> <span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> x</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span> <span class="pun">{</span>
+   <span class="com">// Do something with x[i]</span>
+<span class="pun">}</span></pre>
+<h2>Functions</h2>
+<p>A function in JavaScript can be either named or anonymous. A named function can be defined using&nbsp;<em>function</em>&nbsp;keyword as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> named</span><span class="pun">(){</span>
+   <span class="com">// do some stuff here</span>
+<span class="pun">}</span></pre>
+<p>An anonymous function can be defined in similar way as a normal function but it would not have any name.</p>
+<p>A anonymous function can be assigned to a variable or passed to a method as shown below.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> handler </span><span class="pun">=</span> <span class="kwd">function</span> <span class="pun">(){</span>
+   <span class="com">// do some stuff here</span>
+<span class="pun">}</span></pre>
+<p>JQuery makes a use of anonymous functions very frequently as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span>
+   <span class="com">// do some stuff here</span>
+<span class="pun">});</span></pre>
+<h2>Arguments</h2>
+<p>JavaScript variable&nbsp;<em>arguments</em>&nbsp;is a kind of array which has&nbsp;<em>length</em>&nbsp;property. Following example explains it very well &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> func</span><span class="pun">(</span><span class="pln">x</span><span class="pun">){</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="kwd">typeof</span><span class="pln"> x</span><span class="pun">,</span><span class="pln"> arguments</span><span class="pun">.</span><span class="pln">length</span><span class="pun">);</span>
+<span class="pun">}</span><span class="pln">
+
+func</span><span class="pun">();</span>                <span class="com">//==&gt; "undefined", 0</span><span class="pln">
+func</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span>               <span class="com">//==&gt; "number", 1</span><span class="pln">
+func</span><span class="pun">(</span><span class="str">"1"</span><span class="pun">,</span> <span class="str">"2"</span><span class="pun">,</span> <span class="str">"3"</span><span class="pun">);</span>   <span class="com">//==&gt; "string", 3</span></pre>
+<p>The arguments object also has a&nbsp;<em>callee</em>&nbsp;property, which refers to the function you're inside of. For example &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> func</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">return</span><span class="pln"> arguments</span><span class="pun">.</span><span class="pln">callee</span><span class="pun">;</span> 
+<span class="pun">}</span><span class="pln">
+
+func</span><span class="pun">();</span>                <span class="com">// ==&gt; func</span></pre>
+<h2>Context</h2>
+<p>JavaScript famous keyword&nbsp;<strong>this</strong>&nbsp;always refers to the current context. Within a function&nbsp;<strong>this</strong>&nbsp;context can change, depending on how the function is called &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="com">// this refers to window.document</span>
+<span class="pun">});</span><span class="pln">
+
+$</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="com">// this refers to a div DOM element</span>
+<span class="pun">});</span></pre>
+<p>You can specify the context for a function call using the function-built-in methods&nbsp;<strong>call()</strong>and&nbsp;<strong>apply()</strong>&nbsp;methods.</p>
+<p>The difference between them is how they pass arguments. Call passes all arguments through as arguments to the function, while apply accepts an array as the arguments.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> scope</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> arguments</span><span class="pun">.</span><span class="pln">length</span><span class="pun">);</span>
+<span class="pun">}</span><span class="pln">
+
+scope</span><span class="pun">()</span> <span class="com">// window, 0</span><span class="pln">
+scope</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="str">"foobar"</span><span class="pun">,</span> <span class="pun">[</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">]);</span>  <span class="com">//==&gt; "foobar", 1</span><span class="pln">
+scope</span><span class="pun">.</span><span class="pln">apply</span><span class="pun">(</span><span class="str">"foobar"</span><span class="pun">,</span> <span class="pun">[</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">]);</span> <span class="com">//==&gt; "foobar", 2</span></pre>
+<h2>Scope</h2>
+<p>The scope of a variable is the region of your program in which it is defined. JavaScript variable will have only two scopes.</p>
+<ul class="list">
+<li>
+<p><strong>Global Variables</strong>&nbsp;&minus; A global variable has global scope which means it is defined everywhere in your JavaScript code.</p>
+</li>
+<li>
+<p><strong>Local Variables</strong>&nbsp;&minus; A local variable will be visible only within a function where it is defined. Function parameters are always local to that function.</p>
+</li>
+</ul>
+<p>Within the body of a function, a local variable takes precedence over a global variable with the same name &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> myVar </span><span class="pun">=</span> <span class="str">"global"</span><span class="pun">;</span>     <span class="com">// ==&gt; Declare a global variable</span>
+
+<span class="kwd">function</span> <span class="pun">(</span> <span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">var</span><span class="pln"> myVar </span><span class="pun">=</span> <span class="str">"local"</span><span class="pun">;</span>   <span class="com">// ==&gt; Declare a local variable</span><span class="pln">
+   document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">myVar</span><span class="pun">);</span> <span class="com">// ==&gt; local</span>
+<span class="pun">}</span></pre>
+<h2>Callback</h2>
+<p>A callback is a plain JavaScript function passed to some method as an argument or option. Some callbacks are just events, called to give the user a chance to react when a certain state is triggered.</p>
+<p>jQuery's event system uses such callbacks everywhere for example &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$</span><span class="pun">(</span><span class="str">"body"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="kwd">event</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"clicked: "</span> <span class="pun">+</span> <span class="kwd">event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>Most callbacks provide arguments and a context. In the event-handler example, the callback is called with one argument, an Event.</p>
+<p>Some callbacks are required to return something, others make that return value optional. To prevent a form submission, a submit event handler can return false as follows &minus;</p>
+<pre class="result notranslate">$("#myform").submit(function() {
+   return false;
+});
+</pre>
+<h2>Closures</h2>
+<p>Closures are created whenever a variable that is defined outside the current scope is accessed from within some inner scope.</p>
+<p>Following example shows how the variable&nbsp;<strong>counter</strong>&nbsp;is visible within the create, increment, and print functions, but not outside of them &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">function</span><span class="pln"> create</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">var</span><span class="pln"> counter </span><span class="pun">=</span> <span class="lit">0</span><span class="pun">;</span>
+	
+   <span class="kwd">return</span> <span class="pun">{</span><span class="pln">
+      increment</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+         counter</span><span class="pun">++;</span>
+      <span class="pun">},</span>
+	   <span class="kwd">print</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">counter</span><span class="pun">);</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+<span class="pun">}</span>
+
+<span class="kwd">var</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> create</span><span class="pun">();</span><span class="pln">
+c</span><span class="pun">.</span><span class="pln">increment</span><span class="pun">();</span><span class="pln">
+c</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">();</span>     <span class="com">// ==&gt; 1</span></pre>
+<p>This pattern allows you to create objects with methods that operate on data that isn't visible to the outside world. It should be noted that&nbsp;<strong>data hiding</strong>&nbsp;is the very basis of object-oriented programming.</p>
+<h2>Proxy Pattern</h2>
+<p>A proxy is an object that can be used to control access to another object. It implements the same interface as this other object and passes on any method invocations to it. This other object is often called the real subject.</p>
+<p>A proxy can be instantiated in place of this real subject and allow it to be accessed remotely. We can saves jQuery's setArray method in a closure and overwrites it as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="com">// log all calls to setArray</span>
+   <span class="kwd">var</span><span class="pln"> proxied </span><span class="pun">=</span><span class="pln"> jQuery</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">setArray</span><span class="pun">;</span><span class="pln">
+
+   jQuery</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">setArray </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> arguments</span><span class="pun">);</span>
+      <span class="kwd">return</span><span class="pln"> proxied</span><span class="pun">.</span><span class="pln">apply</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln"> arguments</span><span class="pun">);</span>
+   <span class="pun">};</span>
+	
+<span class="pun">})();</span></pre>
+<p>The above wraps its code in a function to hide the&nbsp;<em>proxied</em>&nbsp;variable. The proxy then logs all calls to the method and delegates the call to the original method. Using&nbsp;<em>apply(this, arguments)</em>&nbsp;guarantees that the caller won't be able to notice the difference between the original and the proxied method.</p>
+<h2>Built-in Functions</h2>
+<p>JavaScript comes along with a useful set of built-in functions. These methods can be used to manipulate Strings, Numbers and Dates.</p>
+<p>Following are important JavaScript functions &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>charAt()</strong></p>
+<p>Returns the character at the specified index.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>concat()</strong></p>
+<p>Combines the text of two strings and returns a new string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>forEach()</strong></p>
+<p>Calls a function for each element in the array.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>indexOf()</strong></p>
+<p>Returns the index within the calling String object of the first occurrence of the specified value, or -1 if not found.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><strong>length()</strong></p>
+<p>Returns the length of the string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><strong>pop()</strong></p>
+<p>Removes the last element from an array and returns that element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><strong>push()</strong></p>
+<p>Adds one or more elements to the end of an array and returns the new length of the array.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><strong>reverse()</strong></p>
+<p>Reverses the order of the elements of an array -- the first becomes the last, and the last becomes the first.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><strong>sort()</strong></p>
+<p>Sorts the elements of an array.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><strong>substr()</strong></p>
+<p>Returns the characters in a string beginning at the specified location through the specified number of characters.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><strong>toLowerCase()</strong></p>
+<p>Returns the calling string value converted to lower case.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td>
+<p><strong>toString()</strong></p>
+<p>Returns the string representation of the number's value.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td>
+<p><strong>toUpperCase()</strong></p>
+<p>Returns the calling string value converted to uppercase.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>The Document Object Model</h2>
+<p>The Document Object Model is a tree structure of various elements of HTML as follows &minus;</p>
+<p><a class="demo" href="http://tpcg.io/s1QZ3X" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">This is a paragraph.</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">This is second paragraph.</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">This is third paragraph.</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/sample-html-code.htm" width="300" height="150"></iframe></p>
+<p>Following are the important points about the above tree structure &minus;</p>
+<ul class="list">
+<li>
+<p>The &lt;html&gt; is the ancestor of all the other elements; in other words, all the other elements are descendants of &lt;html&gt;.</p>
+</li>
+<li>
+<p>The &lt;head&gt; and &lt;body&gt; elements are not only descendants, but children of &lt;html&gt;, as well.</p>
+</li>
+<li>
+<p>Likewise, in addition to being the ancestor of &lt;head&gt; and &lt;body&gt;, &lt;html&gt; is also their parent.</p>
+</li>
+<li>
+<p>The &lt;p&gt; elements are children (and descendants) of &lt;div&gt;, descendants of &lt;body&gt; and &lt;html&gt;, and siblings of each other &lt;p&gt; elements.</p>
+</li>
+</ul>
+<p>While learning jQuery concepts, it will be helpful to have understanding on DOM, if you are not aware of DOM then I would suggest to go through our simple tutorial on&nbsp;<a href="https://www.tutorialspoint.com/dom/index.htm" target="_blank">DOM Tutorial</a>.</p>

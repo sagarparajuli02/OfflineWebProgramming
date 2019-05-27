@@ -1,0 +1,172 @@
+<p>VueJS provides options to add reactivity to properties, which are added dynamically. Consider that we have already created vue instance and need to add the watch property. It can be done as follows &minus;</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"app"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Counter: {{ counter }}</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"counter++"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               counter</span><span class="pun">:</span> <span class="lit">1</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">$watch</span><span class="pun">(</span><span class="str">'counter'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">nval</span><span class="pun">,</span><span class="pln"> oval</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">'Counter is incremented :'</span> <span class="pun">+</span><span class="pln"> oval </span><span class="pun">+</span> <span class="str">' to '</span> <span class="pun">+</span><span class="pln"> nval </span><span class="pun">+</span> <span class="str">'!'</span><span class="pun">);</span>
+         <span class="pun">});</span><span class="pln">
+         setTimeout</span><span class="pun">(</span>
+            <span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+               vm</span><span class="pun">.</span><span class="pln">counter </span><span class="pun">=</span> <span class="lit">20</span><span class="pun">;</span>
+            <span class="pun">},</span><span class="lit">2000</span>
+         <span class="pun">);</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>There is a property counter defined as 1 in data object. The counter is incremented when we click the button.</p>
+<p>Vue instance is already created. To add watch to it, we need to do it as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">vm</span><span class="pun">.</span><span class="pln">$watch</span><span class="pun">(</span><span class="str">'counter'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">nval</span><span class="pun">,</span><span class="pln"> oval</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   alert</span><span class="pun">(</span><span class="str">'Counter is incremented :'</span> <span class="pun">+</span><span class="pln"> oval </span><span class="pun">+</span> <span class="str">' to '</span> <span class="pun">+</span><span class="pln"> nval </span><span class="pun">+</span> <span class="str">'!'</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We need to use $watch to add watch outside the vue instance. There is an alert added, which shows the value change for the counter property. There is also a timer function added, i.e. setTimeout, which sets the counter value to 20.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">setTimeout</span><span class="pun">(</span>
+   <span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+      vm</span><span class="pun">.</span><span class="pln">counter </span><span class="pun">=</span> <span class="lit">20</span><span class="pun">;</span>
+   <span class="pun">},</span><span class="lit">2000</span>
+<span class="pun">);</span></pre>
+<p>Whenever the counter is changed, the alert from the watch method will get fired as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/counter.jpg" alt="Counter" /></p>
+<p>VueJS cannot detect property addition and deletion. The best way is to always declare the properties, which needs to be reactive upfront in the Vue instance. In case we need to add properties at run time, we can make use of Vue global, Vue.set, and Vue.delete methods.</p>
+<h2>Vue.set</h2>
+<p>This method helps to set a property on an object. It is used to get around the limitation that Vue cannot detect property additions.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">Vue.set( target, key, value )
+</pre>
+<p>Where,</p>
+<p>target: Can be an object or an array</p>
+<p>key : Can be a string or number</p>
+<p>value: Can be any type</p>
+<p>Let&rsquo;s take a look at an example.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"app"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Counter: {{ products.id }}</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"products.id++"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> myproduct </span><span class="pun">=</span> <span class="pun">{</span><span class="str">"id"</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">:</span><span class="str">"book"</span><span class="pun">,</span> <span class="str">"price"</span><span class="pun">:</span><span class="str">"20.00"</span><span class="pun">};</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               counter</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln">
+               products</span><span class="pun">:</span><span class="pln"> myproduct
+            </span><span class="pun">}</span>
+         <span class="pun">});</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">products</span><span class="pun">.</span><span class="pln">qty </span><span class="pun">=</span> <span class="str">"1"</span><span class="pun">;</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">);</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">$watch</span><span class="pun">(</span><span class="str">'counter'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">nval</span><span class="pun">,</span><span class="pln"> oval</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">'Counter is incremented :'</span> <span class="pun">+</span><span class="pln"> oval </span><span class="pun">+</span> <span class="str">' to '</span> <span class="pun">+</span><span class="pln"> nval </span><span class="pun">+</span> <span class="str">'!'</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above example, there is a variable myproduct created at the start using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> myproduct </span><span class="pun">=</span> <span class="pun">{</span><span class="str">"id"</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">:</span><span class="str">"book"</span><span class="pun">,</span> <span class="str">"price"</span><span class="pun">:</span><span class="str">"20.00"</span><span class="pun">};</span></pre>
+<p>It is given to the data object in Vue instance as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      counter</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln">
+      products</span><span class="pun">:</span><span class="pln"> myproduct
+   </span><span class="pun">}</span>
+<span class="pun">});</span></pre>
+<p>Consider, we want to add one more property to the myproduct array, after the Vue instance is created. It can be done as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">vm</span><span class="pun">.</span><span class="pln">products</span><span class="pun">.</span><span class="pln">qty </span><span class="pun">=</span> <span class="str">"1"</span><span class="pun">;</span></pre>
+<p>Let&rsquo;s see the output in the console.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/myproduct_array.jpg" alt="MyProduct Array" /></p>
+<p>As seen above, in products the quantity is added. The get/set methods, which basically adds reactivity is available for the id, name, and price, and not available for qty.</p>
+<p>We cannot achieve the reactivity by just adding vue object. VueJS mostly wants all its properties to be created at the start. However, in case we need to add it later, we can use Vue.set. For this, we need to set it using vue global, i.e. Vue.set.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"app"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Counter: {{ products.id }}</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"products.id++"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> myproduct </span><span class="pun">=</span> <span class="pun">{</span><span class="str">"id"</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">:</span><span class="str">"book"</span><span class="pun">,</span> <span class="str">"price"</span><span class="pun">:</span><span class="str">"20.00"</span><span class="pun">};</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               counter</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln">
+               products</span><span class="pun">:</span><span class="pln"> myproduct
+            </span><span class="pun">}</span>
+         <span class="pun">});</span>
+         <span class="typ">Vue</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">myproduct</span><span class="pun">,</span> <span class="str">'qty'</span><span class="pun">,</span> <span class="lit">1</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">);</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">$watch</span><span class="pun">(</span><span class="str">'counter'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">nval</span><span class="pun">,</span><span class="pln"> oval</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">'Counter is incremented :'</span> <span class="pun">+</span><span class="pln"> oval </span><span class="pun">+</span> <span class="str">' to '</span> <span class="pun">+</span><span class="pln"> nval </span><span class="pun">+</span> <span class="str">'!'</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>We have used Vue.set to add the qty to the array using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">myproduct</span><span class="pun">,</span> <span class="str">'qty'</span><span class="pun">,</span> <span class="lit">1</span><span class="pun">);</span></pre>
+<p>We have consoled the vue object and following is the output.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/products.jpg" alt="Products" /></p>
+<p>Now, we can see the get/set for qty added using Vue.set.</p>
+<h2>Vue.delete</h2>
+<p>This function is used to delete the property dynamically.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="kwd">delete</span><span class="pun">(</span><span class="pln"> target</span><span class="pun">,</span><span class="pln"> key </span><span class="pun">)</span></pre>
+<p>Where,</p>
+<p>target: Can be an object or an array</p>
+<p>key: Can be a string or a number</p>
+<p>To delete any property, we can use Vue.delete as in the following code.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"app"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Counter: {{ products.id }}</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"products.id++"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> myproduct </span><span class="pun">=</span> <span class="pun">{</span><span class="str">"id"</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">:</span><span class="str">"book"</span><span class="pun">,</span> <span class="str">"price"</span><span class="pun">:</span><span class="str">"20.00"</span><span class="pun">};</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               counter</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln">
+               products</span><span class="pun">:</span><span class="pln"> myproduct
+            </span><span class="pun">}</span>
+         <span class="pun">});</span>
+         <span class="typ">Vue</span><span class="pun">.</span><span class="kwd">delete</span><span class="pun">(</span><span class="pln">myproduct</span><span class="pun">,</span> <span class="str">'price'</span><span class="pun">);</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">vm</span><span class="pun">);</span><span class="pln">
+         vm</span><span class="pun">.</span><span class="pln">$watch</span><span class="pun">(</span><span class="str">'counter'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">nval</span><span class="pun">,</span><span class="pln"> oval</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="str">'Counter is incremented :'</span> <span class="pun">+</span><span class="pln"> oval </span><span class="pun">+</span> <span class="str">' to '</span> <span class="pun">+</span><span class="pln"> nval </span><span class="pun">+</span> <span class="str">'!'</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above example, we have used Vue.delete to delete the price from the array using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="kwd">delete</span><span class="pun">(</span><span class="pln">myproduct</span><span class="pun">,</span> <span class="str">'price'</span><span class="pun">);</span></pre>
+<p>Following is the output, we see in the console.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/delete.jpg" alt="Delete" /></p>
+<p>After deletion, we can see only the id and name as the price is deleted. We can also notice that the get/set methods are deleted.</p>

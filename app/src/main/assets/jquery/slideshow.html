@@ -1,0 +1,134 @@
+<p>Slideshow.js is a jQuery plugin for quickly and easily implementing slide show of images or videos into your website.</p>
+<p>A Simple of slide show example as shown below &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+   "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span> <span class="pun">=</span> <span class="atv">"https://www.w3.org/1999/xhtml"</span> <span class="atn">xml:lang</span> <span class="pun">=</span> <span class="atv">"en"</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">http-equiv</span> <span class="pun">=</span> <span class="atv">"content-type"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"text/html; charset = UTF-8"</span> <span class="tag">/&gt;</span>
+		
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"css/supersized.css"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> 
+         <span class="atn">media</span> <span class="pun">=</span> <span class="atv">"screen"</span> <span class="tag">/&gt;</span>
+      
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"theme/supersized.shutter.css"</span> 
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> <span class="atn">media</span> <span class="pun">=</span> <span class="atv">"screen"</span> <span class="tag">/&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span><span class="atv">" js/jquery.easing.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span><span class="atv">" js/supersized.3.2.7.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"theme/supersized.shutter.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         jQuery</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">$</span><span class="pun">){</span><span class="pln">
+            $</span><span class="pun">.</span><span class="pln">supersized</span><span class="pun">({</span><span class="pln">
+               slideshow         </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               autoplay          </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               start_slide       </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               stop_loop         </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               random            </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               slide_interval    </span><span class="pun">:</span>  <span class="lit">3000</span><span class="pun">,</span><span class="pln">		
+               transition        </span><span class="pun">:</span>  <span class="lit">6</span><span class="pun">,</span><span class="pln"> 			
+               transition_speed  </span><span class="pun">:</span>  <span class="lit">1000</span><span class="pun">,</span><span class="pln">		
+               new_window        </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               pause_hover       </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               keyboard_nav      </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               performance       </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               image_protect     </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+                                                
+               min_width         </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               min_height        </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               vertical_center   </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               horizontal_center </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               fit_always        </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               fit_portrait      </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               fit_landscape     </span><span class="pun">:</span>  <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               
+               slide_links       </span><span class="pun">:</span>  <span class="str">'blank'</span><span class="pun">,</span><span class="pln">	
+               thumb_links       </span><span class="pun">:</span>  <span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               thumbnail_navigation    </span><span class="pun">:</span>   <span class="lit">0</span><span class="pun">,</span><span class="pln">			
+               slides            </span><span class="pun">:</span>  	
+               <span class="pun">[</span>			
+                  <span class="pun">{</span><span class="pln">
+                     image </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/kazvan-1.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        title </span><span class="pun">:</span> <span class="str">'Sample demo'</span><span class="pun">,</span><span class="pln"> 
+                        thumb </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        url </span><span class="pun">:</span> <span class="str">'https://www.tutorialspoint.com'</span>
+                  <span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">
+                     image </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/kazvan-3.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        title </span><span class="pun">:</span> <span class="str">'Sample demo'</span><span class="pun">,</span><span class="pln"> 
+                        thumb </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        url </span><span class="pun">:</span> <span class="str">'https://www.tutorialspoint.com'</span>
+                  <span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">
+                     image </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-1.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        title </span><span class="pun">:</span> <span class="str">'Sample demo'</span><span class="pun">,</span><span class="pln"> 
+                        thumb </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-1.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        url </span><span class="pun">:</span> <span class="str">'https://www.tutorialspoint.com'</span>
+                  <span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">
+                     image </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-2.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        title </span><span class="pun">:</span> <span class="str">'Sample demo'</span><span class="pun">,</span><span class="pln"> 
+                        thumb </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-2.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        url </span><span class="pun">:</span> <span class="str">'https://www.tutorialspoint.com'</span>
+                  <span class="pun">},</span>
+                  <span class="pun">{</span><span class="pln">
+                     image </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-3.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        title </span><span class="pun">:</span> <span class="str">'Sample demo'</span><span class="pun">,</span><span class="pln"> 
+                        thumb </span><span class="pun">:</span> <span class="str">'https://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-3.jpg'</span><span class="pun">,</span><span class="pln"> 
+                        url </span><span class="pun">:</span> <span class="str">'https://www.tutorialspoint.com'</span><span class="pun">},</span>
+               <span class="pun">],</span><span class="pln">
+               progress_bar      </span><span class="pun">:</span>	<span class="lit">1</span><span class="pun">,</span><span class="pln">			
+               mouse_scrub       </span><span class="pun">:</span>	<span class="lit">0</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;style</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span><span class="tag">&gt;</span><span class="pln">
+      ul</span><span class="com">#demo-block{ margin:0 15px 15px 15px; }</span><span class="pln">
+      ul</span><span class="com">#demo-block li{ margin:0 0 10px 0; padding:10px; display:inline; </span>
+         <span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="pln"> clear</span><span class="pun">:</span><span class="pln">both</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:#</span><span class="pln">aaa</span><span class="pun">;</span><span class="pln"> background</span><span class="pun">:</span><span class="pln">url</span><span class="pun">(</span><span class="str">'img/bg-black.png'</span><span class="pun">);</span><span class="pln"> 
+         font</span><span class="pun">:</span><span class="lit">11px</span> <span class="typ">Helvetica</span><span class="pun">,</span> <span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span> <span class="pun">}</span><span class="pln">
+      ul</span><span class="com">#demo-block li a{ color:#eee; font-weight:bold; }</span>
+   <span class="tag">&lt;/style&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"prevthumb"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"nextthumb"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;a</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"prevslide"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"load-item"</span><span class="tag">&gt;&lt;/a&gt;</span>
+      <span class="tag">&lt;a</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"nextslide"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"load-item"</span><span class="tag">&gt;&lt;/a&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"thumb-tray"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"load-item"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"thumb-back"</span><span class="tag">&gt;&lt;/div&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"thumb-forward"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"progress-back"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"load-item"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"progress-bar"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"controls-wrapper"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"load-item"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"controls"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;a</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"play-button"</span><span class="tag">&gt;&lt;img</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"pauseplay"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"img/pause.png"</span><span class="tag">/&gt;&lt;/a&gt;</span>
+
+            <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"slidecounter"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;span</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"slidenumber"</span><span class="tag">&gt;&lt;/span&gt;</span><span class="pln"> / </span><span class="tag">&lt;span</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"totalslides"</span><span class="tag">&gt;&lt;/span&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+
+            <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"slidecaption"</span><span class="tag">&gt;&lt;/div&gt;</span>
+
+            <span class="tag">&lt;a</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"tray-button"</span><span class="tag">&gt;&lt;img</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"tray-arrow"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"img/button-tray-up.png"</span><span class="tag">/&gt;&lt;/a&gt;</span>
+
+            <span class="tag">&lt;ul</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"slide-list"</span><span class="tag">&gt;&lt;/ul&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><a href="https://www.tutorialspoint.com/jquery/src/slideshow/index.htm">Click here</a></p>

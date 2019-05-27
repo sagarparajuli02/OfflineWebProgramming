@@ -1,0 +1,94 @@
+<p>All downloads for MySQL are located at&nbsp;<a href="https://www.mysql.com/downloads/" target="_blank" rel="nofollow">MySQL Downloads</a>. Pick the version number of&nbsp;<strong>MySQL Community Server</strong>&nbsp;which is required along with the platform you will be running it on.</p>
+<h2>Installing MySQL on Linux/UNIX</h2>
+<p>The recommended way to install MySQL on a Linux system is via RPM. MySQL AB makes the following RPMs available for download on its website &minus;</p>
+<ul class="list">
+<li>
+<p><strong>MySQL</strong>&nbsp;&minus; The MySQL database server manages the databases and tables, controls user access and processes the SQL queries.</p>
+</li>
+<li>
+<p><strong>MySQL-client</strong>&nbsp;&minus; MySQL client programs, which make it possible to connect to and interact with the server.</p>
+</li>
+<li>
+<p><strong>MySQL-devel</strong>&nbsp;&minus; Libraries and header files that come in handy when compiling other programs that use MySQL.</p>
+</li>
+<li>
+<p><strong>MySQL-shared</strong>&nbsp;&minus; Shared libraries for the MySQL client.</p>
+</li>
+<li>
+<p><strong>MySQL-bench</strong>&nbsp;&minus; Benchmark and performance testing tools for the MySQL database server.</p>
+</li>
+</ul>
+<p>The MySQL RPMs listed here are all built on a&nbsp;<strong>SuSE Linux system</strong>, but they will usually work on other Linux variants with no difficulty.</p>
+<p>Now, you will need to adhere to the steps given below, to proceed with the installation &minus;</p>
+<ul class="list">
+<li>
+<p>Login to the system using the&nbsp;<strong>root</strong>&nbsp;user.</p>
+</li>
+<li>
+<p>Switch to the directory containing the RPMs.</p>
+</li>
+<li>
+<p>Install the MySQL database server by executing the following command. Remember to replace the filename in italics with the file name of your RPM.</p>
+</li>
+</ul>
+<pre class="result notranslate">[root@host]# rpm -i MySQL-5.0.9-0.i386.rpm
+</pre>
+<p>The above command takes care of installing the MySQL server, creating a user of MySQL, creating necessary configuration and starting the MySQL server automatically.</p>
+<p>You can find all the MySQL related binaries in /usr/bin and /usr/sbin. All the tables and databases will be created in the /var/lib/mysql directory.</p>
+<p>The following code box has an optional but recommended step to install the remaining RPMs in the same manner &minus;</p>
+<pre class="result notranslate">[root@host]# rpm -i MySQL-client-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-devel-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-shared-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-bench-5.0.9-0.i386.rpm
+</pre>
+<h2>Installing MySQL on Windows</h2>
+<p>The default installation on any version of Windows is now much easier than it used to be, as MySQL now comes neatly packaged with an installer. Simply download the installer package, unzip it anywhere and run the setup.exe file.</p>
+<p>The default installer setup.exe will walk you through the trivial process and by default will install everything under C:\mysql.</p>
+<p>Test the server by firing it up from the command prompt the first time. Go to the location of the&nbsp;<strong>mysqld server</strong>&nbsp;which is probably C:\mysql\bin, and type &minus;</p>
+<pre class="result notranslate">mysqld.exe --console
+</pre>
+<p><strong>NOTE</strong>&nbsp;&minus; If you are on NT, then you will have to use mysqld-nt.exe instead of mysqld.exe</p>
+<p>If all went well, you will see some messages about startup and&nbsp;<strong>InnoDB</strong>. If not, you may have a permissions issue. Make sure that the directory that holds your data is accessible to whatever user (probably MySQL) the database processes run under.</p>
+<p>MySQL will not add itself to the start menu, and there is no particularly nice GUI way to stop the server either. Therefore, if you tend to start the server by double clicking the mysqld executable, you should remember to halt the process by hand by using mysqladmin, Task List, Task Manager, or other Windows-specific means.</p>
+<h2>Verifying MySQL Installation</h2>
+<p>After MySQL, has been successfully installed, the base tables have been initialized and the server has been started: you can verify that everything is working as it should be via some simple tests.</p>
+<h3>Use the mysqladmin Utility to Obtain Server Status</h3>
+<p>Use&nbsp;<strong>mysqladmin</strong>&nbsp;binary to check the server version. This binary would be available in /usr/bin on linux and in C:\mysql\bin on windows.</p>
+<pre class="result notranslate">[root@host]# mysqladmin --version
+</pre>
+<p>It will produce the following result on Linux. It may vary depending on your installation &minus;</p>
+<pre class="result notranslate">mysqladmin  Ver 8.23 Distrib 5.0.9-0, for redhat-linux-gnu on i386
+</pre>
+<p>If you do not get such a message, then there may be some problem in your installation and you would need some help to fix it.</p>
+<h3>Execute simple SQL commands using the MySQL Client</h3>
+<p>You can connect to your MySQL server through the MySQL client and by using the&nbsp;<strong>mysql</strong>command. At this moment, you do not need to give any password as by default it will be set as blank.</p>
+<p>You can just use following command &minus;</p>
+<pre class="result notranslate">[root@host]# mysql
+</pre>
+<p>It should be rewarded with a mysql&gt; prompt. Now, you are connected to the MySQL server and you can execute all the SQL commands at the mysql&gt; prompt as follows &minus;</p>
+<pre class="result notranslate">mysql&gt; SHOW DATABASES;
++----------+
+| Database |
++----------+
+|   mysql  | 
+|   test   |  
++----------+
+2 rows in set (0.13 sec)
+</pre>
+<h2>Post-installation Steps</h2>
+<p>MySQL ships with a blank password for the root MySQL user. As soon as you have successfully installed the database and the client, you need to set a root password as given in the following code block &minus;</p>
+<pre class="result notranslate">[root@host]# mysqladmin -u root password "new_password";
+</pre>
+<p>Now to make a connection to your MySQL server, you would have to use the following command &minus;</p>
+<pre class="result notranslate">[root@host]# mysql -u root -p
+Enter password:*******
+</pre>
+<p>UNIX users will also want to put your MySQL directory in your PATH, so you won't have to keep typing out the full path everytime you want to use the command-line client.</p>
+<p>For bash, it would be something like &minus;</p>
+<pre class="result notranslate">export PATH = $PATH:/usr/bin:/usr/sbin
+</pre>
+<h2>Running MySQL at Boot Time</h2>
+<p>If you want to run the MySQL server at boot time, then make sure you have the following entry in the /etc/rc.local file.</p>
+<pre class="result notranslate">/etc/init.d/mysqld start
+</pre>
+<p>Also,you should have the mysqld binary in the /etc/init.d/ directory.</p>

@@ -1,0 +1,127 @@
+<p>You can start using Bootstrap 4 in your website by including it from&nbsp;<em>CDN</em>(Content Delivery Network) or downloading from&nbsp;<em>getbootstrap.com</em>.</p>
+<h2>Using CDN</h2>
+<p>The Bootstrap 4 can be used in the website by including it from&nbsp;<a href="https://en.wikipedia.org/wiki/Content_delivery_network" target="_blank" rel="nofollow">Content Delivery Network</a>.</p>
+<p>Use the below compiled Bootstrap's CDN of CSS and JS in your project.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">&lt;!-- Compiled and Minified Bootstrap CSS --&gt;</span>
+<span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+   <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"</span>
+   <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"</span> 
+   <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+
+<span class="com">&lt;!-- jQuery Library --&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-3.2.1.slim.min.js"</span> 
+   <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"</span> 
+   <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="com">&lt;!-- Popper --&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"</span> 
+   <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"</span> 
+   <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="com">&lt;!-- Compiled and Minified Bootstrap JavaScript --&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"</span> 
+   <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"</span> 
+   <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+<p>Include the CDN versions of&nbsp;<em>jQuery</em>&nbsp;and&nbsp;<em>Popper.js</em>&nbsp;(Bootstrap 4 uses jQuery and Popper.js to make use of JavaScript components such as modals, tooltips, popovers etc) before the&nbsp;<em>minified Bootstrap JavaScript</em>, if you are using the compiled version of JavaScript.</p>
+<p>Following are some components, which require jQuery &minus;</p>
+<ul class="list">
+<li>
+<p>Used for closable alerts</p>
+</li>
+<li>
+<p>Toggle the states by using buttons and checkboxes/radio buttons and collapse for toggling content</p>
+</li>
+<li>
+<p>Carousel for slides, controls, and indicators</p>
+</li>
+<li>
+<p>Dropdowns (uses the&nbsp;<em>Popper.js</em>&nbsp;for perfect positioning)</p>
+</li>
+<li>
+<p>Open and close the Modals</p>
+</li>
+<li>
+<p>For collapsing the Navbar</p>
+</li>
+<li>
+<p>Tooltips and popovers (uses the&nbsp;<em>Popper.js</em>&nbsp;for perfect positioning)</p>
+</li>
+</ul>
+<h2>Downloading Bootstrap 4</h2>
+<p>You can download the Bootstrap 4 from&nbsp;<a href="https://getbootstrap.com/docs/4.1/getting-started/download/" target="_blank" rel="nofollow">https://getbootstrap.com/docs/4.1/getting-started/download/</a>. When you click on this link, you will get to see a screen as shown below &minus;</p>
+<p><img src="https://www.tutorialspoint.com/bootstrap4/images/bootstrap4-download-screen.jpg" alt="Bootstrap 4 Download Screen" /></p>
+<p>Here you can see two buttons &minus;</p>
+<ul class="list">
+<li>
+<p><strong>Download</strong>&nbsp;&minus; Clicking this, you can download the precompiled and minified versions of Bootstrap's CSS and JavaScript. No documentation or original source code files are included.</p>
+</li>
+<li>
+<p><strong>Download Source</strong>&nbsp;&minus; Clicking this, you can get the latest Bootstrap SCSS, JavaScript source code and documentation files.</p>
+</li>
+</ul>
+<p>For better understanding and ease of use, we shall use precompiled version of Bootstrap throughout the tutorial. As the files are complied and minified, you don't have to bother every time including separate files for individual functionality.</p>
+<h2>File Structure</h2>
+<h3>Precompiled Bootstrap 4</h3>
+<p>Once the compiled version Bootstrap 4 is downloaded, extract the ZIP file, and you will see the following file/directory structure &minus;</p>
+<p><img src="https://www.tutorialspoint.com/bootstrap4/images/precompiled-bootstrap4.jpg" alt="Precompiled Bootstrap 4" /></p>
+<p>As you can see, there are compiled CSS and JS (bootstrap.*), as well as compiled and minified CSS and JS (bootstrap.min.*).</p>
+<h3>Bootstrap 4 Source Code</h3>
+<p>If you have downloaded the Bootstrap 4 source code, then the file structure would be as follows &minus;</p>
+<p><img src="https://www.tutorialspoint.com/bootstrap4/images/bootstrap4-source-code.jpg" alt="Bootstrap 4 Source Code" /></p>
+<ul class="list">
+<li>
+<p>The files under&nbsp;<em>js/</em>&nbsp;and&nbsp;<em>scss/</em>&nbsp;are the source code for Bootstrap CSS and JavaScript.</p>
+</li>
+<li>
+<p>The&nbsp;<em>dist/</em>&nbsp;folder include everything listed in the precompiled download section above.</p>
+</li>
+<li>
+<p>The&nbsp;<em>docs/examples/</em>, includes source code for Bootstrap documentation and examples of Bootstrap usage.</p>
+</li>
+</ul>
+<h2>Creating First Web Page with Bootstrap 4</h2>
+<p>The below example specifies simple web page of Bootstrap 4 &minus;</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/SpW35s" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="com">&lt;!-- Meta tags --&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"viewport"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"width=device-width, initial-scale = 1, shrink-to-fit = no"</span><span class="tag">&gt;</span>
+      
+      <span class="com">&lt;!-- Bootstrap CSS --&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+      <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"</span>
+         <span class="atn">integrity</span> <span class="pun">=</span><span class="atv">" sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"</span> 
+         <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+      
+      <span class="tag">&lt;title&gt;</span><span class="pln">Bootstrap 4 Example</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">Hello, world!!! Welcome to Tutorialspoint...</span><span class="tag">&lt;/h2&gt;</span>
+      
+      <span class="com">&lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-3.3.1.slim.min.js"</span>
+         <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"</span> 
+         <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"</span> 
+         <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"</span> 
+         <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"</span> 
+         <span class="atn">integrity</span> <span class="pun">=</span> <span class="atv">"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"</span> 
+         <span class="atn">crossorigin</span> <span class="pun">=</span> <span class="atv">"anonymous"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce the following result &minus;</p>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/bootstrap4/src/bootstrap4_creating_first_web_page.html" width="600px;" height="150px"></iframe></p>

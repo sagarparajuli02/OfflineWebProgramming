@@ -1,0 +1,136 @@
+<p>To cache something is to save the result of an expensive calculation, so that you don&rsquo;t perform it the next time you need it. Following is a pseudo code that explains how caching works &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">given a URL</span><span class="pun">,</span> <span class="kwd">try</span><span class="pln"> finding that page </span><span class="kwd">in</span><span class="pln"> the cache
+
+</span><span class="kwd">if</span><span class="pln"> the page </span><span class="kwd">is</span> <span class="kwd">in</span><span class="pln"> the cache</span><span class="pun">:</span>
+   <span class="kwd">return</span><span class="pln"> the cached page
+</span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+   generate the page
+   save the generated page </span><span class="kwd">in</span><span class="pln"> the cache </span><span class="pun">(</span><span class="kwd">for</span> <span class="kwd">next</span><span class="pln"> time</span><span class="pun">)</span>
+   <span class="kwd">return</span><span class="pln"> the generated page</span></pre>
+<p>Django comes with its own caching system that lets you save your dynamic pages, to avoid calculating them again when needed. The good point in Django Cache framework is that you can cache &minus;</p>
+<ul class="list">
+<li>The output of a specific view.</li>
+<li>A part of a template.</li>
+<li>Your entire site.</li>
+</ul>
+<p>To use cache in Django, first thing to do is to set up where the cache will stay. The cache framework offers different possibilities - cache can be saved in database, on file system or directly in memory. Setting is done in the&nbsp;<strong>settings.py</strong>&nbsp;file of your project.</p>
+<h2>Setting Up Cache in Database</h2>
+<p>Just add the following in the project settings.py file &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">CACHES </span><span class="pun">=</span> <span class="pun">{</span>
+   <span class="str">'default'</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="str">'BACKEND'</span><span class="pun">:</span> <span class="str">'django.core.cache.backends.db.DatabaseCache'</span><span class="pun">,</span>
+      <span class="str">'LOCATION'</span><span class="pun">:</span> <span class="str">'my_table_name'</span><span class="pun">,</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p>For this to work and to complete the setting, we need to create the cache table 'my_table_name'. For this, you need to do the following &minus;</p>
+<pre class="result notranslate">python manage.py createcachetable
+</pre>
+<h2>Setting Up Cache in File System</h2>
+<p>Just add the following in the project settings.py file &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">CACHES </span><span class="pun">=</span> <span class="pun">{</span>
+   <span class="str">'default'</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="str">'BACKEND'</span><span class="pun">:</span> <span class="str">'django.core.cache.backends.filebased.FileBasedCache'</span><span class="pun">,</span>
+      <span class="str">'LOCATION'</span><span class="pun">:</span> <span class="str">'/var/tmp/django_cache'</span><span class="pun">,</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<h2>Setting Up Cache in Memory</h2>
+<p>This is the most efficient way of caching, to use it you can use one of the following options depending on the Python binding library you choose for the memory cache &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">CACHES </span><span class="pun">=</span> <span class="pun">{</span>
+   <span class="str">'default'</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="str">'BACKEND'</span><span class="pun">:</span> <span class="str">'django.core.cache.backends.memcached.MemcachedCache'</span><span class="pun">,</span>
+      <span class="str">'LOCATION'</span><span class="pun">:</span> <span class="str">'127.0.0.1:11211'</span><span class="pun">,</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p><strong>Or</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">CACHES </span><span class="pun">=</span> <span class="pun">{</span>
+   <span class="str">'default'</span><span class="pun">:</span> <span class="pun">{</span>
+      <span class="str">'BACKEND'</span><span class="pun">:</span> <span class="str">'django.core.cache.backends.memcached.MemcachedCache'</span><span class="pun">,</span>
+      <span class="str">'LOCATION'</span><span class="pun">:</span> <span class="str">'unix:/tmp/memcached.sock'</span><span class="pun">,</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<h2>Caching the Entire Site</h2>
+<p>The simplest way of using cache in Django is to cache the entire site. This is done by editing the MIDDLEWARE_CLASSES option in the project settings.py. The following need to be added to the option &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">MIDDLEWARE_CLASSES </span><span class="pun">+=</span> <span class="pun">(</span>
+   <span class="str">'django.middleware.cache.UpdateCacheMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.middleware.common.CommonMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.middleware.cache.FetchFromCacheMiddleware'</span><span class="pun">,</span>
+<span class="pun">)</span></pre>
+<p>Note that the order is important here, Update should come before Fetch middleware.</p>
+<p>Then in the same file, you need to set &minus;</p>
+<pre class="result notranslate">CACHE_MIDDLEWARE_ALIAS &ndash; The cache alias to use for storage.
+CACHE_MIDDLEWARE_SECONDS &ndash; The number of seconds each page should be cached.
+</pre>
+<h2>Caching a View</h2>
+<p>If you don&rsquo;t want to cache the entire site you can cache a specific view. This is done by using the&nbsp;<strong>cache_page</strong>&nbsp;decorator that comes with Django. Let us say we want to cache the result of the&nbsp;<strong>viewArticles</strong>&nbsp;view &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="pln">decorators</span><span class="pun">.</span><span class="pln">cache </span><span class="kwd">import</span><span class="pln"> cache_page
+
+</span><span class="lit">@cache_page</span><span class="pun">(</span><span class="lit">60</span> <span class="pun">*</span> <span class="lit">15</span><span class="pun">)</span>
+
+<span class="kwd">def</span><span class="pln"> viewArticles</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">):</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">"Displaying articles of : %s/%s"</span><span class="pun">%(</span><span class="pln">year</span><span class="pun">,</span><span class="pln"> month</span><span class="pun">)</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>As you can see&nbsp;<strong>cache_page</strong>&nbsp;takes the number of seconds you want the view result to be cached as parameter. In our example above, the result will be cached for 15 minutes.</p>
+<p><strong>Note</strong>&nbsp;&minus; As we have seen before the above view was map to &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^articles/(?P&lt;month&gt;\d{2})/(?P&lt;year&gt;\d{4})/'</span><span class="pun">,</span> <span class="str">'viewArticles'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'articles'</span><span class="pun">),)</span></pre>
+<p>Since the URL is taking parameters, each different call will be cached separately. For example, request to /myapp/articles/02/2007 will be cached separately to /myapp/articles/03/2008.</p>
+<p>Caching a view can also directly be done in the url.py file. Then the following has the same result as the above. Just edit your myapp/url.py file and change the related mapped URL (above) to be &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^articles/(?P&lt;month&gt;\d{2})/(?P&lt;year&gt;\d{4})/'</span><span class="pun">,</span><span class="pln"> 
+   cache_page</span><span class="pun">(</span><span class="lit">60</span> <span class="pun">*</span> <span class="lit">15</span><span class="pun">)(</span><span class="str">'viewArticles'</span><span class="pun">),</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'articles'</span><span class="pun">),)</span></pre>
+<p>And, of course, it's no longer needed in myapp/views.py.</p>
+<h2>Caching a Template Fragment</h2>
+<p>You can also cache parts of a template, this is done by using the&nbsp;<strong>cache</strong>&nbsp;tag. Let's take our&nbsp;<strong>hello.html</strong>&nbsp;template &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span> <span class="kwd">extends</span> <span class="str">"main_template.html"</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block title </span><span class="pun">%}</span><span class="typ">My</span> <span class="typ">Hello</span> <span class="typ">Page</span><span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block content </span><span class="pun">%}</span>
+
+<span class="typ">Hello</span> <span class="typ">World</span><span class="pun">!!!&lt;</span><span class="pln">p</span><span class="pun">&gt;</span><span class="typ">Today</span> <span class="kwd">is</span> <span class="pun">{{</span><span class="pln">today</span><span class="pun">}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+<span class="typ">We</span><span class="pln"> are
+</span><span class="pun">{%</span> <span class="kwd">if</span><span class="pln"> today</span><span class="pun">.</span><span class="pln">day </span><span class="pun">==</span> <span class="lit">1</span> <span class="pun">%}</span><span class="pln">
+
+the first day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">elif</span><span class="pln"> today </span><span class="pun">==</span> <span class="lit">30</span> <span class="pun">%}</span><span class="pln">
+
+the </span><span class="kwd">last</span><span class="pln"> day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">else</span> <span class="pun">%}</span><span class="pln">
+
+I don</span><span class="str">'t know.
+{%endif%}
+
+&lt;p&gt;
+   {% for day in days_of_week %}
+   {{day}}
+&lt;/p&gt;
+
+{% endfor %}
+{% endblock %}</span></pre>
+<p>And to cache the content block, our template will become &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span><span class="pln"> load cache </span><span class="pun">%}</span>
+<span class="pun">{%</span> <span class="kwd">extends</span> <span class="str">"main_template.html"</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block title </span><span class="pun">%}</span><span class="typ">My</span> <span class="typ">Hello</span> <span class="typ">Page</span><span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> cache </span><span class="lit">500</span><span class="pln"> content </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block content </span><span class="pun">%}</span>
+
+<span class="typ">Hello</span> <span class="typ">World</span><span class="pun">!!!&lt;</span><span class="pln">p</span><span class="pun">&gt;</span><span class="typ">Today</span> <span class="kwd">is</span> <span class="pun">{{</span><span class="pln">today</span><span class="pun">}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+<span class="typ">We</span><span class="pln"> are
+</span><span class="pun">{%</span> <span class="kwd">if</span><span class="pln"> today</span><span class="pun">.</span><span class="pln">day </span><span class="pun">==</span> <span class="lit">1</span> <span class="pun">%}</span><span class="pln">
+
+the first day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">elif</span><span class="pln"> today </span><span class="pun">==</span> <span class="lit">30</span> <span class="pun">%}</span><span class="pln">
+
+the </span><span class="kwd">last</span><span class="pln"> day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">else</span> <span class="pun">%}</span><span class="pln">
+
+I don</span><span class="str">'t know.
+{%endif%}
+
+&lt;p&gt;
+   {% for day in days_of_week %}
+   {{day}}
+&lt;/p&gt;
+
+{% endfor %}
+{% endblock %}
+{% endcache %}</span></pre>
+<p>As you can see above, the cache tag will take 2 parameters &minus; the time you want the block to be cached (in seconds) and the name to be given to the cache fragment.</p>

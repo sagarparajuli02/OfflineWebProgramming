@@ -1,0 +1,41 @@
+<p>Firebase offers various ways of ordering data. In this chapter, we will show simple query examples. We will use the same data from our previous chapters.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_queries_data.jpg" alt="Firebase Queries Data" /></p>
+<h2>Order by Child</h2>
+<p>To order data by name, we can use the following code.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="pln">orderByChild</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">"child_added"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">().</span><span class="pln">name</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We will see names in the alphabetic order.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_queries_order_by_child.jpg" alt="Firebase Queries Order By Child" /></p>
+<h2>Order by Key</h2>
+<p>We can order data by key in a similar fashion.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="pln">orderByKey</span><span class="pun">().</span><span class="pln">on</span><span class="pun">(</span><span class="str">"child_added"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">.</span><span class="pln">key</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>The output will be as shown below.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_queries_order_by_key.jpg" alt="Firebase Queries Order By Key" /></p>
+<h2>Order by Value</h2>
+<p>We can also order data by value. Let us add the ratings collection in Firebase.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_queries_rating_data.jpg" alt="Firebase Queries Rating Data" /></p>
+<p>Now we can order data by value for each player.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> ratingRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"ratings/"</span><span class="pun">);</span><span class="pln">
+
+ratingRef</span><span class="pun">.</span><span class="pln">orderByValue</span><span class="pun">().</span><span class="pln">on</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   
+   data</span><span class="pun">.</span><span class="pln">forEach</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"The "</span> <span class="pun">+</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">key </span><span class="pun">+</span> <span class="str">" rating is "</span> <span class="pun">+</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">());</span>
+   <span class="pun">});</span>
+   
+<span class="pun">});</span></pre>
+<p>The output will be as shown below.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_queries_rating_log.jpg" alt="Firebase Queries Rating Log" /></p>

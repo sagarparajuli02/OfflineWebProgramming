@@ -1,0 +1,140 @@
+<p>Cascading Style Sheets (CSS) describe how documents are presented on screens, in print, or perhaps how they are pronounced. W3C has actively promoted the use of style sheets on the Web since the consortium was founded in 1994.</p>
+<p>Cascading Style Sheets (CSS) provide easy and effective alternatives to specify various attributes for the HTML tags. Using CSS, you can specify a number of style properties for a given HTML element. Each property has a name and a value, separated by a colon (:). Each property declaration is separated by a semi-colon (;).</p>
+<h2>Example</h2>
+<p>First let's consider an example of HTML document which makes use of &lt;font&gt; tag and associated attributes to specify text color and font size &minus;</p>
+<blockquote>
+<p><strong>Note</strong>&nbsp;&minus; The&nbsp;<em>font</em>&nbsp;tag deprecated and it is supposed to be removed in a future version of HTML. So they should not be used rather, it's suggested to use CSS styles to manipulate your fonts. But still for learning purpose, this chapter will work with an example using the font tag.</p>
+</blockquote>
+<p><a class="demo" href="http://tpcg.io/7YmU6P" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML CSS</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;&lt;font</span> <span class="atn">color</span> <span class="pun">=</span> <span class="atv">"green"</span> <span class="atn">size</span> <span class="pun">=</span> <span class="atv">"5"</span><span class="tag">&gt;</span><span class="pln">Hello, World!</span><span class="tag">&lt;/font&gt;&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>We can re-write above example with the help of Style Sheet as follows &minus;</p>
+<p><a class="demo" href="http://tpcg.io/7YmU6P" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML CSS</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">24px</span><span class="pun">;</span><span class="atv">"</span> <span class="tag">&gt;</span><span class="pln">Hello, World!</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/style_sheet_of_html.htm" width="600px" height="100px"></iframe></p>
+<p>You can use CSS in three ways in your HTML document &minus;</p>
+<ul class="list">
+<li>
+<p><strong>External Style Sheet</strong>&nbsp;&minus; Define style sheet rules in a separate .css file and then include that file in your HTML document using HTML &lt;link&gt; tag.</p>
+</li>
+<li>
+<p><strong>Internal Style Sheet</strong>&nbsp;&minus; Define style sheet rules in header section of the HTML document using &lt;style&gt; tag.</p>
+</li>
+<li>
+<p><strong>Inline Style Sheet</strong>&nbsp;&minus; Define style sheet rules directly along-with the HTML elements using&nbsp;<strong>style</strong>&nbsp;attribute.</p>
+</li>
+</ul>
+<p>Let's see all the three cases one by one with the help of suitable examples.</p>
+<h2>External Style Sheet</h2>
+<p>If you need to use your style sheet to various pages, then its always recommended to define a common style sheet in a separate file. A cascading style sheet file will have extension as&nbsp;<strong>.css</strong>&nbsp;and it will be included in HTML files using &lt;link&gt; tag.</p>
+<h3>Example</h3>
+<p>Consider we define a style sheet file&nbsp;<strong>style.css</strong>&nbsp;which has following rules &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">.</span><span class="pln">red </span><span class="pun">{</span><span class="pln">
+   color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span>
+<span class="pun">}</span>
+<span class="pun">.</span><span class="pln">thick </span><span class="pun">{</span><span class="pln">
+   font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">20px</span><span class="pun">;</span>
+<span class="pun">}</span>
+<span class="pun">.</span><span class="pln">green </span><span class="pun">{</span><span class="pln">
+   color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<p>Here we defined three CSS rules which will be applicable to three different classes defined for the HTML tags. I suggest you should not bother about how these rules are being defined because you will learn them while studying CSS. Now let's make use of the above external CSS file in our following HTML document &minus;</p>
+<p><a class="demo" href="http://tpcg.io/xpI3k5" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML External CSS</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/html/style.css"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"red"</span><span class="tag">&gt;</span><span class="pln">This is red</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"thick"</span><span class="tag">&gt;</span><span class="pln">This is thick</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"green"</span><span class="tag">&gt;</span><span class="pln">This is green</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"thick green"</span><span class="tag">&gt;</span><span class="pln">This is thick and green</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/external_style_sheet.htm" width="600px" height="200px"></iframe></p>
+<h2>Internal Style Sheet</h2>
+<p>If you want to apply Style Sheet rules to a single document only, then you can include those rules in header section of the HTML document using &lt;style&gt; tag.</p>
+<p>Rules defined in internal style sheet overrides the rules defined in an external CSS file.</p>
+<h3>Example</h3>
+<p>Let's re-write above example once again, but here we will write style sheet rules in the same HTML document using &lt;style&gt; tag &minus;</p>
+<p><a class="demo" href="http://tpcg.io/rv3Bl4" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span> 
+<span class="tag">&lt;html&gt;</span>
+ 
+   <span class="tag">&lt;head&gt;</span> 
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Internal CSS</span><span class="tag">&lt;/title&gt;</span> 
+      
+      <span class="tag">&lt;style</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span><span class="tag">&gt;</span> 
+         <span class="pun">.</span><span class="pln">red </span><span class="pun">{</span><span class="pln"> 
+            color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span> 
+         <span class="pun">}</span> 
+         <span class="pun">.</span><span class="pln">thick</span><span class="pun">{</span><span class="pln"> 
+            font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">20px</span><span class="pun">;</span> 
+         <span class="pun">}</span> 
+         <span class="pun">.</span><span class="pln">green </span><span class="pun">{</span><span class="pln"> 
+            color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span> 
+         <span class="pun">}</span> 
+      <span class="tag">&lt;/style&gt;</span> 
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span> 
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"red"</span><span class="tag">&gt;</span><span class="pln">This is red</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"thick"</span><span class="tag">&gt;</span><span class="pln">This is thick</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"green"</span><span class="tag">&gt;</span><span class="pln">This is green</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"thick green"</span><span class="tag">&gt;</span><span class="pln">This is thick and green</span><span class="tag">&lt;/p&gt;</span> 
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/internal_style_sheet.htm" width="600px" height="200px"></iframe></p>
+<h2>Inline Style Sheet</h2>
+<p>You can apply style sheet rules directly to any HTML element using&nbsp;<strong>style</strong>&nbsp;attribute of the relevant tag. This should be done only when you are interested to make a particular change in any HTML element only.</p>
+<p>Rules defined inline with the element overrides the rules defined in an external CSS file as well as the rules defined in &lt;style&gt; element.</p>
+<h3>Example</h3>
+<p>Let's re-write above example once again, but here we will write style sheet rules along with the HTML elements using&nbsp;<strong>style</strong>&nbsp;attribute of those elements.</p>
+<p><a class="demo" href="http://tpcg.io/AIIN7x" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span> 
+<span class="tag">&lt;html&gt;</span>
+ 
+   <span class="tag">&lt;head&gt;</span> 
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Inline CSS</span><span class="tag">&lt;/title&gt;</span> 
+   <span class="tag">&lt;/head&gt;</span>
+ 
+   <span class="tag">&lt;body&gt;</span> 
+      <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">This is red</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">This is thick</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">This is green</span><span class="tag">&lt;/p&gt;</span>  
+      <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">color</span><span class="pun">:</span><span class="pln">green</span><span class="pun">;</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">This is thick and green</span><span class="tag">&lt;/p&gt;</span> 
+   <span class="tag">&lt;/body&gt;</span>
+ 
+<span class="tag">&lt;/html&gt;</span> </pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/inline_style_sheet.htm" width="600px" height="200px"></iframe></p>

@@ -1,0 +1,127 @@
+<p>To insert data into a MySQL table, you would need to use the SQL&nbsp;<strong>INSERT INTO</strong>command. You can insert data into the MySQL table by using the mysql&gt; prompt or by using any script like PHP.</p>
+<h3>Syntax</h3>
+<p>Here is a generic SQL syntax of INSERT INTO command to insert data into the MySQL table &minus;</p>
+<pre class="result notranslate">INSERT INTO table_name ( field1, field2,...fieldN )
+   VALUES
+   ( value1, value2,...valueN );
+</pre>
+<p>To insert string data types, it is required to keep all the values into double or single quotes. For example&nbsp;<strong>"value"</strong>.</p>
+<h2>Inserting Data from the Command Prompt</h2>
+<p>To insert data from the command prompt, we will use SQL INSERT INTO command to insert data into MySQL table tutorials_tbl.</p>
+<h3>Example</h3>
+<p>The following example will create 3 records into&nbsp;<strong>tutorials_tbl</strong>&nbsp;table &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p password;</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> TUTORIALS</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> INSERT INTO tutorials_tbl 
+   </span><span class="pun">-&gt;(</span><span class="pln">tutorial_title</span><span class="pun">,</span><span class="pln"> tutorial_author</span><span class="pun">,</span><span class="pln"> submission_date</span><span class="pun">)</span>
+   <span class="pun">-&gt;</span><span class="pln">VALUES
+   </span><span class="pun">-&gt;(</span><span class="str">"Learn PHP"</span><span class="pun">,</span> <span class="str">"John Poul"</span><span class="pun">,</span><span class="pln"> NOW</span><span class="pun">());</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.01</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> INSERT INTO tutorials_tbl
+   </span><span class="pun">-&gt;(</span><span class="pln">tutorial_title</span><span class="pun">,</span><span class="pln"> tutorial_author</span><span class="pun">,</span><span class="pln"> submission_date</span><span class="pun">)</span>
+   <span class="pun">-&gt;</span><span class="pln">VALUES
+   </span><span class="pun">-&gt;(</span><span class="str">"Learn MySQL"</span><span class="pun">,</span> <span class="str">"Abdul S"</span><span class="pun">,</span><span class="pln"> NOW</span><span class="pun">());</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.01</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> INSERT INTO tutorials_tbl
+   </span><span class="pun">-&gt;(</span><span class="pln">tutorial_title</span><span class="pun">,</span><span class="pln"> tutorial_author</span><span class="pun">,</span><span class="pln"> submission_date</span><span class="pun">)</span>
+   <span class="pun">-&gt;</span><span class="pln">VALUES
+   </span><span class="pun">-&gt;(</span><span class="str">"JAVA Tutorial"</span><span class="pun">,</span> <span class="str">"Sanjay"</span><span class="pun">,</span> <span class="str">'2007-05-06'</span><span class="pun">);</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.01</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+mysql</span><span class="pun">&gt;</span></pre>
+<p><strong>NOTE</strong>&nbsp;&minus; Please note that all the arrow signs (-&gt;) are not a part of the SQL command. They are indicating a new line and they are created automatically by the MySQL prompt while pressing the enter key without giving a semicolon at the end of each line of the command.</p>
+<p>In the above example, we have not provided a tutorial_id because at the time of table creation, we had given AUTO_INCREMENT option for this field. So MySQL takes care of inserting these IDs automatically. Here,&nbsp;<strong>NOW()</strong>&nbsp;is a MySQL function, which returns the current date and time.</p>
+<h2>Inserting Data Using a PHP Script</h2>
+<p>You can use the same SQL INSERT INTO command into the PHP function&nbsp;<strong>mysql_query()</strong>&nbsp;to insert data into a MySQL table.</p>
+<h3>Example</h3>
+<p>This example will take three parameters from the user and will insert them into the MySQL table &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Add New Record in MySQL Database</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php
+         </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'add'</span><span class="pun">]))</span> <span class="pun">{</span><span class="pln">
+            $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+            $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+            $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+            $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+         
+            <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+               <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+            <span class="pun">}</span>
+
+            <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> get_magic_quotes_gpc</span><span class="pun">()</span> <span class="pun">)</span> <span class="pun">{</span><span class="pln">
+               $tutorial_title </span><span class="pun">=</span><span class="pln"> addslashes </span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'tutorial_title'</span><span class="pun">]);</span><span class="pln">
+               $tutorial_author </span><span class="pun">=</span><span class="pln"> addslashes </span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'tutorial_author'</span><span class="pun">]);</span>
+            <span class="pun">}</span> <span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+               $tutorial_title </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'tutorial_title'</span><span class="pun">];</span><span class="pln">
+               $tutorial_author </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'tutorial_author'</span><span class="pun">];</span>
+            <span class="pun">}</span><span class="pln">
+
+            $submission_date </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'submission_date'</span><span class="pun">];</span><span class="pln">
+   
+            $sql </span><span class="pun">=</span> <span class="str">"INSERT INTO tutorials_tbl "</span><span class="pun">.</span>
+               <span class="str">"(tutorial_title,tutorial_author, submission_date) "</span><span class="pun">.</span><span class="str">"VALUES "</span><span class="pun">.</span>
+               <span class="str">"('$tutorial_title','$tutorial_author','$submission_date')"</span><span class="pun">;</span><span class="pln">
+               mysql_select_db</span><span class="pun">(</span><span class="str">'TUTORIALS'</span><span class="pun">);</span><span class="pln">
+            $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+         
+            <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+               <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not enter data: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+            <span class="pun">}</span><span class="pln">
+         
+            echo </span><span class="str">"Entered data successfully\n"</span><span class="pun">;</span><span class="pln">
+            mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+         <span class="pun">}</span> <span class="kwd">else</span> <span class="pun">{</span>
+      <span class="pun">?&gt;</span><span class="pln">
+   
+      &lt;form method = "post" action = "</span><span class="pun">&lt;?</span><span class="pln">php $_PHP_SELF </span><span class="pun">?&gt;</span><span class="pln">"&gt;
+         </span><span class="tag">&lt;table</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"600"</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span> <span class="atn">cellspacing</span> <span class="pun">=</span> <span class="atv">"1"</span> <span class="atn">cellpadding</span> <span class="pun">=</span> <span class="atv">"2"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"250"</span><span class="tag">&gt;</span><span class="pln">Tutorial Title</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"tutorial_title"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"tutorial_title"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"250"</span><span class="tag">&gt;</span><span class="pln">Tutorial Author</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"tutorial_author"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"tutorial_author"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"250"</span><span class="tag">&gt;</span><span class="pln">Submission Date [   yyyy-mm-dd ]</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"submission_date"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"submission_date"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+      
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"250"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"250"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"add"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"add"</span>  <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Add Tutorial"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="pun">&lt;?</span><span class="pln">php
+      </span><span class="pun">}</span>
+   <span class="pun">?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>While doing a data insert, it is best to use the function&nbsp;<strong>get_magic_quotes_gpc()</strong>&nbsp;to check if the current configuration for magic quote is set or not. If this function returns false, then use the function&nbsp;<strong>addslashes()</strong>&nbsp;to add slashes before the quotes.</p>
+<p>You can put many validations around to check if the entered data is correct or not and can take the appropriate action.</p>

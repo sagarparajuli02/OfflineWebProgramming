@@ -1,0 +1,308 @@
+<p>HTML offers web authors three ways for specifying lists of information. All lists must contain one or more list elements. Lists may contain &minus;</p>
+<ul class="list">
+<li>
+<p><strong>&lt;ul&gt;</strong>&nbsp;&minus; An unordered list. This will list items using plain bullets.</p>
+</li>
+<li>
+<p><strong>&lt;ol&gt;</strong>&nbsp;&minus; An ordered list. This will use different schemes of numbers to list your items.</p>
+</li>
+<li>
+<p><strong>&lt;dl&gt;</strong>&nbsp;&minus; A definition list. This arranges your items in the same way as they are arranged in a dictionary.</p>
+</li>
+</ul>
+<h2>HTML Unordered Lists</h2>
+<p>An unordered list is a collection of related items that have no special order or sequence. This list is created by using HTML&nbsp;<strong>&lt;ul&gt;</strong>&nbsp;tag. Each item in the list is marked with a bullet.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/QvdUjX" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Unordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ul&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/unordered_lists.htm" width="600px" height="120px"></iframe></p>
+<h2>The type Attribute</h2>
+<p>You can use&nbsp;<strong>type</strong>&nbsp;attribute for &lt;ul&gt; tag to specify the type of bullet you like. By default, it is a disc. Following are the possible options &minus;</p>
+<pre class="result notranslate">&lt;ul type = "square"&gt;
+&lt;ul type = "disc"&gt;
+&lt;ul type = "circle"&gt;
+</pre>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ul type = "square"&gt;</p>
+<p><a class="demo" href="http://tpcg.io/AGkGec" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Unordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ul</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"square"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/type_attribute.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ul type = "disc"&gt; &minus;</p>
+<p><a class="demo" href="http://tpcg.io/CxW0Mz" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Unordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ul</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"disc"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/disc_type.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ul type = "circle"&gt; &minus;</p>
+<p><a class="demo" href="http://tpcg.io/iUFmCG" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Unordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ul</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"circle"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/circle_type.htm" width="600px" height="120px"></iframe></p>
+<h2>HTML Ordered Lists</h2>
+<p>If you are required to put your items in a numbered list instead of bulleted, then HTML ordered list will be used. This list is created by using&nbsp;<strong>&lt;ol&gt;</strong>&nbsp;tag. The numbering starts at one and is incremented by one for each successive ordered list element tagged with &lt;li&gt;.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/7bxlJW" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/ordered_lists.htm" width="600px" height="120px"></iframe></p>
+<h2>The type Attribute</h2>
+<p>You can use&nbsp;<strong>type</strong>&nbsp;attribute for &lt;ol&gt; tag to specify the type of numbering you like. By default, it is a number. Following are the possible options &minus;</p>
+<pre class="result notranslate">&lt;ol type = "1"&gt; - Default-Case Numerals.
+&lt;ol type = "I"&gt; - Upper-Case Numerals.
+&lt;ol type = "i"&gt; - Lower-Case Numerals.
+&lt;ol type = "A"&gt; - Upper-Case Letters.
+&lt;ol type = "a"&gt; - Lower-Case Letters.
+</pre>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "1"&gt;</p>
+<p><a class="demo" href="http://tpcg.io/1IgyrU" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"1"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/default_case_numerals.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "I"&gt;</p>
+<p><a class="demo" href="http://tpcg.io/LlRUhH" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"I"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/upper_case_numerals.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "i"&gt;</p>
+<p><a class="demo" href="http://tpcg.io/VJqDVU" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"i"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/lower_case_numerals.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "A" &gt;</p>
+<p><a class="demo" href="http://tpcg.io/NN69sS" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"A"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/upper_case_letters.htm" width="600px" height="120px"></iframe></p>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "a"&gt;</p>
+<p><a class="demo" href="http://tpcg.io/kCZI20" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"a"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/lower_case_letters.htm" width="600px" height="120px"></iframe></p>
+<h2>The start Attribute</h2>
+<p>You can use&nbsp;<strong>start</strong>&nbsp;attribute for &lt;ol&gt; tag to specify the starting point of numbering you need. Following are the possible options &minus;</p>
+<pre class="result notranslate">&lt;ol type = "1" start = "4"&gt;    - Numerals starts with 4.
+&lt;ol type = "I" start = "4"&gt;    - Numerals starts with IV.
+&lt;ol type = "i" start = "4"&gt;    - Numerals starts with iv.
+&lt;ol type = "a" start = "4"&gt;    - Letters starts with d.
+&lt;ol type = "A" start = "4"&gt;    - Letters starts with D.
+</pre>
+<h3>Example</h3>
+<p>Following is an example where we used &lt;ol type = "i" start = "4" &gt;</p>
+<p><a class="demo" href="http://tpcg.io/89i1AU" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Ordered List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;ol</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"i"</span> <span class="atn">start</span> <span class="pun">=</span> <span class="atv">"4"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Beetroot</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Ginger</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Potato</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;li&gt;</span><span class="pln">Radish</span><span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ol&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/starts_with_four.htm" width="600px" height="120px"></iframe></p>
+<h2>HTML Definition Lists</h2>
+<p>HTML and XHTML supports a list style which is called&nbsp;<strong>definition lists</strong>&nbsp;where entries are listed like in a dictionary or encyclopedia. The definition list is the ideal way to present a glossary, list of terms, or other name/value list.</p>
+<p>Definition List makes use of following three tags.</p>
+<ul class="list">
+<li>&lt;dl&gt; &minus; Defines the start of the list</li>
+<li>&lt;dt&gt; &minus; A term</li>
+<li>&lt;dd&gt; &minus; Term definition</li>
+<li>&lt;/dl&gt; &minus; Defines the end of the list</li>
+</ul>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/yw2HxB" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML Definition List</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;dl&gt;</span>
+         <span class="tag">&lt;dt&gt;&lt;b&gt;</span><span class="pln">HTML</span><span class="tag">&lt;/b&gt;&lt;/dt&gt;</span>
+         <span class="tag">&lt;dd&gt;</span><span class="pln">This stands for Hyper Text Markup Language</span><span class="tag">&lt;/dd&gt;</span>
+         <span class="tag">&lt;dt&gt;&lt;b&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/b&gt;&lt;/dt&gt;</span>
+         <span class="tag">&lt;dd&gt;</span><span class="pln">This stands for Hyper Text Transfer Protocol</span><span class="tag">&lt;/dd&gt;</span>
+      <span class="tag">&lt;/dl&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/definition_list.htm" width="600px" height="120px"></iframe></p>

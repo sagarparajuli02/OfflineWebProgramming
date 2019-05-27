@@ -1,0 +1,337 @@
+<p>jQuery provides a trivially simple interface for doing various kind of amazing effects. jQuery methods allow us to quickly apply commonly used effects with a minimum configuration. This tutorial covers all the important jQuery methods to create visual effects.</p>
+<h2>Showing and Hiding Elements</h2>
+<p>The commands for showing and hiding elements are pretty much what we would expect &minus;&nbsp;<strong>show()</strong>&nbsp;to show the elements in a wrapped set and&nbsp;<strong>hide()</strong>&nbsp;to hide them.</p>
+<h3>Syntax</h3>
+<p>Here is the simple syntax for&nbsp;<strong>show()</strong>&nbsp;method &minus;</p>
+<pre class="result notranslate"><strong>[selector].</strong>show( speed, [callback] );
+</pre>
+<p>Here is the description of all the parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>speed</strong>&nbsp;&minus; A string representing one of the three predefined speeds ("slow", "normal", or "fast") or the number of milliseconds to run the animation (e.g. 1000).</p>
+</li>
+<li>
+<p><strong>callback</strong>&nbsp;&minus; This optional parameter represents a function to be executed whenever the animation completes; executes once for each element animated against.</p>
+</li>
+</ul>
+<p>Following is the simple syntax for&nbsp;<strong>hide()</strong>&nbsp;method &minus;</p>
+<pre class="result notranslate"><strong>[selector].</strong>hide( speed, [callback] );
+</pre>
+<p>Here is the description of all the parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>speed</strong>&nbsp;&minus; A string representing one of the three predefined speeds ("slow", "normal", or "fast") or the number of milliseconds to run the animation (e.g. 1000).</p>
+</li>
+<li>
+<p><strong>callback</strong>&nbsp;&minus; This optional parameter represents a function to be executed whenever the animation completes; executes once for each element animated against.</p>
+</li>
+</ul>
+<h3>Example</h3>
+<p>Consider the following HTML file with a small JQuery coding &minus;</p>
+<p><a class="demo" href="http://tpcg.io/4zVDhs" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+
+            $</span><span class="pun">(</span><span class="str">"#show"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span><span class="str">".mydiv"</span><span class="pun">).</span><span class="pln">show</span><span class="pun">(</span> <span class="lit">1000</span> <span class="pun">);</span>
+            <span class="pun">});</span><span class="pln">
+
+            $</span><span class="pun">(</span><span class="str">"#hide"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $</span><span class="pun">(</span><span class="str">".mydiv"</span><span class="pun">).</span><span class="pln">hide</span><span class="pun">(</span> <span class="lit">1000</span> <span class="pun">);</span>
+            <span class="pun">});</span>
+				
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">mydiv</span><span class="pun">{</span><span class="pln"> 
+            margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> 
+            border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; </span><span class="pln">
+            width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln"> 
+            height</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"mydiv"</span><span class="tag">&gt;</span><span class="pln">
+         This is a SQUARE
+      </span><span class="tag">&lt;/div&gt;</span>
+
+      <span class="tag">&lt;input</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"hide"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Hide"</span> <span class="tag">/&gt;</span>   
+      <span class="tag">&lt;input</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"show"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Show"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/showing-and-hiding-elements.htm" width="300" height="150"></iframe></p>
+<h2>Toggling the Elements</h2>
+<p>jQuery provides methods to toggle the display state of elements between revealed or hidden. If the element is initially displayed, it will be hidden; if hidden, it will be shown.</p>
+<h3>Syntax</h3>
+<p>Here is the simple syntax for one of the&nbsp;<strong>toggle()</strong>&nbsp;methods &minus;</p>
+<pre class="result notranslate"><strong>[selector].</strong>.toggle([speed][, callback]);
+</pre>
+<p>Here is the description of all the parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>speed</strong>&nbsp;&minus; A string representing one of the three predefined speeds ("slow", "normal", or "fast") or the number of milliseconds to run the animation (e.g. 1000).</p>
+</li>
+<li>
+<p><strong>callback</strong>&nbsp;&minus; This optional parameter represents a function to be executed whenever the animation completes; executes once for each element animated against.</p>
+</li>
+</ul>
+<h3>Example</h3>
+<p>We can animate any element, such as a simple &lt;div&gt; containing an image &minus;</p>
+<p><a class="demo" href="http://tpcg.io/gF7f2d" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">".clickme"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">){</span><span class="pln">
+               $</span><span class="pun">(</span><span class="str">".target"</span><span class="pun">).</span><span class="pln">toggle</span><span class="pun">(</span><span class="str">'slow'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+                  $</span><span class="pun">(</span><span class="str">".log"</span><span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="str">'Transition Complete'</span><span class="pun">);</span>
+               <span class="pun">});</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">clickme</span><span class="pun">{</span><span class="pln"> 
+            margin</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span><span class="lit">12px</span><span class="pun">;</span><span class="pln"> 
+            border</span><span class="pun">:</span><span class="lit">2px</span><span class="pln"> solid </span><span class="com">#666; </span><span class="pln">
+            width</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="pln"> 
+            height</span><span class="pun">:</span><span class="lit">50px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"content"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"clickme"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/div&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"target"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"./images/jquery.jpg"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"jQuery"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"log"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/toggling-elements.htm" width="300" height="150"></iframe></p>
+<h2>JQuery Effect Methods</h2>
+<p>You have seen basic concept of jQuery Effects. Following table lists down all the important methods to create different kind of effects &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-animate.htm">animate( params, [duration, easing, callback] )</a>
+<p>A function for making custom animations.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-fadein.htm">fadeIn( speed, [callback] )</a>
+<p>Fade in all matched elements by adjusting their opacity and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-fadeout.htm">fadeOut( speed, [callback] )</a>
+<p>Fade out all matched elements by adjusting their opacity to 0, then setting display to "none" and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-fadeto.htm">fadeTo( speed, opacity, callback )</a>
+<p>Fade the opacity of all matched elements to a specified opacity and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-hide.htm">hide( )</a>
+<p>Hides each of the set of matched elements if they are shown.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-hide-speed.htm">hide( speed, [callback] )</a>
+<p>Hide all matched elements using a graceful animation and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-show.htm">show( )</a>
+<p>Displays each of the set of matched elements if they are hidden.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-show-speed.htm">show( speed, [callback] )</a>
+<p>Show all matched elements using a graceful animation and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-slidedown.htm">slideDown( speed, [callback] )</a>
+<p>Reveal all matched elements by adjusting their height and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-slidetoggle.htm">slideToggle( speed, [callback] )</a>
+<p>Toggle the visibility of all matched elements by adjusting their height and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-slideup.htm">slideUp( speed, [callback] )</a>
+<p>Hide all matched elements by adjusting their height and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-stop.htm">stop( [clearQueue, gotoEnd ])</a>
+<p>Stops all the currently running animations on all the specified elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-toggle.htm">toggle( )</a>
+<p>Toggle displaying each of the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-toggle-speed.htm">toggle( speed, [callback] )</a>
+<p>Toggle displaying each of the set of matched elements using a graceful animation and firing an optional callback after completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-toggle-switch.htm">toggle( switch )</a>
+<p>Toggle displaying each of the set of matched elements based upon the switch (true shows all elements, false hides all elements).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-jquery-fx.htm">jQuery.fx.off</a>
+<p>Globally disable all animations.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>UI Library Based Effects</h2>
+<p>To use these effects you can either download latest jQuery UI Library&nbsp;<strong>jquery-ui-1.11.4.custom.zip</strong>&nbsp;from&nbsp;<a href="https://jqueryui.com/download" target="_blank" rel="nofollow">jQuery UI Library</a>&nbsp;or use Google CDN to use it in the similar way as we have done for jQuery.</p>
+<p>We have used Google CDN for jQuery UI using following code snippet in the HTML page so we can use jQuery UI &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;head&gt;</span>
+   <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span></pre>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-blind.htm">Blind</a>
+<p>Blinds the element away or shows it by blinding it in.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-bounce.htm">Bounce</a>
+<p>Bounces the element vertically or horizontally n-times.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-clip.htm">Clip</a>
+<p>Clips the element on or off, vertically or horizontally.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-drop.htm">Drop</a>
+<p>Drops the element away or shows it by dropping it in.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-explode.htm">Explode</a>
+<p>Explodes the element into multiple pieces.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-fold.htm">Fold</a>
+<p>Folds the element like a piece of paper.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-highlight.htm">Highlight</a>
+<p>Highlights the background with a defined color.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-puff.htm">Puff</a>
+<p>Scale and fade out animations create the puff effect.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-pulsate.htm">Pulsate</a>
+<p>Pulsates the opacity of the element multiple times.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-scale.htm">Scale</a>
+<p>Shrink or grow an element by a percentage factor.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-shake.htm">Shake</a>
+<p>Shakes the element vertically or horizontally n-times.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-size.htm">Size</a>
+<p>Resize an element to a specified width and height.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-slide.htm">Slide</a>
+<p>Slides the element out of the viewport.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="https://www.tutorialspoint.com/jquery/effect-transfer.htm">Transfer</a>
+<p>Transfers the outline of an element to another.</p>
+</td>
+</tr>
+</tbody>
+</table>

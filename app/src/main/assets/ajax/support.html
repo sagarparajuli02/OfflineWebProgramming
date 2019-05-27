@@ -1,0 +1,70 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>All the available browsers cannot support AJAX. Here is a list of major browsers that support AJAX.</p>
+<ul class="list">
+<li>Mozilla Firefox 1.0 and above.</li>
+<li>Netscape version 7.1 and above.</li>
+<li>Apple Safari 1.2 and above.</li>
+<li>Microsoft Internet Explorer 5 and above.</li>
+<li>Konqueror.</li>
+<li>Opera 7.6 and above.</li>
+</ul>
+<p>When you write your next application, do consider the browsers that do not support AJAX.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; When we say that a browser does not support AJAX, it simply means that the browser does not support the creation of Javascript object &ndash; XMLHttpRequest object.</p>
+<h2>Writing Browser Specific Code</h2>
+<p>The simplest way to make your source code compatible with a browser is to use&nbsp;<em>try...catch</em>&nbsp;blocks in your JavaScript.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span> 
+         <span class="com">//Browser Support Code</span>
+         <span class="kwd">function</span><span class="pln"> ajaxFunction</span><span class="pun">()</span> <span class="pun">{</span>
+            <span class="kwd">var</span><span class="pln"> ajaxRequest</span><span class="pun">;</span>  <span class="com">// The variable that makes Ajax possible!</span>
+
+            <span class="kwd">try</span> <span class="pun">{</span>
+               <span class="com">// Opera 8.0+, Firefox, Safari </span><span class="pln">
+               ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">XMLHttpRequest</span><span class="pun">();</span>
+            <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+
+               <span class="com">// Internet Explorer Browsers</span>
+               <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                  ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Msxml2.XMLHTTP"</span><span class="pun">);</span>
+               <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+                  
+                  <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                     ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Microsoft.XMLHTTP"</span><span class="pun">);</span>
+                  <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+
+                     <span class="com">// Something went wrong</span><span class="pln">
+                     alert</span><span class="pun">(</span><span class="str">"Your browser broke!"</span><span class="pun">);</span>
+                     <span class="kwd">return</span> <span class="kwd">false</span><span class="pun">;</span>
+                  <span class="pun">}</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;form</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">'myForm'</span><span class="tag">&gt;</span><span class="pln">
+         Name: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'text'</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">'username'</span> <span class="tag">/&gt;</span> <span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+         Time: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'text'</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">'time'</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above JavaScript code, we try three times to make our XMLHttpRequest object. Our first attempt &minus;</p>
+<ul class="list">
+<li>ajaxRequest = new XMLHttpRequest();</li>
+</ul>
+<p>It is for Opera 8.0+, Firefox, and Safari browsers. If it fails, we try two more times to make the correct object for an Internet Explorer browser with &minus;</p>
+<ul class="list">
+<li>ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");</li>
+<li>ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");</li>
+</ul>
+<p>If it doesn't work, then we can use a very outdated browser that doesn't support XMLHttpRequest, which also means it doesn't support AJAX.</p>
+<p>Most likely though, our variable ajaxRequest will now be set to whatever&nbsp;<em>XMLHttpRequest</em>standard the browser uses and we can start sending data to the server. The step-wise AJAX workflow is explained in the next chapter.</p>

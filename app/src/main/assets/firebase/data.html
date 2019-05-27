@@ -1,0 +1,13 @@
+<p>The Firebase data is representing JSON objects. If you open your app from Firebase dashboard, you can add data manually by clicking on the&nbsp;<strong>+</strong>&nbsp;sign.</p>
+<p>We will create a simple data structure. You can check the image below.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-data-simple.jpg" alt="Firebase Data Simple" /></p>
+<p>In the previous chapter, we connected Firebase to our app. Now, we can log Firebase to the console.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">firebase</span><span class="pun">)</span></pre>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-data-log.jpg" alt="Firebase Data Log" /></p>
+<p>We can create a reference to our player&rsquo;s collection.</p>
+<pre class="prettyprint notranslate prettyprinted">  
+<span class="kwd">var</span> <span class="kwd">ref</span> <span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">'players'</span><span class="pun">);</span><span class="pln">
+
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="kwd">ref</span><span class="pun">);</span></pre>
+<p>We can see the following result in the console.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-data-players-log.jpg" alt="Firebase Data Players Log" /></p>

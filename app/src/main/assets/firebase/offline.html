@@ -1,0 +1,16 @@
+<p>In this chapter, we will show you how to handle the Firebase connection state.</p>
+<h2>Check Connection</h2>
+<p>We can check for connection value using the following code.</p>
+<h3>index.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> connectedRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">".info/connected"</span><span class="pun">);</span><span class="pln">
+
+connectedRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">snap</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">if</span> <span class="pun">(</span><span class="pln">snap</span><span class="pun">.</span><span class="pln">val</span><span class="pun">()</span> <span class="pun">===</span> <span class="kwd">true</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="str">"connected"</span><span class="pun">);</span>
+   <span class="pun">}</span> <span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="str">"not connected"</span><span class="pun">);</span>
+   <span class="pun">}</span>
+<span class="pun">});</span></pre>
+<p>When we run the app, the pop up will inform us about the connection.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_offline_popup.jpg" alt="Firebase Offline Popup" /></p>
+<p>By using the above given function, you can keep a track of the connection state and update your app accordingly.</p>

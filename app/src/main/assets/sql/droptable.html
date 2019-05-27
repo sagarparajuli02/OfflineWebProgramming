@@ -1,0 +1,48 @@
+<p>It is very easy to drop an existing MySQL table, but you need to be very careful while deleting any existing table because the data lost will not be recovered after deleting a table.</p>
+<h3>Syntax</h3>
+<p>Here is a generic SQL syntax to drop a MySQL table &minus;</p>
+<pre class="result notranslate">DROP TABLE table_name ;
+</pre>
+<h2>Dropping Tables from the Command Prompt</h2>
+<p>To drop tables from the command prompt, we need to execute the DROP TABLE SQL command at the mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>The following program is an example which deletes the&nbsp;<strong>tutorials_tbl</strong>&nbsp;&minus;</p>
+<pre class="result notranslate">root@host# mysql -u root -p
+Enter password:*******
+mysql&gt; use TUTORIALS;
+Database changed
+mysql&gt; DROP TABLE tutorials_tbl
+Query OK, 0 rows affected (0.8 sec)
+mysql&gt;
+</pre>
+<h2>Dropping Tables Using PHP Script</h2>
+<p>To drop an existing table in any database, you would need to use the PHP function&nbsp;<strong>mysql_query()</strong>. You will pass its second argument with a proper SQL command to drop a table.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Creating MySQL Tables</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php
+         $dbhost </span><span class="pun">=</span> <span class="str">'localhost:3036'</span><span class="pun">;</span><span class="pln">
+         $dbuser </span><span class="pun">=</span> <span class="str">'root'</span><span class="pun">;</span><span class="pln">
+         $dbpass </span><span class="pun">=</span> <span class="str">'rootpassword'</span><span class="pun">;</span><span class="pln">
+         $conn </span><span class="pun">=</span><span class="pln"> mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $conn </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not connect: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">'Connected successfully&lt;br /&gt;'</span><span class="pun">;</span><span class="pln">
+         $sql </span><span class="pun">=</span> <span class="str">"DROP TABLE tutorials_tbl"</span><span class="pun">;</span><span class="pln">
+         mysql_select_db</span><span class="pun">(</span> <span class="str">'TUTORIALS'</span> <span class="pun">);</span><span class="pln">
+         $retval </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln"> $sql</span><span class="pun">,</span><span class="pln"> $conn </span><span class="pun">);</span>
+         
+         <span class="kwd">if</span><span class="pun">(!</span><span class="pln"> $retval </span><span class="pun">)</span> <span class="pun">{</span>
+            <span class="kwd">die</span><span class="pun">(</span><span class="str">'Could not delete table: '</span> <span class="pun">.</span><span class="pln"> mysql_error</span><span class="pun">());</span>
+         <span class="pun">}</span><span class="pln">
+         echo </span><span class="str">"Table deleted successfully\n"</span><span class="pun">;</span><span class="pln">
+         mysql_close</span><span class="pun">(</span><span class="pln">$conn</span><span class="pun">);</span>
+      <span class="pun">?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>

@@ -1,0 +1,35 @@
+<p>In this chapter, we will show you how to use Firebase Email/Password authentication.</p>
+<h2>Create user</h2>
+<p>To authenticate a user, we can use the&nbsp;<strong>createUserWithEmailAndPassword(email, password)</strong>&nbsp;method.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> email </span><span class="pun">=</span> <span class="str">"myemail@email.com"</span><span class="pun">;</span>
+<span class="kwd">var</span><span class="pln"> password </span><span class="pun">=</span> <span class="str">"mypassword"</span><span class="pun">;</span><span class="pln">
+
+firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">().</span><span class="pln">createUserWithEmailAndPassword</span><span class="pun">(</span><span class="pln">email</span><span class="pun">,</span><span class="pln"> password</span><span class="pun">).</span><span class="kwd">catch</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">message</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We can check the Firebase dashboard and see that the user is created.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_email_authentication_user.jpg" alt="Firebase Email Authentication User" /></p>
+<h2>Sign In</h2>
+<p>The Sign-in process is almost the same. We are using the&nbsp;<strong>signInWithEmailAndPassword(email, password)</strong>&nbsp;to sign in the user.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> email </span><span class="pun">=</span> <span class="str">"myemail@email.com"</span><span class="pun">;</span>
+<span class="kwd">var</span><span class="pln"> password </span><span class="pun">=</span> <span class="str">"mypassword"</span><span class="pun">;</span><span class="pln">
+
+firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">().</span><span class="pln">signInWithEmailAndPassword</span><span class="pun">(</span><span class="pln">email</span><span class="pun">,</span><span class="pln"> password</span><span class="pun">).</span><span class="kwd">catch</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">message</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<h2>Signout</h2>
+<p>And finally we can logout the user with the&nbsp;<strong>signOut()</strong>&nbsp;method.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">firebase</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">().</span><span class="pln">signOut</span><span class="pun">().</span><span class="kwd">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Logged out!"</span><span class="pun">)</span>
+<span class="pun">},</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">code</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">error</span><span class="pun">.</span><span class="pln">message</span><span class="pun">);</span>
+<span class="pun">});</span></pre>

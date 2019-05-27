@@ -1,0 +1,65 @@
+<p>There are two categories of ASP.NET deployment:</p>
+<ul class="list">
+<li>
+<p><strong>Local deployment</strong>&nbsp;: In this case, the entire application is contained within a virtual directory and all the contents and assemblies are contained within it and available to the application.</p>
+</li>
+<li>
+<p><strong>Global deployment</strong>&nbsp;: In this case, assemblies are available to every application running on the server.</p>
+</li>
+</ul>
+<p>There are different techniques used for deployment, however, we will discuss the following most common and easiest ways of deployment:</p>
+<ul class="list">
+<li>XCOPY deployment</li>
+<li>Copying a Website</li>
+<li>Creating a set up project</li>
+</ul>
+<h2>XCOPY Deployment</h2>
+<p>XCOPY deployment means making recursive copies of all the files to the target folder on the target machine. You can use any of the commonly used techniques:</p>
+<ul class="list">
+<li>FTP transfer</li>
+<li>Using Server management tools that provide replication on a remote site</li>
+<li>MSI installer application</li>
+</ul>
+<p>XCOPY deployment simply copies the application file to the production server and sets a virtual directory there. You need to set a virtual directory using the Internet Information Manager Microsoft Management Console (MMC snap-in).</p>
+<h2>Copying a Website</h2>
+<p>The Copy Web Site option is available in Visual Studio. It is available from the Website -&gt; Copy Web Site menu option. This menu item allows copying the current web site to another local or remote location. It is a sort of integrated FTP tool.</p>
+<p>Using this option, you connect to the target destination, select the desired copy mode:</p>
+<ul class="list">
+<li>Overwrite</li>
+<li>Source to Target Files</li>
+<li>Sync UP Source And Target Projects</li>
+</ul>
+<p>Then proceed with copying the files physically. Unlike the XCOPY deployment, this process of deployment is done from Visual Studio environment. However, there are following problems with both the above deployment methods:</p>
+<ul class="list">
+<li>You pass on your source code.</li>
+<li>There is no pre-compilation and related error checking for the files.</li>
+<li>The initial page load will be slow.</li>
+</ul>
+<h2>Creating a Setup Project</h2>
+<p>In this method, you use Windows Installer and package your web applications so it is ready to deploy on the production server. Visual Studio allows you to build deployment packages. Let us test this on one of our existing project, say the data binding project.</p>
+<p>Open the project and take the following steps:</p>
+<p><strong>Step (1)</strong>&nbsp;: Select File -&gt; Add -&gt; New Project with the website root directory highlighted in the Solution Explorer.</p>
+<p><strong>Step (2)</strong>&nbsp;: Select Setup and Deployment, under Other Project Types. Select Setup Wizard.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/select_setup_wizard.jpg" alt="Select Setup Wizard" /></p>
+<p><strong>Step (3)</strong>&nbsp;: Choosing the default location ensures that the set up project will be located in its own folder under the root directory of the site. Click on okay to get the first splash screen of the wizard.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard.jpg" alt="splash screen Wizard" /></p>
+<p><strong>Step (4)</strong>&nbsp;: Choose a project type. Select 'Create a setup for a web application'.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard2.jpg" alt="splash screen Wizard2" /></p>
+<p><strong>Step (5)</strong>&nbsp;: Next, the third screen asks to choose project outputs from all the projects in the solution. Check the check box next to 'Content Files from...'</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard3.jpg" alt="splash screen Wizard3" /></p>
+<p><strong>Step (6)</strong>&nbsp;: The fourth screen allows including other files like ReadMe. However, in our case there is no such file. Click on finish.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard4.jpg" alt="splash screen Wizard4" /></p>
+<p><strong>Step (7)</strong>&nbsp;: The final screen displays a summary of settings for the set up project.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard5.jpg" alt="splash screen Wizard5" /></p>
+<p><strong>Step (8)</strong>&nbsp;: The Set up project is added to the Solution Explorer and the main design window shows a file system editor.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard6.jpg" alt="splash screen Wizard6" /></p>
+<p><strong>Step (9)</strong>&nbsp;: Next step is to build the setup project. Right click on the project name in the Solution Explorer and select Build.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard7.jpg" alt="splash screen Wizard7" /></p>
+<p><strong>Step (10)</strong>&nbsp;: When build is completed, you get the following message in the Output window:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/splash_screen_wizard8.jpg" alt="splash screen Wizard8" /></p>
+<p>Two files are created by the build process:</p>
+<ul class="list">
+<li>Setup.exe</li>
+<li>Setup-databinding.msi</li>
+</ul>
+<p>You need to copy these files to the server. Double-click the setup file to install the content of the .msi file on the local machine.</p>

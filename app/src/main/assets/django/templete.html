@@ -1,0 +1,168 @@
+<p>Django makes it possible to separate python and HTML, the python goes in views and HTML goes in templates. To link the two, Django relies on the render function and the Django Template language.</p>
+<h2>The Render Function</h2>
+<p>This function takes three parameters &minus;</p>
+<ul class="list">
+<li>
+<p><strong>Request</strong>&nbsp;&minus; The initial request.</p>
+</li>
+<li>
+<p><strong>The path to the template</strong>&nbsp;&minus; This is the path relative to the TEMPLATE_DIRS option in the project settings.py variables.</p>
+</li>
+<li>
+<p><strong>Dictionary of parameters</strong>&nbsp;&minus; A dictionary that contains all variables needed in the template. This variable can be created or you can use locals() to pass all local variable declared in the view.</p>
+</li>
+</ul>
+<h2>Django Template Language (DTL)</h2>
+<p>Django&rsquo;s template engine offers a mini-language to define the user-facing layer of the application.</p>
+<h3>Displaying Variables</h3>
+<p>A variable looks like this: {{variable}}. The template replaces the variable by the variable sent by the view in the third parameter of the render function. Let's change our hello.html to display today&rsquo;s date &minus;</p>
+<p><strong>hello.html</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+      Hello World!!!</span><span class="tag">&lt;p&gt;</span><span class="pln">Today is {{today}}</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Then our view will change to &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   today </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">().</span><span class="pln">date</span><span class="pun">()</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">"hello.html"</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"today"</span> <span class="pun">:</span><span class="pln"> today</span><span class="pun">})</span></pre>
+<p>We will now get the following output after accessing the URL/myapp/hello &minus;</p>
+<pre class="result notranslate">Hello World!!!
+Today is Sept. 11, 2015
+</pre>
+<p>As you have probably noticed, if the variable is not a string, Django will use the __str__ method to display it; and with the same principle you can access an object attribute just like you do it in Python. For example: if we wanted to display the date year, my variable would be: {{today.year}}.</p>
+<h2>Filters</h2>
+<p>They help you modify variables at display time. Filters structure looks like the following: {{var|filters}}.</p>
+<p><strong>Some examples</strong>&nbsp;&minus;</p>
+<ul class="list">
+<li>
+<p><strong>{{string|truncatewords:80}}</strong>&nbsp;&minus; This filter will truncate the string, so you will see only the first 80 words.</p>
+</li>
+<li>
+<p><strong>{{string|lower}}</strong>&nbsp;&minus; Converts the string to lowercase.</p>
+</li>
+<li>
+<p><strong>{{string|escape|linebreaks}}</strong>&nbsp;&minus; Escapes string contents, then converts line breaks to tags.</p>
+</li>
+</ul>
+<p>You can also set the default for a variable.</p>
+<h2>Tags</h2>
+<p>Tags lets you perform the following operations: if condition, for loop, template inheritance and more.</p>
+<h3>Tag if</h3>
+<p>Just like in Python you can use if, else and elif in your template &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+   
+      Hello World!!!</span><span class="tag">&lt;p&gt;</span><span class="pln">Today is {{today}}</span><span class="tag">&lt;/p&gt;</span><span class="pln">
+      We are
+      {% if today.day == 1 %}
+      
+      the first day of month.
+      {% elif today.day == 30 %}
+      
+      the last day of month.
+      {% else %}
+      
+      I don't know.
+      {%endif%}
+      
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In this new template, depending on the date of the day, the template will render a certain value.</p>
+<h3>Tag for</h3>
+<p>Just like 'if', we have the 'for' tag, that works exactly like in Python. Let's change our hello view to transmit a list to our template &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   today </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">().</span><span class="pln">date</span><span class="pun">()</span><span class="pln">
+   
+   daysOfWeek </span><span class="pun">=</span> <span class="pun">[</span><span class="str">'Mon'</span><span class="pun">,</span> <span class="str">'Tue'</span><span class="pun">,</span> <span class="str">'Wed'</span><span class="pun">,</span> <span class="str">'Thu'</span><span class="pun">,</span> <span class="str">'Fri'</span><span class="pun">,</span> <span class="str">'Sat'</span><span class="pun">,</span> <span class="str">'Sun'</span><span class="pun">]</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">"hello.html"</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"today"</span> <span class="pun">:</span><span class="pln"> today</span><span class="pun">,</span> <span class="str">"days_of_week"</span> <span class="pun">:</span><span class="pln"> daysOfWeek</span><span class="pun">})</span></pre>
+<p>The template to display that list using {{ for }} &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+      
+      Hello World!!!</span><span class="tag">&lt;p&gt;</span><span class="pln">Today is {{today}}</span><span class="tag">&lt;/p&gt;</span><span class="pln">
+      We are
+      {% if today.day == 1 %}
+      
+      the first day of month.
+      {% elif today.day == 30 %}
+      
+      the last day of month.
+      {% else %}
+      
+      I don't know.
+      {%endif%}
+      
+      </span><span class="tag">&lt;p&gt;</span><span class="pln">
+         {% for day in days_of_week %}
+         {{day}}
+      </span><span class="tag">&lt;/p&gt;</span><span class="pln">
+		
+      {% endfor %}
+      
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>And we should get something like &minus;</p>
+<pre class="result notranslate">Hello World!!!
+Today is Sept. 11, 2015
+We are I don't know.
+Mon
+Tue
+Wed
+Thu
+Fri
+Sat
+Sun
+</pre>
+<h3>Block and Extend Tags</h3>
+<p>A template system cannot be complete without template inheritance. Meaning when you are designing your templates, you should have a main template with holes that the child's template will fill according to his own need, like a page might need a special css for the selected tab.</p>
+<p>Let&rsquo;s change the hello.html template to inherit from a main_template.html.</p>
+<p><strong>main_template.html</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         {% block title %}Page Title{% endblock %}
+      </span><span class="tag">&lt;/title&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+   
+      {% block content %}
+         Body content
+      {% endblock %}
+      
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>hello.html</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span> <span class="kwd">extends</span> <span class="str">"main_template.html"</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block title </span><span class="pun">%}</span><span class="typ">My</span> <span class="typ">Hello</span> <span class="typ">Page</span><span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block content </span><span class="pun">%}</span>
+
+<span class="typ">Hello</span> <span class="typ">World</span><span class="pun">!!!&lt;</span><span class="pln">p</span><span class="pun">&gt;</span><span class="typ">Today</span> <span class="kwd">is</span> <span class="pun">{{</span><span class="pln">today</span><span class="pun">}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+<span class="typ">We</span><span class="pln"> are
+</span><span class="pun">{%</span> <span class="kwd">if</span><span class="pln"> today</span><span class="pun">.</span><span class="pln">day </span><span class="pun">==</span> <span class="lit">1</span> <span class="pun">%}</span><span class="pln">
+
+the first day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">elif</span><span class="pln"> today</span><span class="pun">.</span><span class="pln">day </span><span class="pun">==</span> <span class="lit">30</span> <span class="pun">%}</span><span class="pln">
+
+the </span><span class="kwd">last</span><span class="pln"> day of month</span><span class="pun">.</span>
+<span class="pun">{%</span> <span class="kwd">else</span> <span class="pun">%}</span><span class="pln">
+
+I don</span><span class="str">'t know.
+{%endif%}
+
+&lt;p&gt;
+   {% for day in days_of_week %}
+   {{day}}
+&lt;/p&gt;
+
+{% endfor %}
+{% endblock %}</span></pre>
+<p>In the above example, on calling /myapp/hello we will still get the same result as before but now we rely on extends and block to refactor our code &minus;</p>
+<p>In the main_template.html we define blocks using the tag block. The title block will contain the page title and the content block will have the page main content. In home.html we use extends to inherit from the main_template.html then we fill the block define above (content and title).</p>
+<h3>Comment Tag</h3>
+<p>The comment tag helps to define comments into templates, not HTML comments, they won&rsquo;t appear in HTML page. It can be useful for documentation or just commenting a line of code.</p>

@@ -1,0 +1,81 @@
+<p>PHP started out as a small open source project that evolved as more and more people found out how useful it was. Rasmus Lerdorf unleashed the first version of PHP way back in 1994.</p>
+<ul class="list">
+<li>
+<p>PHP is a recursive acronym for "PHP: Hypertext Preprocessor".</p>
+</li>
+<li>
+<p>PHP is a server side scripting language that is embedded in HTML. It is used to manage dynamic content, databases, session tracking, even build entire e-commerce sites.</p>
+</li>
+<li>
+<p>It is integrated with a number of popular databases, including MySQL, PostgreSQL, Oracle, Sybase, Informix, and Microsoft SQL Server.</p>
+</li>
+<li>
+<p>PHP is pleasingly zippy in its execution, especially when compiled as an Apache module on the Unix side. The MySQL server, once started, executes even very complex queries with huge result sets in record-setting time.</p>
+</li>
+<li>
+<p>PHP supports a large number of major protocols such as POP3, IMAP, and LDAP. PHP4 added support for Java and distributed object architectures (COM and CORBA), making n-tier development a possibility for the first time.</p>
+</li>
+<li>
+<p>PHP is forgiving: PHP language tries to be as forgiving as possible.</p>
+</li>
+<li>
+<p>PHP Syntax is C-Like.</p>
+</li>
+</ul>
+<h2>Common uses of PHP</h2>
+<ul class="list">
+<li>
+<p>PHP performs system functions, i.e. from files on a system it can create, open, read, write, and close them.</p>
+</li>
+<li>
+<p>PHP can handle forms, i.e. gather data from files, save data to a file, through email you can send data, return data to the user.</p>
+</li>
+<li>
+<p>You add, delete, modify elements within your database through PHP.</p>
+</li>
+<li>
+<p>Access cookies variables and set cookies.</p>
+</li>
+<li>
+<p>Using PHP, you can restrict users to access some pages of your website.</p>
+</li>
+<li>
+<p>It can encrypt data.</p>
+</li>
+</ul>
+<h2>Characteristics of PHP</h2>
+<p>Five important characteristics make PHP's practical nature possible &minus;</p>
+<ul class="list">
+<li>Simplicity</li>
+<li>Efficiency</li>
+<li>Security</li>
+<li>Flexibility</li>
+<li>Familiarity</li>
+</ul>
+<h2>"Hello World" Script in PHP</h2>
+<p>To get a feel for PHP, first start with simple PHP scripts. Since "Hello, World!" is an essential example, first we will create a friendly little "Hello, World!" script.</p>
+<p>As mentioned earlier, PHP is embedded in HTML. That means that in amongst your normal HTML (or XHTML if you're cutting-edge) you'll have PHP statements like this &minus;</p>
+<p><a class="demo" href="http://tpcg.io/cJf0To" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Hello World</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="pun">&lt;?</span><span class="pln">php echo </span><span class="str">"Hello, World!"</span><span class="pun">;?&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>It will produce following result &minus;</p>
+<pre class="result notranslate">Hello, World!
+</pre>
+<p>If you examine the HTML output of the above example, you'll notice that the PHP code is not present in the file sent from the server to your Web browser. All of the PHP present in the Web page is processed and stripped from the page; the only thing returned to the client from the Web server is pure HTML output.</p>
+<p>All PHP code must be included inside one of the three special markup tags ATE are recognised by the PHP Parser.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php PHP code goes here </span><span class="pun">?&gt;</span>
+
+<span class="pun">&lt;?</span><span class="pln">    PHP code goes here </span><span class="pun">?&gt;</span>
+
+<span class="tag">&lt;script</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"php"</span><span class="tag">&gt;</span><span class="pln"> PHP code goes here </span><span class="tag">&lt;/script&gt;</span></pre>
+<p>A most common tag is the &lt;?php...?&gt; and we will also use the same tag in our tutorial.</p>
+<p>From the next chapter we will start with PHP Environment Setup on your machine and then we will dig out almost all concepts related to PHP to make you comfortable with the PHP language.</p>

@@ -1,0 +1,121 @@
+<p>ASP.NET life cycle specifies, how:</p>
+<ul class="list">
+<li>ASP.NET processes pages to produce dynamic output</li>
+<li>The application and its pages are instantiated and processed</li>
+<li>ASP.NET compiles the pages dynamically</li>
+</ul>
+<p>The ASP.NET life cycle could be divided into two groups:</p>
+<ul class="list">
+<li>Application Life Cycle</li>
+<li>Page Life Cycle</li>
+</ul>
+<h2>ASP.NET Application Life Cycle</h2>
+<p>The application life cycle has the following stages:</p>
+<ul class="list">
+<li>
+<p>User makes a request for accessing application resource, a page. Browser sends this request to the web server.</p>
+</li>
+<li>
+<p>A unified pipeline receives the first request and the following events take place:</p>
+<ul class="list">
+<li>
+<p>An object of the class ApplicationManager is created.</p>
+</li>
+<li>
+<p>An object of the class HostingEnvironment is created to provide information regarding the resources.</p>
+</li>
+<li>
+<p>Top level items in the application are compiled.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Response objects are created. The application objects such as HttpContext, HttpRequest and HttpResponse are created and initialized.</p>
+</li>
+<li>
+<p>An instance of the HttpApplication object is created and assigned to the request.</p>
+</li>
+<li>
+<p>The request is processed by the HttpApplication class. Different events are raised by this class for processing the request.</p>
+</li>
+</ul>
+<h2>ASP.NET Page Life Cycle</h2>
+<p>When a page is requested, it is loaded into the server memory, processed, and sent to the browser. Then it is unloaded from the memory. At each of these steps, methods and events are available, which could be overridden according to the need of the application. In other words, you can write your own code to override the default code.</p>
+<p>The Page class creates a hierarchical tree of all the controls on the page. All the components on the page, except the directives, are part of this control tree. You can see the control tree by adding trace= "true" to the page directive. We will cover page directives and tracing under 'directives' and 'event handling'.</p>
+<p>The page life cycle phases are:</p>
+<ul class="list">
+<li>Initialization</li>
+<li>Instantiation of the controls on the page</li>
+<li>Restoration and maintenance of the state</li>
+<li>Execution of the event handler codes</li>
+<li>Page rendering</li>
+</ul>
+<p>Understanding the page cycle helps in writing codes for making some specific thing happen at any stage of the page life cycle. It also helps in writing custom controls and initializing them at right time, populate their properties with view-state data and run control behavior code.</p>
+<p>Following are the different stages of an ASP.NET page:</p>
+<ul class="list">
+<li>
+<p><strong>Page request</strong>&nbsp;- When ASP.NET gets a page request, it decides whether to parse and compile the page, or there would be a cached version of the page; accordingly the response is sent.</p>
+</li>
+<li>
+<p><strong>Starting of page life cycle</strong>&nbsp;- At this stage, the Request and Response objects are set. If the request is an old request or post back, the IsPostBack property of the page is set to true. The UICulture property of the page is also set.</p>
+</li>
+<li>
+<p><strong>Page initialization</strong>&nbsp;- At this stage, the controls on the page are assigned unique ID by setting the UniqueID property and the themes are applied. For a new request, postback data is loaded and the control properties are restored to the view-state values.</p>
+</li>
+<li>
+<p><strong>Page load</strong>&nbsp;- At this stage, control properties are set using the view state and control state values.</p>
+</li>
+<li>
+<p><strong>Validation</strong>&nbsp;- Validate method of the validation control is called and on its successful execution, the IsValid property of the page is set to true.</p>
+</li>
+<li>
+<p><strong>Postback event handling</strong>&nbsp;- If the request is a postback (old request), the related event handler is invoked.</p>
+</li>
+<li>
+<p><strong>Page rendering</strong>&nbsp;- At this stage, view state for the page and all controls are saved. The page calls the Render method for each control and the output of rendering is written to the OutputStream class of the Response property of page.</p>
+</li>
+<li>
+<p><strong>Unload</strong>&nbsp;- The rendered page is sent to the client and page properties, such as Response and Request, are unloaded and all cleanup done.</p>
+</li>
+</ul>
+<h2>ASP.NET Page Life Cycle Events</h2>
+<p>At each stage of the page life cycle, the page raises some events, which could be coded. An event handler is basically a function or subroutine, bound to the event, using declarative attributes such as Onclick or handle.</p>
+<p>Following are the page life cycle events:</p>
+<ul class="list">
+<li>
+<p><strong>PreInit</strong>&nbsp;- PreInit is the first event in page life cycle. It checks the IsPostBack property and determines whether the page is a postback. It sets the themes and master pages, creates dynamic controls, and gets and sets profile property values. This event can be handled by overloading the OnPreInit method or creating a Page_PreInit handler.</p>
+</li>
+<li>
+<p><strong>Init</strong>&nbsp;- Init event initializes the control property and the control tree is built. This event can be handled by overloading the OnInit method or creating a Page_Init handler.</p>
+</li>
+<li>
+<p><strong>InitComplete</strong>&nbsp;- InitComplete event allows tracking of view state. All the controls turn on view-state tracking.</p>
+</li>
+<li>
+<p><strong>LoadViewState</strong>&nbsp;- LoadViewState event allows loading view state information into the controls.</p>
+</li>
+<li>
+<p><strong>LoadPostData</strong>&nbsp;- During this phase, the contents of all the input fields are defined with the &lt;form&gt; tag are processed.</p>
+</li>
+<li>
+<p><strong>PreLoad</strong>&nbsp;- PreLoad occurs before the post back data is loaded in the controls. This event can be handled by overloading the OnPreLoad method or creating a Page_PreLoad handler.</p>
+</li>
+<li>
+<p><strong>Load</strong>&nbsp;- The Load event is raised for the page first and then recursively for all child controls. The controls in the control tree are created. This event can be handled by overloading the OnLoad method or creating a Page_Load handler.</p>
+</li>
+<li>
+<p><strong>LoadComplete</strong>&nbsp;- The loading process is completed, control event handlers are run, and page validation takes place. This event can be handled by overloading the OnLoadComplete method or creating a Page_LoadComplete handler</p>
+</li>
+<li>
+<p><strong>PreRender</strong>&nbsp;- The PreRender event occurs just before the output is rendered. By handling this event, pages and controls can perform any updates before the output is rendered.</p>
+</li>
+<li>
+<p><strong>PreRenderComplete</strong>&nbsp;- As the PreRender event is recursively fired for all child controls, this event ensures the completion of the pre-rendering phase.</p>
+</li>
+<li>
+<p><strong>SaveStateComplete</strong>&nbsp;- State of control on the page is saved. Personalization, control state and view state information is saved. The HTML markup is generated. This stage can be handled by overriding the Render method or creating a Page_Render handler.</p>
+</li>
+<li>
+<p><strong>UnLoad</strong>&nbsp;- The UnLoad phase is the last phase of the page life cycle. It raises the UnLoad event for all controls recursively and lastly for the page itself. Final cleanup is done and all resources and references, such as database connections, are freed. This event can be handled by modifying the OnUnLoad method or creating a Page_UnLoad handler.</p>
+</li>
+</ul>

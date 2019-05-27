@@ -1,0 +1,137 @@
+<h2>PHP login with session</h2>
+<p>Php login script is used to provide the authentication for our web pages. the Script executes after submitting the user login button.</p>
+<h2>Login Page</h2>
+<p>Login page should be as follows and works based on session. If the user close the session, it will erase the session data.</p>
+<p><a class="demo" href="http://tpcg.io/R2EAf4" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   ob_start</span><span class="pun">();</span><span class="pln">
+   session_start</span><span class="pun">();</span>
+<span class="pun">?&gt;</span>
+
+<span class="pun">&lt;?</span>
+   <span class="com">// error_reporting(E_ALL);</span>
+   <span class="com">// ini_set("display_errors", 1);</span>
+<span class="pun">?&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Tutorialspoint.com</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"css/bootstrap.min.css"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span><span class="tag">&gt;</span>
+      
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         body </span><span class="pun">{</span><span class="pln">
+            padding</span><span class="pun">-</span><span class="pln">top</span><span class="pun">:</span> <span class="lit">40px</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span> <span class="lit">40px</span><span class="pun">;</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#ADABAB;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">{</span><span class="pln">
+            max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span> <span class="lit">330px</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span> <span class="lit">15px</span><span class="pun">;</span><span class="pln">
+            margin</span><span class="pun">:</span> <span class="lit">0</span> <span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+            color</span><span class="pun">:</span> <span class="com">#017572;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin</span><span class="pun">-</span><span class="pln">heading</span><span class="pun">,</span>
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">.</span><span class="pln">checkbox </span><span class="pun">{</span><span class="pln">
+            margin</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span> <span class="lit">10px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">.</span><span class="pln">checkbox </span><span class="pun">{</span><span class="pln">
+            font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> normal</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">control </span><span class="pun">{</span><span class="pln">
+            position</span><span class="pun">:</span><span class="pln"> relative</span><span class="pun">;</span><span class="pln">
+            height</span><span class="pun">:</span> <span class="kwd">auto</span><span class="pun">;</span>
+            <span class="pun">-</span><span class="pln">webkit</span><span class="pun">-</span><span class="pln">box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span>
+            <span class="pun">-</span><span class="pln">moz</span><span class="pun">-</span><span class="pln">box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span><span class="pln">
+            box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span> <span class="lit">10px</span><span class="pun">;</span><span class="pln">
+            font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span> <span class="lit">16px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin </span><span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">control</span><span class="pun">:</span><span class="pln">focus </span><span class="pun">{</span><span class="pln">
+            z</span><span class="pun">-</span><span class="pln">index</span><span class="pun">:</span> <span class="lit">2</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"email"</span><span class="pun">]</span> <span class="pun">{</span><span class="pln">
+            margin</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span> <span class="pun">-</span><span class="lit">1px</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">-</span><span class="pln">right</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span> <span class="lit">0</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">-</span><span class="pln">left</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span> <span class="lit">0</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="lit">017572</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         
+         <span class="pun">.</span><span class="pln">form</span><span class="pun">-</span><span class="pln">signin input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"password"</span><span class="pun">]</span> <span class="pun">{</span><span class="pln">
+            margin</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span> <span class="lit">10px</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">top</span><span class="pun">-</span><span class="pln">left</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span> <span class="lit">0</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">top</span><span class="pun">-</span><span class="pln">right</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span> <span class="lit">0</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="lit">017572</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         
+         h2</span><span class="pun">{</span><span class="pln">
+            text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> center</span><span class="pun">;</span><span class="pln">
+            color</span><span class="pun">:</span> <span class="com">#017572;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="tag">&lt;h2&gt;</span><span class="pln">Enter Username and Password</span><span class="tag">&lt;/h2&gt;</span> 
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"container form-signin"</span><span class="tag">&gt;</span>
+         
+         <span class="pun">&lt;?</span><span class="pln">php
+            $msg </span><span class="pun">=</span> <span class="str">''</span><span class="pun">;</span>
+            
+            <span class="kwd">if</span> <span class="pun">(</span><span class="pln">isset</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">])</span> <span class="pun">&amp;&amp;</span> <span class="pun">!</span><span class="pln">empty</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">])</span> 
+               <span class="pun">&amp;&amp;</span> <span class="pun">!</span><span class="pln">empty</span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'password'</span><span class="pun">]))</span> <span class="pun">{</span>
+				
+               <span class="kwd">if</span> <span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span> <span class="pun">==</span> <span class="str">'tutorialspoint'</span> <span class="pun">&amp;&amp;</span><span class="pln"> 
+                  $_POST</span><span class="pun">[</span><span class="str">'password'</span><span class="pun">]</span> <span class="pun">==</span> <span class="str">'1234'</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  $_SESSION</span><span class="pun">[</span><span class="str">'valid'</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span><span class="pln">
+                  $_SESSION</span><span class="pun">[</span><span class="str">'timeout'</span><span class="pun">]</span> <span class="pun">=</span><span class="pln"> time</span><span class="pun">();</span><span class="pln">
+                  $_SESSION</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span> <span class="pun">=</span> <span class="str">'tutorialspoint'</span><span class="pun">;</span><span class="pln">
+                  
+                  echo </span><span class="str">'You have entered valid use name and password'</span><span class="pun">;</span>
+               <span class="pun">}</span><span class="kwd">else</span> <span class="pun">{</span><span class="pln">
+                  $msg </span><span class="pun">=</span> <span class="str">'Wrong username or password'</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">?&gt;</span>
+      <span class="tag">&lt;/div&gt;</span> <span class="com">&lt;!-- /container --&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln">
+      
+         &lt;form class = "form-signin" role = "form" 
+            action = "</span><span class="pun">&lt;?</span><span class="pln">php echo htmlspecialchars</span><span class="pun">(</span><span class="pln">$_SERVER</span><span class="pun">[</span><span class="str">'PHP_SELF'</span><span class="pun">]);</span> 
+            <span class="pun">?&gt;</span><span class="pln">" method = "post"&gt;
+            </span><span class="tag">&lt;h4</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"form-signin-heading"</span><span class="tag">&gt;</span><span class="pun">&lt;?</span><span class="pln">php echo $msg</span><span class="pun">;</span> <span class="pun">?&gt;</span><span class="tag">&lt;/h4&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"form-control"</span> 
+               <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"username"</span> <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"username = tutorialspoint"</span> 
+               <span class="atn">required</span> <span class="atn">autofocus</span><span class="tag">&gt;&lt;/br&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"password"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"form-control"</span>
+               <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"password"</span> <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"password = 1234"</span> <span class="atn">required</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;button</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"btn btn-lg btn-primary btn-block"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> 
+               <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"login"</span><span class="tag">&gt;</span><span class="pln">Login</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;/form&gt;</span><span class="pln">
+			
+         Click here to clean </span><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"logout.php"</span> <span class="atn">tite</span> <span class="pun">=</span> <span class="atv">"Logout"</span><span class="tag">&gt;</span><span class="pln">Session.
+         
+      </span><span class="tag">&lt;/div&gt;</span> 
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Logout.php</h2>
+<p>It will erase the session data.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+   session_start</span><span class="pun">();</span><span class="pln">
+   unset</span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">"username"</span><span class="pun">]);</span><span class="pln">
+   unset</span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">"password"</span><span class="pun">]);</span><span class="pln">
+   
+   echo </span><span class="str">'You have cleaned session'</span><span class="pun">;</span><span class="pln">
+   header</span><span class="pun">(</span><span class="str">'Refresh: 2; URL = login.php'</span><span class="pun">);</span>
+<span class="pun">?&gt;</span></pre>
+<p>It will produce the following result &minus;</p>

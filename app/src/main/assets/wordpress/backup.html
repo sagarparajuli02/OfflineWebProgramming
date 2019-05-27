@@ -1,0 +1,64 @@
+<p>In this chapter, we will study how to&nbsp;<strong>Backup &amp; Restore</strong>&nbsp;files and database in WordPress. In WordPress there are two parts of backing up such as &minus;</p>
+<ul class="list">
+<li>WordPress Files Backup</li>
+<li>WordPress Database Backup</li>
+<li>WordPress Files Restore</li>
+<li>WordPress Database Restore</li>
+</ul>
+<h2>WordPress Files Backup</h2>
+<p>To get the backup files of WordPress, you need to install FileZilla Client on your system.</p>
+<p>Following are the simple steps used for files backup operation in WordPress &minus;</p>
+<p><strong>Step (1)</strong>&nbsp;&minus; Open the FileZilla Client as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step5.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (2)</strong>&nbsp;&minus; Enter the&nbsp;<strong>Host, Username, Password</strong>&nbsp;and&nbsp;<strong>Port</strong>&nbsp;like you have used to log-in to your cPanel.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step6.jpg" alt="WordPress Backup and Restore" /></p>
+<p>After filling all the fields, click on&nbsp;<strong>Quickconnect</strong>&nbsp;button.</p>
+<p><strong>Step (3)</strong>&nbsp;&minus; You will get all files and folders of your WordPress site on the right side as seen in the following screen.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step7.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (4)</strong>&nbsp;&minus; Select all the files and folders and right click on the mouse and click on&nbsp;<strong>Download</strong>.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step8.jpg" alt="WordPress Backup and Restore" /></p>
+<p>After downloading the WordPress files from cPanel, it will be saved on your system.</p>
+<h2>WordPress Database Backup</h2>
+<p>Following are the simple steps for database backup in WordPress &minus;</p>
+<p><strong>Step (1)</strong>&nbsp;&minus; Type the path&nbsp;<em>http://localhost/phpmyadmin</em>&nbsp;in your browser. You will get the following screen.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step1.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (2)</strong>&nbsp;&minus; Click on the database name &lsquo;wordpress&rsquo; which you have created for WordPress.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step2.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (3)</strong>&nbsp;&minus; After clicking on database&nbsp;<em>wordpress</em>, it will open the following page. Click on&nbsp;<strong>Export</strong>&nbsp;tab.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step3.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (4)</strong>&nbsp;&minus; You will get two methods to export the database i.e.&nbsp;<strong>Quick</strong>&nbsp;and&nbsp;<strong>Custom</strong>. Select any one of the methods and click on&nbsp;<strong>Go</strong>&nbsp;button.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step4.jpg" alt="WordPress Backup and Restore" /></p>
+<p>After exporting the database file, it will get saved on your system.</p>
+<h2>Restoring WordPress Files</h2>
+<p>Following are the simple steps used to restore the files in WordPress using ftp &minus;</p>
+<p><strong>Step (1)</strong>&nbsp;&minus; Open the FileZilla Client and login to your site using ftp as shown in the following screen.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step9.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (2)</strong>&nbsp;&minus; Open the local directory in ftp and upload all WordPress files to your website as shown in the following screen.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step10.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (3)</strong>&nbsp;&minus; Then, go to&nbsp;<strong>your wordpress folder &rarr; wp-config.php</strong>&nbsp;file. Copy and rename&nbsp;<strong>wp-config.php</strong>&nbsp;file before editing, in case of some mistake you can restore this file back.</p>
+<p>Open the&nbsp;<strong>wp-config.php</strong>&nbsp;file and locate the following code.</p>
+<pre class="result notranslate">define('DB_NAME', 'db_name');
+</pre>
+<p>Replace the db_name with your database name which you have created.</p>
+<pre class="result notranslate">define('DB_USER', 'db_user');
+</pre>
+<p>Replace the db_user with your username of MySql.</p>
+<pre class="result notranslate">define('DB_PASSWORD', 'db_password');
+</pre>
+<p>Replace the db_password with your password of MySql.</p>
+<p>Save your wp-config file after editing and upload it to your WordPress site through ftp.</p>
+<h2>Restoring WordPress Database</h2>
+<p>Following are the steps used to restore the database in WordPress &minus;</p>
+<p><strong>Step (1)</strong>&nbsp;&minus; Type the path&nbsp;<em>http://localhost/phpmyadmin</em>&nbsp;in the browser. The following screen will pop up.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step11.jpg" alt="WordPress Backup and Restore" /></p>
+<p>You can create a new database or import your backup in the existing database.</p>
+<p>Here we'll create a new database name, i.e.,&nbsp;<strong>new_wordpress</strong>&nbsp;and click on&nbsp;<strong>Create</strong>&nbsp;button.</p>
+<p><strong>Step (2)</strong>&nbsp;&minus; You can view your created database as shown in the following screen. Click on the database name&nbsp;<strong>new_wordpress</strong>.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step12.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (3)</strong>&nbsp;&minus; Click on&nbsp;<strong>Import</strong>.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step13.jpg" alt="WordPress Backup and Restore" /></p>
+<p><strong>Step (4)</strong>&nbsp;&minus; Click on&nbsp;<strong>Choose File</strong>&nbsp;button to select the backup file from your system. After uploading the sql file, select format as&nbsp;<strong>SQL</strong>&nbsp;as shown in the following screen.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step14.jpg" alt="WordPress Backup and Restore" /></p>
+<p>Click on&nbsp;<strong>Go</strong>&nbsp;button.</p>
+<p><strong>Step (5)</strong>&nbsp;&minus; Once you click on Go, you will get a message after the sql file is uploaded successfully.</p>
+<p><img src="https://www.tutorialspoint.com/wordpress/images/wordpress-backuprestore/wordpress-backuprestore-step15.jpg" alt="WordPress Backup and Restore" /></p>

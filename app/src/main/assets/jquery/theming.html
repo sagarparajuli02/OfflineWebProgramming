@@ -1,0 +1,114 @@
+<p>Jquery has two different styling themes as A And B.Each with different colors for buttons, bars, content blocks, and so on.</p>
+<p>The syntax of J query theming as shown below &minus;</p>
+<pre class="result notranslate">&lt;div data-role = "page" data-theme = "a|b"&gt;
+</pre>
+<p>A Simple of A theming Example as shown below &minus;</p>
+<p><a class="demo" href="http://tpcg.io/BMCBbx" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"viewport"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"width = device-width, initial-scale = 1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+         <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"</span><span class="tag">&gt;</span>
+			
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.11.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.11.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"page"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"pageone"</span> <span class="atn">data-theme</span> <span class="pun">=</span> <span class="atv">"a"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"header"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Tutorials Point</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"main"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"ui-content"</span><span class="tag">&gt;</span>
+			
+            <span class="tag">&lt;p&gt;</span><span class="pln">Text link</span><span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">A Standard Text Link</span><span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"ui-btn"</span><span class="tag">&gt;</span><span class="pln">Link Button</span><span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="pln">A List View:</span><span class="tag">&lt;/p&gt;</span>
+				
+            <span class="tag">&lt;ul</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"listview"</span> <span class="atn">data-autodividers</span> <span class="pun">=</span> <span class="atv">"true"</span> <span class="atn">data-inset</span> <span class="pun">=</span> <span class="atv">"true"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">Android </span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+               <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">IOS</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+				
+            <span class="tag">&lt;label</span> <span class="atn">for</span> <span class="pun">=</span> <span class="atv">"fullname"</span><span class="tag">&gt;</span><span class="pln">Input Field:</span><span class="tag">&lt;/label&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"fullname"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"fullname"</span> 
+               <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Name.."</span><span class="tag">&gt;</span>    
+            <span class="tag">&lt;label</span> <span class="atn">for</span> <span class="pun">=</span> <span class="atv">"switch"</span><span class="tag">&gt;</span><span class="pln">Toggle Switch:</span><span class="tag">&lt;/label&gt;</span>
+				
+            <span class="tag">&lt;select</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"switch"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"switch"</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"slider"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"on"</span><span class="tag">&gt;</span><span class="pln">On</span><span class="tag">&lt;/option&gt;</span>
+               <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"off"</span> <span class="atn">selected</span><span class="tag">&gt;</span><span class="pln">Off</span><span class="tag">&lt;/option&gt;</span>
+            <span class="tag">&lt;/select&gt;</span>
+				
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"footer"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Tutorials point</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/atheme.htm" width="100%" height="150"></iframe></p>
+<p>A Simple of B theming Example as shown below &minus;</p>
+<p><a class="demo" href="http://tpcg.io/gYDZDP" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"viewport"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"width = device-width, initial-scale = 1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+         <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.11.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/jquery-1.11.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"page"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"pageone"</span> <span class="atn">data-theme</span> <span class="pun">=</span> <span class="atv">"b"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"header"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Tutorials Point</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"main"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"ui-content"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="pln">Text link</span><span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">A Standard Text Link</span><span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"ui-btn"</span><span class="tag">&gt;</span><span class="pln">Link Button</span><span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="pln">A List View:</span><span class="tag">&lt;/p&gt;</span>
+				
+            <span class="tag">&lt;ul</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"listview"</span> <span class="atn">data-autodividers</span> <span class="pun">=</span> <span class="atv">"true"</span> <span class="atn">data-inset</span> <span class="pun">=</span> <span class="atv">"true"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">Android </span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+               <span class="tag">&lt;li&gt;&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"#"</span><span class="tag">&gt;</span><span class="pln">IOS</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+				
+            <span class="tag">&lt;label</span> <span class="atn">for</span> <span class="pun">=</span> <span class="atv">"fullname"</span><span class="tag">&gt;</span><span class="pln">Input Field:</span><span class="tag">&lt;/label&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"fullname"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"fullname"</span> 
+               <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Name.."</span><span class="tag">&gt;</span>    
+            <span class="tag">&lt;label</span> <span class="atn">for</span> <span class="pun">=</span> <span class="atv">"switch"</span><span class="tag">&gt;</span><span class="pln">Toggle Switch:</span><span class="tag">&lt;/label&gt;</span>
+				
+            <span class="tag">&lt;select</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"switch"</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"switch"</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"slider"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"on"</span><span class="tag">&gt;</span><span class="pln">On</span><span class="tag">&lt;/option&gt;</span>
+               <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"off"</span> <span class="atn">selected</span><span class="tag">&gt;</span><span class="pln">Off</span><span class="tag">&lt;/option&gt;</span>
+            <span class="tag">&lt;/select&gt;</span>
+				
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div</span> <span class="atn">data-role</span> <span class="pun">=</span> <span class="atv">"footer"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="pln">Tutorials point</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/btheme.htm" width="100%" height="150"></iframe></p>

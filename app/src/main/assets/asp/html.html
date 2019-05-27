@@ -1,0 +1,208 @@
+<p>The HTML server controls are basically the standard HTML controls enhanced to enable server side processing. The HTML controls such as the header tags, anchor tags, and input elements are not processed by the server but are sent to the browser for display.</p>
+<p>They are specifically converted to a server control by adding the attribute runat="server" and adding an id attribute to make them available for server-side processing.</p>
+<p>For example, consider the HTML input control:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;input</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span> <span class="atn">size</span><span class="pun">=</span><span class="atv">"40"</span><span class="tag">&gt;</span></pre>
+<p>It could be converted to a server control, by adding the runat and id attribute:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;input</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"testtext"</span> <span class="atn">size</span><span class="pun">=</span><span class="atv">"40"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span></pre>
+<h2>Advantages of using HTML Server Controls</h2>
+<p>Although ASP.NET server controls can perform every job accomplished by the HTML server controls, the later controls are useful in the following cases:</p>
+<ul class="list">
+<li>Using static tables for layout purposes.</li>
+<li>Converting a HTML page to run under ASP.NET</li>
+</ul>
+<p>The following table describes the HTML server controls:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Control Name</th>
+<th>HTML tag</th>
+</tr>
+<tr>
+<td>HtmlHead</td>
+<td>&lt;head&gt;element</td>
+</tr>
+<tr>
+<td>HtmlInputButton</td>
+<td>&lt;input type=button|submit|reset&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputCheckbox</td>
+<td>&lt;input type=checkbox&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputFile</td>
+<td>&lt;input type = file&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputHidden</td>
+<td>&lt;input type = hidden&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputImage</td>
+<td>&lt;input type = image&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputPassword</td>
+<td>&lt;input type = password&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputRadioButton</td>
+<td>&lt;input type = radio&gt;</td>
+</tr>
+<tr>
+<td>HtmlInputReset</td>
+<td>&lt;input type = reset&gt;</td>
+</tr>
+<tr>
+<td>HtmlText</td>
+<td>&lt;input type = text|password&gt;</td>
+</tr>
+<tr>
+<td>HtmlImage</td>
+<td>&lt;img&gt; element</td>
+</tr>
+<tr>
+<td>HtmlLink</td>
+<td>&lt;link&gt; element</td>
+</tr>
+<tr>
+<td>HtmlAnchor</td>
+<td>&lt;a&gt; element</td>
+</tr>
+<tr>
+<td>HtmlButton</td>
+<td>&lt;button&gt; element</td>
+</tr>
+<tr>
+<td>HtmlButton</td>
+<td>&lt;button&gt; element</td>
+</tr>
+<tr>
+<td>HtmlForm</td>
+<td>&lt;form&gt; element</td>
+</tr>
+<tr>
+<td>HtmlTable</td>
+<td>&lt;table&gt; element</td>
+</tr>
+<tr>
+<td>HtmlTableCell</td>
+<td>&lt;td&gt; and &lt;th&gt;</td>
+</tr>
+<tr>
+<td>HtmlTableRow</td>
+<td>&lt;tr&gt; element</td>
+</tr>
+<tr>
+<td>HtmlTitle</td>
+<td>&lt;title&gt; element</td>
+</tr>
+<tr>
+<td>HtmlSelect</td>
+<td>&lt;select&amp;t; element</td>
+</tr>
+<tr>
+<td>HtmlGenericControl</td>
+<td>All HTML controls not listed</td>
+</tr>
+</tbody>
+</table>
+<h2>Example</h2>
+<p>The following example uses a basic HTML table for layout. It uses some boxes for getting input from the users such as name, address, city, state etc. It also has a button control, which is clicked to get the user data displayed in the last row of the table.</p>
+<p>The page should look like this in the design view:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_server_controls.jpg" alt="ASP.NET Server Controls" /></p>
+<p>The code for the content page shows the use of the HTML table element for layout.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;%@</span> <span class="typ">Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span> <span class="typ">AutoEventWireup</span><span class="pun">=</span><span class="str">"true"</span> <span class="typ">CodeBehind</span><span class="pun">=</span><span class="str">"Default.aspx.cs"</span> <span class="typ">Inherits</span><span class="pun">=</span><span class="str">"htmlserver._Default"</span><span class="pln"> %&gt;
+
+</span><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Untitled Page</span><span class="tag">&lt;/title&gt;</span>
+      
+      <span class="tag">&lt;style</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"text/css"</span><span class="tag">&gt;</span>
+         <span class="pun">.</span><span class="pln">style1
+         </span><span class="pun">{</span><span class="pln">  
+            width</span><span class="pun">:</span> <span class="lit">156px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+         <span class="pun">.</span><span class="pln">style2
+         </span><span class="pun">{</span><span class="pln">
+            width</span><span class="pun">:</span> <span class="lit">332px</span><span class="pun">;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;table</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span> <span class="lit">54</span><span class="pun">%;</span><span class="atv">"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">Name:</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"txtname"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span>  <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">230px</span><span class="atv">"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/asp:TextBox&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+				
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">Street</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"txtstreet"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span>  <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">230px</span><span class="atv">"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/asp:TextBox&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+				
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">City</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"txtcity"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span>  <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">230px</span><span class="atv">"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/asp:TextBox&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+				
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">State</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"txtstate"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">230px</span><span class="atv">"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;/asp:TextBox&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+				
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+				
+               <span class="tag">&lt;tr&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;&lt;/td&gt;</span>
+                  <span class="tag">&lt;td</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"displayrow"</span> <span class="atn">runat</span> <span class="pun">=</span><span class="atv">"server"</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;/table&gt;</span>
+            
+         <span class="tag">&lt;/div&gt;</span>
+         <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Button1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">onclick</span><span class="pun">=</span><span class="atv">"</span><span class="typ">Button1_Click</span><span class="atv">"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Click"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>The code behind the button control:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">protected</span> <span class="kwd">void</span> <span class="typ">Button1_Click</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> sender</span><span class="pun">,</span> <span class="typ">EventArgs</span><span class="pln"> e</span><span class="pun">)</span>
+<span class="pun">{</span>
+   <span class="kwd">string</span><span class="pln"> str </span><span class="pun">=</span> <span class="str">""</span><span class="pun">;</span><span class="pln">
+   str </span><span class="pun">+=</span><span class="pln"> txtname</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">+</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+   str </span><span class="pun">+=</span><span class="pln"> txtstreet</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">+</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+   str </span><span class="pun">+=</span><span class="pln"> txtcity</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">+</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+   str </span><span class="pun">+=</span><span class="pln"> txtstate</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">+</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+   displayrow</span><span class="pun">.</span><span class="typ">InnerHtml</span> <span class="pun">=</span><span class="pln"> str</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<p>Observe the following:</p>
+<ul class="list">
+<li>
+<p>The standard HTML tags have been used for the page layout.</p>
+</li>
+<li>
+<p>The last row of the HTML table is used for data display. It needed server side processing, so an ID attribute and the runat attribute has been added to it.</p>
+</li>
+</ul>

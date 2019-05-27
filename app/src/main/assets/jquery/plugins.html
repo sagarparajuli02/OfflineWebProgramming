@@ -1,0 +1,91 @@
+<p>A plug-in is piece of code written in a standard JavaScript file. These files provide useful jQuery methods which can be used along with jQuery library methods.</p>
+<p>There are plenty of jQuery plug-in available which you can download from repository link at&nbsp;<a href="https://jquery.com/plugins" target="_blank" rel="nofollow">https://jquery.com/plugins</a>.</p>
+<h2>How to use Plugins</h2>
+<p>To make a plug-in's methods available to us, we include plug-in file very similar to jQuery library file in the &lt;head&gt; of the document.</p>
+<p>We must ensure that it appears after the main jQuery source file, and before our custom JavaScript code.</p>
+<p>Following example shows how to include&nbsp;<strong>jquery.plug-in.js</strong>&nbsp;plugin &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"jquery.plug-in.js"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"custom.js"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+            <span class="pun">.......</span><span class="pln">your custom code</span><span class="pun">.....</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+      .............................
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>How to develop a Plug-in</h2>
+<p>This is very simple to write your own plug-in. Following is the syntax to create a a method &minus;</p>
+<pre class="result notranslate">jQuery.fn.methodName = methodDefinition;
+</pre>
+<p>Here&nbsp;<em>methodNameM</em>&nbsp;is the name of new method and&nbsp;<em>methodDefinition</em>&nbsp;is actual method definition.</p>
+<p>The guideline recommended by the jQuery team is as follows &minus;</p>
+<ul class="list">
+<li>
+<p>Any methods or functions you attach must have a semicolon (;) at the end.</p>
+</li>
+<li>
+<p>Your method must return the jQuery object, unless explicity noted otherwise.</p>
+</li>
+<li>
+<p>You should use this.each to iterate over the current set of matched elements - it produces clean and compatible code that way.</p>
+</li>
+<li>
+<p>Prefix the filename with jquery, follow that with the name of the plugin and conclude with .js.</p>
+</li>
+<li>
+<p>Always attach the plugin to jQuery directly instead of $, so users can use a custom alias via noConflict() method.</p>
+</li>
+</ul>
+<p>For example, if we write a plugin that we want to name&nbsp;<em>debug</em>, our JavaScript filename for this plugin is &minus;</p>
+<pre class="result notranslate">jquery.debug.js
+</pre>
+<p>The use of the&nbsp;<strong>jquery.</strong>&nbsp;prefix eliminates any possible name collisions with files intended for use with other libraries.</p>
+<h2>Example</h2>
+<p>Following is a small plug-in to have warning method for debugging purpose. Keep this code in&nbsp;<em>jquery.debug.js</em>&nbsp;file &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">jQuery</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">warning </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="str">'Tag Name:"'</span> <span class="pun">+</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">prop</span><span class="pun">(</span><span class="str">"tagName"</span><span class="pun">)</span> <span class="pun">+</span> <span class="str">'".'</span><span class="pun">);</span>
+   <span class="pun">});</span>
+<span class="pun">};</span></pre>
+<p>Here is the example showing usage of warning() method. Assuming we put&nbsp;<em>jquery.debug.js</em>&nbsp;file in same directory of html page.</p>
+<p><a class="demo" href="http://tpcg.io/1wF90g" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"jquery.debug.js"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">).</span><span class="pln">warning</span><span class="pun">();</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">).</span><span class="pln">warning</span><span class="pun">();</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>	
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">This is paragraph</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;div&gt;</span><span class="pln">This is division</span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This would alert you with following result &minus;</p>
+<pre class="result notranslate">This is paragraph
+This is division</pre>

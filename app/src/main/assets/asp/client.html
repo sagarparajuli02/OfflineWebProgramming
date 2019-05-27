@@ -1,0 +1,132 @@
+<p>ASP.NET client side coding has two aspects:</p>
+<ul class="list">
+<li>
+<p><strong>Client side scripts</strong>&nbsp;: It runs on the browser and in turn speeds up the execution of page. For example, client side data validation which can catch invalid data and warn the user accordingly without making a round trip to the server.</p>
+</li>
+<li>
+<p><strong>Client side source code</strong>&nbsp;: ASP.NET pages generate this. For example, the HTML source code of an ASP.NET page contains a number of hidden fields and automatically injected blocks of JavaScript code, which keeps information like view state or does other jobs to make the page work.</p>
+</li>
+</ul>
+<h2>Client Side Scripts</h2>
+<p>All ASP.NET server controls allow calling client side code written using JavaScript or VBScript. Some ASP.NET server controls use client side scripting to provide response to the users without posting back to the server. For example, the validation controls.</p>
+<p>Apart from these scripts, the Button control has a property OnClientClick, which allows executing client-side script, when the button is clicked.</p>
+<p>The traditional and server HTML controls have the following events that can execute a script when they are raised:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>onblur</td>
+<td>When the control loses focus</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>When the control receives focus</td>
+</tr>
+<tr>
+<td>onclick</td>
+<td>When the control is clicked</td>
+</tr>
+<tr>
+<td>onchange</td>
+<td>When the value of the control changes</td>
+</tr>
+<tr>
+<td>onkeydown</td>
+<td>When the user presses a key</td>
+</tr>
+<tr>
+<td>onkeypress</td>
+<td>When the user presses an alphanumeric key</td>
+</tr>
+<tr>
+<td>onkeyup</td>
+<td>When the user releases a key</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td>When the user moves the mouse pointer over the control</td>
+</tr>
+<tr>
+<td>onserverclick</td>
+<td>It raises the ServerClick event of the control, when the control is clicked</td>
+</tr>
+</tbody>
+</table>
+<h2>Client Side Source Code</h2>
+<p>We have already discussed that, ASP.NET pages are generally written in two files:</p>
+<ul class="list">
+<li>The content file or the markup file ( .aspx)</li>
+<li>The code-behind file</li>
+</ul>
+<p>The content file contains the HTML or ASP.NET control tags and literals to form the structure of the page. The code behind file contains the class definition. At run-time, the content file is parsed and transformed into a page class.</p>
+<p>This class, along with the class definition in the code file, and system generated code, together make the executable code (assembly) that processes all posted data, generates response, and sends it back to the client.</p>
+<p>Consider the simple page:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;%@</span> <span class="typ">Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span> <span class="typ">AutoEventWireup</span><span class="pun">=</span><span class="str">"true"</span> <span class="typ">CodeBehind</span><span class="pun">=</span><span class="str">"Default.aspx.cs"</span> 
+   <span class="typ">Inherits</span><span class="pun">=</span><span class="str">"clientside._Default"</span><span class="pln"> %&gt;
+
+</span><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         Untitled Page
+      </span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"TextBox1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;&lt;/asp:TextBox&gt;</span>  
+            <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Button1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">OnClick</span><span class="pun">=</span><span class="atv">"</span><span class="typ">Button1_Click</span><span class="atv">"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Click"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+         
+         <span class="tag">&lt;hr</span> <span class="tag">/&gt;</span>
+         
+         <span class="tag">&lt;h3&gt;</span> <span class="tag">&lt;asp:Label</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Msg"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">""</span><span class="tag">&gt;</span> <span class="tag">&lt;/asp:Label&gt;</span> <span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>When this page is run on the browser, the View Source option shows the HTML page sent to the browser by the ASP.Net runtime:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+ 
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         Untitled Page
+      </span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;form</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">method</span><span class="pun">=</span><span class="atv">"post"</span> <span class="atn">action</span><span class="pun">=</span><span class="atv">"Default.aspx"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span><span class="tag">&gt;</span>
+      
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"hidden"</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"__VIEWSTATE"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"__VIEWSTATE"</span> 
+               <span class="atn">value</span><span class="pun">=</span><span class="atv">"/wEPDwUKMTU5MTA2ODYwOWRk31NudGDgvhhA7joJum9Qn5RxU2M="</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+ 
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"hidden"</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"__EVENTVALIDATION"</span>  <span class="atn">id</span><span class="pun">=</span><span class="atv">"__EVENTVALIDATION"</span> 
+               <span class="atn">value</span><span class="pun">=</span><span class="atv">"/wEWAwKpjZj0DALs0bLrBgKM54rGBhHsyM61rraxE+KnBTCS8cd1QDJ/"</span><span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;div&gt;</span>
+            <span class="tag">&lt;input</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"TextBox1"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"TextBox1"</span> <span class="tag">/&gt;</span>  
+            <span class="tag">&lt;input</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"Button1"</span> <span class="atn">value</span><span class="pun">=</span><span class="atv">"Click"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"Button1"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+
+         <span class="tag">&lt;hr</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;h3&gt;&lt;span</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"Msg"</span><span class="tag">&gt;&lt;/span&gt;&lt;/h3&gt;</span>
+         
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>If you go through the code properly, you can see that first two &lt;div&gt; tags contain the hidden fields which store the view state and validation information.</p>

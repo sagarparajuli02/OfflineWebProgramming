@@ -1,0 +1,143 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>AngularJS supports modular approach. Modules are used to separate logic such as services, controllers, application etc. from the code and maintain the code clean. We define modules in separate js files and name them as per the module.js file. In the following example, we are going to create two modules &minus;</p>
+<ul class="list">
+<li>
+<p><strong>Application Module</strong>&nbsp;&minus; used to initialize an application with controller(s).</p>
+</li>
+<li>
+<p><strong>Controller Module</strong>&nbsp;&minus; used to define the controller.</p>
+</li>
+</ul>
+<h2>Application Module</h2>
+<p>Here is a file named&nbsp;<em>mainApp.js</em>&nbsp;that contains the following code &minus;</p>
+<pre class="result notranslate">var mainApp = angular.module("mainApp", []);
+</pre>
+<p>Here, we declare an application&nbsp;<strong>mainApp</strong>&nbsp;module using angular.module function and pass an empty array to it. This array generally contains dependent modules.</p>
+<h2>Controller Module</h2>
+<h3>studentController.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"studentController"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   $scope</span><span class="pun">.</span><span class="pln">student </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+      firstName</span><span class="pun">:</span> <span class="str">"Mahesh"</span><span class="pun">,</span><span class="pln">
+      lastName</span><span class="pun">:</span> <span class="str">"Parashar"</span><span class="pun">,</span><span class="pln">
+      fees</span><span class="pun">:</span><span class="lit">500</span><span class="pun">,</span><span class="pln">
+      
+      subjects</span><span class="pun">:[</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Physics'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">70</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Chemistry'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">80</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Math'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">65</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'English'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">75</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Hindi'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">67</span><span class="pun">}</span>
+      <span class="pun">],</span><span class="pln">
+      fullName</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+         <span class="kwd">var</span><span class="pln"> studentObject</span><span class="pun">;</span><span class="pln">
+         studentObject </span><span class="pun">=</span><span class="pln"> $scope</span><span class="pun">.</span><span class="pln">student</span><span class="pun">;</span>
+         <span class="kwd">return</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">+</span> <span class="str">" "</span> <span class="pun">+</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">lastName</span><span class="pun">;</span>
+      <span class="pun">}</span>
+   <span class="pun">};</span>
+<span class="pun">});</span></pre>
+<p>Here, we declare a controller&nbsp;<strong>studentController</strong>&nbsp;module using mainApp.controller function.</p>
+<h2>Use Modules</h2>
+<pre class="result notranslate">&lt;div ng-app = "mainApp" ng-controller = "studentController"&gt;
+   ...
+   &lt;script src = "mainApp.js"&gt;&lt;/script&gt;
+   &lt;script src = "studentController.js"&gt;&lt;/script&gt;
+	
+&lt;/div&gt;
+</pre>
+<p>Here, we use application module using ng-app directive, and controller using ngcontroller directive. We import the mainApp.js and studentController.js in the main HTML page.</p>
+<h2>Example</h2>
+<p>The following example shows use of all the above mentioned modules.</p>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/UklCNv" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Modules</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/angularjs/src/module/mainApp.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/angularjs/src/module/studentController.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;style&gt;</span><span class="pln">
+         table</span><span class="pun">,</span><span class="pln"> th </span><span class="pun">,</span><span class="pln"> td </span><span class="pun">{</span><span class="pln">
+            border</span><span class="pun">:</span> <span class="lit">1px</span><span class="pln"> solid grey</span><span class="pun">;</span><span class="pln">
+            border</span><span class="pun">-</span><span class="pln">collapse</span><span class="pun">:</span><span class="pln"> collapse</span><span class="pun">;</span><span class="pln">
+            padding</span><span class="pun">:</span> <span class="lit">5px</span><span class="pun">;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">odd</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#f2f2f2;</span>
+         <span class="pun">}</span><span class="pln">
+         table tr</span><span class="pun">:</span><span class="pln">nth</span><span class="pun">-</span><span class="pln">child</span><span class="pun">(</span><span class="pln">even</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span> <span class="com">#ffffff;</span>
+         <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"mainApp"</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"studentController"</span><span class="tag">&gt;</span>
+         
+         <span class="tag">&lt;table</span> <span class="atn">border</span> <span class="pun">=</span> <span class="atv">"0"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter first name:</span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"student.firstName"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Enter last name: </span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">ng-model</span> <span class="pun">=</span> <span class="atv">"student.lastName"</span><span class="tag">&gt;&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Name: </span><span class="tag">&lt;/td&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">{{student.fullName()}}</span><span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+            <span class="tag">&lt;tr&gt;</span>
+               <span class="tag">&lt;td&gt;</span><span class="pln">Subject:</span><span class="tag">&lt;/td&gt;</span>
+               
+               <span class="tag">&lt;td&gt;</span>
+                  <span class="tag">&lt;table&gt;</span>
+                     <span class="tag">&lt;tr&gt;</span>
+                        <span class="tag">&lt;th&gt;</span><span class="pln">Name</span><span class="tag">&lt;/th&gt;</span>
+                        <span class="tag">&lt;th&gt;</span><span class="pln">Marks</span><span class="tag">&lt;/th&gt;</span>
+                     <span class="tag">&lt;/tr&gt;</span>
+                     <span class="tag">&lt;tr</span> <span class="atn">ng-repeat</span> <span class="pun">=</span> <span class="atv">"subject in student.subjects"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;td&gt;</span><span class="pln">{{ subject.name }}</span><span class="tag">&lt;/td&gt;</span>
+                        <span class="tag">&lt;td&gt;</span><span class="pln">{{ subject.marks }}</span><span class="tag">&lt;/td&gt;</span>
+                     <span class="tag">&lt;/tr&gt;</span>
+                  <span class="tag">&lt;/table&gt;</span>
+               <span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;/tr&gt;</span>
+         <span class="tag">&lt;/table&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>mainApp.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> mainApp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="kwd">module</span><span class="pun">(</span><span class="str">"mainApp"</span><span class="pun">,</span> <span class="pun">[]);</span></pre>
+<h3>studentController.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"studentController"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+   $scope</span><span class="pun">.</span><span class="pln">student </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
+      firstName</span><span class="pun">:</span> <span class="str">"Mahesh"</span><span class="pun">,</span><span class="pln">
+      lastName</span><span class="pun">:</span> <span class="str">"Parashar"</span><span class="pun">,</span><span class="pln">
+      fees</span><span class="pun">:</span><span class="lit">500</span><span class="pun">,</span><span class="pln">
+      
+      subjects</span><span class="pun">:[</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Physics'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">70</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Chemistry'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">80</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Math'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">65</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'English'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">75</span><span class="pun">},</span>
+         <span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="str">'Hindi'</span><span class="pun">,</span><span class="pln">marks</span><span class="pun">:</span><span class="lit">67</span><span class="pun">}</span>
+      <span class="pun">],</span><span class="pln">
+      fullName</span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+         <span class="kwd">var</span><span class="pln"> studentObject</span><span class="pun">;</span><span class="pln">
+         studentObject </span><span class="pun">=</span><span class="pln"> $scope</span><span class="pun">.</span><span class="pln">student</span><span class="pun">;</span>
+         <span class="kwd">return</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">+</span> <span class="str">" "</span> <span class="pun">+</span><span class="pln"> studentObject</span><span class="pun">.</span><span class="pln">lastName</span><span class="pun">;</span>
+      <span class="pun">}</span>
+   <span class="pun">};</span>
+<span class="pun">});</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>textAngularJS.htm</em>&nbsp;in a web browser. See the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/module/index.htm" width="600px" height="350px"></iframe></p>

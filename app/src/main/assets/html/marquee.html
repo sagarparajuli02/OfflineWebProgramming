@@ -1,0 +1,155 @@
+<p>An HTML marquee is a scrolling piece of text displayed either horizontally across or vertically down your webpage depending on the settings. This is created by using HTML &lt;marquees&gt; tag.</p>
+<blockquote>
+<p><strong>Note</strong>&nbsp;&minus; The &lt;marquee&gt; tag deprecated in HTML5. Do not use this element, instead you can use JavaScript and CSS to create such effects.</p>
+</blockquote>
+<h2>Syntax</h2>
+<p>A simple syntax to use HTML &lt;marquee&gt; tag is as follows &minus;</p>
+<pre class="result notranslate">&lt;marquee attribute_name = "attribute_value"....more attributes&gt;
+   One or more lines or text message or image
+&lt;/marquee&gt;
+</pre>
+<h2>The &lt;marquee&gt; Tag Attributes</h2>
+<p>Following is the list of important attributes which can be used with &lt;marquee&gt; tag.</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Sr.No</th>
+<th>Attribute &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>width</strong></p>
+<p>This specifies the width of the marquee. This can be a value like 10 or 20% etc.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>height</strong></p>
+<p>This specifies the height of the marquee. This can be a value like 10 or 20% etc.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>direction</strong></p>
+<p>This specifies the direction in which marquee should scroll. This can be a value like&nbsp;<em>up, down, left</em>&nbsp;or&nbsp;<em>right</em>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><strong>behavior</strong></p>
+<p>This specifies the type of scrolling of the marquee. This can have a value like&nbsp;<em>scroll, slide</em>&nbsp;and&nbsp;<em>alternate</em>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><strong>scrolldelay</strong></p>
+<p>This specifies how long to delay between each jump. This will have a value like 10 etc.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><strong>scrollamount</strong></p>
+<p>This specifies the speed of marquee text. This can have a value like 10 etc.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><strong>loop</strong></p>
+<p>This specifies how many times to loop. The default value is INFINITE, which means that the marquee loops endlessly.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><strong>bgcolor</strong></p>
+<p>This specifies background color in terms of color name or color hex value.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><strong>hspace</strong></p>
+<p>This specifies horizontal space around the marquee. This can be a value like 10 or 20% etc.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><strong>vspace</strong></p>
+<p>This specifies vertical space around the marquee. This can be a value like 10 or 20% etc.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Below are few examples to demonstrate the usage of marquee tag.</p>
+<h3>Examples - 1</h3>
+<p><a class="demo" href="http://tpcg.io/Ngeujx" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML marquee Tag</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;marquee&gt;</span><span class="pln">This is basic example of marquee</span><span class="tag">&lt;/marquee&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/basic_marquee.htm" width="600px" height="100px"></iframe></p>
+<h3>Examples - 2</h3>
+<p><a class="demo" href="http://tpcg.io/la66nv" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML marquee Tag</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;marquee</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"50%"</span><span class="tag">&gt;</span><span class="pln">This example will take only 50% width</span><span class="tag">&lt;/marquee&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/marquee_tag.htm" width="600px" height="100px"></iframe></p>
+<h3>Examples - 3</h3>
+<p><a class="demo" href="http://tpcg.io/yTCuVw" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML marquee Tag</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;marquee</span> <span class="atn">direction</span> <span class="pun">=</span> <span class="atv">"right"</span><span class="tag">&gt;</span><span class="pln">This text will scroll from left to right</span><span class="tag">&lt;/marquee&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/left_to_right_marquee.htm" width="600px" height="100px"></iframe></p>
+<h3>Examples - 4</h3>
+<p><a class="demo" href="http://tpcg.io/mVbuQ0" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">HTML marquee Tag</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;marquee</span> <span class="atn">direction</span> <span class="pun">=</span> <span class="atv">"up"</span><span class="tag">&gt;</span><span class="pln">This text will scroll from bottom to up</span><span class="tag">&lt;/marquee&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+	
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce the following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/html/src/bottom_to_up_marquee.htm" width="600px" height="100px"></iframe></p>

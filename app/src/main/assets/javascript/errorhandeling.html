@@ -1,0 +1,249 @@
+<p>There are three types of errors in programming: (a) Syntax Errors, (b) Runtime Errors, and (c) Logical Errors.</p>
+<h2>Syntax Errors</h2>
+<p>Syntax errors, also called&nbsp;<strong>parsing errors,</strong>&nbsp;occur at compile time in traditional programming languages and at interpret time in JavaScript.</p>
+<p>For example, the following line causes a syntax error because it is missing a closing parenthesis.</p>
+<pre class="result notranslate">&lt;script type = "text/javascript"&gt;
+   &lt;!--
+      window.print(;
+   //--&gt;
+&lt;/script&gt;
+</pre>
+<p>When a syntax error occurs in JavaScript, only the code contained within the same thread as the syntax error is affected and the rest of the code in other threads gets executed assuming nothing in them depends on the code containing the error.</p>
+<h2>Runtime Errors</h2>
+<p>Runtime errors, also called&nbsp;<strong>exceptions,</strong>&nbsp;occur during execution (after compilation/interpretation).</p>
+<p>For example, the following line causes a runtime error because here the syntax is correct, but at runtime, it is trying to call a method that does not exist.</p>
+<pre class="result notranslate">&lt;script type = "text/javascript"&gt;
+   &lt;!--
+      window.printme();
+   //--&gt;
+&lt;/script&gt;
+</pre>
+<p>Exceptions also affect the thread in which they occur, allowing other JavaScript threads to continue normal execution.</p>
+<h2>Logical Errors</h2>
+<p>Logic errors can be the most difficult type of errors to track down. These errors are not the result of a syntax or runtime error. Instead, they occur when you make a mistake in the logic that drives your script and you do not get the result you expected.</p>
+<p>You cannot catch those errors, because it depends on your business requirement what type of logic you want to put in your program.</p>
+<h2>The try...catch...finally Statement</h2>
+<p>The latest versions of JavaScript added exception handling capabilities. JavaScript implements the&nbsp;<strong>try...catch...finally</strong>&nbsp;construct as well as the&nbsp;<strong>throw</strong>&nbsp;operator to handle exceptions.</p>
+<p>You can&nbsp;<strong>catch</strong>&nbsp;programmer-generated and&nbsp;<strong>runtime</strong>&nbsp;exceptions, but you cannot&nbsp;<strong>catch</strong>JavaScript syntax errors.</p>
+<p>Here is the&nbsp;<strong>try...catch...finally</strong>&nbsp;block syntax &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+   <span class="pun">&lt;!--</span>
+      <span class="kwd">try</span> <span class="pun">{</span>
+         <span class="com">// Code to run</span>
+         <span class="pun">[</span><span class="kwd">break</span><span class="pun">;]</span>
+      <span class="pun">}</span> 
+      
+      <span class="kwd">catch</span> <span class="pun">(</span><span class="pln"> e </span><span class="pun">)</span> <span class="pun">{</span>
+         <span class="com">// Code to run if an exception occurs</span>
+         <span class="pun">[</span><span class="kwd">break</span><span class="pun">;]</span>
+      <span class="pun">}</span>
+      
+      <span class="pun">[</span><span class="pln"> finally </span><span class="pun">{</span>
+         <span class="com">// Code that is always executed regardless of </span>
+         <span class="com">// an exception occurring</span>
+      <span class="pun">}]</span>
+   <span class="com">//--&gt;</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+<p>The&nbsp;<strong>try</strong>&nbsp;block must be followed by either exactly one&nbsp;<strong>catch</strong>&nbsp;block or one&nbsp;<strong>finally</strong>&nbsp;block (or one of both). When an exception occurs in the&nbsp;<strong>try</strong>&nbsp;block, the exception is placed in&nbsp;<strong>e</strong>&nbsp;and the&nbsp;<strong>catch</strong>&nbsp;block is executed. The optional&nbsp;<strong>finally</strong>&nbsp;block executes unconditionally after try/catch.</p>
+<h3>Examples</h3>
+<p>Here is an example where we are trying to call a non-existing function which in turn is raising an exception. Let us see how it behaves without&nbsp;<strong>try...catch</strong>&minus;</p>
+<p><a class="demo" href="http://tpcg.io/zvPSag" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span>
+            <span class="kwd">function</span><span class="pln"> myFunc</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">"Value of variable a is : "</span> <span class="pun">+</span><span class="pln"> a </span><span class="pun">);</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>      
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/error_handling.htm" width="600px" height="90px"></iframe></p>
+<p>Now let us try to catch this exception using&nbsp;<strong>try...catch</strong>&nbsp;and display a user-friendly message. You can also suppress this message, if you want to hide this error from a user.</p>
+<p><a class="demo" href="http://tpcg.io/UnaRU3" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span>
+            <span class="kwd">function</span><span class="pln"> myFunc</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span>
+               <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Value of variable a is : "</span> <span class="pun">+</span><span class="pln"> a </span><span class="pun">);</span>
+               <span class="pun">}</span> 
+               <span class="kwd">catch</span> <span class="pun">(</span><span class="pln"> e </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Error: "</span> <span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">description </span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/error_handling2.htm" width="600px" height="90px"></iframe></p>
+<p>You can use&nbsp;<strong>finally</strong>&nbsp;block which will always execute unconditionally after the try/catch. Here is an example.</p>
+<p><a class="demo" href="http://tpcg.io/nwZsBT" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span>
+            <span class="kwd">function</span><span class="pln"> myFunc</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span>
+               
+               <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Value of variable a is : "</span> <span class="pun">+</span><span class="pln"> a </span><span class="pun">);</span>
+               <span class="pun">}</span>
+               <span class="kwd">catch</span> <span class="pun">(</span><span class="pln"> e </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Error: "</span> <span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">description </span><span class="pun">);</span>
+               <span class="pun">}</span><span class="pln">
+               finally </span><span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Finally block will always execute!"</span> <span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/error_handling3.htm" width="600px" height="90px"></iframe></p>
+<h2>The throw Statement</h2>
+<p>You can use&nbsp;<strong>throw</strong>&nbsp;statement to raise your built-in exceptions or your customized exceptions. Later these exceptions can be captured and you can take an appropriate action.</p>
+<h3>Example</h3>
+<p>The following example demonstrates how to use a&nbsp;<strong>throw</strong>&nbsp;statement.</p>
+<p><a class="demo" href="http://tpcg.io/sPAG21" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span>
+            <span class="kwd">function</span><span class="pln"> myFunc</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span>
+               <span class="kwd">var</span><span class="pln"> b </span><span class="pun">=</span> <span class="lit">0</span><span class="pun">;</span>
+               
+               <span class="kwd">try</span> <span class="pun">{</span>
+                  <span class="kwd">if</span> <span class="pun">(</span><span class="pln"> b </span><span class="pun">==</span> <span class="lit">0</span> <span class="pun">)</span> <span class="pun">{</span>
+                     <span class="kwd">throw</span><span class="pun">(</span> <span class="str">"Divide by zero error."</span> <span class="pun">);</span> 
+                  <span class="pun">}</span> <span class="kwd">else</span> <span class="pun">{</span>
+                     <span class="kwd">var</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> a </span><span class="pun">/</span><span class="pln"> b</span><span class="pun">;</span>
+                  <span class="pun">}</span>
+               <span class="pun">}</span>
+               <span class="kwd">catch</span> <span class="pun">(</span><span class="pln"> e </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Error: "</span> <span class="pun">+</span><span class="pln"> e </span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/throw_statement.htm" width="600px" height="90px"></iframe></p>
+<p>You can raise an exception in one function using a string, integer, Boolean, or an object and then you can capture that exception either in the same function as we did above, or in another function using a&nbsp;<strong>try...catch</strong>&nbsp;block.</p>
+<h2>The onerror() Method</h2>
+<p>The&nbsp;<strong>onerror</strong>&nbsp;event handler was the first feature to facilitate error handling in JavaScript. The&nbsp;<strong>error</strong>&nbsp;event is fired on the window object whenever an exception occurs on the page.</p>
+<p><a class="demo" href="http://tpcg.io/SWbdYM" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span><span class="pln">
+            window</span><span class="pun">.</span><span class="pln">onerror </span><span class="pun">=</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">"An error occurred."</span><span class="pun">);</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/onerror.htm" width="600px" height="90px"></iframe></p>
+<p>The&nbsp;<strong>onerror</strong>&nbsp;event handler provides three pieces of information to identify the exact nature of the error &minus;</p>
+<ul class="list">
+<li>
+<p><strong>Error message</strong>&nbsp;&minus; The same message that the browser would display for the given error</p>
+</li>
+<li>
+<p><strong>URL</strong>&nbsp;&minus; The file in which the error occurred</p>
+</li>
+<li>
+<p><strong>Line number</strong>&minus; The line number in the given URL that caused the error</p>
+</li>
+</ul>
+<p>Here is the example to show how to extract this information.</p>
+<h3>Example</h3>
+<p><a class="demo" href="http://tpcg.io/axqshk" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+   
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span><span class="pln">
+            window</span><span class="pun">.</span><span class="pln">onerror </span><span class="pun">=</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">msg</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">,</span><span class="pln"> line</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">"Message : "</span> <span class="pun">+</span><span class="pln"> msg </span><span class="pun">);</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">"url : "</span> <span class="pun">+</span><span class="pln"> url </span><span class="pun">);</span><span class="pln">
+               alert</span><span class="pun">(</span><span class="str">"Line number : "</span> <span class="pun">+</span><span class="pln"> line </span><span class="pun">);</span>
+            <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">Click the following to see the result:</span><span class="tag">&lt;/p&gt;</span>
+      
+      <span class="tag">&lt;form&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"button"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Click Me"</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">myFunc</span><span class="pun">();</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><iframe class="result" src="https://www.tutorialspoint.com/javascript/src/error_handling4.htm" width="600px" height="90px"></iframe></p>
+<p>You can display extracted information in whatever way you think it is better.</p>
+<p>You can use an&nbsp;<strong>onerror</strong>&nbsp;method, as shown below, to display an error message in case there is any problem in loading an image.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;img</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"myimage.gif"</span> <span class="atn">onerror</span><span class="pun">=</span><span class="atv">"</span><span class="pln">alert</span><span class="pun">(</span><span class="str">'An error occurred loading the image.'</span><span class="pun">)</span><span class="atv">"</span> <span class="tag">/&gt;</span></pre>
+<p>You can use&nbsp;<strong>onerror</strong>&nbsp;with many HTML tags to display appropriate messages in case of errors.</p>

@@ -1,0 +1,120 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>This chapter describes how to set up AngularJS library to be used in web application development. It also briefly describes the directory structure and its contents.</p>
+<p>When you open the link&nbsp;<a href="https://angularjs.org/" target="_blank" rel="nofollow">https://angularjs.org/</a>, you will see there are two options to download AngularJS library &minus;</p>
+<p><img src="https://www.tutorialspoint.com/angularjs/images/angularjs_environment_download.jpg" alt="AngularJS Download" /></p>
+<ul class="list">
+<li>
+<p><strong>View on GitHub</strong>&nbsp;&minus; By clicking on this button, you are diverted to GitHub and get all the latest scripts.</p>
+</li>
+<li>
+<p><strong>Download AngularJS 1</strong>&nbsp;&minus; By clicking on this button, a screen you get to see a dialog box shown as &minus;</p>
+</li>
+</ul>
+<p><img src="https://www.tutorialspoint.com/angularjs/images/angularjs_environment_download1.jpg" alt="AngularJS Download" /></p>
+<p>This screen gives various options of using Angular JS as follows &minus;</p>
+<ul class="list">
+<li>
+<p><strong>Downloading and hosting files locally</strong></p>
+<ul class="list">
+<li>
+<p>There are two different options : Legacy and Latest. The names themselves are self-descriptive. The Legacy has version less than 1.2.x and the Latest come with version 1.3.x.</p>
+</li>
+<li>
+<p>We can also go with the minimized, uncompressed, or zipped version.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CDN access</strong>&nbsp;&minus; You also have access to a CDN. The CDN gives you access to regional data centers. In this case, the Google host. The CDN transfers the responsibility of hosting files from your own servers to a series of external ones. It also offers an advantage that if the visitor of your web page has already downloaded a copy of AngularJS from the same CDN, there is no need to re-download it.</p>
+</li>
+</ul>
+<blockquote>We are using the CDN versions of the library throughout this tutorial.</blockquote>
+<h2>Example</h2>
+<p>Now let us write a simple example using AngularJS library. Let us create an HTML file&nbsp;<em>myfirstexample.html</em>&nbsp;shown as below &minus;</p>
+<p><a class="demo" href="http://tpcg.io/nQoPqB" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"myapp"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"HelloController"</span> <span class="tag">&gt;</span>
+         <span class="tag">&lt;h2&gt;</span><span class="pln">Welcome {{helloTo.title}} to the world of Tutorialspoint!</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span> <span class="pun">[])</span>
+         
+         <span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"HelloController"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">helloTo </span><span class="pun">=</span> <span class="pun">{};</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">helloTo</span><span class="pun">.</span><span class="pln">title </span><span class="pun">=</span> <span class="str">"AngularJS"</span><span class="pun">;</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Let us go through the above code in detail &minus;</p>
+<h3>Include AngularJS</h3>
+<p>We include the AngularJS JavaScript file in the HTML page so that we can use it &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;head&gt;</span>
+   <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span></pre>
+<p>You can check the latest version of AngularJS on its official website.</p>
+<h3>Point to AngularJS app</h3>
+<p>Next, it is required to tell which part of HTML contains the AngularJS app. You can do this by adding the ng-app attribute to the root HTML element of the AngularJS app. You can either add it to the html element or the body element as shown below &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;body</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"myapp"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/body&gt;</span></pre>
+<h3>View</h3>
+<p>The view is this part &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"HelloController"</span> <span class="tag">&gt;</span>
+   <span class="tag">&lt;h2&gt;</span><span class="pln">Welcome {{helloTo.title}} to the world of Tutorialspoint!</span><span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+<p><em>ng-controller</em>&nbsp;tells AngularJS which controller to use with this view.&nbsp;<em>helloTo.title&nbsp;</em>tells AngularJS to write the model value named helloTo.title in HTML at this location.</p>
+<h3>Controller</h3>
+<p>The controller part is &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script&gt;</span><span class="pln">
+   angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span> <span class="pun">[])</span>
+   
+   <span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"HelloController"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+      $scope</span><span class="pun">.</span><span class="pln">helloTo </span><span class="pun">=</span> <span class="pun">{};</span><span class="pln">
+      $scope</span><span class="pun">.</span><span class="pln">helloTo</span><span class="pun">.</span><span class="pln">title </span><span class="pun">=</span> <span class="str">"AngularJS"</span><span class="pun">;</span>
+   <span class="pun">});</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+<p>This code registers a controller function named HelloController in the angular module named&nbsp;<em>myapp</em>. We will study more about&nbsp;<a href="https://www.tutorialspoint.com/angularjs/angularjs_modules.htm">modules</a>&nbsp;and&nbsp;<a href="https://www.tutorialspoint.com/angularjs/angularjs_controllers.htm">controllers</a>&nbsp;in their respective chapters. The controller function is registered in angular via the angular.module(...).controller(...) function call.</p>
+<p>The $scope parameter model is passed to the controller function. The controller function adds a&nbsp;<em>helloTo</em>&nbsp;JavaScript object, and in that object it adds a&nbsp;<em>title</em>&nbsp;field.</p>
+<h3>Execution</h3>
+<p>Save the above code as&nbsp;<em>myfirstexample.html</em>&nbsp;and open it in any browser. You get to see the following output &minus;</p>
+<pre class="result notranslate">Welcome AngularJS to the world of Tutorialspoint!
+</pre>
+<p>What happens when the page is loaded in the browser ? Let us see &minus;</p>
+<ul class="list">
+<li>
+<p>HTML document is loaded into the browser, and evaluated by the browser.</p>
+</li>
+<li>
+<p>AngularJS JavaScript file is loaded, the angular&nbsp;<em>global</em>&nbsp;object is created.</p>
+</li>
+<li>
+<p>The JavaScript which registers controller functions is executed.</p>
+</li>
+<li>
+<p>Next, AngularJS scans through the HTML to search for AngularJS apps as well as views.</p>
+</li>
+<li>
+<p>Once the view is located, it connects that view to the corresponding controller function.</p>
+</li>
+<li>
+<p>Next, AngularJS executes the controller functions.</p>
+</li>
+<li>
+<p>It then renders the views with data from the model populated by the controller. The page is now ready.</p>
+</li>
+</ul>

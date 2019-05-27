@@ -1,0 +1,30 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+<h2>AJAX Security: Server Side</h2>
+<ul class="list">
+<li>
+<p>AJAX-based Web applications use the same server-side security schemes of regular Web applications.</p>
+</li>
+<li>
+<p>You specify authentication, authorization, and data protection requirements in your web.xml file (declarative) or in your program (programmatic).</p>
+</li>
+<li>
+<p>AJAX-based Web applications are subject to the same security threats as regular Web applications.</p>
+</li>
+</ul>
+<h2>AJAX Security: Client Side</h2>
+<ul class="list">
+<li>
+<p>JavaScript code is visible to a user/hacker. Hacker can use JavaScript code for inferring server-side weaknesses.</p>
+</li>
+<li>
+<p>JavaScript code is downloaded from the server and executed ("eval") at the client and can compromise the client by mal-intended code.</p>
+</li>
+<li>
+<p>Downloaded JavaScript code is constrained by the sand-box security model and can be relaxed for signed JavaScript.</p>
+</li>
+</ul>

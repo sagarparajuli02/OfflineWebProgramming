@@ -1,0 +1,114 @@
+<p>Creating forms in Django, is really similar to creating a model. Here again, we just need to inherit from Django class and the class attributes will be the form fields. Let's add a&nbsp;<strong>forms.py</strong>&nbsp;file in myapp folder to contain our app forms. We will create a login form.</p>
+<p><strong>myapp/forms.py</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">#-*- coding: utf-8 -*-</span>
+<span class="kwd">from</span><span class="pln"> django </span><span class="kwd">import</span><span class="pln"> forms
+
+</span><span class="kwd">class</span> <span class="typ">LoginForm</span><span class="pun">(</span><span class="pln">forms</span><span class="pun">.</span><span class="typ">Form</span><span class="pun">):</span><span class="pln">
+   user </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span><span class="pln">
+   password </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">widget </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">PasswordInput</span><span class="pun">())</span></pre>
+<p>As seen above, the field type can take "widget" argument for html rendering; in our case, we want the password to be hidden, not displayed. Many others widget are present in Django:&nbsp;<strong>DateInput</strong>&nbsp;for dates,&nbsp;<strong>CheckboxInput</strong>&nbsp;for checkboxes, etc.</p>
+<h2>Using Form in a View</h2>
+<p>There are two kinds of HTTP requests, GET and POST. In Django, the request object passed as parameter to your view has an attribute called "method" where the type of the request is set, and all data passed via POST can be accessed via the request.POST dictionary.</p>
+<p>Let's create a login view in our myapp/views.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">#-*- coding: utf-8 -*-</span>
+<span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">forms </span><span class="kwd">import</span> <span class="typ">LoginForm</span>
+
+<span class="kwd">def</span><span class="pln"> login</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   username </span><span class="pun">=</span> <span class="str">"not logged in"</span>
+   
+   <span class="kwd">if</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">method </span><span class="pun">==</span> <span class="str">"POST"</span><span class="pun">:</span>
+      <span class="com">#Get the posted form</span>
+      <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">LoginForm</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">POST</span><span class="pun">)</span>
+      
+      <span class="kwd">if</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">is_valid</span><span class="pun">():</span><span class="pln">
+         username </span><span class="pun">=</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span>
+   <span class="kwd">else</span><span class="pun">:</span>
+      <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">Loginform</span><span class="pun">()</span>
+		
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'loggedin.html'</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"username"</span> <span class="pun">:</span><span class="pln"> username</span><span class="pun">})</span></pre>
+<p>The view will display the result of the login form posted through the&nbsp;<strong>loggedin.html</strong>. To test it, we will first need the login form template. Let's call it login.html.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      
+      <span class="tag">&lt;form</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"form"</span> <span class="atn">action</span> <span class="pun">=</span> <span class="atv">"{% url "</span><span class="atn">myapp</span><span class="pln">.</span><span class="atn">views</span><span class="pln">.</span><span class="atn">login</span><span class="atv">" %}"</span> 
+         <span class="atn">method</span> <span class="pun">=</span> <span class="atv">"POST"</span> <span class="tag">&gt;</span><span class="pln">{% csrf_token %}
+         
+         </span><span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span> 
+               <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">20</span><span class="pun">%;</span><span class="atv">"</span> 
+                  <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Identifiant"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"username"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;br&gt;</span>
+         
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span>
+               <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"password"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">20</span><span class="pun">%;</span><span class="atv">"</span> 
+                  <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"password"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"password"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;br&gt;</span>
+         
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span> 
+            
+               <span class="tag">&lt;button</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">border</span><span class="pun">:</span><span class="lit">0px</span><span class="pun">;</span><span class="pln"> background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="lit">4285F4</span><span class="pun">;</span><span class="pln"> margin</span><span class="pun">-</span><span class="pln">top</span><span class="pun">:</span><span class="lit">8</span><span class="pun">%;</span><span class="pln">
+                  height</span><span class="pun">:</span><span class="lit">35px</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">80</span><span class="pun">%;</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">19</span><span class="pun">%;</span><span class="atv">"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> 
+                  <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Login"</span> <span class="tag">&gt;</span>
+                  <span class="tag">&lt;strong&gt;</span><span class="pln">Login</span><span class="tag">&lt;/strong&gt;</span>
+               <span class="tag">&lt;/button&gt;</span>
+               
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+         
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>The template will display a login form and post the result to our login view above. You have probably noticed the tag in the template, which is just to prevent Cross-site Request Forgery (CSRF) attack on your site.</p>
+<pre class="result notranslate">{% csrf_token %}
+</pre>
+<p>Once we have the login template, we need the loggedin.html template that will be rendered after form treatment.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+      You are : </span><span class="tag">&lt;strong&gt;</span><span class="pln">{{username}}</span><span class="tag">&lt;/strong&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Now, we just need our pair of URLs to get started: myapp/urls.py</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span><span class="pln">
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^connection/'</span><span class="pun">,</span><span class="typ">TemplateView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">(</span><span class="pln">template_name </span><span class="pun">=</span> <span class="str">'login.html'</span><span class="pun">)),</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^login/'</span><span class="pun">,</span> <span class="str">'login'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'login'</span><span class="pun">))</span></pre>
+<p>When accessing "/myapp/connection", we will get the following login.html template rendered &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/login_html_template.jpg" alt="Login HTML Template" /></p>
+<p>On the form post, the form is valid. In our case make sure to fill the two fields and you will get &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/form_validation.jpg" alt="Form Validation" /></p>
+<p>In case your username is polo, and you forgot the password. You will get the following message &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/form_invalid_message.jpg" alt="Form Invalid Message" /></p>
+<h3>Using Our Own Form Validation</h3>
+<p>In the above example, when validating the form &minus;</p>
+<pre class="result notranslate">MyLoginForm.is_valid()
+</pre>
+<p>We only used Django self-form validation engine, in our case just making sure the fields are required. Now let&rsquo;s try to make sure the user trying to login is present in our DB as Dreamreal entry. For this, change the myapp/forms.py to &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">#-*- coding: utf-8 -*-</span>
+<span class="kwd">from</span><span class="pln"> django </span><span class="kwd">import</span><span class="pln"> forms
+</span><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Dreamreal</span>
+
+<span class="kwd">class</span> <span class="typ">LoginForm</span><span class="pun">(</span><span class="pln">forms</span><span class="pun">.</span><span class="typ">Form</span><span class="pun">):</span><span class="pln">
+   user </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span><span class="pln">
+   password </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">widget </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">PasswordInput</span><span class="pun">())</span>
+
+   <span class="kwd">def</span><span class="pln"> clean_message</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">):</span><span class="pln">
+      username </span><span class="pun">=</span> <span class="kwd">self</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"username"</span><span class="pun">)</span><span class="pln">
+      dbuser </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">filter</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> username</span><span class="pun">)</span>
+      
+      <span class="kwd">if</span> <span class="kwd">not</span><span class="pln"> dbuser</span><span class="pun">:</span>
+         <span class="kwd">raise</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">ValidationError</span><span class="pun">(</span><span class="str">"User does not exist in our db!"</span><span class="pun">)</span>
+      <span class="kwd">return</span><span class="pln"> username</span></pre>
+<p>Now, after calling the "is_valid" method, we will get the correct output, only if the user is in our database. If you want to check a field of your form, just add a method starting by "clean_" then your field name to your form class. Raising a forms.ValidationError is important.</p>

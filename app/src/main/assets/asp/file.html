@@ -1,0 +1,129 @@
+<p>ASP.NET has two controls that allow users to upload files to the web server. Once the server receives the posted file data, the application can save it, check it, or ignore it. The following controls allow the file uploading:</p>
+<ul class="list">
+<li>
+<p><strong>HtmlInputFile</strong>&nbsp;- an HTML server control</p>
+</li>
+<li>
+<p><strong>FileUpload</strong>&nbsp;- and ASP.NET web control</p>
+</li>
+</ul>
+<p>Both controls allow file uploading, but the FileUpload control automatically sets the encoding of the form, whereas the HtmlInputFile does not do so.</p>
+<p>In this tutorial, we use the FileUpload control. The FileUpload control allows the user to browse for and select the file to be uploaded, providing a browse button and a text box for entering the filename.</p>
+<p>Once, the user has entered the filename in the text box by typing the name or browsing, the SaveAs method of the FileUpload control can be called to save the file to the disk.</p>
+<p>The basic syntax of FileUpload is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:FileUpload</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"Uploader"</span> <span class="atn">runat</span> <span class="pun">=</span> <span class="atv">"server"</span> <span class="tag">/&gt;</span></pre>
+<p>The FileUpload class is derived from the WebControl class, and inherits all its members. Apart from those, the FileUpload class has the following read-only properties:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>FileBytes</td>
+<td>Returns an array of the bytes in a file to be uploaded.</td>
+</tr>
+<tr>
+<td>FileContent</td>
+<td>Returns the stream object pointing to the file to be uploaded.</td>
+</tr>
+<tr>
+<td>FileName</td>
+<td>Returns the name of the file to be uploaded.</td>
+</tr>
+<tr>
+<td>HasFile</td>
+<td>Specifies whether the control has a file to upload.</td>
+</tr>
+<tr>
+<td>PostedFile</td>
+<td>Returns a reference to the uploaded file.</td>
+</tr>
+</tbody>
+</table>
+<p>The posted file is encapsulated in an object of type HttpPostedFile, which could be accessed through the PostedFile property of the FileUpload class.</p>
+<p>The HttpPostedFile class has the following frequently used properties:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>ContentLength</td>
+<td>Returns the size of the uploaded file in bytes.</td>
+</tr>
+<tr>
+<td>ContentType</td>
+<td>Returns the MIME type of the uploaded file.</td>
+</tr>
+<tr>
+<td>FileName</td>
+<td>Returns the full filename.</td>
+</tr>
+<tr>
+<td>InputStream</td>
+<td>Returns a stream object pointing to the uploaded file.</td>
+</tr>
+</tbody>
+</table>
+<h2>Example</h2>
+<p>The following example demonstrates the FileUpload control and its properties. The form has a FileUpload control along with a save button and a label control for displaying the file name, file type, and file length.</p>
+<p>In the design view, the form looks as follows:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_fileupload.jpg" alt="File Upload" /></p>
+<p>The content file code is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;body&gt;</span>
+   <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+   
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;h3&gt;</span><span class="pln"> File Upload:</span><span class="tag">&lt;/h3&gt;</span>
+         <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;asp:FileUpload</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"FileUpload1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;br</span> <span class="tag">/&gt;&lt;br</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnsave"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">onclick</span><span class="pun">=</span><span class="atv">"</span><span class="pln">btnsave_Click</span><span class="atv">"</span>  <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Save"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">85px</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;br</span> <span class="tag">/&gt;&lt;br</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;asp:Label</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"lblmessage"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+   <span class="tag">&lt;/form&gt;</span>
+<span class="tag">&lt;/body&gt;</span></pre>
+<p>The code behind the save button is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">protected</span> <span class="kwd">void</span><span class="pln"> btnsave_Click</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> sender</span><span class="pun">,</span> <span class="typ">EventArgs</span><span class="pln"> e</span><span class="pun">)</span>
+<span class="pun">{</span>
+   <span class="typ">StringBuilder</span><span class="pln"> sb </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">StringBuilder</span><span class="pun">();</span>
+   
+   <span class="kwd">if</span> <span class="pun">(</span><span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">HasFile</span><span class="pun">)</span>
+   <span class="pun">{</span>
+      <span class="kwd">try</span>
+      <span class="pun">{</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">" Uploading file: {0}"</span><span class="pun">,</span> <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">FileName</span><span class="pun">);</span>
+         
+         <span class="com">//saving the file</span>
+         <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">SaveAs</span><span class="pun">(</span><span class="str">"&lt;c:\\SaveDirectory&gt;"</span> <span class="pun">+</span> <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">FileName</span><span class="pun">);</span>
+      
+         <span class="com">//Showing the file information</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">"&lt;br/&gt; Save As: {0}"</span><span class="pun">,</span>  <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">PostedFile</span><span class="pun">.</span><span class="typ">FileName</span><span class="pun">);</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">"&lt;br/&gt; File type: {0}"</span><span class="pun">,</span>    <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">PostedFile</span><span class="pun">.</span><span class="typ">ContentType</span><span class="pun">);</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">"&lt;br/&gt; File length: {0}"</span><span class="pun">,</span>  <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">PostedFile</span><span class="pun">.</span><span class="typ">ContentLength</span><span class="pun">);</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">"&lt;br/&gt; File name: {0}"</span><span class="pun">,</span>  <span class="typ">FileUpload1</span><span class="pun">.</span><span class="typ">PostedFile</span><span class="pun">.</span><span class="typ">FileName</span><span class="pun">);</span>
+         
+      <span class="pun">}</span><span class="kwd">catch</span> <span class="pun">(</span><span class="typ">Exception</span><span class="pln"> ex</span><span class="pun">)</span>
+      <span class="pun">{</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">Append</span><span class="pun">(</span><span class="str">"&lt;br/&gt; Error &lt;br/&gt;"</span><span class="pun">);</span><span class="pln">
+         sb</span><span class="pun">.</span><span class="typ">AppendFormat</span><span class="pun">(</span><span class="str">"Unable to save file &lt;br/&gt; {0}"</span><span class="pun">,</span><span class="pln"> ex</span><span class="pun">.</span><span class="typ">Message</span><span class="pun">);</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+   <span class="kwd">else</span>
+   <span class="pun">{</span><span class="pln">
+      lblmessage</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">=</span><span class="pln"> sb</span><span class="pun">.</span><span class="typ">ToString</span><span class="pun">();</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p>Note the following:</p>
+<ul class="list">
+<li>
+<p>The StringBuilder class is derived from System.IO namespace, so it needs to be included.</p>
+</li>
+<li>
+<p>The try and catch blocks are used for catching errors, and display the error message.</p>
+</li>
+</ul>

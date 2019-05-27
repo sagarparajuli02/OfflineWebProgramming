@@ -1,0 +1,150 @@
+<p>VueJS does not have a built-in router feauture. We need to follow some additional steps to install it.</p>
+<h3>Direct Download from CDN</h3>
+<p>The latest version of vue-router is available at&nbsp;<a href="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" target="_blank" rel="nofollow">https://unpkg.com/vue-router/dist/vue-router.js</a></p>
+<p>Unpkg.com provides npm-based cdn links. The above link is always updated to the recent version. We can download and host it, and use it with a script tag along with vue.js as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/path/to/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/path/to/vue-router.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+<h3>Using NPM</h3>
+<p>Run the following command to install the vue-router.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">npm  install vue</span><span class="pun">-</span><span class="pln">router</span></pre>
+<h3>Using GitHub</h3>
+<p>We can clone the repository from GitHub as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">git clone https</span><span class="pun">:</span><span class="com">//github.com/vuejs/vue-router.git node_modules/vue-router</span><span class="pln">
+cd node_modules</span><span class="pun">/</span><span class="pln">vue</span><span class="pun">-</span><span class="pln">router
+npm install
+npm run build</span></pre>
+<p>Let us start with a simple example using vue-router.js.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue-router.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"app"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Routing Example</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;p&gt;</span>
+            <span class="tag">&lt;router-link</span> <span class="atn">to</span> <span class="pun">=</span> <span class="atv">"/route1"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span>
+            <span class="tag">&lt;router-link</span> <span class="atn">to</span> <span class="pun">=</span> <span class="atv">"/route2"</span><span class="tag">&gt;</span><span class="pln">Router Link 2</span><span class="tag">&lt;/router-link&gt;</span>
+         <span class="tag">&lt;/p&gt;</span>
+         <span class="com">&lt;!-- route outlet --&gt;</span>
+         <span class="com">&lt;!-- component matched by the route will render here --&gt;</span>
+         <span class="tag">&lt;router-view&gt;&lt;/router-view&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">const</span> <span class="typ">Route1</span> <span class="pun">=</span> <span class="pun">{</span><span class="pln"> template</span><span class="pun">:</span> <span class="str">'&lt;div style = "border-radius:20px;background-color:cyan;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;"&gt;This is router 1&lt;/div&gt;'</span> <span class="pun">}</span>
+         <span class="kwd">const</span> <span class="typ">Route2</span> <span class="pun">=</span> <span class="pun">{</span><span class="pln"> template</span><span class="pun">:</span> <span class="str">'&lt;div style = "border-radius:20px;background-color:green;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;"&gt;This is router 2&lt;/div&gt;'</span> <span class="pun">}</span>
+         <span class="kwd">const</span><span class="pln"> routes </span><span class="pun">=</span> <span class="pun">[</span>
+            <span class="pun">{</span><span class="pln"> path</span><span class="pun">:</span> <span class="str">'/route1'</span><span class="pun">,</span><span class="pln"> component</span><span class="pun">:</span> <span class="typ">Route1</span> <span class="pun">},</span>
+            <span class="pun">{</span><span class="pln"> path</span><span class="pun">:</span> <span class="str">'/route2'</span><span class="pun">,</span><span class="pln"> component</span><span class="pun">:</span> <span class="typ">Route2</span> <span class="pun">}</span>
+         <span class="pun">];</span>
+         <span class="kwd">const</span><span class="pln"> router </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">VueRouter</span><span class="pun">({</span><span class="pln">
+            routes </span><span class="com">// short for `routes: routes`</span>
+         <span class="pun">});</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+            router
+         </span><span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>Output</strong></p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/route1_link.jpg" alt="Route1 Link" /></p>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/route2_link.jpg" alt="Route2 Link" /></p>
+<p>To start with routing, we need to add the vue-router.js file. Take the code from&nbsp;<a href="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" target="_blank" rel="nofollow">https://unpkg.com/vue-router/dist/vue-router.js</a>&nbsp;and save it in the file vue-router.js.</p>
+<p>The script is added after vue.js as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue-router.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+<p>In the body section, there is a router link defined as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;p&gt;</span>
+   <span class="tag">&lt;router-link</span>   <span class="atn">to</span> <span class="pun">=</span> <span class="atv">"/route1"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span>
+   <span class="tag">&lt;router-link</span>    <span class="atn">to</span> <span class="pun">=</span> <span class="atv">"/route2"</span><span class="tag">&gt;</span><span class="pln">Router Link 2</span><span class="tag">&lt;/router-link&gt;</span>
+<span class="tag">&lt;/p&gt;</span></pre>
+<p><strong>&lt;router-link&gt;</strong>&nbsp;is a component used to navigate to the HTML content to be displayed to the user. The to property is the destination, i.e the source file where the contents to be displayed will be picked.</p>
+<p>In the above piece of code, we have created two router links.</p>
+<p>Take a look at the script section where the router is initialized. There are two constants created as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">const</span>  <span class="typ">Route1</span> <span class="pun">=</span> <span class="pun">{</span> <span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;div style = "border-radius:20px;background-color:cyan;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;"&gt;This is router 1&lt;/div&gt;'</span> <span class="pun">};</span>
+<span class="kwd">const</span> <span class="typ">Route2</span> <span class="pun">=</span> <span class="pun">{</span> <span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;div style = "border-radius:20px;background-color:green;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;"&gt;This is router 2&lt;/div&gt;'</span> <span class="pun">}</span></pre>
+<p>They have templates, which needs to be shown when the router link is clicked.</p>
+<p>Next, is the routes const, which defines the path to be displayed in the URL.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">const</span><span class="pln"> routes </span><span class="pun">=</span> <span class="pun">[</span>
+   <span class="pun">{</span><span class="pln"> path</span><span class="pun">:</span> <span class="str">'/route1'</span><span class="pun">,</span><span class="pln"> component</span><span class="pun">:</span> <span class="typ">Route1</span> <span class="pun">},</span>
+   <span class="pun">{</span><span class="pln"> path</span><span class="pun">:</span> <span class="str">'/route2'</span><span class="pun">,</span><span class="pln"> component</span><span class="pun">:</span> <span class="typ">Route2</span> <span class="pun">}</span>
+<span class="pun">];</span></pre>
+<p>Routes define the path and the component. The path i.e.&nbsp;<strong>/route1</strong>&nbsp;will be displayed in the URL when the user clicks on the router link.</p>
+<p>Component takes the templates names to be displayed. The path from the routes need to match with the router link to the property.</p>
+<p>For example, &lt;router-link&nbsp;<strong>to = &rdquo;path here&rdquo;</strong>&gt;&lt;/router-link&gt;</p>
+<p>Next, the instance is created to VueRouter using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">const</span><span class="pln"> router </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">VueRouter</span><span class="pun">({</span><span class="pln">
+   routes </span><span class="com">// short for `routes: routes`</span>
+<span class="pun">});</span></pre>
+<p>The VueRouter constructor takes the routes as the param. The router object is assigned to the main vue instance using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#app'</span><span class="pun">,</span><span class="pln">
+   router
+</span><span class="pun">});</span></pre>
+<p>Execute the example and see the display in the browser. On inspecting and checking the router link, we will find that it adds class to the active element as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/route_link.jpg" alt="Route Link" /></p>
+<p>The class added is&nbsp;<strong>class = &ldquo;router-link-exact-active router-link-active&rdquo;</strong>. The active link gets the class as shown in the above screenshot. Another thing to notice is, the &lt;router-link&gt; gets rendered as a tag.</p>
+<h2>Props for Router Link</h2>
+<p>Let us see some more properties to be passed to &lt;router-link&gt;.</p>
+<h3>to</h3>
+<p>This is the destination path given to the &lt;router-link&gt;. When clicked, the value of to will be passed to router.push() internally. The value needs to be a string or a location object. When using an object, we need to bind it as shown in e.g. 2.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">e</span><span class="pun">.</span><span class="pln">g</span><span class="pun">.</span> <span class="lit">1</span><span class="pun">:</span>  <span class="pun">&lt;</span><span class="pln">router</span><span class="pun">-</span><span class="pln">link to </span><span class="pun">=</span> <span class="str">"/route1"</span><span class="pun">&gt;</span><span class="typ">Router</span> <span class="typ">Link</span> <span class="lit">1</span><span class="pun">&lt;/</span><span class="pln">router</span><span class="pun">-</span><span class="pln">link</span><span class="pun">&gt;</span><span class="pln">
+renders </span><span class="kwd">as</span>
+<span class="pun">&lt;</span><span class="pln">a href </span><span class="pun">=</span> <span class="pun">&rdquo;</span><span class="com">#/route&rdquo;&gt;Router Link &lt;/a&gt;</span><span class="pln">
+e</span><span class="pun">.</span><span class="pln">g</span><span class="pun">.</span> <span class="lit">2</span><span class="pun">:</span>  <span class="pun">&lt;</span><span class="pln">router</span><span class="pun">-</span><span class="pln">link v</span><span class="pun">-</span><span class="pln">bind</span><span class="pun">:</span><span class="pln">to </span><span class="pun">=</span> <span class="str">"{path:'/route1'}"</span><span class="pun">&gt;</span><span class="typ">Router</span> <span class="typ">Link</span> <span class="lit">1</span><span class="pun">&lt;/</span><span class="pln">router</span><span class="pun">-</span><span class="pln">link</span><span class="pun">&gt;</span><span class="pln">
+e</span><span class="pun">.</span><span class="pln">g</span><span class="pun">.</span> <span class="lit">3</span><span class="pun">:</span> <span class="pun">&lt;</span><span class="pln">router</span><span class="pun">-</span><span class="pln">link v</span><span class="pun">-</span><span class="pln">bind</span><span class="pun">:</span><span class="pln">to </span><span class="pun">=</span>
+   <span class="str">"{path:'/route1', query: { name: 'Tery' }}"</span><span class="pun">&gt;</span><span class="typ">Router</span> <span class="typ">Link</span> <span class="lit">1</span><span class="pun">&lt;</span><span class="str">/router-link&gt;/</span><span class="pun">/</span><span class="pln">router link </span><span class="kwd">with</span><span class="pln"> query </span><span class="kwd">string</span><span class="pun">.</span></pre>
+<p>Following is the output of e.g. 3.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/routing_example.jpg" alt="Routing Example" /></p>
+<p>In the URL path, name = Tery is a part of the query string. E.g.: http://localhost/vueexamples/vue_router.html#/route1?name = Tery</p>
+<h3>replace</h3>
+<p>Adding replace to the router link will call the&nbsp;<strong>router.replace()</strong>&nbsp;instead of&nbsp;<strong>router.push()</strong>. With replace, the navigation history is not stored.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{path:'/route1', query: { name: 'Tery' }}"</span>   <span class="atn">replace</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span></pre>
+<h3>append</h3>
+<p>Adding append to the &lt;router-link&gt;&lt;router-link&gt; will make the path relative.</p>
+<p>If we want to go from the router link with path /route1 to router link path /route2, it will show the path in the browser as /route1/route2.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route1'}"</span> <span class="atn">append</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span></pre>
+<h3>tag</h3>
+<p>At present &lt;router-link&gt; renders as a tag. In case, we want to render it as some other tag, we need to specifty the same using tag = &rdquo;tagname&rdquo;;</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;p&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route1'}"</span> <span class="atn">tag</span> <span class="pun">=</span> <span class="atv">"span"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route2'}"</span> <span class="atn">tag</span> <span class="pun">=</span> <span class="atv">"span"</span><span class="tag">&gt;</span><span class="pln">Router Link 2</span><span class="tag">&lt;/router-link&gt;</span>
+<span class="tag">&lt;/p&gt;</span></pre>
+<p>We have specified the tag as span and this is what is displayed in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/tag.jpg" alt="Tag" /></p>
+<p>The tag displayed now is a span tag. We will still see the click going as we click on the router link for navigation.</p>
+<h3>active-class</h3>
+<p>By default, the active class added when the router link is active is router-link-active. We can overwrite the class by setting the same as shown in the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;style&gt;</span>
+   <span class="pun">.</span><span class="pln">_active</span><span class="pun">{</span><span class="pln">
+      background</span><span class="pun">-</span><span class="pln">color </span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route1'}"</span> <span class="atn">active-class</span> <span class="pun">=</span> <span class="atv">"_active"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route2'}"</span> <span class="atn">tag</span> <span class="pun">=</span> <span class="atv">"span"</span><span class="tag">&gt;</span><span class="pln">Router Link 2</span><span class="tag">&lt;/router-link&gt;</span>
+<span class="tag">&lt;/p&gt;</span></pre>
+<p>The class used is active_class = &rdquo;_active&rdquo;. This is the output displayed in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/active_class.jpg" alt="Active Class" /></p>
+<h3>exact-active-class</h3>
+<p>The default exactactive class applied is router-link-exact-active. We can overwrite it using exact-active-class.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;p&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route1'}"</span> <span class="atn">exact-active-class</span> <span class="pun">=</span> <span class="atv">"_active"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span>
+   <span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route2'}"</span> <span class="atn">tag</span> <span class="pun">=</span> <span class="atv">"span"</span><span class="tag">&gt;</span><span class="pln">Router Link 2</span><span class="tag">&lt;/router-link&gt;</span>
+<span class="tag">&lt;/p&gt;</span></pre>
+<p>This is what is displayed in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/exact_active_class.jpg" alt="Exact Active Class" /></p>
+<h3>event</h3>
+<p>At present, the default event for router-link is click event. We can change the same using the event property.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;router-link</span> <span class="atn">v-bind:to</span> <span class="pun">=</span> <span class="atv">"{ path: '/route1'}"</span> <span class="atn">event</span> <span class="pun">=</span> <span class="atv">"mouseover"</span><span class="tag">&gt;</span><span class="pln">Router Link 1</span><span class="tag">&lt;/router-link&gt;</span></pre>
+<p>Now, when we mouseover the router link, it will navigate as shown in the following browser. Mouseover on the Router link 1 and we will see the navigation changing.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/default_event.jpg" alt="Default Event" /></p>

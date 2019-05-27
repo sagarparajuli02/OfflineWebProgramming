@@ -1,0 +1,107 @@
+<p>Flickerplate is a jQuery plugin for creating a slider which allows you cycle through images with animated arrows and dots navigation.</p>
+<p>A Simple of flickerplate example as shown below &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>   
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"utf-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"viewport"</span> <span class="atn">content</span> <span class="pun">=</span> <span class="atv">"width = device-width, 
+         initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no"</span><span class="tag">&gt;</span>    
+	
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/js/min/jquery-v1.10.2.min.js"</span> 
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+			
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/js/min/modernizr-custom-v2.7.1.min.js"</span> 
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+			
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/js/min/hammer-v2.0.3.min.js"</span>
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/css/flickerplate.css"</span>  
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span><span class="tag">&gt;</span>
+			
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/js/min/flickerplate.min.js"</span> 
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>	
+	
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">'.flicker-example'</span><span class="pun">).</span><span class="pln">flickerplate</span><span class="pun">({</span><span class="pln">
+               auto_flick        </span><span class="pun">:</span> <span class="kwd">true</span><span class="pun">,</span><span class="pln">
+               auto_flick_delay  </span><span class="pun">:</span> <span class="lit">8</span><span class="pun">,</span><span class="pln">
+               flick_animation   </span><span class="pun">:</span> <span class="str">'transform-slide'</span>
+            <span class="pun">});</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;link</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"/jquery/src/flickerplate/css/demo.css"</span>  
+         <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/css"</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flicker-example"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">data-background</span> <span class="pun">=</span> <span class="atv">"https://genblock.com/wp-content/uploads/2015
+               /05/download-circles-abstract-wallpaper-
+               abstract-photo-abstract-wallpaper.jpg"</span><span class="tag">&gt;</span>
+					
+               <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/about/images/mohtashim.jpg"</span> 
+                  <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span> <span class="lit">428px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+						
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-title"</span><span class="tag">&gt;</span><span class="pln">Mohtashim M.</span><span class="tag">&lt;/div&gt;</span>
+					
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-sub-text"</span><span class="tag">&gt;</span><span class="pln">
+                  Mohtashim is an MCA from AMU (Aligarah) and a Project
+                  Management Professional. He has more than 17 years of 
+                  experience in Telecom and Datacom industries covering 
+                  complete SDLC. He is managing in-house innovations, 
+                  business planning, implementation, finance and the overall
+                  business development of Tutorials Point.
+               </span><span class="tag">&lt;/div&gt;</span>
+					
+            <span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">data-background</span> <span class="pun">=</span> <span class="atv">"https://genblock.com/wp-content/uploads/2015
+               /05/download-circles-abstract-wallpaper-
+               abstract-photo-abstract-wallpaper.jpg"</span><span class="tag">&gt;</span>
+					
+               <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/about/images/gopal_verma.jpg"</span> 
+                  <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span> <span class="lit">428px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+						
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-title"</span><span class="tag">&gt;</span><span class="pln">Gopal K Verma</span><span class="tag">&lt;/div&gt;</span>
+					
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-sub-text"</span><span class="tag">&gt;</span><span class="pln">
+                  Gopal is an MCA from GJU (Hisar) and a Cisco Certified Network 
+                  Professional. He has more than 11 years of experience in core 
+                  data networking and telecommunications. He develops contents 
+                  for Computer Science related subjects. He is also involved in 
+                  developing Apps for various Mobile devices.
+               </span><span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">data-background</span> <span class="pun">=</span> <span class="atv">"https://genblock.com/wp-content/uploads/2015
+               /05/download-circles-abstract-wallpaper-
+               abstract-photo-abstract-wallpaper.jpg"</span><span class="tag">&gt;</span>
+					
+               <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://www.tutorialspoint.com/about/images/mukesh_kumar.jpg"</span> 
+                  <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span> <span class="lit">428px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+						
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-title"</span><span class="tag">&gt;</span><span class="pln">Mukesh Kumar</span><span class="tag">&lt;/div&gt;</span>
+					
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"flick-sub-text"</span><span class="tag">&gt;</span><span class="pln">
+                  Mukesh Kumar, having 7+years experience in writing on various
+                  topics ranging from IT products and services, legal, medical,
+                  online advertisement &amp; education to e-commerce businesses.
+                  He also has experience of text &amp; copy-editing, &amp; online
+                  research. He has done two masters &ndash; MA (Geography) from
+                  University of Delhi and MA (Mass Communication &amp; 
+                  Journalism) from Kurukshetra University.
+               </span><span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><a href="https://www.tutorialspoint.com/jquery/src/flickerplate/index.htm">Click here</a></p>

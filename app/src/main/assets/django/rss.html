@@ -1,0 +1,60 @@
+<p>Django comes with a syndication feed generating framework. With it you can create RSS or Atom feeds just by subclassing&nbsp;<strong><em>django.contrib.syndication.views.Feed class</em></strong>.</p>
+<p>Let's create a feed for the latest comments done on the app (Also see Django - Comments Framework chapter). For this, let's create a myapp/feeds.py and define our feed (You can put your feeds classes anywhere you want in your code structure).</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib</span><span class="pun">.</span><span class="pln">syndication</span><span class="pun">.</span><span class="pln">views </span><span class="kwd">import</span> <span class="typ">Feed</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib</span><span class="pun">.</span><span class="pln">comments </span><span class="kwd">import</span> <span class="typ">Comment</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">urlresolvers </span><span class="kwd">import</span><span class="pln"> reverse
+
+</span><span class="kwd">class</span> <span class="typ">DreamrealCommentsFeed</span><span class="pun">(</span><span class="typ">Feed</span><span class="pun">):</span><span class="pln">
+   title </span><span class="pun">=</span> <span class="str">"Dreamreal's comments"</span><span class="pln">
+   link </span><span class="pun">=</span> <span class="str">"/drcomments/"</span><span class="pln">
+   description </span><span class="pun">=</span> <span class="str">"Updates on new comments on Dreamreal entry."</span>
+
+   <span class="kwd">def</span><span class="pln"> items</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">):</span>
+      <span class="kwd">return</span> <span class="typ">Comment</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">all</span><span class="pun">().</span><span class="pln">order_by</span><span class="pun">(</span><span class="str">"-submit_date"</span><span class="pun">)[:</span><span class="lit">5</span><span class="pun">]</span>
+		
+   <span class="kwd">def</span><span class="pln"> item_title</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> item</span><span class="pun">):</span>
+      <span class="kwd">return</span><span class="pln"> item</span><span class="pun">.</span><span class="pln">user_name
+		
+   </span><span class="kwd">def</span><span class="pln"> item_description</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> item</span><span class="pun">):</span>
+      <span class="kwd">return</span><span class="pln"> item</span><span class="pun">.</span><span class="pln">comment
+		
+   </span><span class="kwd">def</span><span class="pln"> item_link</span><span class="pun">(</span><span class="kwd">self</span><span class="pun">,</span><span class="pln"> item</span><span class="pun">):</span>
+      <span class="kwd">return</span><span class="pln"> reverse</span><span class="pun">(</span><span class="str">'comment'</span><span class="pun">,</span><span class="pln"> kwargs </span><span class="pun">=</span> <span class="pun">{</span><span class="str">'object_pk'</span><span class="pun">:</span><span class="pln">item</span><span class="pun">.</span><span class="pln">pk</span><span class="pun">})</span></pre>
+<ul class="list">
+<li>
+<p>In our feed class,&nbsp;<strong>title</strong>,&nbsp;<strong>link</strong>, and&nbsp;<strong>description</strong>&nbsp;attributes correspond to the standard RSS&nbsp;<strong>&lt;title&gt;</strong>,&nbsp;<strong>&lt;link&gt;</strong>&nbsp;and&nbsp;<strong>&lt;description&gt;</strong>&nbsp;elements.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>items</strong>&nbsp;method, return the elements that should go in the feed as item element. In our case the last five comments.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>item_title</strong>&nbsp;method, will get what will go as title for our feed item. In our case the title, will be the user name.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>item_description</strong>&nbsp;method, will get what will go as description for our feed item. In our case the comment itself.</p>
+</li>
+<li>
+<p>The&nbsp;<strong>item_link</strong>&nbsp;method will build the link to the full item. In our case it will get you to the comment.</p>
+</li>
+</ul>
+<p>Now that we have our feed, let's add a comment view in views.py to display our comment &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib</span><span class="pun">.</span><span class="pln">comments </span><span class="kwd">import</span> <span class="typ">Comment</span>
+
+<span class="kwd">def</span><span class="pln"> comment</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> object_pk</span><span class="pun">):</span><span class="pln">
+   mycomment </span><span class="pun">=</span> <span class="typ">Comment</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">object_pk </span><span class="pun">=</span><span class="pln"> object_pk</span><span class="pun">)</span><span class="pln">
+   text </span><span class="pun">=</span> <span class="str">'&lt;strong&gt;User :&lt;/strong&gt; %s &lt;p&gt;'</span><span class="pun">%</span><span class="pln">mycomment</span><span class="pun">.</span><span class="pln">user_name</span><span class="pun">&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span><span class="pln">
+   text </span><span class="pun">+=</span> <span class="str">'&lt;strong&gt;Comment :&lt;/strong&gt; %s &lt;p&gt;'</span><span class="pun">%</span><span class="pln">mycomment</span><span class="pun">.</span><span class="pln">comment</span><span class="pun">&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">text</span><span class="pun">)</span></pre>
+<p>We also need some URLs in our myapp urls.py for mapping &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">feeds </span><span class="kwd">import</span> <span class="typ">DreamrealCommentsFeed</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+
+urlpatterns </span><span class="pun">+=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">''</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^latest/comments/'</span><span class="pun">,</span> <span class="typ">DreamrealCommentsFeed</span><span class="pun">()),</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^comment/(?P\w+)/'</span><span class="pun">,</span> <span class="str">'comment'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'comment'</span><span class="pun">),</span>
+<span class="pun">)</span></pre>
+<p>When accessing /myapp/latest/comments/ you will get our feed &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_rss_example.jpg" alt="Django RSS Example" /></p>
+<p>Then clicking on one of the usernames will get you to: /myapp/comment/comment_id as defined in our comment view before and you will get &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_rss_redirected_page.jpg" alt="Django RSS Redirected Page" /></p>
+<p>Thus, defining a RSS feed is just a matter of sub-classing the Feed class and making sure the URLs (one for accessing the feed and one for accessing the feed elements) are defined. Just as comment, this can be attached to any model in your app.</p>

@@ -1,0 +1,9 @@
+<p>This chapter will explain the Firebase representation of arrays. We will use the same data from the previous chapter.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-arrays-simple.jpg" alt="Firebase Arrays Simple" /></p>
+<p>We could create this data by sending the following JSON tree to the player&rsquo;s collection.</p>
+<pre class="result notranslate">['john', 'amanda']
+</pre>
+<p>This is because Firebase does not support Arrays directly, but it creates a list of objects with integers as key names.</p>
+<p>The reason for not using arrays is because Firebase acts as a real time database and if a couple of users were to manipulate arrays at the same time, the result could be problematic since array indexes are constantly changing.</p>
+<p>The way Firebase handles it, the keys (indexes) will always stay the same. We could delete&nbsp;<strong>john</strong>&nbsp;and&nbsp;<strong>amanda</strong>&nbsp;would still have the key (index) 1.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-arrays-changed.jpg" alt="Firebase Arrays Changed" /></p>

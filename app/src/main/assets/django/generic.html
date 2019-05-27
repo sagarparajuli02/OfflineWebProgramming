@@ -1,0 +1,80 @@
+<p>In some cases, writing views, as we have seen earlier is really heavy. Imagine you need a static page or a listing page. Django offers an easy way to set those simple views that is called generic views.</p>
+<p>Unlike classic views, generic views are classes not functions. Django offers a set of classes for generic views in django.views.generic, and every generic view is one of those classes or a class that inherits from one of them.</p>
+<p>There are 10+ generic classes &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&gt;&gt;&gt;</span> <span class="kwd">import</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dir</span><span class="pun">(</span><span class="pln">django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span><span class="pun">)</span>
+
+<span class="pun">[</span><span class="str">'ArchiveIndexView'</span><span class="pun">,</span> <span class="str">'CreateView'</span><span class="pun">,</span> <span class="str">'DateDetailView'</span><span class="pun">,</span> <span class="str">'DayArchiveView'</span><span class="pun">,</span> 
+   <span class="str">'DeleteView'</span><span class="pun">,</span> <span class="str">'DetailView'</span><span class="pun">,</span> <span class="str">'FormView'</span><span class="pun">,</span> <span class="str">'GenericViewError'</span><span class="pun">,</span> <span class="str">'ListView'</span><span class="pun">,</span> 
+   <span class="str">'MonthArchiveView'</span><span class="pun">,</span> <span class="str">'RedirectView'</span><span class="pun">,</span> <span class="str">'TemplateView'</span><span class="pun">,</span> <span class="str">'TodayArchiveView'</span><span class="pun">,</span> 
+   <span class="str">'UpdateView'</span><span class="pun">,</span> <span class="str">'View'</span><span class="pun">,</span> <span class="str">'WeekArchiveView'</span><span class="pun">,</span> <span class="str">'YearArchiveView'</span><span class="pun">,</span> <span class="str">'__builtins__'</span><span class="pun">,</span> 
+   <span class="str">'__doc__'</span><span class="pun">,</span> <span class="str">'__file__'</span><span class="pun">,</span> <span class="str">'__name__'</span><span class="pun">,</span> <span class="str">'__package__'</span><span class="pun">,</span> <span class="str">'__path__'</span><span class="pun">,</span> <span class="str">'base'</span><span class="pun">,</span> <span class="str">'dates'</span><span class="pun">,</span> 
+   <span class="str">'detail'</span><span class="pun">,</span> <span class="str">'edit'</span><span class="pun">,</span> <span class="str">'list'</span><span class="pun">]</span></pre>
+<p>This you can use for your generic view. Let's look at some example to see how it works.</p>
+<h2>Static Pages</h2>
+<p>Let's publish a static page from the &ldquo;static.html&rdquo; template.</p>
+<p>Our static.html &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span><span class="pln"> 
+      This is a static page!!! 
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>If we did that the way we learned before, we would have to change the&nbsp;<strong>myapp/views.py</strong>to be &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">shortcuts </span><span class="kwd">import</span><span class="pln"> render
+
+</span><span class="kwd">def</span> <span class="kwd">static</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'static.html'</span><span class="pun">,</span> <span class="pun">{})</span></pre>
+<p>and&nbsp;<strong>myapp/urls.py</strong>&nbsp;to be &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">"myapp.views"</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^static/'</span><span class="pun">,</span> <span class="str">'static'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'static'</span><span class="pun">),)</span></pre>
+<p>The best way is to use generic views. For that, our myapp/views.py will become &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span>
+
+<span class="kwd">class</span> <span class="typ">StaticView</span><span class="pun">(</span><span class="typ">TemplateView</span><span class="pun">):</span><span class="pln">
+   template_name </span><span class="pun">=</span> <span class="str">"static.html"</span></pre>
+<p>And our myapp/urls.py we will be &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">views </span><span class="kwd">import</span> <span class="typ">StaticView</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">"myapp.views"</span><span class="pun">,</span> <span class="pun">(</span><span class="pln">r</span><span class="str">'^static/$'</span><span class="pun">,</span> <span class="typ">StaticView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">()),)</span></pre>
+<p>When accessing /myapp/static you get &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/static_page.jpg" alt="Static Page" /></p>
+<p>For the same result we can also, do the following &minus;</p>
+<ul class="list">
+<li>No change in the views.py</li>
+<li>Change the url.py file to be &minus;</li>
+</ul>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">"myapp.views"</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^static/'</span><span class="pun">,</span><span class="typ">TemplateView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">(</span><span class="pln">template_name </span><span class="pun">=</span> <span class="str">'static.html'</span><span class="pun">)),)</span></pre>
+<p>As you can see, you just need to change the url.py file in the second method.</p>
+<h3>List and Display Data from DB</h3>
+<p>We are going to list all entries in our Dreamreal model. Doing so is made easy by using the ListView generic view class. Edit the url.py file and update it as &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">ListView</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span>
+   <span class="str">"myapp.views"</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^dreamreals/'</span><span class="pun">,</span> <span class="typ">ListView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">(</span><span class="pln">model </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">,</span><span class="pln"> 
+      template_name </span><span class="pun">=</span> <span class="str">"dreamreal_list.html"</span><span class="pun">)),</span>
+<span class="pun">)</span></pre>
+<p>Important to note at this point is that the variable pass by the generic view to the template is object_list. If you want to name it yourself, you will need to add a context_object_name argument to the as_view method. Then the url.py will become &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">ListView</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">"myapp.views"</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^dreamreals/'</span><span class="pun">,</span> <span class="typ">ListView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">(</span><span class="pln">
+      template_name </span><span class="pun">=</span> <span class="str">"dreamreal_list.html"</span><span class="pun">)),</span><span class="pln">
+      model </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">,</span><span class="pln"> context_object_name </span><span class="pun">=</span> <span class="pun">&rdquo;</span><span class="pln">dreamreals_objects</span><span class="pun">&rdquo;</span> <span class="pun">,)</span></pre>
+<p>The associated template will then be &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span> <span class="kwd">extends</span> <span class="str">"main_template.html"</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block content </span><span class="pun">%}</span>
+<span class="typ">Dreamreals</span><span class="pun">:&lt;</span><span class="pln">p</span><span class="pun">&gt;</span>
+<span class="pun">{%</span> <span class="kwd">for</span><span class="pln"> dr </span><span class="kwd">in</span><span class="pln"> object_list </span><span class="pun">%}</span>
+<span class="pun">{{</span><span class="pln">dr</span><span class="pun">.</span><span class="pln">name</span><span class="pun">}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+<span class="pun">{%</span><span class="pln"> endfor </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span></pre>
+<p>Accessing /myapp/dreamreals/ will produce the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/list_display_data_from_db.jpg" alt="List and Display Data from DB" /></p>

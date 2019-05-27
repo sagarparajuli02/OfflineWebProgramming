@@ -1,0 +1,98 @@
+<p>ASP.NET allows the following sources of data to be accessed and used:</p>
+<ul class="list">
+<li>Databases (e.g., Access, SQL Server, Oracle, MySQL)</li>
+<li>XML documents</li>
+<li>Business Objects</li>
+<li>Flat files</li>
+</ul>
+<p>ASP.NET hides the complex processes of data access and provides much higher level of classes and objects through which data is accessed easily. These classes hide all complex coding for connection, data retrieving, data querying, and data manipulation.</p>
+<p>ADO.NET is the technology that provides the bridge between various ASP.NET control objects and the backend data source. In this tutorial, we will look at data access and working with the data in brief.</p>
+<h2>Retrieve and display data</h2>
+<p>It takes two types of data controls to retrieve and display data in ASP.NET:</p>
+<ul class="list">
+<li>
+<p><strong>A data source control</strong>&nbsp;- It manages the connection to the data, selection of data, and other jobs such as paging and caching of data etc.</p>
+</li>
+<li>
+<p><strong>A data view control</strong>&nbsp;- It binds and displays the data and allows data manipulation.</p>
+</li>
+</ul>
+<p>We will discuss the data binding and data source controls in detail later. In this section, we will use a SqlDataSource control to access data and a GridView control to display and manipulate data in this chapter.</p>
+<p>We will also use an Access database, which contains the details about .Net books available in the market. Name of our database is ASPDotNetStepByStep.mdb and we will use the data table DotNetReferences.</p>
+<p>The table has the following columns: ID, Title, AuthorFirstName, AuthorLastName, Topic, and Publisher.</p>
+<p>Here is a snapshot of the data table:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/data_table.jpg" alt="Data Table" /></p>
+<p>Let us directly move to action, take the following steps:</p>
+<p><strong>(1)</strong>&nbsp;Create a web site and add a SqlDataSourceControl on the web form.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/sqldatasourcecontrol.jpg" alt="SqlDataSourceControl" /></p>
+<p><strong>(2)</strong>&nbsp;Click on the Configure Data Source option.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/configure_data_source.jpg" alt="Configure Data Source" /></p>
+<p><strong>(3)</strong>&nbsp;Click on the New Connection button to establish connection with a database.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/connection_with_database.jpg" alt="Connection with a database" /></p>
+<p><strong>(4)</strong>&nbsp;Once the connection is set up, you may save it for further use. At the next step, you are asked to configure the select statement:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/select_statement.jpg" alt="Select statement" /></p>
+<p><strong>(5)</strong>&nbsp;Select the columns and click next to complete the steps. Observe the WHERE, ORDER BY, and the Advanced buttons. These buttons allow you to provide the where clause, order by clause, and specify the insert, update, and delete commands of SQL respectively. This way, you can manipulate the data.</p>
+<p><strong>(6)</strong>&nbsp;Add a GridView control on the form. Choose the data source and format the control using AutoFormat option.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/autoformat.jpg" alt="AutoFormat " /></p>
+<p><strong>(7)</strong>&nbsp;After this the formatted GridView control displays the column headings, and the application is ready to execute.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/gridview_control.jpg" alt="GridView control" /></p>
+<p><strong>(8)</strong>&nbsp;Finally execute the application.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/databasse_result.jpg" alt="Database Result" /></p>
+<p>The content file code is as given:</p>
+<pre class="prettyprint prettyprinted"><span class="pun">&lt;%@</span> <span class="typ">Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span> <span class="typ">AutoEventWireup</span><span class="pun">=</span><span class="str">"true"</span> <span class="typ">CodeBehind</span><span class="pun">=</span><span class="str">"dataaccess.aspx.cs"</span> 
+   <span class="typ">Inherits</span><span class="pun">=</span><span class="str">"datacaching.WebForm1"</span><span class="pln"> %&gt;
+
+</span><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         Untitled Page
+      </span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div&gt;</span><span class="pln">
+         
+            &lt;asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+               ConnectionString= "</span><span class="pun">&lt;%</span><span class="pln">$   </span><span class="typ">ConnectionStrings</span><span class="pun">:</span><span class="typ">ASPDotNetStepByStepConnectionString</span><span class="pln">%&gt;" 
+               ProviderName= "</span><span class="pun">&lt;%</span><span class="pln">$ </span><span class="typ">ConnectionStrings</span><span class="pun">:</span>
+                  <span class="typ">ASPDotNetStepByStepConnectionString</span><span class="pun">.</span><span class="typ">ProviderName</span><span class="pln"> %&gt;" 
+               SelectCommand="SELECT [Title], [AuthorLastName], 
+                  [AuthorFirstName], [Topic] FROM [DotNetReferences]"&gt;
+            </span><span class="tag">&lt;/asp:SqlDataSource&gt;</span>
+            
+            <span class="tag">&lt;asp:GridView</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"GridView1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> 
+               <span class="atn">AutoGenerateColumns</span><span class="pun">=</span><span class="atv">"False"</span> <span class="atn">CellPadding</span><span class="pun">=</span><span class="atv">"4"</span> 
+               <span class="atn">DataSourceID</span><span class="pun">=</span><span class="atv">"SqlDataSource1"</span> <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"#333333"</span> 
+               <span class="atn">GridLines</span><span class="pun">=</span><span class="atv">"None"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;RowStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#F7F6F3"</span> <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"#333333"</span> <span class="tag">/&gt;</span>
+            
+               <span class="tag">&lt;Columns&gt;</span>
+                  <span class="tag">&lt;asp:BoundField</span> <span class="atn">DataField</span><span class="pun">=</span><span class="atv">"Title"</span> <span class="atn">HeaderText</span><span class="pun">=</span><span class="atv">"Title"</span> 
+                     <span class="atn">SortExpression</span><span class="pun">=</span><span class="atv">"Title"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:BoundField</span> <span class="atn">DataField</span><span class="pun">=</span><span class="atv">"AuthorLastName"</span> 
+                     <span class="atn">HeaderText</span><span class="pun">=</span><span class="atv">"AuthorLastName"</span> <span class="atn">SortExpression</span><span class="pun">=</span><span class="atv">"AuthorLastName"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:BoundField</span> <span class="atn">DataField</span><span class="pun">=</span><span class="atv">"AuthorFirstName"</span> 
+                     <span class="atn">HeaderText</span><span class="pun">=</span><span class="atv">"AuthorFirstName"</span> <span class="atn">SortExpression</span><span class="pun">=</span><span class="atv">"AuthorFirstName"</span> <span class="tag">/&gt;</span>
+                  <span class="tag">&lt;asp:BoundField</span> <span class="atn">DataField</span><span class="pun">=</span><span class="atv">"Topic"</span> 
+                     <span class="atn">HeaderText</span><span class="pun">=</span><span class="atv">"Topic"</span> <span class="atn">SortExpression</span><span class="pun">=</span><span class="atv">"Topic"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;/Columns&gt;</span>
+               <span class="tag">&lt;FooterStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#5D7B9D"</span> 
+                  <span class="atn">Font-Bold</span><span class="pun">=</span><span class="atv">"True"</span> <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"White"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;PagerStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#284775"</span> 
+                  <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"White"</span> <span class="atn">HorizontalAlign</span><span class="pun">=</span><span class="atv">"Center"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;SelectedRowStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#E2DED6"</span> 
+                  <span class="atn">Font-Bold</span><span class="pun">=</span><span class="atv">"True"</span> <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"#333333"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;HeaderStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#5D7B9D"</span> <span class="atn">Font-Bold</span><span class="pun">=</span><span class="atv">"True"</span>  
+                  <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"White"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;EditRowStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#999999"</span> <span class="tag">/&gt;</span>
+               <span class="tag">&lt;AlternatingRowStyle</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"White"</span> <span class="atn">ForeColor</span><span class="pun">=</span><span class="atv">"#284775"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/asp:GridView&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>

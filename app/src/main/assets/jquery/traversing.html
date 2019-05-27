@@ -1,0 +1,288 @@
+<p>jQuery is a very powerful tool which provides a variety of DOM traversal methods to help us select elements in a document randomly as well as in sequential method. Most of the DOM Traversal Methods do not modify the jQuery object and they are used to filter out elements from a document based on given conditions.</p>
+<h2>Find Elements by Index</h2>
+<p>Consider a simple document with the following HTML content &minus;</p>
+<p><a class="demo" href="http://tpcg.io/iAXOvk" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The JQuery Example</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 1</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 2</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 3</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 4</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 5</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 6</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/find-elements-by-index.htm" width="300" height="150"></iframe></p>
+<ul class="list">
+<li>
+<p>Above every list has its own index, and can be located directly by using&nbsp;<strong>eq(index)</strong>&nbsp;method as below example.</p>
+</li>
+<li>
+<p>Every child element starts its index from zero, thus,&nbsp;<em>list item 2</em>&nbsp;would be accessed by using&nbsp;<strong>$("li").eq(1)</strong>&nbsp;and so on.</p>
+</li>
+</ul>
+<h3>Example</h3>
+<p>Following is a simple example which adds the color to second list item.</p>
+<p><a class="demo" href="http://tpcg.io/sKZYIi" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The JQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"li"</span><span class="pun">).</span><span class="pln">eq</span><span class="pun">(</span><span class="lit">2</span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">"selected"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">selected </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span> <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 1</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 2</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 3</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 4</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 5</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="pln">list item 6</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/find-elements-by-index1.htm" width="300" height="150"></iframe></p>
+<h2>Filtering out Elements</h2>
+<p>The&nbsp;<strong>filter( selector )</strong>&nbsp;method can be used to filter out all elements from the set of matched elements that do not match the specified selector(s). The&nbsp;<em>selector</em>&nbsp;can be written using any selector syntax.</p>
+<h3>Example</h3>
+<p>Following is a simple example which applies color to the lists associated with middle class &minus;</p>
+<p><a class="demo" href="http://tpcg.io/9KunND" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The JQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"li"</span><span class="pun">).</span><span class="pln">filter</span><span class="pun">(</span><span class="str">".middle"</span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">"selected"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">selected </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span> <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"top"</span><span class="tag">&gt;</span><span class="pln">list item 1</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"top"</span><span class="tag">&gt;</span><span class="pln">list item 2</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"middle"</span><span class="tag">&gt;</span><span class="pln">list item 3</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"middle"</span><span class="tag">&gt;</span><span class="pln">list item 4</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"bottom"</span><span class="tag">&gt;</span><span class="pln">list item 5</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"bottom"</span><span class="tag">&gt;</span><span class="pln">list item 6</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/filtering-out-elements.htm" width="300" height="150"></iframe></p>
+<h2>Locating Descendant Elements</h2>
+<p>The&nbsp;<strong>find( selector )</strong>&nbsp;method can be used to locate all the descendant elements of a particular type of elements. The&nbsp;<em>selector</em>&nbsp;can be written using any selector syntax.</p>
+<h3>Example</h3>
+<p>Following is an example which selects all the &lt;span&gt; elements available inside different &lt;p&gt; elements &minus;</p>
+<p><a class="demo" href="http://tpcg.io/HwIVAB" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The JQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"span"</span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">"selected"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">selected </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span> <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">This is 1st paragraph and </span><span class="tag">&lt;span&gt;</span><span class="pln">THIS IS RED</span><span class="tag">&lt;/span&gt;&lt;/p&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="pln">This is 2nd paragraph and </span><span class="tag">&lt;span&gt;</span><span class="pln">THIS IS ALSO RED</span><span class="tag">&lt;/span&gt;&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/locating-descendant-elements.htm" width="300" height="150"></iframe></p>
+<h2>JQuery DOM Filter Methods</h2>
+<p>Following table lists down useful methods which you can use to filter out various elements from a list of DOM elements &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-eq.htm">eq( index )</a>
+<p>Reduce the set of matched elements to a single element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-filter.htm">filter( selector )</a>
+<p>Removes all elements from the set of matched elements that do not match the specified selector(s).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-filter-fn.htm">filter( fn )</a>
+<p>Removes all elements from the set of matched elements that do not match the specified function.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-is.htm">is( selector )</a>
+<p>Checks the current selection against an expression and returns true, if at least one element of the selection fits the given selector.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-map.htm">map( callback )</a>
+<p>Translate a set of elements in the jQuery object into another set of values in a jQuery array (which may, or may not contain elements).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-not.htm">not( selector )</a>
+<p>Removes elements matching the specified selector from the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-slice.htm">slice( start, [end] )</a>
+<p>Selects a subset of the matched elements.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>JQuery DOM Traversing Methods</h2>
+<p>Following table lists down other useful methods which you can use to locate various elements in a DOM &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-add.htm">add( selector )</a>
+<p>Adds more elements, matched by the given selector, to the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-andself.htm">andSelf( )</a>
+<p>Add the previous selection to the current selection.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-children.htm">children( [selector])</a>
+<p>Get a set of elements containing all of the unique immediate children of each of the matched set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-closest.htm">closest( selector )</a>
+<p>Get a set of elements containing the closest parent element that matches the specified selector, the starting element included.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-contents.htm">contents( )</a>
+<p>Find all the child nodes inside the matched elements (including text nodes), or the content document, if the element is an iframe.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-end.htm">end( )</a>
+<p>Revert the most recent 'destructive' operation, changing the set of matched elements to its previous state.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-find.htm">find( selector )</a>
+<p>Searches for descendant elements that match the specified selectors.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-next.htm">next( [selector] )</a>
+<p>Get a set of elements containing the unique next siblings of each of the given set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-nextall.htm">nextAll( [selector] )</a>
+<p>Find all sibling elements after the current element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-offsetparent.htm">offsetParent( )</a>
+<p>Returns a jQuery collection with the positioned parent of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-parent.htm">parent( [selector] )</a>
+<p>Get the direct parent of an element. If called on a set of elements, parent returns a set of their unique direct parent elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-parents.htm">parents( [selector] )</a>
+<p>Get a set of elements containing the unique ancestors of the matched set of elements (except for the root element).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-prev.htm">prev( [selector] )</a>
+<p>Get a set of elements containing the unique previous siblings of each of the matched set of elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-prevall.htm">prevAll( [selector] )</a>
+<p>Find all sibling elements in front of the current element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="https://www.tutorialspoint.com/jquery/traversal-siblings.htm">siblings( [selector] )</a>
+<p>Get a set of elements containing all of the unique siblings of each of the matched set of elements.</p>
+</td>
+</tr>
+</tbody>
+</table>

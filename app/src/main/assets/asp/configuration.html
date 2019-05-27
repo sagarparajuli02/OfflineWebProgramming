@@ -1,0 +1,248 @@
+<p>The behavior of an ASP.NET application is affected by different settings in the configuration files:</p>
+<ul class="list">
+<li>machine.config</li>
+<li>web.config</li>
+</ul>
+<p>The machine.config file contains default and the machine-specific value for all supported settings. The machine settings are controlled by the system administrator and applications are generally not given access to this file.</p>
+<p>An application however, can override the default values by creating web.config files in its roots folder. The web.config file is a subset of the machine.config file.</p>
+<p>If the application contains child directories, it can define a web.config file for each folder. Scope of each configuration file is determined in a hierarchical top-down manner.</p>
+<p>Any web.config file can locally extend, restrict, or override any settings defined on the upper level.</p>
+<p>Visual Studio generates a default web.config file for each project. An application can execute without a web.config file, however, you cannot debug an application without a web.config file.</p>
+<p>The following figure shows the Solution Explorer for the sample example used in the web services tutorial:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/solution_explorer2.jpg" alt="Solution Explorer-2" /></p>
+<p>In this application, there are two web.config files for two projects i.e., the web service and the web site calling the web service.</p>
+<p>The web.config file has the configuration element as the root node. Information inside this element is grouped into two main areas: the configuration section-handler declaration area, and the configuration section settings area.</p>
+<p>The following code snippet shows the basic syntax of a configuration file:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;configuration&gt;</span>
+
+   <span class="com">&lt;!-- Configuration section-handler declaration area. --&gt;</span>
+      <span class="tag">&lt;configSections&gt;</span>
+         <span class="tag">&lt;section</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"section1"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"section1Handler"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;section</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"section2"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"section2Handler"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/configSections&gt;</span>
+   <span class="com">&lt;!-- Configuration section settings area. --&gt;</span>
+   
+   <span class="tag">&lt;section1&gt;</span>
+      <span class="tag">&lt;s1Setting1</span> <span class="atn">attribute1</span><span class="pun">=</span><span class="atv">"attr1"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/section1&gt;</span>
+   
+   <span class="tag">&lt;section2&gt;</span>
+      <span class="tag">&lt;s2Setting1</span> <span class="atn">attribute1</span><span class="pun">=</span><span class="atv">"attr1"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/section2&gt;</span>
+   
+   <span class="tag">&lt;system.web&gt;</span>
+      <span class="tag">&lt;authentication</span> <span class="atn">mode</span><span class="pun">=</span><span class="atv">"Windows"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/system.web&gt;</span>
+   
+<span class="tag">&lt;/configuration&gt;</span></pre>
+<h2>Configuration Section Handler declarations</h2>
+<p>The configuration section handlers are contained within the &lt;configSections&gt; tags. Each configuration handler specifies name of a configuration section, contained within the file, which provides some configuration data. It has the following basic syntax:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;configSections&gt;</span>
+   <span class="tag">&lt;section</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;sectionGroup</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;remove</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;clear/&gt;</span>
+<span class="tag">&lt;/configSections&gt;</span></pre>
+<p>It has the following elements:</p>
+<ul class="list">
+<li>
+<p><strong>Clear</strong>&nbsp;- It removes all references to inherited sections and section groups.</p>
+</li>
+<li>
+<p><strong>Remove</strong>&nbsp;- It removes a reference to an inherited section and section group.</p>
+</li>
+<li>
+<p><strong>Section</strong>&nbsp;- It defines an association between a configuration section handler and a configuration element.</p>
+</li>
+<li>
+<p><strong>Section group</strong>&nbsp;- It defines an association between a configuration section handler and a configuration section.</p>
+</li>
+</ul>
+<h2>Application Settings</h2>
+<p>The application settings allow storing application-wide name-value pairs for read-only access. For example, you can define a custom application setting as:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;configuration&gt;</span>
+   <span class="tag">&lt;appSettings&gt;</span>
+      <span class="tag">&lt;add</span> <span class="atn">key</span><span class="pun">=</span><span class="atv">"Application Name"</span> <span class="atn">value</span><span class="pun">=</span><span class="atv">"MyApplication"</span> <span class="tag">/&gt;</span> 
+   <span class="tag">&lt;/appSettings&gt;</span>
+<span class="tag">&lt;/configuration&gt;</span></pre>
+<p>For example, you can also store the name of a book and its ISBN number:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;configuration&gt;</span>
+   <span class="tag">&lt;appSettings&gt;</span>
+      <span class="tag">&lt;add</span> <span class="atn">key</span><span class="pun">=</span><span class="atv">"appISBN"</span> <span class="atn">value</span><span class="pun">=</span><span class="atv">"0-273-68726-3"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;add</span> <span class="atn">key</span><span class="pun">=</span><span class="atv">"appBook"</span> <span class="atn">value</span><span class="pun">=</span><span class="atv">"Corporate Finance"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/appSettings&gt;</span>
+<span class="tag">&lt;/configuration&gt;</span></pre>
+<h2>Connection Strings</h2>
+<p>The connection strings show which database connection strings are available to the website. For example:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;connectionStrings&gt;</span>
+   <span class="tag">&lt;add</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"ASPDotNetStepByStepConnectionString"</span> 
+      <span class="atn">connectionString</span><span class="pun">=</span><span class="atv">"Provider=Microsoft.Jet.OLEDB.4.0;
+      Data Source=E:\\projects\datacaching\ /
+      datacaching\App_Data\ASPDotNetStepByStep.mdb"</span>
+      <span class="atn">providerName</span><span class="pun">=</span><span class="atv">"System.Data.OleDb"</span> <span class="tag">/&gt;</span>
+      
+   <span class="tag">&lt;add</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"booksConnectionString"</span> 
+      <span class="atn">connectionString</span><span class="pun">=</span><span class="atv">"Provider=Microsoft.Jet.OLEDB.4.0;
+      Data Source=C:\ \databinding\App_Data\books.mdb"</span>
+      <span class="atn">providerName</span><span class="pun">=</span><span class="atv">"System.Data.OleDb"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/connectionStrings&gt;</span></pre>
+<h2>System.Web Element</h2>
+<p>The system.web element specifies the root element for the ASP.NET configuration section and contains configuration elements that configure ASP.NET Web applications and control how the applications behave.</p>
+<p>It holds most of the configuration elements needed to be adjusted in common applications. The basic syntax for the element is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;system.web&gt;</span> 
+   <span class="tag">&lt;anonymousIdentification&gt;</span> 
+   <span class="tag">&lt;authentication&gt;</span> 
+   <span class="tag">&lt;authorization&gt;</span> 
+   <span class="tag">&lt;browserCaps&gt;</span> 
+   <span class="tag">&lt;caching&gt;</span> 
+   <span class="tag">&lt;clientTarget&gt;</span> 
+   <span class="tag">&lt;compilation&gt;</span> 
+   <span class="tag">&lt;customErrors&gt;</span> 
+   <span class="tag">&lt;deployment&gt;</span> 
+   <span class="tag">&lt;deviceFilters&gt;</span> 
+   <span class="tag">&lt;globalization&gt;</span> 
+   <span class="tag">&lt;healthMonitoring&gt;</span> 
+   <span class="tag">&lt;hostingEnvironment&gt;</span> 
+   <span class="tag">&lt;httpCookies&gt;</span> 
+   <span class="tag">&lt;httpHandlers&gt;</span> 
+   <span class="tag">&lt;httpModules&gt;</span> 
+   <span class="tag">&lt;httpRuntime&gt;</span> 
+   <span class="tag">&lt;identity&gt;</span> 
+   <span class="tag">&lt;machineKey&gt;</span> 
+   <span class="tag">&lt;membership&gt;</span> 
+   <span class="tag">&lt;mobileControls&gt;</span> 
+   <span class="tag">&lt;pages&gt;</span> 
+   <span class="tag">&lt;processModel&gt;</span> 
+   <span class="tag">&lt;profile&gt;</span> 
+   <span class="tag">&lt;roleManager&gt;</span> 
+   <span class="tag">&lt;securityPolicy&gt;</span> 
+   <span class="tag">&lt;sessionPageState&gt;</span> 
+   <span class="tag">&lt;sessionState&gt;</span> 
+   <span class="tag">&lt;siteMap&gt;</span> 
+   <span class="tag">&lt;trace&gt;</span> 
+   <span class="tag">&lt;trust&gt;</span> 
+   <span class="tag">&lt;urlMappings&gt;</span> 
+   <span class="tag">&lt;webControls&gt;</span> 
+   <span class="tag">&lt;webParts&gt;</span> 
+   <span class="tag">&lt;webServices&gt;</span> 
+   <span class="tag">&lt;xhtmlConformance&gt;</span> 
+<span class="tag">&lt;/system.web&gt;</span></pre>
+<p>The following table provides brief description of some of common sub elements of the&nbsp;<strong>system.web</strong>&nbsp;element:</p>
+<h3>AnonymousIdentification</h3>
+<p>This is required to identify users who are not authenticated when authorization is required.</p>
+<h3>Authentication</h3>
+<p>It configures the authentication support. The basic syntax is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;authentication</span> <span class="atn">mode</span><span class="pun">=</span><span class="atv">"[Windows|Forms|Passport|None]"</span><span class="tag">&gt;</span> 
+   <span class="tag">&lt;forms&gt;</span><span class="pln">...</span><span class="tag">&lt;/forms&gt;</span>
+   <span class="tag">&lt;passport/&gt;</span>
+<span class="tag">&lt;/authentication&gt;</span></pre>
+<h3>Authorization</h3>
+<p>It configures the authorization support. The basic syntax is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;authorization&gt;</span> 
+   <span class="tag">&lt;allow</span><span class="pln"> ...</span><span class="tag">/&gt;</span>
+   <span class="tag">&lt;deny</span><span class="pln"> ...</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/authorization&gt;</span></pre>
+<h3>Caching</h3>
+<p>It Configures the cache settings. The basic syntax is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;caching&gt;</span>
+   <span class="tag">&lt;cache&gt;</span><span class="pln">...</span><span class="tag">&lt;/cache&gt;</span>
+   <span class="tag">&lt;outputCache&gt;</span><span class="pln">...</span><span class="tag">&lt;/outputCache&gt;</span>
+   <span class="tag">&lt;outputCacheSettings&gt;</span><span class="pln">...</span><span class="tag">&lt;/outputCacheSettings&gt;</span>
+   <span class="tag">&lt;sqlCacheDependency&gt;</span><span class="pln">...</span><span class="tag">&lt;/sqlCacheDependency&gt;</span>
+<span class="tag">&lt;/caching&gt;</span></pre>
+<h3>CustomErrors</h3>
+<p>It defines custom error messages. The basic syntax is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;customErrors</span> <span class="atn">defaultRedirect</span><span class="pun">=</span><span class="atv">"url"</span> <span class="atn">mode</span><span class="pun">=</span><span class="atv">"On|Off|RemoteOnly"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;error</span><span class="pln">. . .</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/customErrors&gt;</span></pre>
+<h3>Deployment</h3>
+<p>It defines configuration settings used for deployment. The basic syntax is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;deployment</span> <span class="atn">retail</span><span class="pun">=</span><span class="atv">"true|false"</span> <span class="tag">/&gt;</span></pre>
+<h3>HostingEnvironment</h3>
+<p>It defines configuration settings for hosting environment. The basic syntax is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;hostingEnvironment</span> <span class="atn">idleTimeout</span><span class="pun">=</span><span class="atv">"HH:MM:SS"</span> <span class="atn">shadowCopyBinAssemblies</span><span class="pun">=</span><span class="atv">"true|false"</span> 
+   <span class="atn">shutdownTimeout</span><span class="pun">=</span><span class="atv">"number"</span> <span class="atn">urlMetadataSlidingExpiration</span><span class="pun">=</span><span class="atv">"HH:MM:SS"</span> <span class="tag">/&gt;</span></pre>
+<h3>Identity</h3>
+<p>It configures the identity of the application. The basic syntax is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">&lt;identity impersonate="true|false" userName="domain\username"
+   password="</span><span class="tag">&lt;secure</span> <span class="atn">password</span><span class="tag">&gt;</span><span class="pln">"/&gt;</span></pre>
+<h3>MachineKey</h3>
+<p>It configures keys to use for encryption and decryption of Forms authentication cookie data.</p>
+<p>It also allows configuring a validation key that performs message authentication checks on view-state data and forms authentication tickets. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;machineKey</span> <span class="atn">validationKey</span><span class="pun">=</span><span class="atv">"AutoGenerate,IsolateApps"</span><span class="pln"> [</span><span class="atn">String</span><span class="pln">]
+   </span><span class="atn">decryptionKey</span><span class="pun">=</span><span class="atv">"AutoGenerate,IsolateApps"</span><span class="pln"> [</span><span class="atn">String</span><span class="pln">]
+   </span><span class="atn">validation</span><span class="pun">=</span><span class="atv">"HMACSHA256"</span><span class="pln"> [</span><span class="atn">SHA1</span><span class="pln"> | </span><span class="atn">MD5</span><span class="pln"> | 3</span><span class="atn">DES</span><span class="pln"> | </span><span class="atn">AES</span><span class="pln"> | </span><span class="atn">HMACSHA256</span><span class="pln"> | 
+   </span><span class="atn">HMACSHA384</span><span class="pln"> | </span><span class="atn">HMACSHA512</span><span class="pln"> | </span><span class="atn">alg:algorithm_name</span><span class="pln">]
+   </span><span class="atn">decryption</span><span class="pun">=</span><span class="atv">"Auto"</span><span class="pln"> [</span><span class="atn">Auto</span><span class="pln"> | </span><span class="atn">DES</span><span class="pln"> | 3</span><span class="atn">DES</span><span class="pln"> | </span><span class="atn">AES</span><span class="pln"> | </span><span class="atn">alg:algorithm_name</span><span class="pln">]
+</span><span class="tag">/&gt;</span></pre>
+<h3>Membership</h3>
+<p>This configures parameters of managing and authenticating user accounts. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;membership</span> <span class="atn">defaultProvider</span><span class="pun">=</span><span class="atv">"provider name"</span>
+   <span class="atn">userIsOnlineTimeWindow</span><span class="pun">=</span><span class="atv">"number of minutes"</span> <span class="atn">hashAlgorithmType</span><span class="pun">=</span><span class="atv">"SHA1"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;providers&gt;</span><span class="pln">...</span><span class="tag">&lt;/providers&gt;</span>
+<span class="tag">&lt;/membership&gt;</span></pre>
+<h3>Pages</h3>
+<p>It provides page-specific configurations. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;pages</span> <span class="atn">asyncTimeout</span><span class="pun">=</span><span class="atv">"number"</span> <span class="atn">autoEventWireup</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">buffer</span><span class="pun">=</span><span class="atv">"[True|False]"</span> <span class="atn">clientIDMode</span><span class="pun">=</span><span class="atv">"[AutoID|Predictable|Static]"</span>
+      <span class="atn">compilationMode</span><span class="pun">=</span><span class="atv">"[Always|Auto|Never]"</span> 
+      <span class="atn">controlRenderingCompatibilityVersion</span><span class="pun">=</span><span class="atv">"[3.5|4.0]"</span>
+      <span class="atn">enableEventValidation</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">enableSessionState</span><span class="pun">=</span><span class="atv">"[True|False|ReadOnly]"</span>
+      <span class="atn">enableViewState</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">enableViewStateMac</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">maintainScrollPositionOnPostBack</span><span class="pun">=</span><span class="atv">"[True|False]"</span> 
+      <span class="atn">masterPageFile</span><span class="pun">=</span><span class="atv">"file path"</span> 
+      <span class="atn">maxPageStateFieldLength</span><span class="pun">=</span><span class="atv">"number"</span> 
+      <span class="atn">pageBaseType</span><span class="pun">=</span><span class="atv">"typename, assembly"</span>
+      <span class="atn">pageParserFilterType</span><span class="pun">=</span><span class="atv">"string"</span> 
+      <span class="atn">smartNavigation</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">styleSheetTheme</span><span class="pun">=</span><span class="atv">"string"</span>
+      <span class="atn">theme</span><span class="pun">=</span><span class="atv">"string"</span>
+      <span class="atn">userControlBaseType</span><span class="pun">=</span><span class="atv">"typename"</span>
+      <span class="atn">validateRequest</span><span class="pun">=</span><span class="atv">"[True|False]"</span>
+      <span class="atn">viewStateEncryptionMode</span><span class="pun">=</span><span class="atv">"[Always|Auto|Never]"</span> <span class="tag">&gt;</span>
+   
+   <span class="tag">&lt;controls&gt;</span><span class="pln">...</span><span class="tag">&lt;/controls&gt;</span>
+   <span class="tag">&lt;namespaces&gt;</span><span class="pln">...</span><span class="tag">&lt;/namespaces&gt;</span>
+   <span class="tag">&lt;tagMapping&gt;</span><span class="pln">...</span><span class="tag">&lt;/tagMapping&gt;</span>
+   <span class="tag">&lt;ignoreDeviceFilters&gt;</span><span class="pln">...</span><span class="tag">&lt;/ignoreDeviceFilters&gt;</span>
+<span class="tag">&lt;/pages&gt;</span></pre>
+<h3>Profile</h3>
+<p>It configures user profile parameters. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;profile</span> <span class="atn">enabled</span><span class="pun">=</span><span class="atv">"true|false"</span> <span class="atn">inherits</span><span class="pun">=</span><span class="atv">"fully qualified type reference"</span>
+   <span class="atn">automaticSaveEnabled</span><span class="pun">=</span><span class="atv">"true|false"</span> <span class="atn">defaultProvider</span><span class="pun">=</span><span class="atv">"provider name"</span><span class="tag">&gt;</span>
+   
+   <span class="tag">&lt;properties&gt;</span><span class="pln">...</span><span class="tag">&lt;/properties&gt;</span>
+   <span class="tag">&lt;providers&gt;</span><span class="pln">...</span><span class="tag">&lt;/providers&gt;</span>
+   
+<span class="tag">&lt;/profile&gt;</span></pre>
+<h3>RoleManager</h3>
+<p>It configures settings for user roles. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;roleManager</span> <span class="atn">cacheRolesInCookie</span><span class="pun">=</span><span class="atv">"true|false"</span> <span class="atn">cookieName</span><span class="pun">=</span><span class="atv">"name"</span>
+   <span class="atn">cookiePath</span><span class="pun">=</span><span class="atv">"/"</span> <span class="atn">cookieProtection</span><span class="pun">=</span><span class="atv">"All|Encryption|Validation|None"</span>
+   <span class="atn">cookieRequireSSL</span><span class="pun">=</span><span class="atv">"true|false "</span> <span class="atn">cookieSlidingExpiration</span><span class="pun">=</span><span class="atv">"true|false "</span>
+   <span class="atn">cookieTimeout</span><span class="pun">=</span><span class="atv">"number of minutes"</span> <span class="atn">createPersistentCookie</span><span class="pun">=</span><span class="atv">"true|false"</span>
+   <span class="atn">defaultProvider</span><span class="pun">=</span><span class="atv">"provider name"</span> <span class="atn">domain</span><span class="pun">=</span><span class="atv">"cookie domain"</span><span class="tag">&gt;</span><span class="pln"> 
+   enabled="true|false"
+   maxCachedResults="maximum number of role names cached"
+   
+   </span><span class="tag">&lt;providers&gt;</span><span class="pln">...</span><span class="tag">&lt;/providers&gt;</span>
+<span class="tag">&lt;/roleManager&gt;</span></pre>
+<h3>SecurityPolicy</h3>
+<p>It configures the security policy. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;securityPolicy&gt;</span>
+   <span class="tag">&lt;trustLevel</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/securityPolicy&gt;</span></pre>
+<h3>UrlMappings</h3>
+<p>It defines mappings to hide the original URL and provide a more user friendly URL. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;urlMappings</span> <span class="atn">enabled</span><span class="pun">=</span><span class="atv">"true|false"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;add</span><span class="pln">...</span><span class="tag">/&gt;</span>
+   <span class="tag">&lt;clear</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;remove</span><span class="pln">...</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/urlMappings&gt;</span></pre>
+<h3>WebControls</h3>
+<p>It provides the name of shared location for client scripts. The basic syntax is:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;webControls</span> <span class="atn">clientScriptsLocation</span><span class="pun">=</span><span class="atv">"String"</span> <span class="tag">/&gt;</span></pre>
+<h3>WebServices</h3>
+<p>This configures the web services.</p>

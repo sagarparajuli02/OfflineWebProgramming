@@ -1,0 +1,27 @@
+<p>In this chapter, we will show you how to save your data to Firebase.</p>
+<h2>Set</h2>
+<p>The&nbsp;<strong>set</strong>&nbsp;method will write or replace data on a specified path. Let us create a reference to the player&rsquo;s collection and set two players.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="kwd">set</span> <span class="pun">({</span>
+   <span class="typ">John</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      number</span><span class="pun">:</span> <span class="lit">1</span><span class="pun">,</span><span class="pln">
+      age</span><span class="pun">:</span> <span class="lit">30</span>
+   <span class="pun">},</span>
+	
+   <span class="typ">Amanda</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      number</span><span class="pun">:</span> <span class="lit">2</span><span class="pun">,</span><span class="pln">
+      age</span><span class="pun">:</span> <span class="lit">20</span>
+   <span class="pun">}</span>
+<span class="pun">});</span></pre>
+<p>We will see the following result.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-write-data-set.jpg" alt="Firebase Write Data Set" /></p>
+<h2>Update</h2>
+<p>We can update the Firebase data in a similar fashion. Notice how we are using the&nbsp;<strong>players/john</strong>&nbsp;path.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> johnRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/John"</span><span class="pun">);</span><span class="pln">
+
+johnRef</span><span class="pun">.</span><span class="pln">update </span><span class="pun">({</span>
+   <span class="str">"number"</span><span class="pun">:</span> <span class="lit">10</span>
+<span class="pun">});</span></pre>
+<p>When we refresh our app, we can see that the Firebase data is updating.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase-write-data-update.jpg" alt="Firebase Write Data Update" /></p>

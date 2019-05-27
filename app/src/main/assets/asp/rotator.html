@@ -1,0 +1,201 @@
+<p>The AdRotator control randomly selects banner graphics from a list, which is specified in an external XML schedule file. This external XML schedule file is called the advertisement file.</p>
+<p>The AdRotator control allows you to specify the advertisement file and the type of window that the link should follow in the AdvertisementFile and the Target property respectively.</p>
+<p>The basic syntax of adding an AdRotator is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:AdRotator</span>  <span class="atn">runat</span> <span class="pun">=</span> <span class="atv">"server"</span> <span class="atn">AdvertisementFile</span> <span class="pun">=</span> <span class="atv">"adfile.xml"</span>  <span class="atn">Target</span> <span class="pun">=</span>  <span class="atv">"_blank"</span> <span class="tag">/&gt;</span></pre>
+<p>Before going into the details of the AdRotator control and its properties, let us look into the construction of the advertisement file.</p>
+<h2>The Advertisement File</h2>
+<p>The advertisement file is an XML file, which contains the information about the advertisements to be displayed.</p>
+<p>Extensible Markup Language (XML) is a W3C standard for text document markup. It is a text-based markup language that enables you to store data in a structured format by using meaningful tags. The term 'extensible' implies that you can extend your ability to describe a document by defining meaningful tags for the application.</p>
+<p>XML is not a language in itself, like HTML, but a set of rules for creating new markup languages. It is a meta-markup language. It allows developers to create custom tag sets for special uses. It structures, stores, and transports the information.</p>
+<p>Following is an example of XML file:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;BOOK&gt;</span>
+   <span class="tag">&lt;NAME&gt;</span><span class="pln"> Learn XML </span><span class="tag">&lt;/NAME&gt;</span>
+   <span class="tag">&lt;AUTHOR&gt;</span><span class="pln"> Samuel Peterson </span><span class="tag">&lt;/AUTHOR&gt;</span>
+   <span class="tag">&lt;PUBLISHER&gt;</span><span class="pln"> NSS Publications </span><span class="tag">&lt;/PUBLISHER&gt;</span>
+   <span class="tag">&lt;PRICE&gt;</span><span class="pln"> $30.00</span><span class="tag">&lt;/PRICE&gt;</span>
+<span class="tag">&lt;/BOOK&gt;</span></pre>
+<p>Like all XML files, the advertisement file needs to be a structured text file with well-defined tags delineating the data. There are the following standard XML elements that are commonly used in the advertisement file:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Advertisements</td>
+<td>Encloses the advertisement file.</td>
+</tr>
+<tr>
+<td>Ad</td>
+<td>Delineates separate ad.</td>
+</tr>
+<tr>
+<td>ImageUrl</td>
+<td>The path of image that will be displayed.</td>
+</tr>
+<tr>
+<td>NavigateUrl</td>
+<td>The link that will be followed when the user clicks the ad.</td>
+</tr>
+<tr>
+<td>AlternateText</td>
+<td>The text that will be displayed instead of the picture if it cannot be displayed.</td>
+</tr>
+<tr>
+<td>Keyword</td>
+<td>Keyword identifying a group of advertisements. This is used for filtering.</td>
+</tr>
+<tr>
+<td>Impressions</td>
+<td>The number indicating how often an advertisement will appear.</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>Height of the image to be displayed.</td>
+</tr>
+<tr>
+<td>Width</td>
+<td>Width of the image to be displayed.</td>
+</tr>
+</tbody>
+</table>
+<p>Apart from these tags, customs tags with custom attributes could also be included. The following code illustrates an advertisement file ads.xml:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;Advertisements&gt;</span>
+   <span class="tag">&lt;Ad&gt;</span>
+      <span class="tag">&lt;ImageUrl&gt;</span><span class="pln">rose1.jpg</span><span class="tag">&lt;/ImageUrl&gt;</span>
+      <span class="tag">&lt;NavigateUrl&gt;</span><span class="pln">http://www.1800flowers.com</span><span class="tag">&lt;/NavigateUrl&gt;</span>
+      <span class="tag">&lt;AlternateText&gt;</span><span class="pln">
+         Order flowers, roses, gifts and more
+      </span><span class="tag">&lt;/AlternateText&gt;</span>
+      <span class="tag">&lt;Impressions&gt;</span><span class="pln">20</span><span class="tag">&lt;/Impressions&gt;</span>
+      <span class="tag">&lt;Keyword&gt;</span><span class="pln">flowers</span><span class="tag">&lt;/Keyword&gt;</span>
+   <span class="tag">&lt;/Ad&gt;</span>
+
+   <span class="tag">&lt;Ad&gt;</span>
+      <span class="tag">&lt;ImageUrl&gt;</span><span class="pln">rose2.jpg</span><span class="tag">&lt;/ImageUrl&gt;</span>
+      <span class="tag">&lt;NavigateUrl&gt;</span><span class="pln">http://www.babybouquets.com.au</span><span class="tag">&lt;/NavigateUrl&gt;</span>
+      <span class="tag">&lt;AlternateText&gt;</span><span class="pln">Order roses and flowers</span><span class="tag">&lt;/AlternateText&gt;</span>
+      <span class="tag">&lt;Impressions&gt;</span><span class="pln">20</span><span class="tag">&lt;/Impressions&gt;</span>
+      <span class="tag">&lt;Keyword&gt;</span><span class="pln">gifts</span><span class="tag">&lt;/Keyword&gt;</span>
+   <span class="tag">&lt;/Ad&gt;</span>
+
+   <span class="tag">&lt;Ad&gt;</span>
+      <span class="tag">&lt;ImageUrl&gt;</span><span class="pln">rose3.jpg</span><span class="tag">&lt;/ImageUrl&gt;</span>
+      <span class="tag">&lt;NavigateUrl&gt;</span><span class="pln">http://www.flowers2moscow.com</span><span class="tag">&lt;/NavigateUrl&gt;</span>
+      <span class="tag">&lt;AlternateText&gt;</span><span class="pln">Send flowers to Russia</span><span class="tag">&lt;/AlternateText&gt;</span>
+      <span class="tag">&lt;Impressions&gt;</span><span class="pln">20</span><span class="tag">&lt;/Impressions&gt;</span>
+      <span class="tag">&lt;Keyword&gt;</span><span class="pln">russia</span><span class="tag">&lt;/Keyword&gt;</span>
+   <span class="tag">&lt;/Ad&gt;</span>
+
+   <span class="tag">&lt;Ad&gt;</span>
+      <span class="tag">&lt;ImageUrl&gt;</span><span class="pln">rose4.jpg</span><span class="tag">&lt;/ImageUrl&gt;</span>
+      <span class="tag">&lt;NavigateUrl&gt;</span><span class="pln">http://www.edibleblooms.com</span><span class="tag">&lt;/NavigateUrl&gt;</span>
+      <span class="tag">&lt;AlternateText&gt;</span><span class="pln">Edible Blooms</span><span class="tag">&lt;/AlternateText&gt;</span>
+      <span class="tag">&lt;Impressions&gt;</span><span class="pln">20</span><span class="tag">&lt;/Impressions&gt;</span>
+      <span class="tag">&lt;Keyword&gt;</span><span class="pln">gifts</span><span class="tag">&lt;/Keyword&gt;</span>
+   <span class="tag">&lt;/Ad&gt;</span>
+<span class="tag">&lt;/Advertisements&gt;</span></pre>
+<h2>Properties and Events of the AdRotator Class</h2>
+<p>The AdRotator class is derived from the WebControl class and inherits its properties. Apart from those, the AdRotator class has the following properties:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>AdvertisementFile</td>
+<td>The path to the advertisement file.</td>
+</tr>
+<tr>
+<td>AlternateTextFeild</td>
+<td>The element name of the field where alternate text is provided. The default value is AlternateText.</td>
+</tr>
+<tr>
+<td>DataMember</td>
+<td>The name of the specific list of data to be bound when advertisement file is not used.</td>
+</tr>
+<tr>
+<td>DataSource</td>
+<td>Control from where it would retrieve data.</td>
+</tr>
+<tr>
+<td>DataSourceID</td>
+<td>Id of the control from where it would retrieve data.</td>
+</tr>
+<tr>
+<td>Font</td>
+<td>Specifies the font properties associated with the advertisement banner control.</td>
+</tr>
+<tr>
+<td>ImageUrlField</td>
+<td>The element name of the field where the URL for the image is provided. The default value is ImageUrl.</td>
+</tr>
+<tr>
+<td>KeywordFilter</td>
+<td>For displaying the keyword based ads only.</td>
+</tr>
+<tr>
+<td>NavigateUrlField</td>
+<td>The element name of the field where the URL to navigate to is provided. The default value is NavigateUrl.</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>The browser window or frame that displays the content of the page linked.</td>
+</tr>
+<tr>
+<td>UniqueID</td>
+<td>Obtains the unique, hierarchically qualified identifier for the AdRotator control.</td>
+</tr>
+</tbody>
+</table>
+<p>Following are the important events of the AdRotator class:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Events</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>AdCreated</td>
+<td>It is raised once per round trip to the server after creation of the control, but before the page is rendered</td>
+</tr>
+<tr>
+<td>DataBinding</td>
+<td>Occurs when the server control binds to a data source.</td>
+</tr>
+<tr>
+<td>DataBound</td>
+<td>Occurs after the server control binds to a data source.</td>
+</tr>
+<tr>
+<td>Disposed</td>
+<td>Occurs when a server control is released from memory, which is the last stage of the server control lifecycle when an ASP.NET page is requested</td>
+</tr>
+<tr>
+<td>Init</td>
+<td>Occurs when the server control is initialized, which is the first step in its lifecycle.</td>
+</tr>
+<tr>
+<td>Load</td>
+<td>Occurs when the server control is loaded into the Page object.</td>
+</tr>
+<tr>
+<td>PreRender</td>
+<td>Occurs after the Control object is loaded but prior to rendering.</td>
+</tr>
+<tr>
+<td>Unload</td>
+<td>Occurs when the server control is unloaded from memory.</td>
+</tr>
+</tbody>
+</table>
+<h2>Working with AdRotator Control</h2>
+<p>Create a new web page and place an AdRotator control on it.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;asp:AdRotator</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"AdRotator1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">AdvertisementFile</span>  <span class="pun">=</span><span class="atv">"~/ads.xml"</span> <span class="atn">onadcreated</span><span class="pun">=</span><span class="atv">"</span><span class="typ">AdRotator1_AdCreated</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+<p>The ads.xml file and the image files should be located in the root directory of the web site.</p>
+<p>Try to execute the above application and observe that each time the page is reloaded, the ad is changed.</p>

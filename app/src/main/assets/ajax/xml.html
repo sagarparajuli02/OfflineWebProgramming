@@ -1,0 +1,113 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>The XMLHttpRequest object is the key to AJAX. It has been available ever since Internet Explorer 5.5 was released in July 2000, but was not fully discovered until AJAX and Web 2.0 in 2005 became popular.</p>
+<p>XMLHttpRequest (XHR) is an API that can be used by JavaScript, JScript, VBScript, and other web browser scripting languages to transfer and manipulate XML data to and from a webserver using HTTP, establishing an independent connection channel between a webpage's Client-Side and Server-Side.</p>
+<p>The data returned from XMLHttpRequest calls will often be provided by back-end databases. Besides XML, XMLHttpRequest can be used to fetch data in other formats, e.g. JSON or even plain text.</p>
+<p>You already have seen a couple of examples on how to create an XMLHttpRequest object.</p>
+<p>Listed below are some of the methods and properties that you have to get familiar with.</p>
+<h2>XMLHttpRequest Methods</h2>
+<ul class="list">
+<li>
+<p><strong>abort()</strong></p>
+<p>Cancels the current request.</p>
+</li>
+<li>
+<p><strong>getAllResponseHeaders()</strong></p>
+<p>Returns the complete set of HTTP headers as a string.</p>
+</li>
+<li>
+<p><strong>getResponseHeader( headerName )</strong></p>
+<p>Returns the value of the specified HTTP header.</p>
+</li>
+<li>
+<p><strong>open( method, URL )</strong></p>
+</li>
+<li>
+<p><strong>open( method, URL, async )</strong></p>
+</li>
+<li>
+<p><strong>open( method, URL, async, userName )</strong></p>
+</li>
+<li>
+<p><strong>open( method, URL, async, userName, password )</strong></p>
+<p>Specifies the method, URL, and other optional attributes of a request.</p>
+<p>The method parameter can have a value of "GET", "POST", or "HEAD". Other HTTP methods such as "PUT" and "DELETE" (primarily used in REST applications) may be possible.</p>
+<p>The "async" parameter specifies whether the request should be handled asynchronously or not. "true" means that the script processing carries on after the send() method without waiting for a response, and "false" means that the script waits for a response before continuing script processing.</p>
+</li>
+<li>
+<p><strong>send( content )</strong></p>
+<p>Sends the request.</p>
+</li>
+<li>
+<p><strong>setRequestHeader( label, value )</strong></p>
+<p>Adds a label/value pair to the HTTP header to be sent.</p>
+</li>
+</ul>
+<h2>XMLHttpRequest Properties</h2>
+<ul class="list">
+<li>
+<p><strong>onreadystatechange</strong></p>
+<p>An event handler for an event that fires at every state change.</p>
+</li>
+<li>
+<p><strong>readyState</strong></p>
+<p>The readyState property defines the current state of the XMLHttpRequest object.</p>
+<p>The following table provides a list of the possible values for the readyState property &minus;</p>
+</li>
+</ul>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">State</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>0</td>
+<td>The request is not initialized.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>The request has been set up.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The request has been sent.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The request is in process.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The request is completed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>readyState = 0</strong>&nbsp;After you have created the XMLHttpRequest object, but before you have called the open() method.</p>
+<p><strong>readyState = 1</strong>&nbsp;After you have called the open() method, but before you have called send().</p>
+<p><strong>readyState = 2</strong>&nbsp;After you have called send().</p>
+<p><strong>readyState = 3</strong>&nbsp;After the browser has established a communication with the server, but before the server has completed the response.</p>
+<p><strong>readyState = 4</strong>&nbsp;After the request has been completed, and the response data has been completely received from the server.</p>
+<ul class="list">
+<li>
+<p><strong>responseText</strong></p>
+<p>Returns the response as a string.</p>
+</li>
+<li>
+<p><strong>responseXML</strong></p>
+<p>Returns the response as XML. This property returns an XML document object, which can be examined and parsed using the W3C DOM node tree methods and properties.</p>
+</li>
+<li>
+<p><strong>status</strong></p>
+<p>Returns the status as a number (e.g., 404 for "Not Found" and 200 for "OK").</p>
+</li>
+<li>
+<p><strong>statusText</strong></p>
+<p>Returns the status as a string (e.g., "Not Found" or "OK").</p>
+</li>
+</ul>

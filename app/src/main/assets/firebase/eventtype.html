@@ -1,0 +1,43 @@
+<p>Firebase offers several different event types for reading data. Some of the most commonly used ones are described below.</p>
+<h2>value</h2>
+<p>The first event type is&nbsp;<strong>value</strong>. We showed you how to use value in our last chapter. This event type will be triggered every time the data changes and it will retrieve all the data including children.</p>
+<h2>child_added</h2>
+<p>This event type will be triggered once for every player and every time a new player is added to our data. It is useful for reading list data because we get access of the added player and previous player from the list.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"child_added"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> prevChildKey</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">var</span><span class="pln"> newPlayer </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"name: "</span> <span class="pun">+</span><span class="pln"> newPlayer</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"age: "</span> <span class="pun">+</span><span class="pln"> newPlayer</span><span class="pun">.</span><span class="pln">age</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"number: "</span> <span class="pun">+</span><span class="pln"> newPlayer</span><span class="pun">.</span><span class="pln">number</span><span class="pun">);</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Previous Player: "</span> <span class="pun">+</span><span class="pln"> prevChildKey</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We will get the following result.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_event_types_child_added_log.jpg" alt="Event Type Child Added Log" /></p>
+<p>If we add a new player named Bob, we will get the updated data.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_event_types_child_added_updated_log.jpg" alt="Event Type Child Added Updated Log" /></p>
+<h2>child_changed</h2>
+<p>This event type is triggered when the data has changed.</p>
+<h3>Example</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"child_changed"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">var</span><span class="pln"> player </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"The updated player name is "</span> <span class="pun">+</span><span class="pln"> player</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>We can change&nbsp;<strong>Bob</strong>&nbsp;to&nbsp;<strong>Maria</strong>&nbsp;in Firebase to get the update.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_event_types_child_changed_log.jpg" alt="Event Type Child Changed Log" /></p>
+<h2>child_removed</h2>
+<p>If we want to get access of deleted data, we can use&nbsp;<strong>child_removed</strong>&nbsp;event type.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> playersRef </span><span class="pun">=</span><span class="pln"> firebase</span><span class="pun">.</span><span class="pln">database</span><span class="pun">().</span><span class="kwd">ref</span><span class="pun">(</span><span class="str">"players/"</span><span class="pun">);</span><span class="pln">
+
+playersRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"child_removed"</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">var</span><span class="pln"> deletedPlayer </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">deletedPlayer</span><span class="pun">.</span><span class="pln">name </span><span class="pun">+</span> <span class="str">" has been deleted"</span><span class="pun">);</span>
+<span class="pun">});</span></pre>
+<p>Now, we can delete Maria from Firebase to get notifications.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_event_types_child_deleted_log.jpg" alt="Event Type Child Deleted Log" /></p>

@@ -1,0 +1,45 @@
+<p><strong>Vue</strong>&nbsp;is a JavaScript framework for building user interfaces. Its core part is focused mainly on the view layer and it is very easy to understand. The version of Vue that we are going to use in this tutorial is 2.0.</p>
+<p>As Vue is basically built for frontend development, we are going to deal with lot of HTML, JavaScript and CSS files in the upcoming chapters. To understand the details, let us start with a simple example.</p>
+<p>In this example, we are going to use the development verison of vuejs.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Introduction</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"intro"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln">center</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">{{ message }}</span><span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vue_det </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#intro'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               message</span><span class="pun">:</span> <span class="str">'My first VueJS Task'</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/first_vuejs.jpg" alt="First VueJS" /></p>
+<p>This is the first app we have created using VueJS. As seen in the above code, we have included vue.js at the start of the .html file.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+<p>There is a div which is added in the body that prints&nbsp;<strong>&ldquo;My first VueJS Task&rdquo;</strong>&nbsp;in the browser.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"intro"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln">center</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;h1&gt;</span><span class="pln">{{ message }}</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+<p>We have also added a message in a interpolation, i.e.&nbsp;<strong>{{}}</strong>. This interacts with VueJS and prints the data in the browser. To get the value of the message in the DOM, we are creating an instance of vuejs as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vue_det </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#intro'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      message</span><span class="pun">:</span> <span class="str">'My first VueJS Task'</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>In the above code snippet, we are calling Vue instance, which takes the id of the DOM element i.e. e1:&rsquo;#intro&rsquo;, it is the id of the div. There is data with the message which is assigned the value&nbsp;<strong>&lsquo;My first VueJS Task&rsquo;</strong>. VueJS interacts with DOM and changes the value in the DOM {{message}} with&nbsp;<strong>&rsquo;My first VueJS Task&rsquo;</strong>.</p>
+<p>If we happen to change the value of the message in the console, the same will be reflected in the browser. For example &minus;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vuejs_interesting.jpg" alt="VueJS Interesting" /></p>
+<h2>Console Details</h2>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vuejs_is_interesting.jpg" alt="VueJS is Interesting" /></p>
+<p>In the above console, we have printed the vue_det object, which is an instance of Vue. We are updating the message with&nbsp;<strong>&ldquo;VueJs is interesting&rdquo;</strong>&nbsp;and the same is changed in the browser immediately as seen in the above screenshot.</p>
+<p>This is just a basic example showing the linking of VueJS with DOM, and how we can manipulate it. In the next few chapters, we will learn about directives, components, conditional loops, etc.</p>

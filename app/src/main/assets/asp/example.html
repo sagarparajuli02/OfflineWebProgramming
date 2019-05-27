@@ -1,0 +1,104 @@
+<p>An ASP.NET page is made up of a number of server controls along with HTML controls, text, and images. Sensitive data from the page and the states of different controls on the page are stored in hidden fields that form the context of that page request.</p>
+<p>ASP.NET runtime controls the association between a page instance and its state. An ASP.NET page is an object of the Page or inherited from it.</p>
+<p>All the controls on the pages are also objects of the related control class inherited from a parent Control class. When a page is run, an instance of the object page is created along with all its content controls.</p>
+<p>An ASP.NET page is also a server side file saved with the .aspx extension. It is modular in nature and can be divided into the following core sections:</p>
+<ul class="list">
+<li>Page Directives</li>
+<li>Code Section</li>
+<li>Page Layout</li>
+</ul>
+<h2>Page Directives</h2>
+<p>The page directives set up the environment for the page to run. The @Page directive defines page-specific attributes used by ASP.NET page parser and compiler. Page directives specify how the page should be processed, and which assumptions need to be taken about the page.</p>
+<p>It allows importing namespaces, loading assemblies, and registering new controls with custom tag names and namespace prefixes.</p>
+<h2>Code Section</h2>
+<p>The code section provides the handlers for the page and control events along with other functions required. We mentioned that, ASP.NET follows an object model. Now, these objects raise events when some events take place on the user interface, like a user clicks a button or moves the cursor. The kind of response these events need to reciprocate is coded in the event handler functions. The event handlers are nothing but functions bound to the controls.</p>
+<p>The code section or the code behind file provides all these event handler routines, and other functions used by the developer. The page code could be precompiled and deployed in the form of a binary assembly.</p>
+<h2>Page Layout</h2>
+<p>The page layout provides the interface of the page. It contains the server controls, text, inline JavaScript, and HTML tags.</p>
+<p>The following code snippet provides a sample ASP.NET page explaining Page directives, code section and page layout written in C#:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">&lt;!-- directives --&gt;</span>
+<span class="pun">&lt;%</span> <span class="lit">@Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span><span class="pln"> %&gt;
+
+</span><span class="com">&lt;!-- code section --&gt;</span>
+<span class="tag">&lt;script</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+
+   <span class="kwd">private</span> <span class="kwd">void</span><span class="pln"> convertoupper</span><span class="pun">(</span><span class="pln">object sender</span><span class="pun">,</span> <span class="typ">EventArgs</span><span class="pln"> e</span><span class="pun">)</span>
+   <span class="pun">{</span><span class="pln">
+      string str </span><span class="pun">=</span><span class="pln"> mytext</span><span class="pun">.</span><span class="typ">Value</span><span class="pun">;</span><span class="pln">
+      changed_text</span><span class="pun">.</span><span class="typ">InnerHtml</span> <span class="pun">=</span><span class="pln"> str</span><span class="pun">.</span><span class="typ">ToUpper</span><span class="pun">();</span>
+   <span class="pun">}</span>
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="com">&lt;!-- Layout --&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span> 
+      <span class="tag">&lt;title&gt;</span><span class="pln"> Change to Upper Case </span><span class="tag">&lt;/title&gt;</span> 
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h3&gt;</span><span class="pln"> Conversion to Upper Case </span><span class="tag">&lt;/h3&gt;</span>
+      
+      <span class="tag">&lt;form</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"mytext"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"button1"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span> <span class="atn">value</span><span class="pun">=</span><span class="atv">"Enter..."</span> <span class="atn">OnServerClick</span><span class="pun">=</span><span class="atv">"</span><span class="pln">convertoupper</span><span class="atv">"</span><span class="tag">/&gt;</span>
+         
+         <span class="tag">&lt;hr</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;h3&gt;</span><span class="pln"> Results: </span><span class="tag">&lt;/h3&gt;</span>
+         <span class="tag">&lt;span</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"changed_text"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Copy this file to the web server root directory. Generally it is c:\iNETput\wwwroot. Open the file from the browser to execute it and it generates following result:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_first_example.jpg" alt="ASP.NET First Example" /><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_first_example.jpg" alt="ASP.NET First Example" /></p>
+<h2>Using Visual Studio IDE</h2>
+<p>Let us develop the same example using Visual Studio IDE. Instead of typing the code, you can just drag the controls into the design view:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_first_example2.jpg" alt="ASP.NET First Example 2" /></p>
+<p>The content file is automatically developed. All you need to add is the Button1_Click routine, which is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">protected</span> <span class="kwd">void</span> <span class="typ">Button1_Click</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> sender</span><span class="pun">,</span> <span class="typ">EventArgs</span><span class="pln"> e</span><span class="pun">)</span>
+<span class="pun">{</span>
+   <span class="kwd">string</span><span class="pln"> buf </span><span class="pun">=</span> <span class="typ">TextBox1</span><span class="pun">.</span><span class="typ">Text</span><span class="pun">;</span><span class="pln">
+   changed_text</span><span class="pun">.</span><span class="typ">InnerHtml</span> <span class="pun">=</span><span class="pln"> buf</span><span class="pun">.</span><span class="typ">ToUpper</span><span class="pun">();</span>
+<span class="pun">}</span></pre>
+<p>The content file code is as given:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;%@</span> <span class="typ">Page</span> <span class="typ">Language</span><span class="pun">=</span><span class="str">"C#"</span> <span class="typ">AutoEventWireup</span><span class="pun">=</span><span class="str">"true"</span> <span class="typ">CodeBehind</span><span class="pun">=</span><span class="str">"Default.aspx.cs"</span> 
+   <span class="typ">Inherits</span><span class="pun">=</span><span class="str">"firstexample._Default"</span><span class="pln"> %&gt;
+
+</span><span class="dec">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://www.w3.org/1999/xhtml"</span> <span class="tag">&gt;</span>
+
+   <span class="tag">&lt;head</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">
+         Untitled Page
+      </span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div&gt;</span>
+         
+            <span class="tag">&lt;asp:TextBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"TextBox1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">224px</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;/asp:TextBox&gt;</span>
+            
+            <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+            
+            <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Button1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Enter..."</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">85px</span><span class="atv">"</span> <span class="atn">onclick</span><span class="pun">=</span><span class="atv">"</span><span class="typ">Button1_Click</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;hr</span> <span class="tag">/&gt;</span>
+            
+            <span class="tag">&lt;h3&gt;</span><span class="pln"> Results: </span><span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;span</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"changed_text"</span> <span class="tag">/&gt;</span>
+            
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+   
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Execute the example by right clicking on the design view and choosing 'View in Browser' from the popup menu. This generates the following result:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/asp.net_first_example3.jpg" alt="ASP.NET First Example 3" /></p>
+<hr />
+<div class="pre-btn">&nbsp;</div>

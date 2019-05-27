@@ -1,0 +1,80 @@
+<p>Before starting, note that the Django Comments framework is deprecated, since the 1.5 version. Now you can use external feature for doing so, but if you still want to use it, it's still included in version 1.6 and 1.7. Starting version 1.8 it's absent but you can still get the code on a different GitHub account.</p>
+<p>The comments framework makes it easy to attach comments to any model in your app.</p>
+<p>To start using the Django comments framework &minus;</p>
+<p>Edit the project settings.py file and add&nbsp;<strong>'django.contrib.sites'</strong>, and&nbsp;<strong>'django.contrib.comments'</strong>, to INSTALLED_APPS option &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">INSTALLED_APPS </span><span class="pun">+=</span> <span class="pun">(</span><span class="str">'django.contrib.sites'</span><span class="pun">,</span> <span class="str">'django.contrib.comments'</span><span class="pun">,)</span></pre>
+<p>Get the site id &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&gt;&gt;&gt;</span> <span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib</span><span class="pun">.</span><span class="pln">sites</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Site</span>
+<span class="pun">&gt;&gt;&gt;</span> <span class="typ">Site</span><span class="pun">().</span><span class="pln">save</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span> <span class="typ">Site</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">all</span><span class="pun">()[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">id
+u</span><span class="str">'56194498e13823167dd43c64'</span></pre>
+<p>Set the id you get in the settings.py file &minus;</p>
+<pre class="result notranslate">SITE_ID = u'56194498e13823167dd43c64'
+</pre>
+<p>Sync db, to create all the comments table or collection &minus;</p>
+<pre class="result notranslate">python manage.py syncdb
+</pre>
+<p>Add the comment app&rsquo;s URLs to your project&rsquo;s urls.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> include
+url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^comments/'</span><span class="pun">,</span><span class="pln"> include</span><span class="pun">(</span><span class="str">'django.contrib.comments.urls'</span><span class="pun">)),</span></pre>
+<p>Now that we have the framework installed, let's change our hello templates to tracks comments on our Dreamreal model. We will list, save comments for a specific Dreamreal entry whose name will be passed as parameter to the /myapp/hello URL.</p>
+<h2>Dreamreal Model</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">class</span> <span class="typ">Dreamreal</span><span class="pun">(</span><span class="pln">models</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">):</span><span class="pln">
+
+   website </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   mail </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   phonenumber </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">IntegerField</span><span class="pun">()</span>
+
+   <span class="kwd">class</span> <span class="typ">Meta</span><span class="pun">:</span><span class="pln">
+      db_table </span><span class="pun">=</span> <span class="str">"dreamreal"</span></pre>
+<h2>hello view</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> hello</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="typ">Name</span><span class="pun">):</span><span class="pln">
+   today </span><span class="pun">=</span><span class="pln"> datetime</span><span class="pun">.</span><span class="pln">datetime</span><span class="pun">.</span><span class="pln">now</span><span class="pun">().</span><span class="pln">date</span><span class="pun">()</span><span class="pln">
+   daysOfWeek </span><span class="pun">=</span> <span class="pun">[</span><span class="str">'Mon'</span><span class="pun">,</span> <span class="str">'Tue'</span><span class="pun">,</span> <span class="str">'Wed'</span><span class="pun">,</span> <span class="str">'Thu'</span><span class="pun">,</span> <span class="str">'Fri'</span><span class="pun">,</span> <span class="str">'Sat'</span><span class="pun">,</span> <span class="str">'Sun'</span><span class="pun">]</span><span class="pln">
+   dreamreal </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span> <span class="typ">Name</span><span class="pun">)</span>
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'hello.html'</span><span class="pun">,</span><span class="pln"> locals</span><span class="pun">())</span></pre>
+<h2>hello.html template</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">{%</span> <span class="kwd">extends</span> <span class="str">"main_template.html"</span> <span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> load comments </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block title </span><span class="pun">%}</span><span class="typ">My</span> <span class="typ">Hello</span> <span class="typ">Page</span><span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> block content </span><span class="pun">%}</span>
+
+<span class="str">&lt;p&gt;</span>
+   <span class="typ">Our</span> <span class="typ">Dreamreal</span> <span class="typ">Entry</span><span class="pun">:</span>
+   <span class="str">&lt;p&gt;&lt;strong&gt;</span><span class="typ">Name</span> <span class="pun">:&lt;</span><span class="str">/strong&gt; {{dreamreal.name}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="str">&lt;p&gt;&lt;strong&gt;</span><span class="typ">Website</span> <span class="pun">:&lt;</span><span class="str">/strong&gt; {{dreamreal.website}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="str">&lt;p&gt;&lt;strong&gt;</span><span class="typ">Phone</span> <span class="pun">:&lt;</span><span class="str">/strong&gt; {{dreamreal.phonenumber}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="str">&lt;p&gt;&lt;strong&gt;</span><span class="typ">Number</span><span class="pln"> of comments </span><span class="pun">:&lt;</span><span class="pln">strong</span><span class="pun">&gt;</span> 
+   <span class="pun">{%</span><span class="pln"> get_comment_count </span><span class="kwd">for</span><span class="pln"> dreamreal </span><span class="kwd">as</span><span class="pln"> comment_count </span><span class="pun">%}</span> <span class="pun">{{</span><span class="pln"> comment_count </span><span class="pun">}}&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="str">&lt;p&gt;</span><span class="typ">List</span><span class="pln"> of comments </span><span class="pun">:&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+   <span class="pun">{%</span><span class="pln"> render_comment_list </span><span class="kwd">for</span><span class="pln"> dreamreal </span><span class="pun">%}</span>
+<span class="pun">&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span>
+
+<span class="pun">{%</span><span class="pln"> render_comment_form </span><span class="kwd">for</span><span class="pln"> dreamreal </span><span class="pun">%}</span>
+<span class="pun">{%</span><span class="pln"> endblock </span><span class="pun">%}</span></pre>
+<p>Finally the mapping URL to our hello view &minus;</p>
+<pre class="result notranslate">url(r'^hello/(?P&lt;Name&gt;\w+)/', 'hello', name = 'hello'),
+</pre>
+<p>Now,</p>
+<ul class="list">
+<li>
+<p>In our template (hello.html), load the comments framework with &minus; {% load comments %}</p>
+</li>
+<li>
+<p>We get the number of comments for the Dreamreal object pass by the view &minus; {% get_comment_count for dreamreal as comment_count %}</p>
+</li>
+<li>
+<p>We get the list of comments for the objects &minus; {% render_comment_list for dreamreal %}</p>
+</li>
+<li>
+<p>We display the default comments form &minus; {% render_comment_form for dreamreal %}</p>
+</li>
+</ul>
+<p>When accessing /myapp/hello/steve you will get the comments info for the Dreamreal entry whose name is Steve. Accessing that URL will get you &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_comments_example.jpg" alt="Django Comments Example" /></p>
+<p>On posting a comment, you will get redirected to the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/comments_redirected_page.jpg" alt="Comments Redirected Page" /></p>
+<p>If you go to /myapp/hello/steve again, you will get to see the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/number_of_comments.jpg" alt="Number of Comments" /></p>
+<p>As you can see, the number of comments is 1 now and you have the comment under the list of comments line.</p>

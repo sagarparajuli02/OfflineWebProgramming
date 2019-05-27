@@ -1,0 +1,106 @@
+<h2>Running and Shutting down MySQL Server</h2>
+<p>First check if your MySQL server is running or not. You can use the following command to check it &minus;</p>
+<pre class="result notranslate">ps -ef | grep mysqld
+</pre>
+<p>If your MySql is running, then you will see&nbsp;<strong>mysqld</strong>&nbsp;process listed out in your result. If server is not running, then you can start it by using the following command &minus;</p>
+<pre class="result notranslate">root@host# cd /usr/bin
+./safe_mysqld &amp;
+</pre>
+<p>Now, if you want to shut down an already running MySQL server, then you can do it by using the following command &minus;</p>
+<pre class="result notranslate">root@host# cd /usr/bin
+./mysqladmin -u root -p shutdown
+Enter password: ******
+</pre>
+<h2>Setting Up a MySQL User Account</h2>
+<p>For adding a new user to MySQL, you just need to add a new entry to the&nbsp;<strong>user</strong>&nbsp;table in the database&nbsp;<strong>mysql</strong>.</p>
+<p>The following program is an example of adding a new user&nbsp;<strong>guest</strong>&nbsp;with SELECT, INSERT and UPDATE privileges with the password&nbsp;<strong>guest123;</strong>&nbsp;the SQL query is &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> mysql</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> INSERT INTO user 
+   </span><span class="pun">(</span><span class="pln">host</span><span class="pun">,</span><span class="pln"> user</span><span class="pun">,</span><span class="pln"> password</span><span class="pun">,</span><span class="pln"> 
+   select_priv</span><span class="pun">,</span><span class="pln"> insert_priv</span><span class="pun">,</span><span class="pln"> update_priv</span><span class="pun">)</span><span class="pln"> 
+   VALUES </span><span class="pun">(</span><span class="str">'localhost'</span><span class="pun">,</span> <span class="str">'guest'</span><span class="pun">,</span><span class="pln"> 
+   PASSWORD</span><span class="pun">(</span><span class="str">'guest123'</span><span class="pun">),</span> <span class="str">'Y'</span><span class="pun">,</span> <span class="str">'Y'</span><span class="pun">,</span> <span class="str">'Y'</span><span class="pun">);</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.20</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> FLUSH PRIVILEGES</span><span class="pun">;</span>
+<span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span> <span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.01</span><span class="pln"> sec</span><span class="pun">)</span><span class="pln">
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> SELECT host</span><span class="pun">,</span><span class="pln"> user</span><span class="pun">,</span><span class="pln"> password FROM user WHERE user </span><span class="pun">=</span> <span class="str">'guest'</span><span class="pun">;</span>
+<span class="pun">+-----------+---------+------------------+</span>
+<span class="pun">|</span><span class="pln">    host   </span><span class="pun">|</span><span class="pln">   user  </span><span class="pun">|</span><span class="pln">     password     </span><span class="pun">|</span>    
+<span class="pun">+-----------+---------+------------------+</span>
+<span class="pun">|</span><span class="pln"> localhost </span><span class="pun">|</span><span class="pln">  guest  </span><span class="pun">|</span> <span class="lit">6f8c114b58f2ce9e</span> <span class="pun">|</span>
+<span class="pun">+-----------+---------+------------------+</span>
+<span class="lit">1</span><span class="pln"> row </span><span class="kwd">in</span> <span class="kwd">set</span> <span class="pun">(</span><span class="lit">0.00</span><span class="pln"> sec</span><span class="pun">)</span></pre>
+<p>When adding a new user, remember to encrypt the new password using PASSWORD() function provided by MySQL. As you can see in the above example, the password mypass is encrypted to 6f8c114b58f2ce9e.</p>
+<p>Notice the FLUSH PRIVILEGES statement. This tells the server to reload the grant tables. If you don't use it, then you won't be able to connect to MySQL using the new user account at least until the server is rebooted.</p>
+<p>You can also specify other privileges to a new user by setting the values of following columns in user table to 'Y' when executing the INSERT query or you can update them later using UPDATE query.</p>
+<ul class="list">
+<li>Select_priv</li>
+<li>Insert_priv</li>
+<li>Update_priv</li>
+<li>Delete_priv</li>
+<li>Create_priv</li>
+<li>Drop_priv</li>
+<li>Reload_priv</li>
+<li>Shutdown_priv</li>
+<li>Process_priv</li>
+<li>File_priv</li>
+<li>Grant_priv</li>
+<li>References_priv</li>
+<li>Index_priv</li>
+<li>Alter_priv</li>
+</ul>
+<p>Another way of adding user account is by using GRANT SQL command. The following example will add user&nbsp;<strong>zara</strong>&nbsp;with password&nbsp;<strong>zara123</strong>&nbsp;for a particular database, which is named as&nbsp;<strong>TUTORIALS</strong>.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">root@host</span><span class="com"># mysql -u root -p password;</span>
+<span class="typ">Enter</span><span class="pln"> password</span><span class="pun">:*******</span><span class="pln">
+mysql</span><span class="pun">&gt;</span> <span class="kwd">use</span><span class="pln"> mysql</span><span class="pun">;</span>
+<span class="typ">Database</span><span class="pln"> changed
+
+mysql</span><span class="pun">&gt;</span><span class="pln"> GRANT SELECT</span><span class="pun">,</span><span class="pln">INSERT</span><span class="pun">,</span><span class="pln">UPDATE</span><span class="pun">,</span><span class="pln">DELETE</span><span class="pun">,</span><span class="pln">CREATE</span><span class="pun">,</span><span class="pln">DROP
+   </span><span class="pun">-&gt;</span><span class="pln"> ON TUTORIALS</span><span class="pun">.*</span>
+   <span class="pun">-&gt;</span><span class="pln"> TO </span><span class="str">'zara'</span><span class="pun">@</span><span class="str">'localhost'</span>
+   <span class="pun">-&gt;</span><span class="pln"> IDENTIFIED BY </span><span class="str">'zara123'</span><span class="pun">;</span></pre>
+<p>This will also create an entry in the MySQL database table called as&nbsp;<strong>user</strong>.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; MySQL does not terminate a command until you give a semi colon (;) at the end of the SQL command.</p>
+<h3>The /etc/my.cnf File Configuration</h3>
+<p>In most of the cases, you should not touch this file. By default, it will have the following entries &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">[</span><span class="pln">mysqld</span><span class="pun">]</span><span class="pln">
+datadir </span><span class="pun">=</span> <span class="str">/var/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">mysql
+socket </span><span class="pun">=</span> <span class="str">/var/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">mysql</span><span class="pun">/</span><span class="pln">mysql</span><span class="pun">.</span><span class="pln">sock
+
+</span><span class="pun">[</span><span class="pln">mysql</span><span class="pun">.</span><span class="pln">server</span><span class="pun">]</span><span class="pln">
+user </span><span class="pun">=</span><span class="pln"> mysql
+basedir </span><span class="pun">=</span> <span class="str">/var/</span><span class="pln">lib
+
+</span><span class="pun">[</span><span class="pln">safe_mysqld</span><span class="pun">]</span><span class="pln">
+err</span><span class="pun">-</span><span class="pln">log </span><span class="pun">=</span> <span class="str">/var/</span><span class="pln">log</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">.</span><span class="pln">log
+pid</span><span class="pun">-</span><span class="pln">file </span><span class="pun">=</span> <span class="str">/var/</span><span class="pln">run</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">.</span><span class="pln">pid</span></pre>
+<p>Here, you can specify a different directory for the error log, otherwise you should not change any entry in this table.</p>
+<h2>Administrative MySQL Command</h2>
+<p>Here is the list of the important MySQL commands, which you will use time to time to work with MySQL database &minus;</p>
+<ul class="list">
+<li>
+<p><strong>USE Databasename</strong>&nbsp;&minus; This will be used to select a database in the MySQL workarea.</p>
+</li>
+<li>
+<p><strong>SHOW DATABASES</strong>&nbsp;&minus; Lists out the databases that are accessible by the MySQL DBMS.</p>
+</li>
+<li>
+<p><strong>SHOW TABLES</strong>&nbsp;&minus; Shows the tables in the database once a database has been selected with the use command.</p>
+</li>
+<li>
+<p><strong>SHOW COLUMNS FROM&nbsp;<em>tablename:</em></strong>&nbsp;Shows the attributes, types of attributes, key information, whether NULL is permitted, defaults, and other information for a table.</p>
+</li>
+<li>
+<p><strong>SHOW INDEX FROM tablename</strong>&nbsp;&minus; Presents the details of all indexes on the table, including the PRIMARY KEY.</p>
+</li>
+<li>
+<p><strong>SHOW TABLE STATUS LIKE tablename\G</strong>&nbsp;&minus; Reports details of the MySQL DBMS performance and statistics.</p>
+</li>
+</ul>
+<p>In the next chapter, we will discuss regarding how PHP Syntax is used in MySQL.</p>

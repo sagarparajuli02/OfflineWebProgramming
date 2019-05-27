@@ -1,0 +1,154 @@
+<p>A model is a class that represents table or collection in our DB, and where every attribute of the class is a field of the table or collection. Models are defined in the app/models.py (in our example: myapp/models.py)</p>
+<h2>Creating a Model</h2>
+<p>Following is a Dreamreal model created as an example &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">db </span><span class="kwd">import</span><span class="pln"> models
+
+</span><span class="kwd">class</span> <span class="typ">Dreamreal</span><span class="pun">(</span><span class="pln">models</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">):</span><span class="pln">
+
+   website </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   mail </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   phonenumber </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">IntegerField</span><span class="pun">()</span>
+
+   <span class="kwd">class</span> <span class="typ">Meta</span><span class="pun">:</span><span class="pln">
+      db_table </span><span class="pun">=</span> <span class="str">"dreamreal"</span></pre>
+<p>Every model inherits from django.db.models.Model.</p>
+<p>Our class has 4 attributes (3 CharField and 1 Integer), those will be the table fields.</p>
+<p>The Meta class with the db_table attribute lets us define the actual table or collection name. Django names the table or collection automatically: myapp_modelName. This class will let you force the name of the table to what you like.</p>
+<p>There is more field's type in django.db.models, you can learn more about them on&nbsp;<a href="https://docs.djangoproject.com/en/1.5/ref/models/fields/#field-types" target="_blank" rel="nofollow">https://docs.djangoproject.com/en/1.5/ref/models/fields/#field-types</a></p>
+<p>After creating your model, you will need Django to generate the actual database &minus;</p>
+<pre class="result notranslate">$python manage.py syncdb
+</pre>
+<h3>Manipulating Data (CRUD)</h3>
+<p>Let's create a "crudops" view to see how we can do CRUD operations on models. Our myapp/views.py will then look like &minus;</p>
+<p><strong>myapp/views.py</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Dreamreal</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">http </span><span class="kwd">import</span> <span class="typ">HttpResponse</span>
+
+<span class="kwd">def</span><span class="pln"> crudops</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="com">#Creating an entry</span><span class="pln">
+   
+   dreamreal </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">(</span><span class="pln">
+      website </span><span class="pun">=</span> <span class="str">"www.polo.com"</span><span class="pun">,</span><span class="pln"> mail </span><span class="pun">=</span> <span class="str">"sorex@polo.com"</span><span class="pun">,</span><span class="pln"> 
+      name </span><span class="pun">=</span> <span class="str">"sorex"</span><span class="pun">,</span><span class="pln"> phonenumber </span><span class="pun">=</span> <span class="str">"002376970"</span>
+   <span class="pun">)</span><span class="pln">
+   
+   dreamreal</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span>
+   
+   <span class="com">#Read ALL entries</span><span class="pln">
+   objects </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">all</span><span class="pun">()</span><span class="pln">
+   res </span><span class="pun">=</span><span class="str">'Printing all Dreamreal entries in the DB : &lt;br&gt;'</span>
+   
+   <span class="kwd">for</span><span class="pln"> elt </span><span class="kwd">in</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln">
+      res </span><span class="pun">+=</span><span class="pln"> elt</span><span class="pun">.</span><span class="pln">name</span><span class="pun">+</span><span class="str">"&lt;br&gt;"</span>
+   
+   <span class="com">#Read a specific entry:</span><span class="pln">
+   sorex </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span> <span class="str">"sorex"</span><span class="pun">)</span><span class="pln">
+   res </span><span class="pun">+=</span> <span class="str">'Printing One entry &lt;br&gt;'</span><span class="pln">
+   res </span><span class="pun">+=</span><span class="pln"> sorex</span><span class="pun">.</span><span class="pln">name
+   
+   </span><span class="com">#Delete an entry</span><span class="pln">
+   res </span><span class="pun">+=</span> <span class="str">'&lt;br&gt; Deleting an entry &lt;br&gt;'</span><span class="pln">
+   sorex</span><span class="pun">.</span><span class="kwd">delete</span><span class="pun">()</span>
+   
+   <span class="com">#Update</span><span class="pln">
+   dreamreal </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">(</span><span class="pln">
+      website </span><span class="pun">=</span> <span class="str">"www.polo.com"</span><span class="pun">,</span><span class="pln"> mail </span><span class="pun">=</span> <span class="str">"sorex@polo.com"</span><span class="pun">,</span><span class="pln"> 
+      name </span><span class="pun">=</span> <span class="str">"sorex"</span><span class="pun">,</span><span class="pln"> phonenumber </span><span class="pun">=</span> <span class="str">"002376970"</span>
+   <span class="pun">)</span><span class="pln">
+   
+   dreamreal</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span><span class="pln">
+   res </span><span class="pun">+=</span> <span class="str">'Updating entry&lt;br&gt;'</span><span class="pln">
+   
+   dreamreal </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span> <span class="str">'sorex'</span><span class="pun">)</span><span class="pln">
+   dreamreal</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span> <span class="str">'thierry'</span><span class="pln">
+   dreamreal</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span>
+   
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">res</span><span class="pun">)</span></pre>
+<h3>Other Data Manipulation</h3>
+<p>Let's explore other manipulations we can do on Models. Note that the CRUD operations were done on instances of our model, now we will be working directly with the class representing our model.</p>
+<p>Let's create a 'datamanipulation' view in&nbsp;<strong>myapp/views.py</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Dreamreal</span>
+<span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">http </span><span class="kwd">import</span> <span class="typ">HttpResponse</span>
+
+<span class="kwd">def</span><span class="pln"> datamanipulation</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   res </span><span class="pun">=</span> <span class="str">''</span>
+   
+   <span class="com">#Filtering data:</span><span class="pln">
+   qs </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">filter</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span> <span class="str">"paul"</span><span class="pun">)</span><span class="pln">
+   res </span><span class="pun">+=</span> <span class="str">"Found : %s results&lt;br&gt;"</span><span class="pun">%</span><span class="pln">len</span><span class="pun">(</span><span class="pln">qs</span><span class="pun">)</span>
+   
+   <span class="com">#Ordering results</span><span class="pln">
+   qs </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">order_by</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">)</span>
+   
+   <span class="kwd">for</span><span class="pln"> elt </span><span class="kwd">in</span><span class="pln"> qs</span><span class="pun">:</span><span class="pln">
+      res </span><span class="pun">+=</span><span class="pln"> elt</span><span class="pun">.</span><span class="pln">name </span><span class="pun">+</span> <span class="str">'&lt;br&gt;'</span>
+   
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="pln">res</span><span class="pun">)</span></pre>
+<h2>Linking Models</h2>
+<p>Django ORM offers 3 ways to link models &minus;</p>
+<p>One of the first case we will see here is the one-to-many relationships. As you can see in the above example, Dreamreal company can have multiple online websites. Defining that relation is done by using django.db.models.ForeignKey &minus;</p>
+<p><strong>myapp/models.py</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">db </span><span class="kwd">import</span><span class="pln"> models
+
+</span><span class="kwd">class</span> <span class="typ">Dreamreal</span><span class="pun">(</span><span class="pln">models</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">):</span><span class="pln">
+   website </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   mail </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   phonenumber </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">IntegerField</span><span class="pun">()</span><span class="pln">
+   online </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">ForeignKey</span><span class="pun">(</span><span class="str">'Online'</span><span class="pun">,</span> <span class="kwd">default</span> <span class="pun">=</span> <span class="lit">1</span><span class="pun">)</span>
+   
+   <span class="kwd">class</span> <span class="typ">Meta</span><span class="pun">:</span><span class="pln">
+      db_table </span><span class="pun">=</span> <span class="str">"dreamreal"</span>
+
+<span class="kwd">class</span> <span class="typ">Online</span><span class="pun">(</span><span class="pln">models</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">):</span><span class="pln">
+      domain </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">30</span><span class="pun">)</span>
+   
+   <span class="kwd">class</span> <span class="typ">Meta</span><span class="pun">:</span><span class="pln">
+      db_table </span><span class="pun">=</span> <span class="str">"online"</span></pre>
+<p>As you can see in our updated myapp/models.py, we added the online model and linked it to our Dreamreal model.</p>
+<p>Let's check how all of this is working via manage.py shell &minus;</p>
+<p>First let&rsquo;s create some companies (Dreamreal entries) for testing in our Django shell &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">$python manage</span><span class="pun">.</span><span class="pln">py shell
+
+</span><span class="pun">&gt;&gt;&gt;</span> <span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Dreamreal</span><span class="pun">,</span> <span class="typ">Online</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1 </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">website </span><span class="pun">=</span> <span class="str">'company1.com'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span> <span class="str">'company1'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">mail </span><span class="pun">=</span> <span class="str">'contact@company1'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">phonenumber </span><span class="pun">=</span> <span class="str">'12345'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2 </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr1</span><span class="pun">.</span><span class="pln">website </span><span class="pun">=</span> <span class="str">'company2.com'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2</span><span class="pun">.</span><span class="pln">website </span><span class="pun">=</span> <span class="str">'company2.com'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span> <span class="str">'company2'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2</span><span class="pun">.</span><span class="pln">mail </span><span class="pun">=</span> <span class="str">'contact@company2'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2</span><span class="pun">.</span><span class="pln">phonenumber </span><span class="pun">=</span> <span class="str">'56789'</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span></pre>
+<p>Now some hosted domains &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&gt;&gt;&gt;</span><span class="pln"> on1 </span><span class="pun">=</span> <span class="typ">Online</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on1</span><span class="pun">.</span><span class="pln">company </span><span class="pun">=</span><span class="pln"> dr1
+</span><span class="pun">&gt;&gt;&gt;</span><span class="pln"> on1</span><span class="pun">.</span><span class="pln">domain </span><span class="pun">=</span> <span class="str">"site1.com"</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on2 </span><span class="pun">=</span> <span class="typ">Online</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on2</span><span class="pun">.</span><span class="pln">company </span><span class="pun">=</span><span class="pln"> dr1
+</span><span class="pun">&gt;&gt;&gt;</span><span class="pln"> on2</span><span class="pun">.</span><span class="pln">domain </span><span class="pun">=</span> <span class="str">"site2.com"</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on3 </span><span class="pun">=</span> <span class="typ">Online</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on3</span><span class="pun">.</span><span class="pln">domain </span><span class="pun">=</span> <span class="str">"site3.com"</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> dr2 </span><span class="pun">=</span> <span class="typ">Dreamreal</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">.</span><span class="pln">all</span><span class="pun">()[</span><span class="lit">2</span><span class="pun">]</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on3</span><span class="pun">.</span><span class="pln">company </span><span class="pun">=</span><span class="pln"> dr2
+</span><span class="pun">&gt;&gt;&gt;</span><span class="pln"> on1</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on2</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span>
+<span class="pun">&gt;&gt;&gt;</span><span class="pln"> on3</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span></pre>
+<p>Accessing attribute of the hosting company (Dreamreal entry) from an online domain is simple &minus;</p>
+<pre class="result notranslate">&gt;&gt;&gt; on1.company.name
+</pre>
+<p>And if we want to know all the online domain hosted by a Company in Dreamreal we will use the code &minus;</p>
+<pre class="result notranslate">&gt;&gt;&gt; dr1.online_set.all()
+</pre>
+<p>To get a QuerySet, note that all manipulating method we have seen before (filter, all, exclude, order_by....)</p>
+<p>You can also access the linked model attributes for filtering operations, let's say you want to get all online domains where the Dreamreal name contains 'company' &minus;</p>
+<pre class="result notranslate">&gt;&gt;&gt; Online.objects.filter(company__name__contains = 'company'
+</pre>
+<p><strong>Note</strong>&nbsp;&minus; That kind of query is just supported for SQL DB. It won&rsquo;t work for non-relational DB where joins doesn&rsquo;t exist and there are two '_'.</p>
+<p>But that's not the only way to link models, you also have OneToOneField, a link that guarantees that the relation between two objects is unique. If we used the OneToOneField in our example above, that would mean for every Dreamreal entry only one Online entry is possible and in the other way to.</p>
+<p>And the last one, the ManyToManyField for (n-n) relation between tables. Note, those are relevant for SQL based DB.</p>

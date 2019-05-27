@@ -1,0 +1,26 @@
+
+<p>So far, in our examples, we have used the Django dev web server. But this server is just for testing and is not fit for production environment. Once in production, you need a real server like Apache, Nginx, etc. Let's discuss Apache in this chapter.</p>
+<p>Serving Django applications via Apache is done by using mod_wsgi. So the first thing is to make sure you have Apache and mod_wsgi installed. Remember, when we created our project and we looked at the project structure, it looked like &minus;</p>
+<pre class="result notranslate">myproject/
+   manage.py
+   myproject/
+      __init__.py
+      settings.py
+      urls.py
+      wsgi.py
+</pre>
+<p>The wsgi.py file is the one taking care of the link between Django and Apache.</p>
+<p>Let's say we want to share our project (myproject) with Apache. We just need to set Apache to access our folder. Assume we put our myproject folder in the default "/var/www/html". At this stage, accessing the project will be done via 127.0.0.1/myproject. This will result in Apache just listing the folder as shown in the following snapshot.</p>
+<p><img src="https://www.tutorialspoint.com/django/images/django_apache_setup.jpg" alt="Django Apache Setup" /></p>
+<p>As seen, Apache is not handling Django stuff. For this to be taken care of, we need to configure Apache in httpd.conf. So open the httpd.conf and add the following line &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">WSGIScriptAlias</span> <span class="str">/ /</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span><span class="pln">html</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/</span><span class="pln">wsgi</span><span class="pun">.</span><span class="pln">py
+</span><span class="typ">WSGIPythonPath</span> <span class="pun">/</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span><span class="pln">html</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/</span>
+
+<span class="pun">&lt;</span><span class="typ">Directory</span> <span class="pun">/</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span><span class="pln">html</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/&gt;</span>
+   <span class="pun">&lt;</span><span class="typ">Files</span><span class="pln"> wsgi</span><span class="pun">.</span><span class="pln">py</span><span class="pun">&gt;</span>
+      <span class="typ">Order</span><span class="pln"> deny</span><span class="pun">,</span><span class="pln">allow
+      </span><span class="typ">Allow</span> <span class="kwd">from</span><span class="pln"> all
+   </span><span class="pun">&lt;/</span><span class="typ">Files</span><span class="pun">&gt;</span>
+<span class="pun">&lt;/</span><span class="typ">Directory</span><span class="pun">&gt;</span></pre>
+<p>If you can access the login page as 127.0.0.1/myapp/connection, you will get to see the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/login_page.jpg" alt="Login Page" /></p>

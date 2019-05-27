@@ -1,0 +1,111 @@
+<p>It is generally useful for a web app to be able to upload files (profile picture, songs, pdf, words.....). Let's discuss how to upload files in this chapter.</p>
+<h2>Uploading an Image</h2>
+<p>Before starting to play with an image, make sure you have the Python Image Library (PIL) installed. Now to illustrate uploading an image, let's create a profile form, in our myapp/forms.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">#-*- coding: utf-8 -*-</span>
+<span class="kwd">from</span><span class="pln"> django </span><span class="kwd">import</span><span class="pln"> forms
+
+</span><span class="kwd">class</span> <span class="typ">ProfileForm</span><span class="pun">(</span><span class="pln">forms</span><span class="pun">.</span><span class="typ">Form</span><span class="pun">):</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">)</span><span class="pln">
+   picture </span><span class="pun">=</span><span class="pln"> forms</span><span class="pun">.</span><span class="typ">ImageFields</span><span class="pun">()</span></pre>
+<p>As you can see, the main difference here is just the&nbsp;<strong>forms.ImageField</strong>. ImageField will make sure the uploaded file is an image. If not, the form validation will fail.</p>
+<p>Now let's create a "Profile" model to save our uploaded profile. This is done in myapp/models.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">db </span><span class="kwd">import</span><span class="pln"> models
+
+</span><span class="kwd">class</span> <span class="typ">Profile</span><span class="pun">(</span><span class="pln">models</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">):</span><span class="pln">
+   name </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">CharField</span><span class="pun">(</span><span class="pln">max_length </span><span class="pun">=</span> <span class="lit">50</span><span class="pun">)</span><span class="pln">
+   picture </span><span class="pun">=</span><span class="pln"> models</span><span class="pun">.</span><span class="typ">ImageField</span><span class="pun">(</span><span class="pln">upload_to </span><span class="pun">=</span> <span class="str">'pictures'</span><span class="pun">)</span>
+
+   <span class="kwd">class</span> <span class="typ">Meta</span><span class="pun">:</span><span class="pln">
+      db_table </span><span class="pun">=</span> <span class="str">"profile"</span></pre>
+<p>As you can see for the model, the ImageField takes a compulsory argument:&nbsp;<strong>upload_to</strong>. This represents the place on the hard drive where your images will be saved. Note that the parameter will be added to the MEDIA_ROOT option defined in your settings.py file.</p>
+<p>Now that we have the Form and the Model, let's create the view, in myapp/views.py &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="com">#-*- coding: utf-8 -*-</span>
+<span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">forms </span><span class="kwd">import</span> <span class="typ">ProfileForm</span>
+<span class="kwd">from</span><span class="pln"> myapp</span><span class="pun">.</span><span class="pln">models </span><span class="kwd">import</span> <span class="typ">Profile</span>
+
+<span class="kwd">def</span> <span class="typ">SaveProfile</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   saved </span><span class="pun">=</span> <span class="kwd">False</span>
+   
+   <span class="kwd">if</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">method </span><span class="pun">==</span> <span class="str">"POST"</span><span class="pun">:</span>
+      <span class="com">#Get the posted form</span>
+      <span class="typ">MyProfileForm</span> <span class="pun">=</span> <span class="typ">ProfileForm</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">POST</span><span class="pun">,</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">FILES</span><span class="pun">)</span>
+      
+      <span class="kwd">if</span> <span class="typ">MyProfileForm</span><span class="pun">.</span><span class="pln">is_valid</span><span class="pun">():</span><span class="pln">
+         profile </span><span class="pun">=</span> <span class="typ">Profile</span><span class="pun">()</span><span class="pln">
+         profile</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span> <span class="typ">MyProfileForm</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">[</span><span class="str">"name"</span><span class="pun">]</span><span class="pln">
+         profile</span><span class="pun">.</span><span class="pln">picture </span><span class="pun">=</span> <span class="typ">MyProfileForm</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">[</span><span class="str">"picture"</span><span class="pun">]</span><span class="pln">
+         profile</span><span class="pun">.</span><span class="pln">save</span><span class="pun">()</span><span class="pln">
+         saved </span><span class="pun">=</span> <span class="kwd">True</span>
+   <span class="kwd">else</span><span class="pun">:</span>
+      <span class="typ">MyProfileForm</span> <span class="pun">=</span> <span class="typ">Profileform</span><span class="pun">()</span>
+		
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'saved.html'</span><span class="pun">,</span><span class="pln"> locals</span><span class="pun">())</span></pre>
+<p>The part not to miss is, there is a change when creating a ProfileForm, we added a second parameters:&nbsp;<strong>request.FILES</strong>. If not passed the form validation will fail, giving a message that says the picture is empty.</p>
+<p>Now, we just need the&nbsp;<strong>saved.html</strong>&nbsp;template and the&nbsp;<strong>profile.html</strong>&nbsp;template, for the form and the redirection page &minus;</p>
+<p><strong>myapp/templates/saved.html</strong>&nbsp;&minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span><span class="pln">
+   
+      {% if saved %}
+         </span><span class="tag">&lt;strong&gt;</span><span class="pln">Your profile was saved.</span><span class="tag">&lt;/strong&gt;</span><span class="pln">
+      {% endif %}
+      
+      {% if not saved %}
+         </span><span class="tag">&lt;strong&gt;</span><span class="pln">Your profile was not saved.</span><span class="tag">&lt;/strong&gt;</span><span class="pln">
+      {% endif %}
+      
+   </span><span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>myapp/templates/profile.html</strong>&nbsp;&minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+   
+      <span class="tag">&lt;form</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"form"</span> <span class="atn">enctype</span> <span class="pun">=</span> <span class="atv">"multipart/form-data"</span> 
+         <span class="atn">action</span> <span class="pun">=</span> <span class="atv">"{% url "</span><span class="atn">myapp</span><span class="pln">.</span><span class="atn">views</span><span class="pln">.</span><span class="atn">SaveProfile</span><span class="atv">" %}"</span> <span class="atn">method</span> <span class="pun">=</span> <span class="atv">"POST"</span> <span class="tag">&gt;</span><span class="pln">{% csrf_token %}
+         
+         </span><span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span>  
+               <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">20</span><span class="pun">%;</span><span class="atv">"</span> 
+               <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Name"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"name"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;br&gt;</span>
+         
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span> 
+               <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"file"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">20</span><span class="pun">%;</span><span class="atv">"</span> 
+                  <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Picture"</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">"picture"</span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+			
+         <span class="tag">&lt;br&gt;</span>
+         
+         <span class="tag">&lt;div</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">470px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;center&gt;</span> 
+            
+               <span class="tag">&lt;button</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">border</span><span class="pun">:</span><span class="lit">0px</span><span class="pun">;</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="lit">4285F4</span><span class="pun">;</span><span class="pln"> margin</span><span class="pun">-</span><span class="pln">top</span><span class="pun">:</span><span class="lit">8</span><span class="pun">%;</span><span class="pln"> 
+                  height</span><span class="pun">:</span><span class="lit">35px</span><span class="pun">;</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">80</span><span class="pun">%;</span><span class="pln"> margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">19</span><span class="pun">%;</span><span class="atv">"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"submit"</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"Login"</span> <span class="tag">&gt;</span>
+                  <span class="tag">&lt;strong&gt;</span><span class="pln">Login</span><span class="tag">&lt;/strong&gt;</span>
+               <span class="tag">&lt;/button&gt;</span>
+               
+            <span class="tag">&lt;/center&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+         
+      <span class="tag">&lt;/form&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Next, we need our pair of URLs to get started: myapp/urls.py</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span><span class="pln">
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span>
+   <span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^profile/'</span><span class="pun">,</span><span class="typ">TemplateView</span><span class="pun">.</span><span class="pln">as_view</span><span class="pun">(</span><span class="pln">
+      template_name </span><span class="pun">=</span> <span class="str">'profile.html'</span><span class="pun">)),</span><span class="pln"> url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^saved/'</span><span class="pun">,</span> <span class="str">'SaveProfile'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'saved'</span><span class="pun">)</span>
+<span class="pun">)</span></pre>
+<p>When accessing "/myapp/profile", we will get the following profile.html template rendered &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/uploading_image.jpg" alt="Uploading Image" /></p>
+<p>And on form post, the saved template will be rendered &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/form_post_template.jpg" alt="Form Post Template" /></p>
+<p>We have a sample for image, but if you want to upload another type of file, not just image, just replace the&nbsp;<strong>ImageField</strong>&nbsp;in both Model and Form with&nbsp;<strong>FileField</strong>.</p>

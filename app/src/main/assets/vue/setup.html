@@ -1,0 +1,45 @@
+<p>There are many ways to install VueJS. Some of the ways on how to carry out the installation are discussed ahead.</p>
+<h2>Using the &lt;script&gt; tag directly in HTML file</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"vue.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Go to the home site&nbsp;<strong>https://vuejs.org/v2/guide/installation.html</strong>&nbsp;of VueJS and download the vue.js as per need. There are two versions for use - production version and development version. The development version is not minimized, whereas the production version is minimized as shown in the following screenshot. Development version will help with the warnings and debug mode during the development of the project.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/installation.jpg" alt="Installation" /></p>
+<h2>Using CDN</h2>
+<p>We can also start using VueJS file from the CDN library. The link&nbsp;<a href="https://unpkg.com/vue" target="_blank" rel="nofollow">https://unpkg.com/vue</a>&nbsp;will give the latest version of VueJS. VueJS is also available on jsDelivr (<a href="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" target="_blank" rel="nofollow">https://cdn.jsdelivr.net/npm/vue/dist/vue.js</a>) and cdnjs (<a href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js" target="_blank" rel="nofollow">https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js</a>).</p>
+<p>We can host the files at our end, if required and get started with VueJS development.</p>
+<h2>Using NPM</h2>
+<p>For large scale applications with VueJS, it is recommended to install using the npm package. It comes with Browserify and Webpack along with other necessary tools, which help with the development. Following is the command to install using npm.</p>
+<pre class="result notranslate">npm  install vue
+</pre>
+<h2>Using CLI Command Line</h2>
+<p>VueJS also provides CLI to install the vue and get started with the server activation. To install using CLI, we need to have CLI installed which is done using the following command.</p>
+<pre class="result notranslate">npm install --global vue-cli
+</pre>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/cli_command_line.jpg" alt="CLI Command Line" /></p>
+<p>Once done, it shows the CLI version for VueJS. It takes a few minutes for the installation.</p>
+<pre class="result notranslate">+ vue-cli@2.8.2
+added 965 packages in 355.414s
+</pre>
+<p>Following is the command to create the project using Webpack.</p>
+<pre class="result notranslate">vue init webpack myproject
+</pre>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/select_command_prompt.jpg" alt="Select Command Prompt" /></p>
+<p>To get started, use the following command.</p>
+<pre class="result notranslate">cd myproject
+npm install
+npm run dev
+</pre>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/command_prompt.jpg" alt="Command Prompt" /></p>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/npm.jpg" alt="NPM" /></p>
+<p>Once we execute npm run dev, it starts the server and provides the url for display to be seen in the browser which is as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/welcome_to_vuejs.jpg" alt="Welcome to VueJS" /></p>
+<p>The project structure using CLI looks like the following.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/cli.jpg" alt="CLI" /></p>

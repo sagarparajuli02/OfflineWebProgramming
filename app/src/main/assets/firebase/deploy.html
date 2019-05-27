@@ -1,0 +1,22 @@
+<p>In this chapter, we will show you how to host your app on the Firebase server.</p>
+<p>Before we begin, let us just add some text to&nbsp;<strong>index.html</strong>&nbsp;body tag. In this example, we will add the following text.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;h1&gt;</span><span class="pln">WELCOME TO FIREBASE TUTORIALS APP</span><span class="tag">&lt;/h1&gt;</span></pre>
+<h2>Step 1 - Install Firebase Tools</h2>
+<p>We need to install firebase tools globally in the&nbsp;<strong>command prompt</strong>&nbsp;window.</p>
+<pre class="result notranlsate">npm install -g firebase-tools
+</pre>
+<h2>Step 2 - Initialize the Firebase App</h2>
+<p>First we need to login to Firebase in the&nbsp;<strong>command prompt</strong>.</p>
+<pre class="result notranslate">firebase login
+</pre>
+<p>Open the root folder of your app in the&nbsp;<strong>command prompt</strong>&nbsp;and run the following command.</p>
+<pre class="result notranlsate">firebase init
+</pre>
+<p>This command will initialize your app.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; If you have used a default configuration, the&nbsp;<strong>public</strong>&nbsp;folder will be created and the&nbsp;<strong>index.html</strong>&nbsp;inside this folder will be the starting point of your app. You can copy your app file inside the public folder as a workaround.</p>
+<h2>Step 3 - Deploy Firebase App</h2>
+<p>This is the last step in this chapter. Run the following command from the&nbsp;<strong>command prompt</strong>&nbsp;to deploy your app.</p>
+<pre class="result notranslate">firebase deploy
+</pre>
+<p>After this step, the console will log your apps Firebase URL. In our case, it is called&nbsp;<a href="https://tutorialsfirebase.firebaseapp.com/" target="_blank" rel="nofollow">https://tutorialsfirebase.firebaseapp.com</a>. We can run this link in the browser to see our app.</p>
+<p><img src="https://www.tutorialspoint.com/firebase/images/firebase_deploying.jpg" alt="Firebase Deploying" /></p>

@@ -1,0 +1,410 @@
+<p><strong>v-on</strong>&nbsp;is the attribute added to the DOM elements to listen to the events in VueJS.</p>
+<h2>Click Event</h2>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"displaynumbers"</span><span class="tag">&gt;</span><span class="pln">Click ME</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;h2&gt;</span><span class="pln"> Add Number 100 + 200 = {{total}}</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               num1</span><span class="pun">:</span> <span class="lit">100</span><span class="pun">,</span><span class="pln">
+               num2 </span><span class="pun">:</span> <span class="lit">200</span><span class="pun">,</span><span class="pln">
+               total </span><span class="pun">:</span> <span class="str">''</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               displaynumbers </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">event</span><span class="pun">);</span>
+                  <span class="kwd">return</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">total </span><span class="pun">=</span>  <span class="kwd">this</span><span class="pun">.</span><span class="pln">num1</span><span class="pun">+</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">num2</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/event.jpg" alt="Event" /></p>
+<p>The following code is used to assign a click event for the DOM element.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"displaynumbers"</span><span class="tag">&gt;</span><span class="pln">Click ME</span><span class="tag">&lt;/button&gt;</span></pre>
+<p>There is a shorthand for v-on, which means we can also call the event as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button</span><span class="pln"> @</span><span class="atn">click</span> <span class="pun">=</span> <span class="atv">"displaynumbers"</span><span class="tag">&gt;</span><span class="pln">Click ME</span><span class="tag">&lt;/button&gt;</span></pre>
+<p>On the click of the button, it will call the method &lsquo;displaynumbers&rsquo;, which takes in the event and we have consoled the same in the browser as shown above.</p>
+<p>We will now check one more event mouseover mouseout.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span> <span class="atn">v-on:mouseover</span> <span class="pun">=</span> <span class="atv">"changebgcolor"</span> <span class="atn">v-on:mouseout</span> <span class="pun">=</span> <span class="atv">"originalcolor"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               num1</span><span class="pun">:</span> <span class="lit">100</span><span class="pun">,</span><span class="pln">
+               num2 </span><span class="pun">:</span> <span class="lit">200</span><span class="pun">,</span><span class="pln">
+               total </span><span class="pun">:</span> <span class="str">''</span><span class="pun">,</span><span class="pln">
+               styleobj </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  width</span><span class="pun">:</span><span class="str">"100px"</span><span class="pun">,</span><span class="pln">
+                  height</span><span class="pun">:</span><span class="str">"100px"</span><span class="pun">,</span><span class="pln">
+                  backgroundColor</span><span class="pun">:</span><span class="str">"red"</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               changebgcolor </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">styleobj</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span> <span class="str">"green"</span><span class="pun">;</span>
+               <span class="pun">},</span><span class="pln">
+               originalcolor </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">styleobj</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span> <span class="str">"red"</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>In the above example, we have created a div with width and height as 100px. It has been given a background color red. On mouseover, we are changing the color to green, and on mouseout we are changing the color back to red.</p>
+<p>Hence, during mouseover, a method is called&nbsp;<strong>changebgcolor</strong>&nbsp;and once we move the mouse out of the div, a method is called&nbsp;<strong>originalcolor</strong>.</p>
+<p>This is done as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span> <span class="atn">v-on:mouseover</span> <span class="pun">=</span> <span class="atv">"changebgcolor"</span> <span class="atn">v-on:mouseout</span> <span class="pun">=</span> <span class="atv">"originalcolor"</span><span class="tag">&gt;&lt;/div&gt;</span></pre>
+<p>Two events - mouseover and mouseout - is assigned to the div as shown above. We have created a styleobj variable and given the required style to be assigned to the div. The same variable is binded to the div using v-bind:style = &rdquo;styleobj&rdquo;</p>
+<p>In changebgcolor, we are changing the color to green using the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">changebgcolor </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">this</span><span class="pun">.</span><span class="pln">styleobj</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span> <span class="str">"green"</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<p>Using the stylobj variable, we are changing the color to green.</p>
+<p>Similarly, the following code is used to change it back to the original color.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">originalcolor </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">this</span><span class="pun">.</span><span class="pln">styleobj</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span> <span class="str">"red"</span><span class="pun">;</span>
+<span class="pun">}</span></pre>
+<p>This is what we see in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/color_red.jpg" alt="Color Red" /></p>
+<p>When we mouseover, the color will change to green as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/color_green.jpg" alt="Color Green" /></p>
+<h2>Event Modifiers</h2>
+<p>Vue has event modifiers available on v-on attribute. Following are the modifiers available &minus;</p>
+<h3>.once</h3>
+<p>Allows the event to execute only once.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">&lt;button v-on:click.once = "buttonclicked"&gt;Click Once&lt;/button&gt;
+</pre>
+<p>We need to add dot operator while calling the modifiers as shown in the syntax above. Let us use it in an example and understand the working of the once modifier.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span><span class="pln">.</span><span class="atn">once</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">buttonclickedonce</span><span class="atv">"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Once</span><span class="tag">&lt;/button&gt;</span><span class="pln">
+         Output:{{clicknum}}
+         </span><span class="tag">&lt;br/&gt;&lt;br/&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"buttonclicked"</span>  <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span><span class="pln">
+         Output:{{clicknum1}}
+      </span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               clicknum </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">,</span><span class="pln">
+               clicknum1 </span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  backgroundColor</span><span class="pun">:</span> <span class="str">'#2196F3!important'</span><span class="pun">,</span><span class="pln">
+                  cursor</span><span class="pun">:</span> <span class="str">'pointer'</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">'8px 16px'</span><span class="pun">,</span><span class="pln">
+                  verticalAlign</span><span class="pun">:</span> <span class="str">'middle'</span><span class="pun">,</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               buttonclickedonce </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">clicknum</span><span class="pun">++;</span>
+               <span class="pun">},</span><span class="pln">
+               buttonclicked </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">clicknum1</span><span class="pun">++;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/event_modifier.jpg" alt="Event Modifier" /></p>
+<p>In the above example, we have created two butttons. The button with Click Once label has added the once modifier and the other button is without any modifier. This is the way the buttons are defined.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button</span> <span class="atn">v-on:click</span><span class="pln">.</span><span class="atn">once</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">buttonclickedonce</span><span class="atv">"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Once</span><span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"buttonclicked"</span>  <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span></pre>
+<p>The first button calls the method &ldquo;buttonclickedonce&rdquo; and the second button calls the method &ldquo;buttonclicked&rdquo;.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">buttonclickedonce </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">this</span><span class="pun">.</span><span class="pln">clicknum</span><span class="pun">++;</span>
+<span class="pun">},</span><span class="pln">
+buttonclicked </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+   <span class="kwd">this</span><span class="pun">.</span><span class="pln">clicknum1</span><span class="pun">++;</span>
+<span class="pun">}</span></pre>
+<p>There are two variables defined in the clicknum and clicknum1. Both are incremented when the button is clicked. Both the variables are initialized to 0 and the display is seen in the output above.</p>
+<p>On the click of the first button, the variable clicknum increments by 1. On the second click, the number is not incremented as the modifier prevents it from executing or performing any action item assigned on the click of the button.</p>
+<p>On the click of the second button, the same action is carried out, i.e. the variable is incremented. On every click, the value is incremented and displayed.</p>
+<p>Following is the output we get in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/prevent.jpg" alt="Prevent" /></p>
+<h3>.prevent</h3>
+<p><strong>Syntax</strong></p>
+<pre class="result notranslate">&lt;a href = "http://www.google.com" v-on:click.prevent = "clickme"&gt;Click Me&lt;/a&gt;
+</pre>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"http://www.google.com"</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"clickme"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               clicknum </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">,</span><span class="pln">
+               clicknum1 </span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  color</span><span class="pun">:</span> <span class="str">'#4CAF50'</span><span class="pun">,</span><span class="pln">
+                  marginLeft</span><span class="pun">:</span> <span class="str">'20px'</span><span class="pun">,</span><span class="pln">
+                  fontSize</span><span class="pun">:</span> <span class="str">'30px'</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               clickme </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Anchor tag is clicked"</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>Output</strong></p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/click_me.jpg" alt="Click Me" /></p>
+<p>If we click the clickme link, it will send an alert as &ldquo;Anchor tag is clicked&rdquo; and it will open the link&nbsp;<a href="https://www.google.com/" target="_blank" rel="nofollow">https://www.google.com</a>&nbsp;in a new tab as shown in the following screenshots.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/tag_clicked.jpg" alt="Tag Clicked" /></p>
+<p>&nbsp;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/tag_opened.jpg" alt="Tag Opened" /></p>
+<p>Now this works as a normal way, i.e. the link opens up as we want. In case we don&rsquo;t want the link to open up, we need to add a modifier &lsquo;prevent&rsquo; to the event as shown in the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"http://www.google.com"</span> <span class="atn">v-on:click</span><span class="pln">.</span><span class="atn">prevent</span> <span class="pun">=</span> <span class="atv">"clickme"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/a&gt;</span></pre>
+<p>Once added, if we click on the button, it will send an alert message and will not open the link anymore. The prevent modifier prevents the link from opening and only executes the method assigned to the tag.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;a</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"http://www.google.com"</span> <span class="atn">v-on:click</span><span class="pln">.</span><span class="atn">prevent</span> <span class="pun">=</span> <span class="atv">"clickme"</span> <span class="atn">target</span> <span class="pun">=</span> <span class="atv">"_blank"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               clicknum </span><span class="pun">:</span> <span class="lit">0</span><span class="pun">,</span><span class="pln">
+               clicknum1 </span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  color</span><span class="pun">:</span> <span class="str">'#4CAF50'</span><span class="pun">,</span><span class="pln">
+                  marginLeft</span><span class="pun">:</span> <span class="str">'20px'</span><span class="pun">,</span><span class="pln">
+                  fontSize</span><span class="pun">:</span> <span class="str">'30px'</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               clickme </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  alert</span><span class="pun">(</span><span class="str">"Anchor tag is clicked"</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>Output</strong></p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/message.jpg" alt="Message" /></p>
+<p>On the click of the link, it will display the alert message and does not open the url anymore.</p>
+<h2>Event - Key Modifiers</h2>
+<p>VueJS offers key modifiers based on which we can control the event handling. Consider we have a textbox and we want the method to be called only when we press Enter. We can do so by adding key modifiers to the events as follows.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">&lt;input type = "text"  v-on:keyup.enter = "showinputvalue"/&gt;
+</pre>
+<p>The key that we want to apply to our event is&nbsp;<strong>V-on.eventname.keyname</strong>&nbsp;(as shown above)</p>
+<p>We can make use of multiple keynames. For example,&nbsp;<strong>V-on.keyup.ctrl.enter</strong></p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">v-on:keyup</span><span class="pln">.</span><span class="atn">enter</span> <span class="pun">=</span> <span class="atv">"showinputvalue"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span> <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Enter your name"</span><span class="tag">/&gt;</span>
+         <span class="tag">&lt;h3&gt;</span><span class="pln"> {{name}}</span><span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               name</span><span class="pun">:</span><span class="str">''</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  width</span><span class="pun">:</span> <span class="str">"30%"</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">"12px 20px"</span><span class="pun">,</span><span class="pln">
+                  margin</span><span class="pun">:</span> <span class="str">"8px 0"</span><span class="pun">,</span><span class="pln">
+                  boxSizing</span><span class="pun">:</span> <span class="str">"border-box"</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showinputvalue </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">=</span><span class="pln">event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">value</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/multiple_keynames.jpg" alt="Multiple Keynames" /></p>
+<p>Type something in the textbox and we will see it is displayed only when we press Enter.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/type_text.jpg" alt="Type Text" /></p>
+<h2>Custom Events</h2>
+<p>Parent can pass data to its component using the prop attribute, however, we need to tell the parent when there are changes in the child component. For this, we can use custom events.</p>
+<p>The parent component can listen to the child component event using&nbsp;<strong>v-on</strong>&nbsp;attribute.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"counter-event-example"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Language displayed : </span><span class="tag">&lt;b&gt;</span><span class="pln">{{ languageclicked }}</span><span class="tag">&lt;/b&gt;&lt;/p&gt;</span>
+            <span class="tag">&lt;button-counter</span>
+            <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(item, index) in languages"</span>
+            <span class="atn">v-bind:item</span> <span class="pun">=</span> <span class="atv">"item"</span>
+            <span class="atn">v-bind:index</span> <span class="pun">=</span> <span class="atv">"index"</span>
+            <span class="atn">v-on:showlanguage</span> <span class="pun">=</span> <span class="atv">"languagedisp"</span><span class="tag">&gt;&lt;/button-counter&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="typ">Vue</span><span class="pun">.</span><span class="pln">component</span><span class="pun">(</span><span class="str">'button-counter'</span><span class="pun">,</span> <span class="pun">{</span><span class="pln">
+            template</span><span class="pun">:</span> <span class="str">'&lt;button v-on:click = "displayLanguage(item)"&gt;&lt;span style = "font-size:25px;"&gt;{{ item }}&lt;/span&gt;&lt;/button&gt;'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">return</span> <span class="pun">{</span><span class="pln">
+                  counter</span><span class="pun">:</span> <span class="lit">0</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            props</span><span class="pun">:[</span><span class="str">'item'</span><span class="pun">],</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               displayLanguage</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">lng</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">lng</span><span class="pun">);</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">$emit</span><span class="pun">(</span><span class="str">'showlanguage'</span><span class="pun">,</span><span class="pln"> lng</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               languageclicked</span><span class="pun">:</span> <span class="str">""</span><span class="pun">,</span><span class="pln">
+               languages </span><span class="pun">:</span> <span class="pun">[</span><span class="str">"Java"</span><span class="pun">,</span> <span class="str">"PHP"</span><span class="pun">,</span> <span class="str">"C++"</span><span class="pun">,</span> <span class="str">"C"</span><span class="pun">,</span> <span class="str">"Javascript"</span><span class="pun">,</span> <span class="str">"C#"</span><span class="pun">,</span> <span class="str">"Python"</span><span class="pun">,</span> <span class="str">"HTML"</span><span class="pun">]</span>
+            <span class="pun">},</span><span class="pln">
+            methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               languagedisp</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">a</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">languageclicked </span><span class="pun">=</span><span class="pln"> a</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+         <span class="pun">})</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>Output</h3>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/custom_event.jpg" alt="Custom Event" /></p>
+<p>The above code shows the data transfer between the parent component and the child component.</p>
+<p>The component is created using the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button-counter</span>
+   <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(item, index) in languages"</span>
+   <span class="atn">v-bind:item</span> <span class="pun">=</span> <span class="atv">"item"</span>
+   <span class="atn">v-bind:index</span> <span class="pun">=</span> <span class="atv">"index"</span>
+   <span class="atn">v-on:showlanguage</span> <span class="pun">=</span> <span class="atv">"languagedisp"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/button-counter&gt;</span></pre>
+<p>There is a&nbsp;<strong>v-for</strong>&nbsp;attribute, which will loop with the languages array. The array has a list of languages in it. We need to send the details to the child component. The values of the array are stored in the item and the index.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">v</span><span class="pun">-</span><span class="pln">bind</span><span class="pun">:</span><span class="pln">item </span><span class="pun">=</span> <span class="str">"item"</span><span class="pln">
+v</span><span class="pun">-</span><span class="pln">bind</span><span class="pun">:</span><span class="pln">index </span><span class="pun">=</span> <span class="str">"index"</span></pre>
+<p>To refer to the values of the array, we need to bind it first to a variable and the varaiable is referred using props property as follows.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="pln">component</span><span class="pun">(</span><span class="str">'button-counter'</span><span class="pun">,</span> <span class="pun">{</span>
+   <span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;button v-on:click = "displayLanguage(item)"&gt;&lt;span style = "font-size:25px;"&gt;{{ item }}&lt;/span&gt;&lt;/button&gt;'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+      <span class="kwd">return</span> <span class="pun">{</span><span class="pln">
+         counter</span><span class="pun">:</span> <span class="lit">0</span>
+      <span class="pun">}</span>
+   <span class="pun">},</span><span class="pln">
+   props</span><span class="pun">:[</span><span class="str">'item'</span><span class="pun">],</span><span class="pln">
+   methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      displayLanguage</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">lng</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">lng</span><span class="pun">);</span>
+         <span class="kwd">this</span><span class="pun">.</span><span class="pln">$emit</span><span class="pun">(</span><span class="str">'showlanguage'</span><span class="pun">,</span><span class="pln"> lng</span><span class="pun">);</span>
+      <span class="pun">}</span>
+   <span class="pun">},</span>
+<span class="pun">});</span></pre>
+<p>The props property contains the item in an array form. We can also refer to the index as &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">props</span><span class="pun">:[&lsquo;</span><span class="pln">item</span><span class="pun">&rsquo;,</span> <span class="pun">&lsquo;</span><span class="pln">index</span><span class="pun">&rsquo;]</span></pre>
+<p>There is also an event added to the component as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button-counter</span>
+   <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(item, index) in languages"</span>
+   <span class="atn">v-bind:item</span> <span class="pun">=</span> <span class="atv">"item"</span>
+   <span class="atn">v-bind:index</span> <span class="pun">=</span> <span class="atv">"index"</span>
+   <span class="atn">v-on:showlanguage</span> <span class="pun">=</span> <span class="atv">"languagedisp"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/button-counter&gt;</span></pre>
+<p>The name of the event is&nbsp;<strong>showlanguage</strong>&nbsp;and it calls a method called&nbsp;<strong>languagedisp</strong>which is defined in the Vue instance.</p>
+<p>In the component, the template is defined as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;button v-on:click = "displayLanguage(item)"&gt;&lt;span style = "font-size:25px;"&gt;{{ item }}&lt;/span&gt;&lt;/button&gt;'</span><span class="pun">,</span></pre>
+<p>There is a button created. The button will get created with as many count in the language array. On the click of the button, there is a method called displayLanguage and the button clicked item is passed as a param to the function. Now the component needs to send the clicked element to the parent component for display which is done as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="typ">Vue</span><span class="pun">.</span><span class="pln">component</span><span class="pun">(</span><span class="str">'button-counter'</span><span class="pun">,</span> <span class="pun">{</span>
+   <span class="kwd">template</span><span class="pun">:</span> <span class="str">'&lt;button v-on:click = "displayLanguage(item)"&gt;&lt;span style = "font-size:25px;"&gt;{{ item }}&lt;/span&gt;&lt;/button&gt;'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">()</span> <span class="pun">{</span>
+      <span class="kwd">return</span> <span class="pun">{</span><span class="pln">
+         counter</span><span class="pun">:</span> <span class="lit">0</span>
+      <span class="pun">}</span>
+   <span class="pun">},</span><span class="pln">
+   props</span><span class="pun">:[</span><span class="str">'item'</span><span class="pun">],</span><span class="pln">
+   methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      displayLanguage</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">lng</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">lng</span><span class="pun">);</span>
+         <span class="kwd">this</span><span class="pun">.</span><span class="pln">$emit</span><span class="pun">(</span><span class="str">'showlanguage'</span><span class="pun">,</span><span class="pln"> lng</span><span class="pun">);</span>
+      <span class="pun">}</span>
+   <span class="pun">},</span>
+<span class="pun">});</span></pre>
+<p>The method&nbsp;<strong>displayLanguage</strong>&nbsp;calls&nbsp;<strong>this.$emit(&lsquo;showlanguage&rsquo;, lng);</strong></p>
+<p><strong>$emit</strong>&nbsp;is used to call the parent component method. The method showlanguage is the event name given on the component with v-on.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button-counter</span>
+   <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(item, index) in languages"</span>
+   <span class="atn">v-bind:item</span> <span class="pun">=</span> <span class="atv">"item"</span>
+   <span class="atn">v-bind:index</span> <span class="pun">=</span> <span class="atv">"index"</span>
+   <span class="atn">v-on:showlanguage</span> <span class="pun">=</span> <span class="atv">"languagedisp"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/button-counter&gt;</span></pre>
+<p>We are passing a parameter, i.e. the name of the language clicked to the method of the main parent Vue instance which is defined as follows.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      languageclicked</span><span class="pun">:</span> <span class="str">""</span><span class="pun">,</span><span class="pln">
+      languages </span><span class="pun">:</span> <span class="pun">[</span><span class="str">"Java"</span><span class="pun">,</span> <span class="str">"PHP"</span><span class="pun">,</span> <span class="str">"C++"</span><span class="pun">,</span> <span class="str">"C"</span><span class="pun">,</span> <span class="str">"Javascript"</span><span class="pun">,</span> <span class="str">"C#"</span><span class="pun">,</span> <span class="str">"Python"</span><span class="pun">,</span> <span class="str">"HTML"</span><span class="pun">]</span>
+   <span class="pun">},</span><span class="pln">
+   methods</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      languagedisp</span><span class="pun">:</span> <span class="kwd">function</span> <span class="pun">(</span><span class="pln">a</span><span class="pun">)</span> <span class="pun">{</span>
+         <span class="kwd">this</span><span class="pun">.</span><span class="pln">languageclicked </span><span class="pun">=</span><span class="pln"> a</span><span class="pun">;</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>Here, the emit triggers showlanguage which in turn calls&nbsp;<strong>languagedisp</strong>&nbsp;from the Vue instance methods. It assigns the language clicked value to the variable&nbsp;<strong>languageclicked</strong>and the same is displayed in the browser as shown in the following screenshot.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;p</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Language displayed : </span><span class="tag">&lt;b&gt;</span><span class="pln">{{ languageclicked }}</span><span class="tag">&lt;/b&gt;&lt;/p&gt;</span></pre>
+<p>Following is the output we get in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/language_displayed.jpg" alt="Language displayed" /></p>

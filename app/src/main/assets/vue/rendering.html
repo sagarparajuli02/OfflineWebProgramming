@@ -1,0 +1,236 @@
+<p>In this chapter, we will learn about conditional rendering and list rendering. In conditional rendering, we will discuss about using if, if-else, if-else-if, show, etc. In list rendering, we will discuss how to use for loop.</p>
+<h2>Conditional Rendering</h2>
+<p>Let&rsquo;s get started and work on a example first to explain the details for conditional rendering. With conditional rendering, we want to output only when the condition is met and the conditional check is done with the help of if, if-else, if-else-if, show, etc.</p>
+<h3>v-if</h3>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"showdata"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;b&gt;</span><span class="pln">{{show}}</span><span class="tag">&lt;/b&gt;&lt;/span&gt;</span>
+         <span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span><span class="pln">This is h1 tag</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h2&gt;</span><span class="pln">This is h2 tag</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">true</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  backgroundColor</span><span class="pun">:</span> <span class="str">'#2196F3!important'</span><span class="pun">,</span><span class="pln">
+                  cursor</span><span class="pun">:</span> <span class="str">'pointer'</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">'8px 16px'</span><span class="pun">,</span><span class="pln">
+                  verticalAlign</span><span class="pun">:</span> <span class="str">'middle'</span><span class="pun">,</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showdata </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span> <span class="pun">!</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">show</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>Output</strong></p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/v_if.jpg" alt="v-if" /></p>
+<p>In the above example, we have created a button and two h1 tags with the message.</p>
+<p>A variable called show is declared and initialized to a value true. It is displayed close to the button. On the click of the button, we are calling a method&nbsp;<strong>showdata</strong>, which toggles the value of the variable show. This means on the click of the button, the value of the variable show will change from true to false and false to true.</p>
+<p>We have assigned if to the h1 tag as shown in the following code snippet.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"showdata"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span><span class="pln">This is h1 tag</span><span class="tag">&lt;/h1&gt;</span></pre>
+<p>Now what it will do is, it will check the value of the variable show and if its true the h1 tag will be displayed. Click the button and view in the browser, as the value of the show variable changes to false, the h1 tag is not displayed in the browser. It is displayed only when the show variable is true.</p>
+<p>Following is the display in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/show_tag.jpg" alt="Show Tag" /></p>
+<p>If we check in the browser, this is what we get when show is false.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/show_false.jpg" alt="Show False" /></p>
+<p>The h1 tag is removed from the DOM when the variable show is set to false.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/h1_tag_removed.jpg" alt="h1 Tag Removed" /></p>
+<p>This is what we see when the variable is true. The h1 tag is added back to the DOM when the variable show is set to true.</p>
+<h3>v-else</h3>
+<p>In the following example, we have added v-else to the second h1 tag.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"showdata"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;b&gt;</span><span class="pln">{{show}}</span><span class="tag">&lt;/b&gt;&lt;/span&gt;</span>
+         <span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span><span class="pln">This is h1 tag</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h2</span> <span class="atn">v-else</span><span class="tag">&gt;</span><span class="pln">This is h2 tag</span><span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">true</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  backgroundColor</span><span class="pun">:</span> <span class="str">'#2196F3!important'</span><span class="pun">,</span><span class="pln">
+                  cursor</span><span class="pun">:</span> <span class="str">'pointer'</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">'8px 16px'</span><span class="pun">,</span><span class="pln">
+                  verticalAlign</span><span class="pun">:</span> <span class="str">'middle'</span><span class="pun">,</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showdata </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span> <span class="pun">!</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">show</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>v-else is added using the following code snippet.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span><span class="pln">This is h1 tag</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2</span> <span class="atn">v-else</span><span class="tag">&gt;</span><span class="pln">This is h2 tag</span><span class="tag">&lt;/h2&gt;</span></pre>
+<p>Now, if show is true&nbsp;<strong>&ldquo;This is h1 tag&rdquo;</strong>&nbsp;will be displayed, and if false&nbsp;<strong>&ldquo;This is h2 tag&rdquo;</strong>&nbsp;will be displayed. This is what we will get in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vue_if_true.jpg" alt="Vue-If True" /></p>
+<p>The above display is when the show variable is true. Since, we have added v-else, the second statement is not present. Now, when we click the button the show variable will become false and the second statement will be displayed as shown in the following screenshot.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/vue_if_false.jpg" alt="Vue-If False" /></p>
+<h3>v-show</h3>
+<p>v-show behaves same as v-if. It also shows and hides the elements based on the condition assigned to it. The difference between v-if and v-show is that v-if removes the HTML element from the DOM if the condition is false, and adds it back if the condition is true. Whereas v-show hides the element, if the condition is false with display:none. It shows the element back, if the condition is true. Thus, the element is present in the dom always.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;button</span> <span class="atn">v-on:click</span> <span class="pun">=</span> <span class="atv">"showdata"</span> <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span><span class="tag">&gt;</span><span class="pln">Click Me</span><span class="tag">&lt;/button&gt;</span>
+         <span class="tag">&lt;span</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;b&gt;</span><span class="pln">{{show}}</span><span class="tag">&lt;/b&gt;&lt;/span&gt;</span>
+         <span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span><span class="pln">This is h1 tag</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h2</span> <span class="atn">v-else</span><span class="tag">&gt;</span><span class="pln">This is h2 tag</span><span class="tag">&lt;/h2&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;b&gt;</span><span class="pln">V-Show:</span><span class="tag">&lt;/b&gt;</span>
+            <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"images/img.jpg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               show</span><span class="pun">:</span> <span class="kwd">true</span><span class="pun">,</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  backgroundColor</span><span class="pun">:</span> <span class="str">'#2196F3!important'</span><span class="pun">,</span><span class="pln">
+                  cursor</span><span class="pun">:</span> <span class="str">'pointer'</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">'8px 16px'</span><span class="pun">,</span><span class="pln">
+                  verticalAlign</span><span class="pun">:</span> <span class="str">'middle'</span><span class="pun">,</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showdata </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span> <span class="pun">!</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">show</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>v-show is assigned to the HTML element using the following code snippet.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;div</span> <span class="atn">v-show</span> <span class="pun">=</span> <span class="atv">"show"</span><span class="tag">&gt;&lt;b&gt;</span><span class="pln">V-Show:</span><span class="tag">&lt;/b&gt;&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"images/img.jpg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"100"</span> <span class="tag">/&gt;&lt;/div&gt;</span></pre>
+<p>We have used the same variable show and based on it being true/false, the image is displayed in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/image_true.jpg" alt="Image True" /></p>
+<p>Now, since the variable show is true, the image is as displayed in the above screenshot. Let us click the button and see the display.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/button.jpg" alt="Button" /></p>
+<p>The variable show is false, hence the image is hidden. If we inspect and see the element, the div along with the image is still a part of the DOM with the style property display: none as seen in the above screenshot.</p>
+<h2>List Rendering</h2>
+<h3>v-for</h3>
+<p>Let us now discuss list rendering with v-for directive.</p>
+<p><strong>Example</strong></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">v-on:keyup</span><span class="pln">.</span><span class="atn">enter</span> <span class="pun">=</span> <span class="atv">"showinputvalue"</span>
+            <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span> <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Enter Fruits Names"</span><span class="tag">/&gt;</span>
+         <span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"items.length&gt;</span><span class="pln">0"&gt;Display Fruits Name</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"a in items"</span><span class="tag">&gt;</span><span class="pln">{{a}}</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               items</span><span class="pun">:[],</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  width</span><span class="pun">:</span> <span class="str">"30%"</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">"12px 20px"</span><span class="pun">,</span><span class="pln">
+                  margin</span><span class="pun">:</span> <span class="str">"8px 0"</span><span class="pun">,</span><span class="pln">
+                  boxSizing</span><span class="pun">:</span> <span class="str">"border-box"</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showinputvalue </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">items</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">value</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>A variable called items is declared as an array. In methods, there is a method called&nbsp;<strong>showinputvalue</strong>, which is assigned to the input box that takes the names of the fruits. In the method, the fruits entered inside the textbox are added to the array using the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">showinputvalue </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">(</span><span class="kwd">event</span><span class="pun">)</span> <span class="pun">{</span>
+   <span class="kwd">this</span><span class="pun">.</span><span class="pln">items</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="kwd">event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">value</span><span class="pun">);</span>
+<span class="pun">}</span></pre>
+<p>We have used v-for to display the fruits entered as in the following piece of code. V-for helps to iterate over the values present in the array.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;ul&gt;</span>
+   <span class="tag">&lt;li</span> <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"a in items"</span><span class="tag">&gt;</span><span class="pln">{{a}}</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></pre>
+<p>To iterate over the array with for loop, we have to use v-for = &rdquo;a in items&rdquo; where a holds the values in the array and will display till all the items are done.</p>
+<p><strong>Output</strong></p>
+<p>Following is the output in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/v_for.jpg" alt="V-for" /></p>
+<p>On inspecting the items, this is what it shows in the browser. In the DOM, we don&rsquo;t see any v-for directive to the li element. It displays the DOM without any VueJS directives.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/v_for_directives.jpg" alt="V-for Directives" /></p>
+<p>If we wish to display the index of the array, it is done using the following code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"databinding"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text"</span> <span class="atn">v-on:keyup</span><span class="pln">.</span><span class="atn">enter</span> <span class="pun">=</span> <span class="atv">"showinputvalue"</span>
+            <span class="atn">v-bind:style</span> <span class="pun">=</span> <span class="atv">"styleobj"</span> <span class="atn">placeholder</span> <span class="pun">=</span> <span class="atv">"Enter Fruits Names"</span><span class="tag">/&gt;</span>
+         <span class="tag">&lt;h1</span> <span class="atn">v-if</span> <span class="pun">=</span> <span class="atv">"items.length&gt;</span><span class="pln">0"&gt;Display Fruits Name</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li</span> <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(a, index) in items"</span><span class="tag">&gt;</span><span class="pln">{{index}}--{{a}}</span><span class="tag">&lt;/li&gt;</span>
+         <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+            el</span><span class="pun">:</span> <span class="str">'#databinding'</span><span class="pun">,</span><span class="pln">
+            data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               items</span><span class="pun">:[],</span><span class="pln">
+               styleobj</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+                  width</span><span class="pun">:</span> <span class="str">"30%"</span><span class="pun">,</span><span class="pln">
+                  padding</span><span class="pun">:</span> <span class="str">"12px 20px"</span><span class="pun">,</span><span class="pln">
+                  margin</span><span class="pun">:</span> <span class="str">"8px 0"</span><span class="pun">,</span><span class="pln">
+                  boxSizing</span><span class="pun">:</span> <span class="str">"border-box"</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span><span class="pln">
+            methods </span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+               showinputvalue </span><span class="pun">:</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">this</span><span class="pun">.</span><span class="pln">items</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">value</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">},</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>To get the index, we have added one more variable in the bracket as shown in the following piece of code.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;li</span> <span class="atn">v-for</span> <span class="pun">=</span> <span class="atv">"(a, index) in items"</span><span class="tag">&gt;</span><span class="pln">{{index}}--{{a}}</span><span class="tag">&lt;/li&gt;</span></pre>
+<p>In (a, index),&nbsp;<strong>a</strong>&nbsp;is the value and&nbsp;<strong>index</strong>&nbsp;is the key. The browser display will now be as shown in the following screenshot. Thus, with the help of index any specific values can be displayed.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/index.jpg" alt="Index" /></p>

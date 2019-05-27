@@ -1,0 +1,111 @@
+<p>We have learnt in the earlier chapters, how to get an output in the form of text content on the screen. In this chapter, we will learn how to get an output in the form of HTML template on the screen.</p>
+<p>To understand this, let us consider an example and see the output in the browser.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;div&gt;</span><span class="pln">{{htmlcontent}}</span><span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue_template.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h3>vue_template.js</h3>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#vue_det'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      firstname </span><span class="pun">:</span> <span class="str">"Ria"</span><span class="pun">,</span><span class="pln">
+      lastname  </span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">,</span><span class="pln">
+      htmlcontent </span><span class="pun">:</span> <span class="str">"&lt;div&gt;&lt;h1&gt;Vue Js Template&lt;/h1&gt;&lt;/div&gt;"</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>Now, suppose we want to show the html content on the page. If we happen to use it with interpolation, i.e. with double curly brackets, this is what we will get in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/content.jpg" alt="Content" /></p>
+<p>If we see the html content is displayed the same way we have given in the variable htmlcontent, this is not what we want, we want it to be displayed in a proper HTML content on the browser.</p>
+<p>For this, we will have to use&nbsp;<strong>v-html</strong>&nbsp;directive. The moment we assign v-html directive to the html element, VueJS knows that it has to output it as HTML content. Let&rsquo;s add v-html directive in the&nbsp;<strong>.html</strong>&nbsp;file and see the difference.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">v-html</span> <span class="pun">=</span> <span class="atv">"htmlcontent"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue_template.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Now, we don&rsquo;t need the double curly brackets to show the HTML content, instead we have used v-html = &rdquo;htmlcontent&rdquo; where htmlcontent is defined inside the&nbsp;<strong>js</strong>&nbsp;file as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#vue_det'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      firstname </span><span class="pun">:</span> <span class="str">"Ria"</span><span class="pun">,</span><span class="pln">
+      lastname  </span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">,</span><span class="pln">
+      htmlcontent </span><span class="pun">:</span> <span class="str">"&lt;div&gt;&lt;h1&gt;Vue Js Template&lt;/h1&gt;&lt;/div&gt;"</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>The output in the browser is as follows &minus;</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/htmlcontent.jpg" alt="HTMLContent" /></p>
+<p>If we inspect the browser, we will see the content is added in the same way as it is defined in the&nbsp;<strong>.js</strong>&nbsp;file to the variable&nbsp;<strong>htmlcontent : "&lt;div&gt;&lt;h1&gt;Vue Js Template&lt;/h1&gt;&lt;/div&gt;"</strong>.</p>
+<p>Let&rsquo;s take a look at the inspect element in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/template.jpg" alt="Template" /></p>
+<p>We have seen how to add HTML template to the DOM. Now, we will see how to add attributes to the exiting HTML elements.</p>
+<p>Consider, we have an image tag in the HTML file and we want to assign src, which is a part of Vue.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">v-html</span> <span class="pun">=</span> <span class="atv">"htmlcontent"</span><span class="tag">&gt;&lt;/div&gt;</span>
+         <span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">""</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"300"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"250"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue_template1.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>Look at the img tag above, the src is blank. We need to add the src to it from vue js. Let us take a look at how to do it. We will store the img src in the data object in the&nbsp;<strong>.js</strong>&nbsp;file as follows &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">var</span><span class="pln"> vm </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Vue</span><span class="pun">({</span><span class="pln">
+   el</span><span class="pun">:</span> <span class="str">'#vue_det'</span><span class="pun">,</span><span class="pln">
+   data</span><span class="pun">:</span> <span class="pun">{</span><span class="pln">
+      firstname </span><span class="pun">:</span> <span class="str">"Ria"</span><span class="pun">,</span><span class="pln">
+      lastname  </span><span class="pun">:</span> <span class="str">"Singh"</span><span class="pun">,</span><span class="pln">
+      htmlcontent </span><span class="pun">:</span> <span class="str">"&lt;div&gt;&lt;h1&gt;Vue Js Template&lt;/h1&gt;&lt;/div&gt;"</span><span class="pun">,</span><span class="pln">
+      imgsrc </span><span class="pun">:</span> <span class="str">"images/img.jpg"</span>
+   <span class="pun">}</span>
+<span class="pun">})</span></pre>
+<p>If we assign the src as follows, the output in the browser will be as shown in the following screenshot.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;img</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"{{imgsrc}}"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"300"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"250"</span> <span class="tag">/&gt;</span></pre>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/imgsrc.jpg" alt="Imgsrc" /></p>
+<p>We get a broken image. To assign any attribute to HMTL tag, we need to use&nbsp;<strong>v-bind</strong>directive. Let&rsquo;s add the src to the image with v-bind directive.</p>
+<p>This is how it is assigned in&nbsp;<strong>.html</strong>&nbsp;file.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">VueJs Instance</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"vue_det"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Firstname : {{firstname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;h1&gt;</span><span class="pln">Lastname : {{lastname}}</span><span class="tag">&lt;/h1&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">v-html</span> <span class="pun">=</span> <span class="atv">"htmlcontent"</span><span class="tag">&gt;&lt;/div&gt;</span>
+         <span class="tag">&lt;img</span> <span class="atn">v-bind:src</span> <span class="pun">=</span> <span class="atv">"imgsrc"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"300"</span> <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"250"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"js/vue_template1.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>We need to prefix the src with&nbsp;<strong>v-bind:src = &rdquo;imgsrc&rdquo;</strong>&nbsp;and the name of the variable with src.</p>
+<p>Following is the output in the browser.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/img_display.jpg" alt="Img Display" /></p>
+<p>Let us inspect and check how the src looks like with v-bind.</p>
+<p><img src="https://www.tutorialspoint.com/vuejs/images/inspect.jpg" alt="Inspect" /></p>
+<p>As seen in the above screenshot, the src is assigned without any vuejs properties to it.</p>

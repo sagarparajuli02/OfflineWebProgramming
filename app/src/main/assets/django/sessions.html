@@ -1,0 +1,77 @@
+<p>As discussed earlier, we can use client side cookies to store a lot of useful data for the web app. We have seen before that we can use client side cookies to store various data useful for our web app. This leads to lot of security holes depending on the importance of the data you want to save.</p>
+<p>For security reasons, Django has a session framework for cookies handling. Sessions are used to abstract the receiving and sending of cookies, data is saved on server side (like in database), and the client side cookie just has a session ID for identification. Sessions are also useful to avoid cases where the user browser is set to &lsquo;not accept&rsquo; cookies.</p>
+<h2>Setting Up Sessions</h2>
+<p>In Django, enabling session is done in your project&nbsp;<strong>settings.py</strong>, by adding some lines to the&nbsp;<strong>MIDDLEWARE_CLASSES</strong>&nbsp;and the&nbsp;<strong>INSTALLED_APPS</strong>&nbsp;options. This should be done while creating the project, but it's always good to know, so&nbsp;<strong>MIDDLEWARE_CLASSES</strong>should have &minus;</p>
+<pre class="result notranslate">'django.contrib.sessions.middleware.SessionMiddleware'
+</pre>
+<p>And&nbsp;<strong>INSTALLED_APPS</strong>&nbsp;should have &minus;</p>
+<pre class="result notranslate">'django.contrib.sessions'
+</pre>
+<p>By default, Django saves session information in database (django_session table or collection), but you can configure the engine to store information using other ways like: in&nbsp;<strong>file</strong>&nbsp;or in&nbsp;<strong>cache</strong>.</p>
+<p>When session is enabled, every request (first argument of any view in Django) has a session (dict) attribute.</p>
+<p>Let's create a simple sample to see how to create and save sessions. We have built a simple login system before (see Django form processing chapter and Django Cookies Handling chapter). Let us save the username in a cookie so, if not signed out, when accessing our login page you won&rsquo;t see the login form. Basically, let's make our login system we used in Django Cookies handling more secure, by saving cookies server side.</p>
+<p>For this, first lets change our login view to save our username cookie server side &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> login</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span><span class="pln">
+   username </span><span class="pun">=</span> <span class="str">'not logged in'</span>
+   
+   <span class="kwd">if</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">method </span><span class="pun">==</span> <span class="str">'POST'</span><span class="pun">:</span>
+      <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">LoginForm</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">POST</span><span class="pun">)</span>
+      
+      <span class="kwd">if</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">is_valid</span><span class="pun">():</span><span class="pln">
+         username </span><span class="pun">=</span> <span class="typ">MyLoginForm</span><span class="pun">.</span><span class="pln">cleaned_data</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span><span class="pln">
+         request</span><span class="pun">.</span><span class="pln">session</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span> <span class="pun">=</span><span class="pln"> username
+      </span><span class="kwd">else</span><span class="pun">:</span>
+         <span class="typ">MyLoginForm</span> <span class="pun">=</span> <span class="typ">LoginForm</span><span class="pun">()</span>
+			
+   <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'loggedin.html'</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"username"</span> <span class="pun">:</span><span class="pln"> username</span><span class="pun">}</span></pre>
+<p>Then let us create formView view for the login form, where we won&rsquo;t display the form if cookie is set &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> formView</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="kwd">if</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">session</span><span class="pun">.</span><span class="pln">has_key</span><span class="pun">(</span><span class="str">'username'</span><span class="pun">):</span><span class="pln">
+      username </span><span class="pun">=</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">session</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span>
+      <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'loggedin.html'</span><span class="pun">,</span> <span class="pun">{</span><span class="str">"username"</span> <span class="pun">:</span><span class="pln"> username</span><span class="pun">})</span>
+   <span class="kwd">else</span><span class="pun">:</span>
+      <span class="kwd">return</span><span class="pln"> render</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span> <span class="str">'login.html'</span><span class="pun">,</span> <span class="pun">{})</span></pre>
+<p>Now let us change the url.py file to change the url so it pairs with our new view &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> url
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">views</span><span class="pun">.</span><span class="kwd">generic</span> <span class="kwd">import</span> <span class="typ">TemplateView</span><span class="pln">
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">'myapp.views'</span><span class="pun">,</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^connection/'</span><span class="pun">,</span><span class="str">'formView'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'loginform'</span><span class="pun">),</span><span class="pln">
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^login/'</span><span class="pun">,</span> <span class="str">'login'</span><span class="pun">,</span><span class="pln"> name </span><span class="pun">=</span> <span class="str">'login'</span><span class="pun">))</span></pre>
+<p>When accessing /myapp/connection, you will get to see the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/setting_up_sessions.jpg" alt="Setting Up Sessions" /></p>
+<p>And you will get redirected to the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/sessions_redirected_page.jpg" alt="Sessions Redirected Page" /></p>
+<p>Now if you try to access /myapp/connection again, you will get redirected to the second screen directly.</p>
+<p>Let's create a simple logout view that erases our cookie.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> logout</span><span class="pun">(</span><span class="pln">request</span><span class="pun">):</span>
+   <span class="kwd">try</span><span class="pun">:</span>
+      <span class="kwd">del</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">session</span><span class="pun">[</span><span class="str">'username'</span><span class="pun">]</span>
+   <span class="kwd">except</span><span class="pun">:</span>
+      <span class="kwd">pass</span>
+   <span class="kwd">return</span> <span class="typ">HttpResponse</span><span class="pun">(</span><span class="str">"&lt;strong&gt;You are logged out.&lt;/strong&gt;"</span><span class="pun">)</span></pre>
+<p>And pair it with a logout URL in myapp/url.py</p>
+<pre class="result notranslate">url(r'^logout/', 'logout', name = 'logout'),
+</pre>
+<p>Now, if you access /myapp/logout, you will get the following page &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/logged_out_page.jpg" alt="Logged Out Page" /></p>
+<p>If you access /myapp/connection again, you will get the login form (screen 1).</p>
+<h3>Some More Possible Actions Using Sessions</h3>
+<p>We have seen how to store and access a session, but it's good to know that the session attribute of the request have some other useful actions like &minus;</p>
+<ul class="list">
+<li>
+<p><strong>set_expiry (<em>value</em>)</strong>&nbsp;&minus; Sets the expiration time for the session.</p>
+</li>
+<li>
+<p><strong>get_expiry_age()</strong>&nbsp;&minus; Returns the number of seconds until this session expires.</p>
+</li>
+<li>
+<p><strong>get_expiry_date()</strong>&nbsp;&minus; Returns the date this session will expire.</p>
+</li>
+<li>
+<p><strong>clear_expired()</strong>&nbsp;&minus; Removes expired sessions from the session store.</p>
+</li>
+<li>
+<p><strong>get_expire_at_browser_close()</strong>&nbsp;&minus; Returns either True or False, depending on whether the user&rsquo;s session cookies have expired when the user&rsquo;s web browser is closed.</p>
+</li>
+</ul>

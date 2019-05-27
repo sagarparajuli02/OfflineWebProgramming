@@ -1,0 +1,84 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+
+<p>AngularJS supports inbuilt internationalization for three types of filters : Currency, Date, and Numbers. We only need to incorporate corresponding java script according to locale of the country. By default, it considers the locale of the browser. For example, for Danish locale, use the following script &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.angularjs.org/1.2.5/i18n/angular-locale_da-dk.js"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/script&gt;</span> </pre>
+<h2>Example Using Danish Locale</h2>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/SPp5zg" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Forms</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"mainApp"</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"StudentController"</span><span class="tag">&gt;</span><span class="pln">
+         {{fees | currency }}  </span><span class="tag">&lt;br/&gt;&lt;br/&gt;</span><span class="pln">
+         {{admissiondate | date }}  </span><span class="tag">&lt;br/&gt;&lt;br/&gt;</span><span class="pln">
+         {{rollno | number }}
+      </span><span class="tag">&lt;/div&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://code.angularjs.org/1.3.14/i18n/angular-locale_da-dk.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mainApp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"mainApp"</span><span class="pun">,</span> <span class="pun">[]);</span><span class="pln">
+         
+         mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">'StudentController'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">fees </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">admissiondate  </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Date</span><span class="pun">();</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">rollno </span><span class="pun">=</span> <span class="lit">123.45</span><span class="pun">;</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/danish.htm" width="600px" height="250px"></iframe></p>
+<h2>Example Using Browser Locale</h2>
+<h3>testAngularJS.htm</h3>
+<p><a class="demo" href="http://tpcg.io/IC0Pc2" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">Angular JS Forms</span><span class="tag">&lt;/title&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+   
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;h2&gt;</span><span class="pln">AngularJS Sample Application</span><span class="tag">&lt;/h2&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">ng-app</span> <span class="pun">=</span> <span class="atv">"mainApp"</span> <span class="atn">ng-controller</span> <span class="pun">=</span> <span class="atv">"StudentController"</span><span class="tag">&gt;</span><span class="pln">
+         {{fees | currency }}  </span><span class="tag">&lt;br/&gt;&lt;br/&gt;</span><span class="pln">
+         {{admissiondate | date }}  </span><span class="tag">&lt;br/&gt;&lt;br/&gt;</span><span class="pln">
+         {{rollno | number }}
+      </span><span class="tag">&lt;/div&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="com">&lt;!-- &lt;script src = "https://code.angularjs.org/1.3.14/i18n/angular-locale_da-dk.js"&gt;
+      &lt;/script&gt; --&gt;</span>
+      
+      <span class="tag">&lt;script&gt;</span>
+         <span class="kwd">var</span><span class="pln"> mainApp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"mainApp"</span><span class="pun">,</span> <span class="pun">[]);</span><span class="pln">
+         
+         mainApp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">'StudentController'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">fees </span><span class="pun">=</span> <span class="lit">100</span><span class="pun">;</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">admissiondate  </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Date</span><span class="pun">();</span><span class="pln">
+            $scope</span><span class="pun">.</span><span class="pln">rollno </span><span class="pun">=</span> <span class="lit">123.45</span><span class="pun">;</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+      
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<h2>Output</h2>
+<p>Open the file&nbsp;<em>testAngularJS.htm</em>&nbsp;in a web browser and see the result.</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/angularjs/src/browser.htm" width="600px" height="250px"></iframe></p>

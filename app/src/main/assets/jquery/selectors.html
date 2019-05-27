@@ -1,0 +1,107 @@
+<p>The jQuery library harnesses the power of Cascading Style Sheets (CSS) selectors to let us quickly and easily access elements or groups of elements in the Document Object Model (DOM).</p>
+<p>A jQuery Selector is a function which makes use of expressions to find out matching elements from a DOM based on the given criteria. Simply you can say, selectors are used to select one or more HTML elements using jQuery. Once an element is selected then we can perform various operations on that selected element.</p>
+<h2>The $() factory function</h2>
+<p>jQuery selectors start with the dollar sign and parentheses &minus;&nbsp;<strong>$()</strong>. The factory function&nbsp;<strong>$()</strong>makes use of following three building blocks while selecting elements in a given document &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Selector &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><strong>Tag Name</strong></p>
+<p>Represents a tag name available in the DOM. For example&nbsp;<strong>$('p')</strong>&nbsp;selects all paragraphs &lt;p&gt; in the document.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><strong>Tag ID</strong></p>
+<p>Represents a tag available with the given ID in the DOM. For example&nbsp;<strong>$('#some-id')</strong>&nbsp;selects the single element in the document that has an ID of some-id.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><strong>Tag Class</strong></p>
+<p>Represents a tag available with the given class in the DOM. For example&nbsp;<strong>$('.some-class')</strong>&nbsp;selects all elements in the document that have a class of some-class.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>All the above items can be used either on their own or in combination with other selectors. All the jQuery selectors are based on the same principle except some tweaking.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; The factory function&nbsp;<strong>$()</strong>&nbsp;is a synonym of&nbsp;<strong>jQuery()</strong>&nbsp;function. So in case you are using any other JavaScript library where&nbsp;<strong>$</strong>&nbsp;sign is conflicting with some thing else then you can replace&nbsp;<strong>$</strong>&nbsp;sign by&nbsp;<strong>jQuery</strong>&nbsp;name and you can use function&nbsp;<strong>jQuery()</strong>&nbsp;instead of&nbsp;<strong>$()</strong>.</p>
+<h3>Example</h3>
+<p>Following is a simple example which makes use of Tag Selector. This would select all the elements with a tag name&nbsp;<strong>p</strong>.</p>
+<p><a class="demo" href="http://tpcg.io/lks5At" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">).</span><span class="pln">css</span><span class="pun">(</span><span class="str">"background-color"</span><span class="pun">,</span> <span class="str">"yellow"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"myclass"</span><span class="tag">&gt;</span><span class="pln">This is a paragraph.</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"myid"</span><span class="tag">&gt;</span><span class="pln">This is second paragraph.</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;p&gt;</span><span class="pln">This is third paragraph.</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/jquery-selectors.htm" width="300" height="150"></iframe></p>
+<h2>How to Use Selectors?</h2>
+<p>The selectors are very useful and would be required at every step while using jQuery. They get the exact element that you want from your HTML document.</p>
+<p>Following table lists down few basic selectors and explains them with examples.</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Selector &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/selector-element-name.htm">Name</a>
+<p>Selects all elements which match with the given element&nbsp;<strong>Name</strong>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/selector-element-id.htm">#ID</a>
+<p>Selects a single element which matches with the given&nbsp;<strong>ID</strong>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/selector-element-class.htm">.Class</a>
+<p>Selects all elements which match with the given&nbsp;<strong>Class</strong>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/selector-universal.htm">Universal (*)</a>
+<p>Selects all elements available in a DOM.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/selector-multiple-elements.htm">Multiple Elements E, F, G</a>
+<p>Selects the combined results of all the specified selectors&nbsp;<strong>E, F</strong>&nbsp;or&nbsp;<strong>G</strong>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Selectors Examples</h2>
+<p>Similar to above syntax and examples, following examples would give you understanding on using different type of other useful selectors &minus;</p>
+<section class="toggle"><label>Here, you have different type of other useful selectors &minus;</label></section>
+<p>You can use all the above selectors with any HTML/XML element in generic way. For example if selector&nbsp;<strong>$("li:first")</strong>&nbsp;works for &lt;li&gt; element then&nbsp;<strong>$("p:first")</strong>&nbsp;would also work for &lt;p&gt; element.</p>

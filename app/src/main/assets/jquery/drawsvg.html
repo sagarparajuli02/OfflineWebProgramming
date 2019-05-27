@@ -1,0 +1,275 @@
+<p>Drawsvg.js is a jQuery plugin to draw svg images</p>
+<p>A Simple of drawsvg example as shown below &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="atn">lang</span> <span class="pun">=</span> <span class="atv">"en"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;meta</span> <span class="atn">charset</span> <span class="pun">=</span> <span class="atv">"UTF-8"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"shortcut icon"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"image/x-icon"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"favicon.ico"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> 
+         <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"https://fonts.googleapis.com/css?family=Open+Sans:400,600"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;link</span> <span class="atn">rel</span> <span class="pun">=</span> <span class="atv">"stylesheet"</span> <span class="atn">href</span> <span class="pun">=</span> <span class="atv">"style.css"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"intro"</span><span class="tag">&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"container"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"overlay"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"inner"</span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;h1&gt;</span><span class="pln">jQuery DrawSVG Sample</span><span class="tag">&lt;/h1&gt;</span>
+
+                  <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"items-wrapper"</span><span class="tag">&gt;</span>
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span><span class="atv">"item active"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;svg</span> <span class="atn">viewBox</span> <span class="pun">=</span> <span class="atv">"0 0 201 146"</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"svgClass"</span> 
+                           <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">ffffff00</span><span class="atv">"</span> 
+                              <span class="atn">xmlns</span> <span class="pun">=</span> <span class="atv">"https://www.w3.org/2000/svg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"201"</span>
+                              <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"146"</span><span class="tag">&gt;</span>
+									
+                           <span class="tag">&lt;g</span> <span class="atn">stroke</span> <span class="pun">=</span> <span class="atv">"#FFF"</span> <span class="atn">stroke-width</span> <span class="pun">=</span> <span class="atv">"1"</span> <span class="atn">fill</span> <span class="pun">=</span> <span class="atv">"none"</span><span class="tag">&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M200.5 128.586c0 9.302-7.678
+                                 16.914-17.06 16.914H17.56C8.18 145.5.5 
+                                 137.888.5 128.586V29.414C.5 20.112 8.178 
+                                 12.5 17.56 12.5h165.88c9.382 0 17.06 
+                                 7.612 17.06 16.914v99.172z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M183.828 80.118c0 26.467-21.644 
+                                 47.924-48.34 47.924-26.698 
+                                 0-48.342-21.457-48.342-47.924s21.644-47.924 
+                                 48.34-47.924c26.698 0 48.342 21.457 48.342
+                                 47.924z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M171.98 80.118c0 19.978-16.338
+                                 36.177-36.493 36.177-20.15 
+                                 0-36.49-16.2-36.49-36.177 0-19.98 
+                                 16.34-36.177 36.49-36.177 20.155 0 
+                                 36.494 16.2 36.494 36.178z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M50.18 48.637c0 6.49-5.304 
+                                 11.747-11.852 11.747-6.543
+                                 0-11.847-5.258-11.847-11.747  0-6.488 
+                                 5.305-11.746 11.848-11.746 6.548 0 11.852 
+                                 5.26 11. 852 11.747z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M17.928 39.877c3.41-7.835 
+                                 11.258-13.305 20.416-13.305 9.16 0 17.006 
+                                 5.47 20.416 13.305"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M46 12V4H26v8"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M94.833 12l11.5-11.5h59.5l11.5 11.5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M26.333 92.5h35.5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M26.333 105.5h43"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M26.333 117.5h52"</span><span class="tag">/&gt;</span>
+                           <span class="tag">&lt;/g&gt;</span>
+									
+                        <span class="tag">&lt;/svg&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"item"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;svg</span> <span class="atn">viewBox</span> <span class="pun">=</span> <span class="atv">"0 0 207 105"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">ffffff00</span><span class="atv">"</span> 
+                           <span class="atn">xmlns</span> <span class="pun">=</span> <span class="atv">"https://www.w3.org/2000/svg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"207"</span> 
+                           <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"105"</span><span class="tag">&gt;</span>
+								
+                           <span class="tag">&lt;g</span> <span class="atn">stroke</span> <span class="pun">=</span> <span class="atv">"#FFF"</span> <span class="atn">stroke-width</span> <span class="pun">=</span> <span class="atv">"1"</span> <span class="atn">fill</span> <span class="pun">=</span> <span class="atv">"none"</span><span class="tag">&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M127 63.496C127 85.306 144.455 
+                                 103 165.998 103 187.538 103 205 85.306 
+                                 205 63.496 205 41.682 187.537 24 165.998
+                                 24 144.455 24 127 41.682 127 63.496z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M195 63.497C195 47.206 182.015 34 166 34"</span><span class="tag">/&gt;</span>
+										
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M2 63.496C2 85.306 19.455 103 
+                                 41.002 103 62.542 103 80 85.306 80 63.496 
+                                 80 41.682 62.54 24 41.002 24 19.455 24 2
+                                 41.682 2 63.496z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M64.296 22.732C57.656 18.094 
+                                 47.492 16 41.002 16c-6.49 0-12.675 
+                                 1.33-18.3 3.732-5.622 2.404-10.686 
+                                 5.88-14.938 10.178"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M159.715 63.576c0 3.634 2.902 
+                                 6.575 6.49 6.575 3.582 0 6.484-2.94 
+                                 6.484-6.574 0-3.63-2.903-6.575-6.486-6.575-3.587
+                                 0-6.49 2.946-6.49 6.576z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M34.873 64.032c0 3.63 2.907 
+                                 6.575 6.494 6.575 3.578 0 6.485-2.945 
+                                 6.485-6.575  0-3.635-2.907-6.575-6.485-6.575-3.587 
+                                 0-6.494 2.94-6.494 6.575z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M163.25 57.026L141.773 3"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M98 63.5H48"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M101.73 57.63L70.5 14.013"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M70.49 14.5h76.646v-.206"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M139.134 14.505L108.468 57.95"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M70.894 15.05L42.834 57.05"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M70.5 14V3"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M141.427 3.23s19.83-7.71 19.83 6.344"</span><span class="tag">/&gt;</span>
+										
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M97.816 62.52c0 3.576 2.86 6.475 
+                                 6.39 6.475s6.392-2.9 
+                                 6.392-6.476c0-3.577-2.86-6.476-6.39
+                                 -6.476s-6.392 2.9-6.392 6.476z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M106.642 69.26l2.913 11.044"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M105 83l10-5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M62.5 3.5h18"</span><span class="tag">/&gt;</span>
+                           <span class="tag">&lt;/g&gt;</span>
+									
+                        <span class="tag">&lt;/svg&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"item"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;svg</span> <span class="atn">viewBox</span> <span class="pun">=</span> <span class="atv">"0 0 201 116"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">ffffff00</span><span class="atv">"</span> 
+                           <span class="atn">xmlns</span> <span class="pun">=</span> <span class="atv">"https://www.w3.org/2000/svg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"201"</span> 
+                           <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"116"</span><span class="tag">&gt;</span>
+									
+                           <span class="tag">&lt;g</span> <span class="atn">stroke</span> <span class="pun">=</span> <span class="atv">"#FFF"</span> <span class="atn">stroke-width</span> <span class="pun">=</span> <span class="atv">"1"</span> <span class="atn">fill</span> <span class="pun">=</span> <span class="atv">"none"</span><span class="tag">&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M19.5 101.5V6.45C19.5 3.176 23.12.5 
+                                 26.402.5H175.53c3.282 0 5.97 2.677 5.97
+                                 5.95v95.05"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M171.5 89.5h-140v-77h140v77z"</span><span class="tag">/&gt;</span>
+										
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M200.5 107.526c0 1.635-1.344 
+                                 2.974-2.985 2.974H3.485c-1.64 
+                                 0-2.985-1.34-2.985-2.974v-3.052c0-1.635
+                                 1.344-2.974 2.985-2.974h194.03c1.64 0 2.985 
+                                 1.34 2.9852.974v3.052z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M1 110l10.5 5.5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M11.604 115.5H189.46"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M189.5 115.5l9.5-5.5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M99.5 7.5h5"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M138.5 12.5l28 28"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M148.5 12.5l18 18"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M159.5 12.5l7 6"</span><span class="tag">/&gt;</span>
+                           <span class="tag">&lt;/g&gt;</span>
+									
+                        <span class="tag">&lt;/svg&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+
+                     <span class="tag">&lt;div</span> <span class="atn">class</span> <span class="pun">=</span> <span class="atv">"item"</span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;svg</span> <span class="atn">viewBox</span> <span class="pun">=</span> <span class="atv">"0 0 200 155"</span> <span class="atn">style</span> <span class="pun">=</span> <span class="atv">"</span><span class="pln">background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">ffffff00</span><span class="atv">"</span> 
+                           <span class="atn">xmlns</span> <span class="pun">=</span> <span class="atv">"https://www.w3.org/2000/svg"</span> <span class="atn">width</span> <span class="pun">=</span> <span class="atv">"200"</span> 
+                           <span class="atn">height</span> <span class="pun">=</span> <span class="atv">"155"</span><span class="tag">&gt;</span>
+									
+                           <span class="tag">&lt;g</span> <span class="atn">stroke</span> <span class="pun">=</span> <span class="atv">"#FFF"</span> <span class="atn">stroke-width</span> <span class="pun">=</span> <span class="atv">"1"</span> <span class="atn">fill</span> <span class="pun">=</span> <span class="atv">"none"</span><span class="tag">&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span><span class="pun">=</span><span class="atv">"M161.996 151.39l-33.97-27.178-45.01 
+                                 30.576-35.67-27.603L.36 154.245 38.662 20.04 
+                                 80.893 4.034l39.066 17.41L161.995.213l37.792 
+                                 22.932-37.792 128.246z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M47.346 127.185L80.892 4.035"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M83.015 154.788l36.942-133.343"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M128.025 124.212l33.97-124"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M46.278 23.935L32.29 75.605"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M95.802 45.718L81.19 97.225"</span><span class="tag">/&gt;</span>
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M106.91 33.115l-22.26 81.39"</span><span class="tag">/&gt;</span>
+										
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M176.768 46.665c0 3.523-2.85
+                                 6.376-6.366 6.376-3.514 0-6.364-2.852
+                                 -6.364-6.375 0-3.512 2.85-6.37
+                                 6.364-6.37 3.516 0 6.366 2.858 
+                                 6.366 6.37z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M180.9 52.392l-10.844 
+                                 19.91-10.394-19.995s-1.143-3.215-1.
+                                 143-5.067c0-6.514 5.273-11.81 11.79-11.81 
+                                 6.508 0 11.782 5.296 11.782 11.81 
+                                 0 1.852-1.192 5.152-1.192 5.152z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M43.86 92.528c0 3.523-2.85 
+                                 6.376-6.367 6.376-3.514 0-6.364-2.
+                                 853-6.364-6.376 0-3.512 2.85-6.37 
+                                 6.363-6.37 3.517 0 6.366 2.858 
+                                 6.366 6.37z"</span><span class="tag">/&gt;</span>
+											
+                              <span class="tag">&lt;path</span> <span class="atn">d</span> <span class="pun">=</span> <span class="atv">"M47.99 98.255l-10.843 19.91L26.754 
+                                 98.17s-1.143-3.215-1.
+                                 143-5.067c0-6.514 5.275-11.81 
+                                 11.793-11.81 6.507 0 11.78 5.296 
+                                 11.78 11.81 0 1.852-1.192 
+                                 5.152-1.192 5.152z"</span><span class="tag">/&gt;</span>
+                           <span class="tag">&lt;/g&gt;</span>
+									
+                        <span class="tag">&lt;/svg&gt;</span>
+                     <span class="tag">&lt;/div&gt;</span>
+							
+                  <span class="tag">&lt;/div&gt;</span>
+               <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+         <span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+		
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"fb-root"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">async</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"//assets.codepen.io/assets/embed/ei.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"jquery.drawsvg.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+
+            <span class="kwd">var</span><span class="pln"> $doc </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">),</span><span class="pln">
+            $win </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">window</span><span class="pun">);</span>
+
+            <span class="kwd">var</span><span class="pln"> $intro </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">'.intro'</span><span class="pun">),</span><span class="pln">
+            $items </span><span class="pun">=</span><span class="pln"> $intro</span><span class="pun">.</span><span class="pln">find</span><span class="pun">(</span><span class="str">'.item'</span><span class="pun">),</span><span class="pln">
+            itemsLen </span><span class="pun">=</span><span class="pln"> $items</span><span class="pun">.</span><span class="pln">length</span><span class="pun">,</span><span class="pln">
+				
+            svgs </span><span class="pun">=</span><span class="pln"> $intro</span><span class="pun">.</span><span class="pln">find</span><span class="pun">(</span><span class="str">'svg'</span><span class="pun">).</span><span class="pln">drawsvg</span><span class="pun">({</span><span class="pln">
+               callback</span><span class="pun">:</span><span class="pln"> animateIntro</span><span class="pun">,</span><span class="pln">
+               easing</span><span class="pun">:</span> <span class="str">'easeOutQuart'</span>
+            <span class="pun">}),</span><span class="pln">
+				
+            currItem </span><span class="pun">=</span> <span class="lit">0</span><span class="pun">;</span>
+
+            <span class="kwd">function</span><span class="pln"> animateIntro</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+               $items</span><span class="pun">.</span><span class="pln">removeClass</span><span class="pun">(</span><span class="str">'active'</span><span class="pun">).</span><span class="pln">eq</span><span class="pun">(</span><span class="pln"> currItem</span><span class="pun">++</span> <span class="pun">%</span><span class="pln"> itemsLen 
+                  </span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">'active'</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">'svg'</span><span class="pun">).</span><span class="pln">drawsvg</span><span class="pun">(</span><span class="str">'animate'</span><span class="pun">);</span>
+            <span class="pun">}</span><span class="pln">
+
+            animateIntro</span><span class="pun">();</span>
+
+            <span class="kwd">var</span><span class="pln"> $header </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">'header'</span><span class="pun">),</span><span class="pln">
+            headerOffTop </span><span class="pun">=</span><span class="pln"> $header</span><span class="pun">.</span><span class="pln">offset</span><span class="pun">().</span><span class="pln">top</span><span class="pun">,</span><span class="pln">
+            isFixed </span><span class="pun">=</span> <span class="kwd">false</span><span class="pun">;</span>
+
+            <span class="kwd">function</span><span class="pln"> menu</span><span class="pun">()</span> <span class="pun">{</span>
+               <span class="kwd">if</span> <span class="pun">(</span><span class="pln"> $win</span><span class="pun">.</span><span class="pln">scrollTop</span><span class="pun">()</span> <span class="pun">&gt;=</span><span class="pln"> headerOffTop </span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">if</span> <span class="pun">(</span> <span class="pun">!</span><span class="pln">isFixed </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                     isFixed </span><span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span><span class="pln">
+                     $header</span><span class="pun">.</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">'affix'</span><span class="pun">);</span>
+                  <span class="pun">}</span>
+               <span class="pun">}</span> <span class="kwd">else</span> <span class="kwd">if</span> <span class="pun">(</span><span class="pln"> isFixed </span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+                  isFixed </span><span class="pun">=</span> <span class="kwd">false</span><span class="pun">;</span><span class="pln">
+                  $header</span><span class="pun">.</span><span class="pln">removeClass</span><span class="pun">(</span><span class="str">'affix'</span><span class="pun">);</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span><span class="pln">
+
+            $win</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'scroll'</span><span class="pun">,</span><span class="pln"> menu</span><span class="pun">);</span><span class="pln">
+            menu</span><span class="pun">();</span><span class="pln">
+
+            $header</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'click'</span><span class="pun">,</span> <span class="str">'a[href^="#"]'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
+               e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span>
+
+               <span class="kwd">var</span><span class="pln"> hash </span><span class="pun">=</span> <span class="kwd">this</span><span class="pun">.</span><span class="pln">hash</span><span class="pun">,</span><span class="pln">
+               offset </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">hash</span><span class="pun">).</span><span class="pln">offset</span><span class="pun">().</span><span class="pln">top</span><span class="pun">;</span><span class="pln">
+
+               $</span><span class="pun">(</span><span class="str">'body, html'</span><span class="pun">).</span><span class="pln">animate</span><span class="pun">({</span><span class="pln">
+                  scrollTop</span><span class="pun">:</span><span class="pln"> offset
+               </span><span class="pun">},</span> <span class="lit">600</span><span class="pun">,</span> <span class="str">'easeInOutQuart'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+                  document</span><span class="pun">.</span><span class="pln">location</span><span class="pun">.</span><span class="pln">hash </span><span class="pun">=</span><span class="pln"> hash</span><span class="pun">;</span>
+               <span class="pun">});</span>
+            <span class="pun">});</span>
+
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This should produce following result &minus;</p>
+<p><a href="https://www.tutorialspoint.com/jquery/src/drawsvg/index.htm">Click here</a></p>

@@ -1,0 +1,50 @@
+<p>Django provides a ready-to-use user interface for administrative activities. We all know how an admin interface is important for a web project. Django automatically generates admin UI based on your project models.</p>
+<h2>Starting the Admin Interface</h2>
+<p>The Admin interface depends on the django.countrib module. To have it working you need to make sure some modules are imported in the INSTALLED_APPS and MIDDLEWARE_CLASSES tuples of the myproject/settings.py file.</p>
+<p>For INSTALLED_APPS make sure you have &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">INSTALLED_APPS </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.contrib.admin'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.auth'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.contenttypes'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.sessions'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.messages'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.staticfiles'</span><span class="pun">,</span>
+   <span class="str">'myapp'</span><span class="pun">,</span>
+<span class="pun">)</span></pre>
+<p>For MIDDLEWARE_CLASSES &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">MIDDLEWARE_CLASSES </span><span class="pun">=</span> <span class="pun">(</span>
+   <span class="str">'django.contrib.sessions.middleware.SessionMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.middleware.common.CommonMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.middleware.csrf.CsrfViewMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.auth.middleware.AuthenticationMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.contrib.messages.middleware.MessageMiddleware'</span><span class="pun">,</span>
+   <span class="str">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span><span class="pun">,</span>
+<span class="pun">)</span></pre>
+<p>Before launching your server, to access your Admin Interface, you need to initiate the database &minus;</p>
+<pre class="result notranslate">$ python manage.py migrate
+</pre>
+<p>syncdb will create necessary tables or collections depending on your db type, necessary for the admin interface to run. Even if you don't have a superuser, you will be prompted to create one.</p>
+<p>If you already have a superuser or have forgotten it, you can always create one using the following code &minus;</p>
+<pre class="result notranslate">$ python manage.py createsuperuser
+</pre>
+<p>Now to start the Admin Interface, we need to make sure we have configured a URL for our admin interface. Open the myproject/url.py and you should have something like &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">conf</span><span class="pun">.</span><span class="pln">urls </span><span class="kwd">import</span><span class="pln"> patterns</span><span class="pun">,</span><span class="pln"> include</span><span class="pun">,</span><span class="pln"> url
+
+</span><span class="kwd">from</span><span class="pln"> django</span><span class="pun">.</span><span class="pln">contrib </span><span class="kwd">import</span><span class="pln"> admin
+admin</span><span class="pun">.</span><span class="pln">autodiscover</span><span class="pun">()</span><span class="pln">
+
+urlpatterns </span><span class="pun">=</span><span class="pln"> patterns</span><span class="pun">(</span><span class="str">''</span><span class="pun">,</span>
+   <span class="com"># Examples:</span>
+   <span class="com"># url(r'^$', 'myproject.views.home', name = 'home'),</span>
+   <span class="com"># url(r'^blog/', include('blog.urls')),</span><span class="pln">
+
+   url</span><span class="pun">(</span><span class="pln">r</span><span class="str">'^admin/'</span><span class="pun">,</span><span class="pln"> include</span><span class="pun">(</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">site</span><span class="pun">.</span><span class="pln">urls</span><span class="pun">)),</span>
+<span class="pun">)</span></pre>
+<p>Now just run the server.</p>
+<pre class="result notranslate">$ python manage.py runserver
+</pre>
+<p>And your admin interface is accessible at: http://127.0.0.1:8000/admin/</p>
+<p><img src="https://www.tutorialspoint.com/django/images/admin_interface.jpg" alt="Admin Interface" /></p>
+<p>Once connected with your superuser account, you will see the following screen &minus;</p>
+<p><img src="https://www.tutorialspoint.com/django/images/super_user_account.jpg" alt="Super User Account" /></p>
+<p>That interface will let you administrate Django groups and users, and all registered models in your app. The interface gives you the ability to do at least the "CRUD" (Create, Read, Update, Delete) operations on your models.</p>

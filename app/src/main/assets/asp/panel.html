@@ -1,0 +1,153 @@
+<p>The Panel control works as a container for other controls on the page. It controls the appearance and visibility of the controls it contains. It also allows generating controls programmatically.</p>
+<p>The basic syntax of panel control is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:Panel</span> <span class="atn">ID</span><span class="pun">=</span> <span class="atv">"Panel1"</span>  <span class="atn">runat</span> <span class="pun">=</span> <span class="atv">"server"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/asp:Panel&gt;</span></pre>
+<p>The Panel control is derived from the WebControl class. Hence it inherits all the properties, methods and events of the same. It does not have any method or event of its own. However it has the following properties of its own:</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th>Properties</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>BackImageUrl</td>
+<td>URL of the background image of the panel.</td>
+</tr>
+<tr>
+<td>DefaultButton</td>
+<td>Gets or sets the identifier for the default button that is contained in the Panel control.</td>
+</tr>
+<tr>
+<td>Direction</td>
+<td>Text direction in the panel.</td>
+</tr>
+<tr>
+<td>GroupingText</td>
+<td>Allows grouping of text as a field.</td>
+</tr>
+<tr>
+<td>HorizontalAlign</td>
+<td>Horizontal alignment of the content in the panel.</td>
+</tr>
+<tr>
+<td>ScrollBars</td>
+<td>Specifies visibility and location of scrollbars within the panel.</td>
+</tr>
+<tr>
+<td>Wrap</td>
+<td>Allows text wrapping.</td>
+</tr>
+</tbody>
+</table>
+<h2>Working with the Panel Control</h2>
+<p>Let us start with a simple scrollable panel of specific height and width and a border style. The ScrollBars property is set to both the scrollbars, hence both the scrollbars are rendered.</p>
+<p>The source file has the following code for the panel tag:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;asp:Panel</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"Panel1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">BorderColor</span><span class="pun">=</span><span class="atv">"#990000"</span> <span class="atn">BorderStyle</span><span class="pun">=</span><span class="atv">"Solid"</span> 
+   <span class="atn">Borderstyle</span><span class="pun">=</span><span class="atv">"width:1px"</span> <span class="atn">Height</span><span class="pun">=</span><span class="atv">"116px"</span> <span class="atn">ScrollBars</span><span class="pun">=</span><span class="atv">"Both"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">278px</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">
+   
+   This is a scrollable panel.
+   </span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+   <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+
+   <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnpanel"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Button"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">82px</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/asp:Panel&gt;</span></pre>
+<p>The panel is rendered as follows:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/panel.jpg" alt="Panel" /></p>
+<h3>Example</h3>
+<p>The following example demonstrates dynamic content generation. The user provides the number of label controls and textboxes to be generated on the panel. The controls are generated programmatically.</p>
+<p>Change the properties of the panel using the properties window. When you select a control on the design view, the properties window displays the properties of that particular control and allows you to make changes without typing.</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/panel2.jpg" alt="Panel2" /></p>
+<p>The source file for the example is as follows:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;form</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"form1"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+   <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;asp:Panel</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"pnldynamic"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">BorderColor</span><span class="pun">=</span><span class="atv">"#990000"</span> 
+         <span class="atn">BorderStyle</span><span class="pun">=</span><span class="atv">"Solid"</span> <span class="atn">Borderstyle</span><span class="pun">=</span><span class="atv">"width:1px"</span> <span class="atn">Height</span><span class="pun">=</span><span class="atv">"150px"</span>  <span class="atn">ScrollBars</span><span class="pun">=</span><span class="atv">"Auto"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">60</span><span class="pun">%</span><span class="atv">"</span> <span class="atn">BackColor</span><span class="pun">=</span><span class="atv">"#CCCCFF"</span>  <span class="atn">Font-Names</span><span class="pun">=</span><span class="atv">"Courier"</span> <span class="atn">HorizontalAlign</span><span class="pun">=</span><span class="atv">"Center"</span><span class="tag">&gt;</span><span class="pln">
+     
+         This panel shows dynamic control generation:
+         </span><span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;br</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/asp:Panel&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+
+   <span class="tag">&lt;table</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span> <span class="lit">51</span><span class="pun">%;</span><span class="atv">"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;tr&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span><span class="pln">No of Labels:</span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;asp:DropDownList</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"ddllabels"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">0</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">1</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">2</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">3</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">4</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+            <span class="tag">&lt;/asp:DropDownList&gt;</span>
+         <span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+
+      <span class="tag">&lt;tr&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+
+      <span class="tag">&lt;tr&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span><span class="pln">No of Text Boxes :</span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;asp:DropDownList</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"ddltextbox"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span><span class="tag">&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">0</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem</span> <span class="atn">Value</span><span class="pun">=</span><span class="atv">"1"</span><span class="tag">&gt;&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">2</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem&gt;</span><span class="pln">3</span><span class="tag">&lt;/asp:ListItem&gt;</span>
+               <span class="tag">&lt;asp:ListItem</span> <span class="atn">Value</span><span class="pun">=</span><span class="atv">"4"</span><span class="tag">&gt;&lt;/asp:ListItem&gt;</span>
+            <span class="tag">&lt;/asp:DropDownList&gt;</span>
+         <span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+
+      <span class="tag">&lt;tr&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span><span class="pln">&nbsp;</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+
+      <span class="tag">&lt;tr&gt;</span>
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style2"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;asp:CheckBox</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"chkvisible"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> 
+               <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Make the Panel Visible"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/td&gt;</span>
+
+         <span class="tag">&lt;td</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"style1"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;asp:Button</span> <span class="atn">ID</span><span class="pun">=</span><span class="atv">"btnrefresh"</span> <span class="atn">runat</span><span class="pun">=</span><span class="atv">"server"</span> <span class="atn">Text</span><span class="pun">=</span><span class="atv">"Refresh Panel"</span> 
+               <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="lit">129px</span><span class="atv">"</span> <span class="tag">/&gt;</span>
+         <span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+   <span class="tag">&lt;/table&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+<p>The code behind the Page_Load event is responsible for generating the controls dynamically:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">public</span> <span class="kwd">partial</span> <span class="kwd">class</span> <span class="typ">_Default</span> <span class="pun">:</span> <span class="typ">System</span><span class="pun">.</span><span class="typ">Web</span><span class="pun">.</span><span class="pln">UI</span><span class="pun">.</span><span class="typ">Page</span>
+<span class="pun">{</span>
+   <span class="kwd">protected</span> <span class="kwd">void</span> <span class="typ">Page_Load</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> sender</span><span class="pun">,</span> <span class="typ">EventArgs</span><span class="pln"> e</span><span class="pun">)</span>
+   <span class="pun">{</span>
+      <span class="com">//make the panel visible</span><span class="pln">
+      pnldynamic</span><span class="pun">.</span><span class="typ">Visible</span> <span class="pun">=</span><span class="pln"> chkvisible</span><span class="pun">.</span><span class="typ">Checked</span><span class="pun">;</span>
+
+      <span class="com">//generating the lable controls:</span>
+      <span class="kwd">int</span><span class="pln"> n </span><span class="pun">=</span> <span class="typ">Int32</span><span class="pun">.</span><span class="typ">Parse</span><span class="pun">(</span><span class="pln">ddllabels</span><span class="pun">.</span><span class="typ">SelectedItem</span><span class="pun">.</span><span class="typ">Value</span><span class="pun">);</span>
+      <span class="kwd">for</span> <span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span> <span class="lit">1</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> n</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span>
+      <span class="pun">{</span>
+         <span class="typ">Label</span><span class="pln"> lbl </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">Label</span><span class="pun">();</span><span class="pln">
+         lbl</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">=</span> <span class="str">"Label"</span> <span class="pun">+</span> <span class="pun">(</span><span class="pln">i</span><span class="pun">).</span><span class="typ">ToString</span><span class="pun">();</span><span class="pln">
+         pnldynamic</span><span class="pun">.</span><span class="typ">Controls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">lbl</span><span class="pun">);</span><span class="pln">
+         pnldynamic</span><span class="pun">.</span><span class="typ">Controls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="kwd">new</span> <span class="typ">LiteralControl</span><span class="pun">(</span><span class="str">"&lt;br /&gt;"</span><span class="pun">));</span>
+      <span class="pun">}</span>
+      
+      <span class="com">//generating the text box controls:</span>
+
+      <span class="kwd">int</span><span class="pln"> m </span><span class="pun">=</span> <span class="typ">Int32</span><span class="pun">.</span><span class="typ">Parse</span><span class="pun">(</span><span class="pln">ddltextbox</span><span class="pun">.</span><span class="typ">SelectedItem</span><span class="pun">.</span><span class="typ">Value</span><span class="pun">);</span>
+      <span class="kwd">for</span> <span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span> <span class="lit">1</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> m</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span>
+      <span class="pun">{</span>
+         <span class="typ">TextBox</span><span class="pln"> txt </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">TextBox</span><span class="pun">();</span><span class="pln">
+         txt</span><span class="pun">.</span><span class="typ">Text</span> <span class="pun">=</span> <span class="str">"Text Box"</span> <span class="pun">+</span> <span class="pun">(</span><span class="pln">i</span><span class="pun">).</span><span class="typ">ToString</span><span class="pun">();</span><span class="pln">
+         pnldynamic</span><span class="pun">.</span><span class="typ">Controls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">txt</span><span class="pun">);</span><span class="pln">
+         pnldynamic</span><span class="pun">.</span><span class="typ">Controls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="kwd">new</span> <span class="typ">LiteralControl</span><span class="pun">(</span><span class="str">"&lt;br /&gt;"</span><span class="pun">));</span>
+      <span class="pun">}</span>
+   <span class="pun">}</span>
+<span class="pun">}</span></pre>
+<p>When executed, the panel is rendered as:</p>
+<p><img src="https://www.tutorialspoint.com/asp.net/images/panel3.jpg" alt="Panel3" /></p>

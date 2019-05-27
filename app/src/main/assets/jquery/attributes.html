@@ -1,0 +1,192 @@
+<p>Some of the most basic components we can manipulate when it comes to DOM elements are the properties and attributes assigned to those elements.</p>
+<p>Most of these attributes are available through JavaScript as DOM node properties. Some of the more common properties are &minus;</p>
+<ul class="list">
+<li>className</li>
+<li>tagName</li>
+<li>id</li>
+<li>href</li>
+<li>title</li>
+<li>rel</li>
+<li>src</li>
+</ul>
+<p>Consider the following HTML markup for an image element &minus;</p>
+<pre class="result notranslate">&lt;img id = "imageid" src = "image.gif" alt = "Image" class = "myclass" 
+   title = "This is an image"/&gt;
+</pre>
+<p>In this element's markup, the tag name is img, and the markup for id, src, alt, class, and title represents the element's attributes, each of which consists of a name and a value.</p>
+<p>jQuery gives us the means to easily manipulate an element's attributes and gives us access to the element so that we can also change its properties.</p>
+<h2>Get Attribute Value</h2>
+<p>The&nbsp;<strong>attr()</strong>&nbsp;method can be used to either fetch the value of an attribute from the first element in the matched set or set attribute values onto all matched elements.</p>
+<h3>Example</h3>
+<p>Following is a simple example which fetches title attribute of &lt;em&gt; tag and set &lt;div id = "divid"&gt; value with the same value &minus;</p>
+<p><a class="demo" href="http://tpcg.io/h16fH2" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+            <span class="kwd">var</span><span class="pln"> title </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">"em"</span><span class="pun">).</span><span class="pln">attr</span><span class="pun">(</span><span class="str">"title"</span><span class="pun">);</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"#divid"</span><span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="pln">title</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;em</span> <span class="atn">title</span> <span class="pun">=</span> <span class="atv">"Bold and Brave"</span><span class="tag">&gt;</span><span class="pln">This is first paragraph.</span><span class="tag">&lt;/em&gt;</span>
+         <span class="tag">&lt;p</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"myid"</span><span class="tag">&gt;</span><span class="pln">This is second paragraph.</span><span class="tag">&lt;/p&gt;</span>
+         <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"divid"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/get-attribute-value.htm" width="300" height="150"></iframe></p>
+<h2>Set Attribute Value</h2>
+<p>The&nbsp;<strong>attr(name, value)</strong>&nbsp;method can be used to set the named attribute onto all elements in the wrapped set using the passed value.</p>
+<h3>Example</h3>
+<p>Following is a simple example which set&nbsp;<strong>src</strong>&nbsp;attribute of an image tag to a correct location &minus;</p>
+<p><a class="demo" href="http://tpcg.io/944kkG" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;base</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://www.tutorialspoint.com"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"#myimg"</span><span class="pun">).</span><span class="pln">attr</span><span class="pun">(</span><span class="str">"src"</span><span class="pun">,</span> <span class="str">"/jquery/images/jquery.jpg"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;div&gt;</span>
+         <span class="tag">&lt;img</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"myimg"</span> <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"/images/jquery.jpg"</span> <span class="atn">alt</span> <span class="pun">=</span> <span class="atv">"Sample image"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/set-attribute-value.htm" width="300" height="150"></iframe></p>
+<h2>Applying Styles</h2>
+<p>The&nbsp;<strong>addClass( classes )</strong>&nbsp;method can be used to apply defined style sheets onto all the matched elements. You can specify multiple classes separated by space.</p>
+<h3>Example</h3>
+<p>Following is a simple example which sets&nbsp;<strong>class</strong>&nbsp;attribute of a para &lt;p&gt; tag &minus;</p>
+<p><a class="demo" href="http://tpcg.io/VtpTcP" target="_blank" rel="nofollow">&nbsp;Live Demo</a></p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="pln">The jQuery Example</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> 
+         <span class="atn">src</span> <span class="pun">=</span> <span class="atv">"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;script</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span><span class="tag">&gt;</span><span class="pln">
+         $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"em"</span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">"selected"</span><span class="pun">);</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"#myid"</span><span class="pun">).</span><span class="pln">addClass</span><span class="pun">(</span><span class="str">"highlight"</span><span class="pun">);</span>
+         <span class="pun">});</span>
+      <span class="tag">&lt;/script&gt;</span>
+		
+      <span class="tag">&lt;style&gt;</span>
+         <span class="pun">.</span><span class="pln">selected </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span> <span class="pun">}</span>
+         <span class="pun">.</span><span class="pln">highlight </span><span class="pun">{</span><span class="pln"> background</span><span class="pun">:</span><span class="pln">yellow</span><span class="pun">;</span> <span class="pun">}</span>
+      <span class="tag">&lt;/style&gt;</span>	
+   <span class="tag">&lt;/head&gt;</span>
+	
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;em</span> <span class="atn">title</span> <span class="pun">=</span> <span class="atv">"Bold and Brave"</span><span class="tag">&gt;</span><span class="pln">This is first paragraph.</span><span class="tag">&lt;/em&gt;</span>
+      <span class="tag">&lt;p</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">"myid"</span><span class="tag">&gt;</span><span class="pln">This is second paragraph.</span><span class="tag">&lt;/p&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p>This will produce following result &minus;</p>
+<p><iframe class="result" src="https://www.tutorialspoint.com/jquery/src/applying-styles.htm" width="300" height="150"></iframe></p>
+<h2>Attribute Methods</h2>
+<p>Following table lists down few useful methods which you can use to manipulate attributes and properties &minus;</p>
+<table class="table table-bordered">
+<tbody>
+<tr>
+<th width="10%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-properties.htm">attr( properties )</a>
+<p>Set a key/value object as properties to all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-key-function.htm">attr( key, fn )</a>
+<p>Set a single property to a computed value, on all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-remove-attribute.htm">removeAttr( name )</a>
+<p>Remove an attribute from each of the matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-has-class.htm">hasClass( class )</a>
+<p>Returns true if the specified class is present on at least one of the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-remove-class.htm">removeClass( class )</a>
+<p>Removes all or the specified class(es) from the set of matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-toggle-class.htm">toggleClass( class )</a>
+<p>Adds the specified class if it is not present, removes the specified class if it is present.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-html.htm">html( )</a>
+<p>Get the html contents (innerHTML) of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-html-val.htm">html( val )</a>
+<p>Set the html contents of every matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-text.htm">text( )</a>
+<p>Get the combined text contents of all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-text-val.htm">text( val )</a>
+<p>Set the text contents of all matched elements.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-val.htm">val( )</a>
+<p>Get the input value of the first matched element.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="https://www.tutorialspoint.com/jquery/attr-val-val.htm">val( val )</a>
+<p>Set the value attribute of every matched element if it is called on &lt;input&gt; but if it is called on &lt;select&gt; with the passed &lt;option&gt; value then passed option would be selected, if it is called on check box or radio box then all the matching check box and radiobox would be checked.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Examples</h2>
+<p>Similar to above syntax and examples, following examples would give you understanding on using various attribute methods in different situation &minus;</p>
+<section class="toggle"><label>Here is a complete list of attribute methods in different situation &minus;</label></section>

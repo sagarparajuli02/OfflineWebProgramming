@@ -1,0 +1,181 @@
+<style>
+body{
+  font-family: Verdana,Geneva,Tahoma,Arial,Helvetica,sans-serif;
+ 
+    line-height: 22px;
+}</style>
+<p>To clearly illustrate how easy it is to access information from a database using AJAX, we are going to build MySQL queries on the fly and display the results on "ajax.html". But before we proceed, let us do the ground work. Create a table using the following command.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; We are assuming you have sufficient privilege to perform the following MySQL operations.</p>
+<pre class="result notranslate">CREATE TABLE 'ajax_example' (
+   'name' varchar(50) NOT NULL,
+   'age' int(11) NOT NULL,
+   'sex' varchar(1) NOT NULL,
+   'wpm' int(11) NOT NULL,
+   PRIMARY KEY  ('name')
+) 
+</pre>
+<p>Now dump the following data into this table using the following SQL statements &minus;</p>
+<pre class="result notranslate">INSERT INTO 'ajax_example' VALUES ('Jerry', 120, 'm', 20);
+INSERT INTO 'ajax_example' VALUES ('Regis', 75, 'm', 44);
+INSERT INTO 'ajax_example' VALUES ('Frank', 45, 'm', 87);
+INSERT INTO 'ajax_example' VALUES ('Jill', 22, 'f', 72);
+INSERT INTO 'ajax_example' VALUES ('Tracy', 27, 'f', 0);
+INSERT INTO 'ajax_example' VALUES ('Julie', 35, 'f', 90);
+</pre>
+<h2>Client Side HTML File</h2>
+<p>Now let us have our client side HTML file, which is ajax.html, and it will have the following code &minus;</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span>
+   <span class="tag">&lt;body&gt;</span>
+      <span class="tag">&lt;script</span> <span class="atn">language</span> <span class="pun">=</span> <span class="atv">"javascript"</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">"text/javascript"</span><span class="tag">&gt;</span>
+         <span class="pun">&lt;!--</span> 
+         <span class="com">//Browser Support Code</span>
+         <span class="kwd">function</span><span class="pln"> ajaxFunction</span><span class="pun">()</span> <span class="pun">{</span>
+            <span class="kwd">var</span><span class="pln"> ajaxRequest</span><span class="pun">;</span>  <span class="com">// The variable that makes Ajax possible!</span>
+            
+            <span class="kwd">try</span> <span class="pun">{</span>        
+               <span class="com">// Opera 8.0+, Firefox, Safari</span><span class="pln">
+               ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">XMLHttpRequest</span><span class="pun">();</span>
+            <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+               
+               <span class="com">// Internet Explorer Browsers</span>
+               <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                  ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Msxml2.XMLHTTP"</span><span class="pun">);</span>
+               <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+                  
+                  <span class="kwd">try</span> <span class="pun">{</span><span class="pln">
+                     ajaxRequest </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Microsoft.XMLHTTP"</span><span class="pun">);</span>
+                  <span class="pun">}</span> <span class="kwd">catch</span> <span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span>
+                     <span class="com">// Something went wrong</span><span class="pln">
+                     alert</span><span class="pun">(</span><span class="str">"Your browser broke!"</span><span class="pun">);</span>
+                     <span class="kwd">return</span> <span class="kwd">false</span><span class="pun">;</span>
+                  <span class="pun">}</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// Create a function that will receive data</span>
+            <span class="com">// sent from the server and will update</span>
+            <span class="com">// div section in the same page.</span><span class="pln">
+            ajaxRequest</span><span class="pun">.</span><span class="pln">onreadystatechange </span><span class="pun">=</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
+            
+               <span class="kwd">if</span><span class="pun">(</span><span class="pln">ajaxRequest</span><span class="pun">.</span><span class="pln">readyState </span><span class="pun">==</span> <span class="lit">4</span><span class="pun">)</span> <span class="pun">{</span>
+                  <span class="kwd">var</span><span class="pln"> ajaxDisplay </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'ajaxDiv'</span><span class="pun">);</span><span class="pln">
+                  ajaxDisplay</span><span class="pun">.</span><span class="pln">innerHTML </span><span class="pun">=</span><span class="pln"> ajaxRequest</span><span class="pun">.</span><span class="pln">responseText</span><span class="pun">;</span>
+               <span class="pun">}</span>
+            <span class="pun">}</span>
+            
+            <span class="com">// Now get the value from user and pass it to</span>
+            <span class="com">// server script.</span>
+            <span class="kwd">var</span><span class="pln"> age </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'age'</span><span class="pun">).</span><span class="pln">value</span><span class="pun">;</span>
+            <span class="kwd">var</span><span class="pln"> wpm </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'wpm'</span><span class="pun">).</span><span class="pln">value</span><span class="pun">;</span>
+            <span class="kwd">var</span><span class="pln"> sex </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'sex'</span><span class="pun">).</span><span class="pln">value</span><span class="pun">;</span>
+            <span class="kwd">var</span><span class="pln"> queryString </span><span class="pun">=</span> <span class="str">"?age = "</span> <span class="pun">+</span><span class="pln"> age </span><span class="pun">;</span><span class="pln">
+            
+            queryString </span><span class="pun">+=</span>  <span class="str">"&amp;wpm = "</span> <span class="pun">+</span><span class="pln"> wpm </span><span class="pun">+</span> <span class="str">"&amp;sex = "</span> <span class="pun">+</span><span class="pln"> sex</span><span class="pun">;</span><span class="pln">
+            ajaxRequest</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">"GET"</span><span class="pun">,</span> <span class="str">"ajax-example.php"</span> <span class="pun">+</span><span class="pln"> queryString</span><span class="pun">,</span> <span class="kwd">true</span><span class="pun">);</span><span class="pln">
+            ajaxRequest</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span> 
+         <span class="pun">}</span>
+         <span class="com">//--&gt;</span>
+      <span class="tag">&lt;/script&gt;</span>
+
+      <span class="tag">&lt;form</span> <span class="atn">name</span> <span class="pun">=</span> <span class="atv">'myForm'</span><span class="tag">&gt;</span><span class="pln">
+         Max Age: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'text'</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'age'</span> <span class="tag">/&gt;</span> <span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+         Max WPM: </span><span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'text'</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'wpm'</span> <span class="tag">/&gt;</span> <span class="tag">&lt;br</span> <span class="tag">/&gt;</span><span class="pln">
+         Sex: 
+         
+         </span><span class="tag">&lt;select</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'sex'</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"m"</span><span class="tag">&gt;</span><span class="pln">m</span><span class="tag">&lt;/option&gt;</span>
+            <span class="tag">&lt;option</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">"f"</span><span class="tag">&gt;</span><span class="pln">f</span><span class="tag">&lt;/option&gt;</span>
+         <span class="tag">&lt;/select&gt;</span>
+         
+         <span class="tag">&lt;input</span> <span class="atn">type</span> <span class="pun">=</span> <span class="atv">'button'</span> <span class="atn">onclick</span> <span class="pun">=</span> <span class="atv">'</span><span class="pln">ajaxFunction</span><span class="pun">()</span><span class="atv">'</span> <span class="atn">value</span> <span class="pun">=</span> <span class="atv">'Query MySQL'</span><span class="tag">/&gt;</span>
+      <span class="tag">&lt;/form&gt;</span>
+      
+      <span class="tag">&lt;div</span> <span class="atn">id</span> <span class="pun">=</span> <span class="atv">'ajaxDiv'</span><span class="tag">&gt;</span><span class="pln">Your result will display here</span><span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+<p><strong>NOTE</strong>&nbsp;&minus; The way of passing variables in the Query is according to HTTP standard and have formA.</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">URL</span><span class="pun">?</span><span class="pln">variable1 </span><span class="pun">=</span><span class="pln"> value1</span><span class="pun">;&amp;</span><span class="pln">variable2 </span><span class="pun">=</span><span class="pln"> value2</span><span class="pun">;</span></pre>
+<p>The above code will give you a screen as given below &minus;</p>
+<form name="myForm0">
+<p>Max Age:&nbsp;&nbsp;<input id="age0" type="text" /></p>
+<p>Max WPM:&nbsp;<input id="wpm0" type="text" /></p>
+<p>Sex:&nbsp;<select id="sex0">&nbsp;
+<option value="m">m</option>
+&nbsp;
+<option value="f">f</option>
+&nbsp;</select></p>
+<input type="button" value="Query MySQL" /></form>
+<p>Your result will display here in this section after you have made your entry.</p>
+<p><strong>NOTE</strong>&nbsp;&minus; This is a dummy screen.</p>
+<h2>Server Side PHP File</h2>
+<p>Your client-side script is ready. Now, we have to write our server-side script, which will fetch age, wpm, and sex from the database and will send it back to the client. Put the following code into the file "ajax-example.php".</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pun">&lt;?</span><span class="pln">php
+$dbhost </span><span class="pun">=</span> <span class="str">"localhost"</span><span class="pun">;</span><span class="pln">
+$dbuser </span><span class="pun">=</span> <span class="str">"dbusername"</span><span class="pun">;</span><span class="pln">
+$dbpass </span><span class="pun">=</span> <span class="str">"dbpassword"</span><span class="pun">;</span><span class="pln">
+$dbname </span><span class="pun">=</span> <span class="str">"dbname"</span><span class="pun">;</span>
+	
+<span class="com">//Connect to MySQL Server</span><span class="pln">
+mysql_connect</span><span class="pun">(</span><span class="pln">$dbhost</span><span class="pun">,</span><span class="pln"> $dbuser</span><span class="pun">,</span><span class="pln"> $dbpass</span><span class="pun">);</span>
+	
+<span class="com">//Select Database</span><span class="pln">
+mysql_select_db</span><span class="pun">(</span><span class="pln">$dbname</span><span class="pun">)</span> <span class="kwd">or</span> <span class="kwd">die</span><span class="pun">(</span><span class="pln">mysql_error</span><span class="pun">());</span>
+	
+<span class="com">// Retrieve data from Query String</span><span class="pln">
+$age </span><span class="pun">=</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">'age'</span><span class="pun">];</span><span class="pln">
+$sex </span><span class="pun">=</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">'sex'</span><span class="pun">];</span><span class="pln">
+$wpm </span><span class="pun">=</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">'wpm'</span><span class="pun">];</span>
+	
+<span class="com">// Escape User Input to help prevent SQL Injection</span><span class="pln">
+$age </span><span class="pun">=</span><span class="pln"> mysql_real_escape_string</span><span class="pun">(</span><span class="pln">$age</span><span class="pun">);</span><span class="pln">
+$sex </span><span class="pun">=</span><span class="pln"> mysql_real_escape_string</span><span class="pun">(</span><span class="pln">$sex</span><span class="pun">);</span><span class="pln">
+$wpm </span><span class="pun">=</span><span class="pln"> mysql_real_escape_string</span><span class="pun">(</span><span class="pln">$wpm</span><span class="pun">);</span>
+	
+<span class="com">//build query</span><span class="pln">
+$query </span><span class="pun">=</span> <span class="str">"SELECT * FROM ajax_example WHERE sex = '$sex'"</span><span class="pun">;</span>
+
+<span class="kwd">if</span><span class="pun">(</span><span class="pln">is_numeric</span><span class="pun">(</span><span class="pln">$age</span><span class="pun">))</span><span class="pln">
+   $query </span><span class="pun">.=</span> <span class="str">" AND age &lt;= $age"</span><span class="pun">;</span>
+
+<span class="kwd">if</span><span class="pun">(</span><span class="pln">is_numeric</span><span class="pun">(</span><span class="pln">$wpm</span><span class="pun">))</span><span class="pln">
+   $query </span><span class="pun">.=</span> <span class="str">" AND wpm &lt;= $wpm"</span><span class="pun">;</span>
+	
+<span class="com">//Execute query</span><span class="pln">
+$qry_result </span><span class="pun">=</span><span class="pln"> mysql_query</span><span class="pun">(</span><span class="pln">$query</span><span class="pun">)</span> <span class="kwd">or</span> <span class="kwd">die</span><span class="pun">(</span><span class="pln">mysql_error</span><span class="pun">());</span>
+
+<span class="com">//Build Result String</span><span class="pln">
+$display_string </span><span class="pun">=</span> <span class="str">"&lt;table&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;tr&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;th&gt;Name&lt;/th&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;th&gt;Age&lt;/th&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;th&gt;Sex&lt;/th&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;th&gt;WPM&lt;/th&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;/tr&gt;"</span><span class="pun">;</span>
+
+<span class="com">// Insert a new row in the table for each person returned</span>
+<span class="kwd">while</span><span class="pun">(</span><span class="pln">$row </span><span class="pun">=</span><span class="pln"> mysql_fetch_array</span><span class="pun">(</span><span class="pln">$qry_result</span><span class="pun">))</span> <span class="pun">{</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;tr&gt;"</span><span class="pun">;</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;td&gt;$row[name]&lt;/td&gt;"</span><span class="pun">;</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;td&gt;$row[age]&lt;/td&gt;"</span><span class="pun">;</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;td&gt;$row[sex]&lt;/td&gt;"</span><span class="pun">;</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;td&gt;$row[wpm]&lt;/td&gt;"</span><span class="pun">;</span><span class="pln">
+   $display_string </span><span class="pun">.=</span> <span class="str">"&lt;/tr&gt;"</span><span class="pun">;</span>
+<span class="pun">}</span><span class="pln">
+
+echo </span><span class="str">"Query: "</span> <span class="pun">.</span><span class="pln"> $query </span><span class="pun">.</span> <span class="str">"&lt;br /&gt;"</span><span class="pun">;</span><span class="pln">
+$display_string </span><span class="pun">.=</span> <span class="str">"&lt;/table&gt;"</span><span class="pun">;</span><span class="pln">
+
+echo $display_string</span><span class="pun">;</span>
+<span class="pun">?&gt;</span></pre>
+<p>Now try by entering a valid value (e.g., 120) in&nbsp;<em>Max Age</em>&nbsp;or any other box and then click Query MySQL button.</p>
+<form name="myForm">
+<p>Max Age:&nbsp;&nbsp;<input id="age" type="text" /></p>
+<p>Max WPM:&nbsp;<input id="wpm" type="text" /></p>
+<p>Sex:&nbsp;<select id="sex">&nbsp;
+<option value="m">m</option>
+&nbsp;
+<option value="f">f</option>
+&nbsp;</select></p>
+<input type="button" value="Query MySQL" /></form>
+<p>Your result will display here in this section after you have made your entry.</p>
+<p>If you have successfully completed this lesson, then you know how to use MySQL, PHP, HTML, and Javascript in tandem to write AJAX applications.</p>
