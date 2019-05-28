@@ -2,6 +2,7 @@ package com.learn.programming.offline;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -11,6 +12,13 @@ public class Detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        String title=getIntent().getStringExtra("title");
+        setTitle(title);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         String mainUrl = getIntent().getStringExtra("localUrl");
 
@@ -33,4 +41,10 @@ public class Detail extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home);
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }

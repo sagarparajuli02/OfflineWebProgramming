@@ -36,19 +36,20 @@ public class Php extends AppCompatActivity {
 
         getterSetterList = new ArrayList<>();
         //Adding Data into ArrayList
-        getterSetterList.add(new GetterSetter("Introduction","file:///android_asset/html/intro.html"));
-        getterSetterList.add(new GetterSetter("Environment Setup","file:///android_asset/html/setup.html"));
-        getterSetterList.add(new GetterSetter("Syntax Overview","file:///android_asset/html/syntax.html"));
-        getterSetterList.add(new GetterSetter("Variables Types","file:///android_asset/html/variables.html"));
-        getterSetterList.add(new GetterSetter("Operator Types","file:///android_asset/html/operator.html"));
-        getterSetterList.add(new GetterSetter("Decision Making","file:///android_asset/html/decision.html"));
-        getterSetterList.add(new GetterSetter("Loop Types","file:///android_asset/html/loops.html"));
-        getterSetterList.add(new GetterSetter("Arrays","file:///android_asset/html/arrays.html"));
-        getterSetterList.add(new GetterSetter("Web Concept","file:///android_asset/html/concepts.html"));
-        getterSetterList.add(new GetterSetter("GET and POST","file:///android_asset/html/getposy.html"));
-        getterSetterList.add(new GetterSetter("Cookies","file:///android_asset/html/cookies.html"));
-        getterSetterList.add(new GetterSetter("Sessions","file:///android_asset/html/sessions.html"));
-        getterSetterList.add(new GetterSetter("Login Example","file:///android_asset/html/loginex.html"));
+
+        getterSetterList.add(new GetterSetter("Introduction","file:///android_asset/php/intro.html"));
+        getterSetterList.add(new GetterSetter("Environment Setup","file:///android_asset/php/setup.html"));
+        getterSetterList.add(new GetterSetter("Syntax Overview","file:///android_asset/php/syntax.html"));
+        getterSetterList.add(new GetterSetter("Variables Types","file:///android_asset/php/variable.html"));
+        getterSetterList.add(new GetterSetter("Operator Types","file:///android_asset/php/operator.html"));
+        getterSetterList.add(new GetterSetter("Decision Making","file:///android_asset/php/decision.html"));
+        getterSetterList.add(new GetterSetter("Loop Types","file:///android_asset/php/loops.html"));
+        getterSetterList.add(new GetterSetter("Arrays","file:///android_asset/php/arrays.html"));
+        getterSetterList.add(new GetterSetter("Web Concept","file:///android_asset/php/concepts.html"));
+        getterSetterList.add(new GetterSetter("GET and POST","file:///android_asset/php/getposy.html"));
+        getterSetterList.add(new GetterSetter("Cookies","file:///android_asset/php/cookies.html"));
+        getterSetterList.add(new GetterSetter("Sessions","file:///android_asset/php/sessions.html"));
+        getterSetterList.add(new GetterSetter("Login Example","file:///android_asset/php/loginex.html"));
 
         mAdapter = new CustomRecyclerAdapter(this, getterSetterList);
 

@@ -68,6 +68,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
                     Intent detailActivity = new Intent(context,Detail.class);
                     detailActivity.putExtra("localUrl", cpu.getLocalUrl());
+                    detailActivity.putExtra("title", cpu.gettopicTitle());
                     context.startActivity(detailActivity);
 
                 }
