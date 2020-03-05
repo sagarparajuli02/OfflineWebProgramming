@@ -1,0 +1,293 @@
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">CSS 3D Transforms</h2>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">CSS also supports 3D transformations.</p>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Mouse over the elements below to see the difference between a 2D and a 3D transformation:</p>
+<div style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; height: 80px;">
+  <div style="box-sizing: inherit; width: 80px; height: 70px; color: white; position: relative; font-weight: bold; font-size: 15px; padding: 10px; float: left; border-radius: 5px; border: 1px solid rgb(0, 0, 0); background: red; margin: 10px; transform: rotate(180deg);">2D rotate</div>
+  <div style="box-sizing: inherit; width: 80px; height: 70px; color: white; position: relative; font-weight: bold; font-size: 15px; padding: 10px; float: left; border-radius: 5px; border: 1px solid rgb(0, 0, 0); background: red; margin: 10px;">3D rotate</div>
+</div>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">In this chapter you will learn about the following CSS property:</p>
+<ul style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <li style="box-sizing: inherit;">
+    <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">transform</code>
+  </li>
+</ul>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Browser Support</h2>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The numbers in the table specify the first browser version that fully supports the property.</p>
+<div class="w3-responsive" style="box-sizing: inherit; display: block; overflow-x: auto; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <table class="browserref notranslate" style="box-sizing: inherit; border-collapse: collapse; width: 1017.6px;">
+    <thead>
+      <tr style="box-sizing: inherit; background-color: rgb(255, 255, 255);">
+        <th style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px 11px 16px; vertical-align: middle; width: 254.4px; font-size: 16px; text-align: left;">Property</th>
+        <th class="bsChrome" style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px; vertical-align: middle; background-image: url(&quot;/images/compatible_chrome.gif&quot;); width: 152.8px;" title="Chrome">
+          <br>
+        </th>
+        <th class="bsEdge" style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px; vertical-align: middle; background-image: url(&quot;/images/compatible_edge.gif&quot;); width: 152.8px;" title="Internet Explorer / Edge">
+          <br>
+        </th>
+        <th class="bsFirefox" style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px; vertical-align: middle; background-image: url(&quot;/images/compatible_firefox.png&quot;); width: 152.8px;" title="Firefox">
+          <br>
+        </th>
+        <th class="bsSafari" style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px; vertical-align: middle; background-image: url(&quot;/images/compatible_safari.gif&quot;); width: 152px;" title="Safari">
+          <br>
+        </th>
+        <th class="bsOpera" style="box-sizing: inherit; height: 44px; background-repeat: no-repeat; background-position: center center; border: 1px solid rgb(212, 212, 212); background-color: rgb(255, 255, 255); font-weight: normal; color: rgb(85, 85, 85); padding: 11px 5px; vertical-align: middle; background-image: url(&quot;/images/compatible_opera.gif&quot;); width: 152px;" title="Opera">
+          <br>
+        </th>
+      </tr>
+    </thead>
+    <tbody style="box-sizing: inherit;">
+      <tr style="box-sizing: inherit; background-color: rgb(241, 241, 241);">
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: left; padding: 8px 8px 8px 16px; vertical-align: top;">transform</td>
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: center; padding: 8px; vertical-align: top;">36.0
+          <br style="box-sizing: inherit;">
+        </td>
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: center; padding: 8px; vertical-align: top;">10.0
+          <br style="box-sizing: inherit;">
+        </td>
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: center; padding: 8px; vertical-align: top;">16.0
+          <br style="box-sizing: inherit;">
+        </td>
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: center; padding: 8px; vertical-align: top;">9.0
+          <br style="box-sizing: inherit;">
+        </td>
+        <td style="box-sizing: inherit; border: 1px solid rgb(212, 212, 212); text-align: center; padding: 8px; vertical-align: top;">23.0
+          <br style="box-sizing: inherit;">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">CSS 3D Transforms Methods</h2>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">With the CSS&nbsp;
+  <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">transform</code> property you can use the following 3D transformation methods:
+</p>
+<ul style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <li style="box-sizing: inherit;">
+    <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateX()</code>
+  </li>
+  <li style="box-sizing: inherit;">
+    <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateY()</code>
+  </li>
+  <li style="box-sizing: inherit;">
+    <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateZ()</code>
+  </li>
+</ul>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The rotateX() Method</h2>
+<p>
+  <img src="https://www.w3schools.com/css/transform_rotatex.gif" alt="Rotate X" style="box-sizing: inherit; border-style: none; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+</p>
+<p>
+  <br style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+</p>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The&nbsp;
+  <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateX()</code> method rotates an element around its X-axis at a given degree:
+</p>
+<div class="w3-example" style="box-sizing: inherit; background-color: rgb(241, 241, 241); padding: 8px 20px; margin: 24px -20px; box-shadow: none !important; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
+  <h3 style="box-sizing: inherit; font-size: 24px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px;">Example</h3>
+  <div class="w3-code notranslate cssHigh" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15px; width: auto; background-color: rgb(255, 255, 255); padding: 8px 12px; border-left: 4px solid rgb(76, 175, 80); overflow-wrap: break-word; margin-top: 16px !important; margin-bottom: 16px !important;"><span class="cssselectorcolor" style="box-sizing: inherit; color: brown;">#myDiv&nbsp;<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">{</span><span class="csspropertycolor" style="box-sizing: inherit; color: red;">
+        <br style="box-sizing: inherit;"> transform<span class="csspropertyvaluecolor" style="box-sizing: inherit; color: mediumblue;"><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">:</span> rotateX(150deg)<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">;</span></span>
+        <br style="box-sizing: inherit;">
+      </span><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">}</span></span></div>
+  <a class="w3-btn w3-margin-bottom" href="https://www.w3schools.com/css/tryit.asp?filename=trycss3_transform_rotateX" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: inline-block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; margin-bottom: 16px !important;" target="_blank">Try it Yourself »</a>
+</div>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The rotateY() Method</h2>
+<p>
+  <img src="https://www.w3schools.com/css/transform_rotatey.gif" alt="Rotate Y" style="box-sizing: inherit; border-style: none; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+</p>
+<p>
+  <br style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+</p>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The&nbsp;
+  <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateY()</code> method rotates an element around its Y-axis at a given degree:
+</p>
+<div class="w3-example" style="box-sizing: inherit; background-color: rgb(241, 241, 241); padding: 8px 20px; margin: 24px -20px; box-shadow: none !important; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
+  <h3 style="box-sizing: inherit; font-size: 24px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px;">Example</h3>
+  <div class="w3-code notranslate cssHigh" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15px; width: auto; background-color: rgb(255, 255, 255); padding: 8px 12px; border-left: 4px solid rgb(76, 175, 80); overflow-wrap: break-word; margin-top: 16px !important; margin-bottom: 16px !important;"><span class="cssselectorcolor" style="box-sizing: inherit; color: brown;">#myDiv&nbsp;<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">{</span><span class="csspropertycolor" style="box-sizing: inherit; color: red;">
+        <br style="box-sizing: inherit;"> transform<span class="csspropertyvaluecolor" style="box-sizing: inherit; color: mediumblue;"><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">:</span> rotateY(130deg)<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">;</span></span>
+        <br style="box-sizing: inherit;">
+      </span><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">}</span></span></div>
+  <a class="w3-btn w3-margin-bottom" href="https://www.w3schools.com/css/tryit.asp?filename=trycss3_transform_rotateY" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: inline-block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; margin-bottom: 16px !important;" target="_blank">Try it Yourself »</a>
+</div>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The rotateZ() Method</h2>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The&nbsp;
+  <code class="w3-codespan" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15.75px; color: crimson; background-color: rgb(241, 241, 241); padding-left: 4px; padding-right: 4px;">rotateZ()</code> method rotates an element around its Z-axis at a given degree:
+</p>
+<div class="w3-example" style="box-sizing: inherit; background-color: rgb(241, 241, 241); padding: 8px 20px; margin: 24px -20px; box-shadow: none !important; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
+  <h3 style="box-sizing: inherit; font-size: 24px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px;">Example</h3>
+  <div class="w3-code notranslate cssHigh" style="box-sizing: inherit; font-family: Consolas, &quot;courier new&quot;; font-size: 15px; width: auto; background-color: rgb(255, 255, 255); padding: 8px 12px; border-left: 4px solid rgb(76, 175, 80); overflow-wrap: break-word; margin-top: 16px !important; margin-bottom: 16px !important;"><span class="cssselectorcolor" style="box-sizing: inherit; color: brown;">#myDiv&nbsp;<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">{</span><span class="csspropertycolor" style="box-sizing: inherit; color: red;">
+        <br style="box-sizing: inherit;"> transform<span class="csspropertyvaluecolor" style="box-sizing: inherit; color: mediumblue;"><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">:</span> rotateZ(90deg)<span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">;</span></span>
+        <br style="box-sizing: inherit;">
+      </span><span class="cssdelimitercolor" style="box-sizing: inherit; color: black;">}</span></span></div>
+  <a class="w3-btn w3-margin-bottom" href="https://www.w3schools.com/css/tryit.asp?filename=trycss3_transform_rotateZ" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: inline-block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; margin-bottom: 16px !important;" target="_blank">Try it Yourself »</a>
+</div>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<div class="w3-container w3-dark-grey w3-padding" style="box-sizing: inherit; padding: 8px 16px !important; color: rgb(255, 255, 255) !important; background-color: rgb(97, 97, 97) !important; font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
+  <h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px;">Test Yourself with Exercises!</h2>
+  <div class="w3-bar w3-margin-bottom" style="box-sizing: inherit; width: 985.662px; overflow: hidden; margin-bottom: 16px !important;">
+    <a class="w3-bar-item w3-btn" href="https://www.w3schools.com/css/exercise.asp?filename=exercise_css3_3dtransforms1" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; float: left; width: auto; outline: 0px; margin: 10px 5px 0px 0px;" target="_blank">Exercise 1 »</a>
+    <a class="w3-bar-item w3-btn" href="https://www.w3schools.com/css/exercise.asp?filename=exercise_css3_3dtransforms2" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; float: left; width: auto; outline: 0px; margin: 10px 5px 0px 0px;" target="_blank">Exercise 2 »</a>
+    <a class="w3-bar-item w3-btn" href="https://www.w3schools.com/css/exercise.asp?filename=exercise_css3_3dtransforms3" style="box-sizing: inherit; background-color: rgb(76, 175, 80); color: rgb(255, 255, 255); border: none; display: block; padding: 8px 16px; vertical-align: middle; overflow: hidden; text-decoration: none; text-align: center; cursor: pointer; white-space: nowrap; user-select: none; float: left; width: auto; outline: 0px; margin: 10px 5px 0px 0px;" target="_blank">Exercise 3 »</a>
+  </div>
+</div>
+<hr style="box-sizing: content-box; height: 0px; overflow: visible; border-width: 1px 0px 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image: initial; border-top-style: solid; border-top-color: rgb(238, 238, 238); margin: 20px -16px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">CSS Transform Properties</h2>
+<p style="box-sizing: inherit; margin-top: 1.2em; margin-bottom: 1.2em; font-size: 15px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">The following table lists all the 3D transform properties:</p>
+<table class="w3-table-all notranslate" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; width: 1017.6px; display: table; border: 1px solid rgb(204, 204, 204); margin: 20px 0px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <thead>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <th style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top; width: 223.2px;">Property</th>
+      <th style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Description</th>
+    </tr>
+  </thead>
+  <tbody style="box-sizing: inherit;">
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_transform.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">transform</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Applies a 2D or 3D transformation to an element</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_transform-origin.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">transform-origin</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Allows you to change the position on transformed elements</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_transform-style.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">transform-style</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Specifies how nested elements are rendered in 3D space</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_perspective.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">perspective</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Specifies the perspective on how 3D elements are viewed</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_perspective-origin.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">perspective-origin</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Specifies the bottom position of 3D elements</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <a href="https://www.w3schools.com/cssref/css3_pr_backface-visibility.asp" style="box-sizing: inherit; background-color: transparent; color: inherit;">backface-visibility</a>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines whether or not an element should be visible when not facing the screen</td>
+    </tr>
+  </tbody>
+</table>
+<h2 style="box-sizing: inherit; font-size: 32px; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">CSS 3D Transform Methods</h2>
+<table class="w3-table-all notranslate" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; width: 1017.6px; display: table; border: 1px solid rgb(204, 204, 204); margin: 20px 0px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <thead>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <th style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top; width: 272.8px;">Function</th>
+      <th style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Description</th>
+    </tr>
+  </thead>
+  <tbody style="box-sizing: inherit;">
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">matrix3d
+        <br style="box-sizing: inherit;">(
+        <i style="box-sizing: inherit;">n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D transformation, using a 4x4 matrix of 16 values</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">translate3d(
+        <i style="box-sizing: inherit;">x,y,z</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D translation</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">translateX(
+        <i style="box-sizing: inherit;">x</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D translation, using only the value for the X-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">translateY(
+        <i style="box-sizing: inherit;">y</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D translation, using only the value for the Y-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">translateZ(
+        <i style="box-sizing: inherit;">z</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D translation, using only the value for the Z-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">scale3d(
+        <i style="box-sizing: inherit;">x,y,z</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D scale transformation</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">scaleX(
+        <i style="box-sizing: inherit;">x</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D scale transformation by giving a value for the X-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">scaleY(
+        <i style="box-sizing: inherit;">y</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D scale transformation by giving a value for the Y-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">scaleZ(
+        <i style="box-sizing: inherit;">z</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D scale transformation by giving a value for the Z-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">rotate3d(
+        <i style="box-sizing: inherit;">x,y,z,angle</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D rotation</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">rotateX(
+        <i style="box-sizing: inherit;">angle</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D rotation along the X-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">rotateY(
+        <i style="box-sizing: inherit;">angle</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D rotation along the Y-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(241, 241, 241);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">rotateZ(
+        <i style="box-sizing: inherit;">angle</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a 3D rotation along the Z-axis</td>
+    </tr>
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">perspective(
+        <i style="box-sizing: inherit;">n</i>)
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">Defines a perspective view for a 3D transformed element</td>
+    </tr>
+  </tbody>
+</table>
+<table class="w3-table-all notranslate" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; width: 1017.6px; display: table; border: 1px solid rgb(204, 204, 204); margin: 20px 0px; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+  <tbody style="box-sizing: inherit;">
+    <tr style="box-sizing: inherit; border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(255, 255, 255);">
+      <td style="box-sizing: inherit; padding: 8px 8px 8px 16px; display: table-cell; text-align: left; vertical-align: top;">
+        <br>
+      </td>
+      <td style="box-sizing: inherit; padding: 8px; display: table-cell; text-align: left; vertical-align: top;">
+        <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
