@@ -36,23 +36,23 @@ public class Joomla extends AppCompatActivity {
         getterSetterList = new ArrayList<>();
 
         //Adding Data into ArrayList
-        getterSetterList.add(new GetterSetter("Introduction","file:///android_asset/html/intro.html"));
-        getterSetterList.add(new GetterSetter("Installation","file:///android_asset/html/install.html"));
-        getterSetterList.add(new GetterSetter("Administration","file:///android_asset/html/admin.html"));
-        getterSetterList.add(new GetterSetter("PHPSyntax","file:///android_asset/html/phpsyntax.html"));
-        getterSetterList.add(new GetterSetter("Connection","file:///android_asset/html/connection.html"));
-        getterSetterList.add(new GetterSetter("Create Database","file:///android_asset/html/createdb.html"));
-        getterSetterList.add(new GetterSetter("Drop Database","file:///android_asset/html/dropdb.html"));
-        getterSetterList.add(new GetterSetter("Select Database","file:///android_asset/html/selectdb.html"));
-        getterSetterList.add(new GetterSetter("Data Types","file:///android_asset/html/datatypes.html"));
-        getterSetterList.add(new GetterSetter("Create Table","file:///android_asset/html/createtable.html"));
-        getterSetterList.add(new GetterSetter("Drop Table","file:///android_asset/html/droptable.html"));
-        getterSetterList.add(new GetterSetter("Insert","file:///android_asset/html/insert.html"));
-        getterSetterList.add(new GetterSetter("Select","file:///android_asset/html/select.html"));
-        getterSetterList.add(new GetterSetter("Update","file:///android_asset/html/update.html"));
-        getterSetterList.add(new GetterSetter("Delete","file:///android_asset/html/delete.html"));
-        getterSetterList.add(new GetterSetter("SQL Injection","file:///android_asset/html/sqlinjection.html"));
-        getterSetterList.add(new GetterSetter("Database Infromation","file:///android_asset/html/dbinfo.html"));
+        getterSetterList.add(new GetterSetter("Introduction","file:///android_asset/sql/intro.html"));
+        getterSetterList.add(new GetterSetter("Installation","file:///android_asset/sql/install.html"));
+        getterSetterList.add(new GetterSetter("Administration","file:///android_asset/sql/admin.html"));
+        getterSetterList.add(new GetterSetter("PHPSyntax","file:///android_asset/sql/phpsyntax.html"));
+        getterSetterList.add(new GetterSetter("Connection","file:///android_asset/sql/connection.html"));
+        getterSetterList.add(new GetterSetter("Create Database","file:///android_asset/sql/createdb.html"));
+        getterSetterList.add(new GetterSetter("Drop Database","file:///android_asset/sql/dropdb.html"));
+        getterSetterList.add(new GetterSetter("Select Database","file:///android_asset/sql/selectdb.html"));
+        getterSetterList.add(new GetterSetter("Data Types","file:///android_asset/sql/datatypes.html"));
+        getterSetterList.add(new GetterSetter("Create Table","file:///android_asset/sql/createtable.html"));
+        getterSetterList.add(new GetterSetter("Drop Table","file:///android_asset/sql/droptable.html"));
+        getterSetterList.add(new GetterSetter("Insert","file:///android_asset/sql/insert.html"));
+        getterSetterList.add(new GetterSetter("Select","file:///android_asset/sql/select.html"));
+        getterSetterList.add(new GetterSetter("Update","file:///android_asset/sql/update.html"));
+        getterSetterList.add(new GetterSetter("Delete","file:///android_asset/sql/delete.html"));
+        getterSetterList.add(new GetterSetter("SQL Injection","file:///android_asset/sql/sqlinjection.html"));
+        getterSetterList.add(new GetterSetter("Database Infromation","file:///android_asset/sql/dbinfo.html"));
 
         mAdapter = new CustomRecyclerAdapter(this, getterSetterList);
 

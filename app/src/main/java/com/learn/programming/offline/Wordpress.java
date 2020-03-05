@@ -68,7 +68,7 @@ public class Wordpress extends AppCompatActivity {
         getterSetterList.add(new GetterSetter("Host Transfer","file:///android_asset/wordpress/hosttransfer.html"));
         getterSetterList.add(new GetterSetter("Spam Protection","file:///android_asset/wordpress/spamprotection.html"));
         getterSetterList.add(new GetterSetter("Back Up","file:///android_asset/wordpress/backup.html"));
-        getterSetterList.add(new GetterSetter("Optimization","file:///android_asset/wordpress/optimization.html"));
+        getterSetterList.add(new GetterSetter("Optimization","file:///android_asset/wordpress/optimizzation.html"));
 
         mAdapter = new CustomRecyclerAdapter(this, getterSetterList);
 

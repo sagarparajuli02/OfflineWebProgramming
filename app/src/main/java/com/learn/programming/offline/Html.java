@@ -45,11 +45,11 @@ public class Html extends AppCompatActivity {
         getterSetterList.add(new GetterSetter("Images","file:///android_asset/html/image.html"));
         getterSetterList.add(new GetterSetter("Tables","file:///android_asset/html/tables.html"));
         getterSetterList.add(new GetterSetter("List","file:///android_asset/html/list.html"));
-        getterSetterList.add(new GetterSetter("Text Links","file:///android_asset/html/testlinks.html"));
+        getterSetterList.add(new GetterSetter("Text Links","file:///android_asset/html/textlinks.html"));
         getterSetterList.add(new GetterSetter("Frames","file:///android_asset/html/frames.html"));
         getterSetterList.add(new GetterSetter("Forms","file:///android_asset/html/forms.html"));
         getterSetterList.add(new GetterSetter("Style Sheet","file:///android_asset/html/stylesheets.html"));
-        getterSetterList.add(new GetterSetter("Marquees","file:///android_asset/html/matquee.html"));
+        getterSetterList.add(new GetterSetter("Marquees","file:///android_asset/html/marquee.html"));
         getterSetterList.add(new GetterSetter("Javascript","file:///android_asset/html/js.html"));
         getterSetterList.add(new GetterSetter("Layouts","file:///android_asset/html/layout.html"));
 
