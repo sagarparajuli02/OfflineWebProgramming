@@ -49,7 +49,7 @@ public class Javascript extends AppCompatActivity {
         getterSetterList.add(new GetterSetter("Events","file:///android_asset/javascript/events.html"));
         getterSetterList.add(new GetterSetter("Cookies","file:///android_asset/javascript/cookies.html"));
         getterSetterList.add(new GetterSetter("Html DOM","file:///android_asset/javascript/htmldom.html"));
-        getterSetterList.add(new GetterSetter("Erroe Handling","file:///android_asset/javascript/errorhandeling.html"));
+        getterSetterList.add(new GetterSetter("Error Handling","file:///android_asset/javascript/errorhandeling.html"));
         getterSetterList.add(new GetterSetter("Animation","file:///android_asset/javascript/lanimatuons.html"));
         getterSetterList.add(new GetterSetter("Browser","file:///android_asset/javascript/browser.html"));
 

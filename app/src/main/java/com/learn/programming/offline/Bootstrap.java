@@ -39,7 +39,7 @@ public class Bootstrap extends AppCompatActivity {
         //Adding Data into ArrayList
         getterSetterList.add(new GetterSetter("Introduction","file:///android_asset/bootstrap/intro.html"));
         getterSetterList.add(new GetterSetter("Environment Setup","file:///android_asset/bootstrap/setup.html"));
-        getterSetterList.add(new GetterSetter("Layout","file:///android_asset/bootstrap/layput.html"));
+        getterSetterList.add(new GetterSetter("Layout","file:///android_asset/bootstrap/layout.html"));
         getterSetterList.add(new GetterSetter("Grid System","file:///android_asset/bootstrap/grid.html"));
         getterSetterList.add(new GetterSetter("Content","file:///android_asset/bootstrap/content.html"));
         getterSetterList.add(new GetterSetter("Components","file:///android_asset/bootstrap/component.html"));

@@ -48,7 +48,7 @@ public class Angular extends AppCompatActivity {
         getterSetterList.add(new GetterSetter("Tables","file:///android_asset/angular/tables.html"));
         getterSetterList.add(new GetterSetter("HTML DOM","file:///android_asset/angular/dom.html"));
         getterSetterList.add(new GetterSetter("Modules","file:///android_asset/angular/module.html"));
-        getterSetterList.add(new GetterSetter("Forms","file:///android_asset/angular/fprms.html"));
+        getterSetterList.add(new GetterSetter("Forms","file:///android_asset/angular/forms.html"));
         getterSetterList.add(new GetterSetter("Includes","file:///android_asset/angular/includes.html"));
         getterSetterList.add(new GetterSetter("angular","file:///android_asset/angular/angular.html"));
         getterSetterList.add(new GetterSetter("Views","file:///android_asset/angular/views.html"));

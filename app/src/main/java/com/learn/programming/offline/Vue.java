@@ -45,14 +45,14 @@ public class Vue extends AppCompatActivity {
         getterSetterList.add(new GetterSetter("Watch Property","file:///android_asset/vue/watch.html"));
         getterSetterList.add(new GetterSetter("Binding","file:///android_asset/vue/binding.html"));
         getterSetterList.add(new GetterSetter("Events","file:///android_asset/vue/events.html"));
-        getterSetterList.add(new GetterSetter("Rendering","file:///android_asset/vue/reendering.html"));
+        getterSetterList.add(new GetterSetter("Rendering","file:///android_asset/vue/rendering.html"));
         getterSetterList.add(new GetterSetter("Transition & Animation","file:///android_asset/vue/ta.html"));
         getterSetterList.add(new GetterSetter("Directives","file:///android_asset/vue/directives.html"));
         getterSetterList.add(new GetterSetter("Routing","file:///android_asset/vue/routing.html"));
         getterSetterList.add(new GetterSetter("Mixins","file:///android_asset/vue/mixin.html"));
         getterSetterList.add(new GetterSetter("Render Function","file:///android_asset/vue/render.html"));
         getterSetterList.add(new GetterSetter("Reactive Interface","file:///android_asset/vue/reactive.html"));
-       getterSetterList.add(new GetterSetter("Vue Example","file:///android_asset/vue/eample.html"));
+       getterSetterList.add(new GetterSetter("Vue Example","file:///android_asset/vue/example.html"));
 
 
         mAdapter = new CustomRecyclerAdapter(this, getterSetterList);

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Web Programming Offline</string>
+    <string name="admob_native_ad">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="bannerAd">ca-app-pub-7861130520272074/4943422801</string>
 </resources>

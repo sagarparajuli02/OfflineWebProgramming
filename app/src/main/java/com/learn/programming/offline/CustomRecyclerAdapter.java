@@ -3,6 +3,22 @@ package com.learn.programming.offline;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
+
+import java.util.Collections;
+import java.util.List;
+
+import android.content.Context;
+import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +79,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
                     GetterSetter cpu = (GetterSetter) view.getTag();
 
-                 //   Toast.makeText(view.getContext(), cpu.gettopicTitle(), Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(view.getContext(), cpu.gettopicTitle(), Toast.LENGTH_SHORT).show();
 
                     Intent detailActivity = new Intent(context,Detail.class);
                     detailActivity.putExtra("localUrl", cpu.getLocalUrl());
